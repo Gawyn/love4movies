@@ -9,6 +9,9 @@ gem 'jquery-rails'
 # Server 
 gem 'thin'
 
+# The Movie Database
+gem 'ruby-tmdb'
+
 # Development
 group :development do
   gem 'mysql2'
