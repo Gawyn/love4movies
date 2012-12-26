@@ -24,5 +24,12 @@ module TheMovieDB
         res + page_results
       end
     end
+
+    def get_movie(id, lang = nil)
+      url = "/movie/#{id}?"
+      options = { :api_key => @api_key }
+      options = options.merge(:language => lang) if lang
+      self.class.get(url + options.to_query).parsed_response
+    end
   end
 end
