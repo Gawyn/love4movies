@@ -39,5 +39,11 @@ module TheMovieDB
       options = { :api_key => @api_key }
       self.class.get(url + options.to_query).parsed_response
     end
+
+    def get_person(id)
+      url = "/person/#{id}?"
+      options = { :api_key => @api_key }
+      self.class.get(url + options.to_query).parsed_response
+    end
   end
 end
