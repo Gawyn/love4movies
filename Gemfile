@@ -11,6 +11,7 @@ gem 'thin'
 
 # The Movie Database
 gem 'ruby-tmdb'
+gem 'httparty'
 
 # Development
 group :development do
