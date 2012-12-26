@@ -3,9 +3,11 @@ module TMDBFeeder
     def generate_movies(query)
       results = TMDBClient.search(query, false)
       results.each do |result|
-        movie_data = TMDBClient.get_movie(result["id"])
-        movie = generate_basic_movie(movie_data)
-        movie.save
+        unless Movie.find_by_tmdb_id(result["id"]) 
+          movie_data = TMDBClient.get_movie(result["id"])
+          movie = generate_basic_movie(movie_data)
+          movie.save
+        end
       end
     end
 
