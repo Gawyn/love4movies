@@ -1,1 +1,1 @@
-Tmdb.api_key = APP_CONFIG["tmdb"]["key"]
+TMDBClient = TheMovieDB::Client.new(APP_CONFIG["tmdb"]["key"])

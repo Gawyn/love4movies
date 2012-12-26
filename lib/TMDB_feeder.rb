@@ -1,7 +1,7 @@
 module TMDBFeeder
   class << self
-    def search_movies(options)
-      TmdbMovie.find(options)
+    def search_movies(query)
+      TMDBClient.search(query)
     end
   end
 end

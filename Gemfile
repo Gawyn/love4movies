@@ -9,8 +9,7 @@ gem 'jquery-rails'
 # Server 
 gem 'thin'
 
-# The Movie Database
-gem 'ruby-tmdb'
+# HTTParty
 gem 'httparty'
 
 # Development
