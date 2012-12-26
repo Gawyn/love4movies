@@ -11,9 +11,11 @@ module TheMovieDB
       @api_key = api_key
     end
 
-    def search(title)
+    def search(title, adult = nil)
       url = "/search/movie?"
       options = { :query => title, :api_key => @api_key }
+      options = options.merge( :include_adult => adult ) if adult
+
       response = self.class.get(url + options.to_query)
       parsed_response = response.parsed_response
       total_pages = parsed_response["total_pages"]
