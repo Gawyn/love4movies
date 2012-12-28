@@ -6,6 +6,9 @@ gem 'rails', '3.2.8'
 # HTTParty
 gem 'httparty'
 
+# Devise
+gem 'devise'
+
 # Development
 group :development do
   gem 'mysql2'
