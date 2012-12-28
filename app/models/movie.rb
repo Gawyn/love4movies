@@ -3,5 +3,8 @@ class Movie < ActiveRecord::Base
     :popularity, :release_date, :revenue, :runtime, :tmdb_id, 
     :tmdb_vote_average, :tmdb_vote_count
 
-    validates_uniqueness_of :tmdb_id
+  validates_uniqueness_of :tmdb_id
+
+  has_many :participations
+  has_many :people, :through => :participations
 end
