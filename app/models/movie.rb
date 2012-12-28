@@ -6,5 +6,9 @@ class Movie < ActiveRecord::Base
   validates_uniqueness_of :tmdb_id
 
   has_many :participations
+  has_many :performances
+  has_many :technical_participations
   has_many :people, :through => :participations
+  has_many :actors, :through => :performances, :source => :person
+  has_many :technical_members, :through => :technical_participations, :source => :person
 end

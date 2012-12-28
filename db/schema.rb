@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121228143613) do
+ActiveRecord::Schema.define(:version => 20121228155309) do
 
   create_table "movies", :force => true do |t|
     t.integer  "tmdb_id"
@@ -36,6 +36,11 @@ ActiveRecord::Schema.define(:version => 20121228143613) do
     t.integer  "person_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "type"
+    t.string   "character"
+    t.integer  "tmdb_order"
+    t.string   "department"
+    t.string   "job"
   end
 
   create_table "people", :force => true do |t|
