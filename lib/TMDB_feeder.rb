@@ -6,7 +6,7 @@ module TMDBFeeder
         tmdb_id = result["id"]
         unless Movie.find_by_tmdb_id(tmdb_id) 
           movie = generate_basic_movie(tmdb_id)
-          generate_cast_and_crew(tmdb_id)
+          generate_cast_and_crew(movie)
         end
       end
     end
@@ -31,13 +31,13 @@ module TMDBFeeder
       movie
     end
 
-    def generate_cast_and_crew(tmdb_id)
-      cast_and_crew = TMDBClient.get_cast(tmdb_id)
+    def generate_cast_and_crew(movie)
+      cast_and_crew = TMDBClient.get_cast(movie.tmdb_id)
       cast = cast_and_crew["cast"]
       crew = cast_and_crew["crew"]
       (cast + crew).each do |person_data|
         unless Person.find_by_tmdb_id(person_data["id"])
-          Person.create(:tmdb_id => person_data["id"],
+          movie.people.create(:tmdb_id => person_data["id"],
             :name => person_data["name"],
             :tmdb_profile_path => person_data["profile_path"])
         end
