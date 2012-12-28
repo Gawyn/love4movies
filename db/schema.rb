@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121226165128) do
+ActiveRecord::Schema.define(:version => 20121228134554) do
 
   create_table "movies", :force => true do |t|
     t.integer  "tmdb_id"
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(:version => 20121226165128) do
     t.integer  "revenue"
     t.float    "popularity"
     t.string   "tmdb_poster_path"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "people", :force => true do |t|
+    t.string   "name"
+    t.string   "tmdb_profile_path"
+    t.integer  "tmdb_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
