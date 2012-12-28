@@ -11,4 +11,5 @@ class Movie < ActiveRecord::Base
   has_many :people, :through => :participations
   has_many :actors, :through => :performances, :source => :person
   has_many :technical_members, :through => :technical_participations, :source => :person
+  has_and_belongs_to_many :genres
 end
