@@ -9,6 +9,9 @@ gem 'httparty'
 # Devise
 gem 'devise'
 
+# Omniauth
+gem 'omniauth-facebook'
+
 # Development
 group :development do
   gem 'mysql2'
