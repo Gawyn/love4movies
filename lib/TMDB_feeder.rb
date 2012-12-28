@@ -27,6 +27,12 @@ module TMDBFeeder
         movie.send("tmdb_#{attribute}=", movie_data["#{attribute}"])
       end
 
+      movie_data["genres"].each do |genre_data|
+        genre = Genre.find_or_create(:tmdb_id => genre_data["id"],
+          :name => genre_data["name"])
+        movie.genres << genre
+      end
+
       movie.save
       movie
     end
