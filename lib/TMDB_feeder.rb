@@ -35,12 +35,32 @@ module TMDBFeeder
       cast_and_crew = TMDBClient.get_cast(movie.tmdb_id)
       cast = cast_and_crew["cast"]
       crew = cast_and_crew["crew"]
-      (cast + crew).each do |person_data|
-        unless Person.find_by_tmdb_id(person_data["id"])
-          movie.people.create(:tmdb_id => person_data["id"],
+      cast.each do |person_data|
+        person = Person.find_by_tmdb_id(person_data["id"])
+
+        unless person.present?
+          person = Person.create(:tmdb_id => person_data["id"],
             :name => person_data["name"],
             :tmdb_profile_path => person_data["profile_path"])
         end
+
+        Performance.find_or_create(:person_id => person.id, 
+          :movie_id => movie.id, :tmdb_order => person_data["order"],
+          :character => person_data["character"])
+      end
+
+      crew.each do |person_data|
+        person = Person.find_by_tmdb_id(person_data["id"])
+
+        unless person.present?
+          person = Person.create(:tmdb_id => person_data["id"],
+            :name => person_data["name"],
+            :tmdb_profile_path => person_data["profile_path"])
+        end
+
+        TechnicalParticipation.find_or_create(:person_id => person.id, 
+          :movie_id => movie.id, :job => person_data["job"],
+          :department => person_data["department"])
       end
     end
   end
