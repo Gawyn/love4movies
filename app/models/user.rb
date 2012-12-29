@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, 
     :remember_me, :fb_uid, :token, :secret, :expires_at
 
+  has_many :ratings
+
   def update_credentials!(omniauth)
     credentials = omniauth["credentials"]
     self.token = credentials["token"]

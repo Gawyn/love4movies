@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121228203554) do
+ActiveRecord::Schema.define(:version => 20121229132107) do
 
   create_table "genres", :force => true do |t|
     t.integer  "tmdb_id"
@@ -63,6 +63,14 @@ ActiveRecord::Schema.define(:version => 20121228203554) do
     t.datetime "updated_at",        :null => false
   end
 
+  create_table "ratings", :force => true do |t|
+    t.integer  "movie_id"
+    t.integer  "user_id"
+    t.integer  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",               :default => "", :null => false
     t.string   "encrypted_password",  :default => "", :null => false
@@ -75,6 +83,8 @@ ActiveRecord::Schema.define(:version => 20121228203554) do
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.datetime "expires_at"
+    t.string   "fb_uid"
+    t.string   "token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
