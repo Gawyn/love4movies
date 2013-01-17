@@ -2,3 +2,9 @@
 = @movie.overview
 = @movie.runtime
 = tmdb_poster(@movie)
+
+- if current_user
+  #rating
+    - 10.downto(1).each do |i|
+      = button_to i, ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true
+      br
