@@ -12,6 +12,10 @@ class Rating < ActiveRecord::Base
   private
 
   def recalculate_movie_rating
-    movie.update_attribute(:rating_average, movie.calculate_rating_average)
+    new_rating = movie.calculate_rating_average
+
+    if movie.rating_average != new_rating
+      movie.update_attribute(:rating_average, new_rating)
+    end
   end
 end
