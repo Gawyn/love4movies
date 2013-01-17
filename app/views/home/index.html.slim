@@ -1,2 +1,3 @@
 | Welcome to Love4Movies.
-= link_to "Login", user_omniauth_authorize_path("facebook")
+- unless current_user
+  = link_to "Login", user_omniauth_authorize_path("facebook")
