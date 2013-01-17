@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117220103) do
+ActiveRecord::Schema.define(:version => 20130117233904) do
 
   create_table "genres", :force => true do |t|
     t.integer  "tmdb_id"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20130117220103) do
     t.datetime "expires_at"
     t.string   "fb_uid"
     t.string   "token"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
