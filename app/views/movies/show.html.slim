@@ -1,7 +1,9 @@
-= @movie.title
+h1 = @movie.title
 = @movie.overview
 = @movie.runtime
 = tmdb_poster(@movie)
+
+h2#rating_average = @movie.rating_average
 
 - if current_user
   #rating_form
