@@ -27,6 +27,8 @@ module TMDBFeeder
         movie.send("tmdb_#{attribute}=", movie_data["#{attribute}"])
       end
 
+      movie.rating_average = movie.tmdb_vote_average
+
       movie_data["genres"].each do |genre_data|
         genre = Genre.find_or_create(:tmdb_id => genre_data["id"],
           :name => genre_data["name"])
