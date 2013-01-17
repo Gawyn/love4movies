@@ -7,12 +7,12 @@ class UsersController < ApplicationController
     user = User.find_by_fb_uid(omniauth["uid"])
 
     if user
-      user.update_credentials!(omniauth)
+      user.update_data!(omniauth)
     else
       user = User.generate_from_omniauth(omniauth)
-      user.save
       flash[:notice] = "¡Bienvenido!"
     end
+    user.save
 
     sign_in_and_redirect(:user, user)
   end

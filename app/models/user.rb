@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :ratings
 
-  def update_credentials!(omniauth)
+  def update_data!(omniauth)
     credentials = omniauth["credentials"]
     self.token = credentials["token"]
   end
@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     user = User.new
     user.email = omniauth["info"]["email"]
     user.fb_uid = omniauth["uid"]
-    user.update_credentials!(omniauth)
+    user.update_data!(omniauth)
     user
   end
 end
