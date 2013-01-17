@@ -1,1 +1,4 @@
-| $("#rating_form").html("¡Voto emitido!")
+| $("#rating_form").html("¡Voto emitido!");
+| old_rating = $("#rating_average").val();
+| new_rating = #{@movie.rating_average};
+| if(old_rating != new_rating){ $("#rating_average").text(new_rating) }
