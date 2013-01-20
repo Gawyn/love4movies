@@ -27,10 +27,22 @@ module TheMovieDB
       end
     end
 
+    def get_configuration
+      url = "/configuration?"
+      options = { :api_key => @api_key }
+      self.class.get(url + options.to_query).parsed_response
+    end
+
     def get_movie(id, lang = nil)
       url = "/movie/#{id}?"
       options = { :api_key => @api_key }
       options = options.merge(:language => lang) if lang
+      self.class.get(url + options.to_query).parsed_response
+    end
+
+    def get_images(id)
+      url = "/movie/#{id}/images?"
+      options = { :api_key => @api_key }
       self.class.get(url + options.to_query).parsed_response
     end
 

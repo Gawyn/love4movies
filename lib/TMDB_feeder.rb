@@ -7,11 +7,27 @@ module TMDBFeeder
         unless Movie.find_by_tmdb_id(tmdb_id) 
           movie = generate_basic_movie(tmdb_id)
           generate_cast_and_crew(movie)
+          generate_images(movie)
         end
       end
     end
 
     private
+
+    def generate_images(movie)
+      images = TMDBClient.get_images(movie.tmdb_id)
+      images["posters"].each do |poster|
+        Poster.find_or_create(:file_path => poster["file_path"],
+          :width => poster["width"], :height => poster["height"],
+          :aspect_ratio => poster["aspect_ratio"], :movie_id => movie.id)
+      end
+
+      images["backdrops"].each do |backdrop|
+        Backdrop.find_or_create(:file_path => backdrop["file_path"],
+          :width => backdrop["width"], :height => backdrop["height"],
+          :aspect_ratio => backdrop["aspect_ratio"], :movie_id => movie.id)
+      end
+    end
 
     def generate_basic_movie(tmdb_id)
       movie_data = TMDBClient.get_movie(tmdb_id)
