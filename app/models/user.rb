@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, 
     :remember_me, :fb_uid, :token, :secret, :expires_at, :avatar
 
-  has_many :ratings
+  has_many :ratings, :dependent => :destroy
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
 
