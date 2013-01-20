@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
     :remember_me, :fb_uid, :token, :secret, :expires_at, :avatar
 
   has_many :ratings
+  has_many :friendships, :dependent => :destroy
+  has_many :friends, :through => :friendships
+
+  after_create :create_friendships!
 
   def update_data!(omniauth)
     credentials = omniauth["credentials"]
@@ -19,6 +23,14 @@ class User < ActiveRecord::Base
     user.fb_uid = omniauth["uid"]
     user.update_data!(omniauth)
     user
+  end
+
+  def create_friendships!
+    friends_fb_uid = graph.get_connections("me", "friends").map { |friend| friend["id"] }
+
+    User.where(:fb_uid => friends_fb_uid).pluck(:id).each do |friend_id|
+      Friendship.create(:user_id => id, :friend_id => friend_id)
+    end
   end
 
   private
