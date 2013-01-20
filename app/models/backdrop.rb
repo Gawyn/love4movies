@@ -1,0 +1,2 @@
+class Backdrop < Image
+end
