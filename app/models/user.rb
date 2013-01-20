@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
     :remember_me, :fb_uid, :token, :secret, :expires_at, :avatar
 
   has_many :ratings
+  has_many :friendships, :dependent => :destroy
+  has_many :friends, :through => :friendships
 
   after_create :create_friendships!
 
