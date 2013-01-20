@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120103512) do
+ActiveRecord::Schema.define(:version => 20130120154702) do
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(:version => 20130120103512) do
   create_table "genres_movies", :force => true do |t|
     t.integer "genre_id"
     t.integer "movie_id"
+  end
+
+  create_table "images", :force => true do |t|
+    t.integer  "movie_id"
+    t.integer  "width"
+    t.integer  "height"
+    t.float    "aspect_ratio"
+    t.string   "file_path"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "movies", :force => true do |t|
