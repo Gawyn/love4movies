@@ -12,6 +12,9 @@ gem 'devise'
 # Omniauth
 gem 'omniauth-facebook'
 
+# Facebook
+gem 'koala'
+
 # Development
 group :development do
   gem 'mysql2'
