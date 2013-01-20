@@ -24,6 +24,6 @@ class User < ActiveRecord::Base
   private
 
   def graph
-    graph ||= Koala::Facebook::API.new(token)
+    @graph ||= Koala::Facebook::API.new(token)
   end
 end
