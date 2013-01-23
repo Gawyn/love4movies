@@ -5,7 +5,7 @@ Love4movies::Application.routes.draw do
 
   devise_for :users
 
-  resources :movies, :only => :show
+  resources :movies, :only => [:show, :index]
   resources :ratings, :only => :create
 
   root :to => 'home#index'
