@@ -1,15 +1,18 @@
-h1 = @movie.title
-= @movie.overview
-= @movie.runtime
-= tmdb_poster(@movie)
+.main.wrapper.clearfix
+  h1 = @movie.title
+  = @movie.overview
+  = @movie.runtime
+  .wrapper
+    = tmdb_poster(@movie)
+.wrapper
+  = image_tag @movie.backdrops.first.url("w780")
+  = image_tag @movie.posters.first.url("original")
 
-= image_tag @movie.backdrops.first.url("w780")
-= image_tag @movie.posters.first.url("original")
+.wrapper
+  h2#rating_average = @movie.rating_average
 
-h2#rating_average = @movie.rating_average
-
-- if current_user
-  #rating_form
-    - 10.downto(1).each do |i|
-      = button_to i, ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true
-      br
+  - if current_user
+    #rating_form
+      - 10.downto(1).each do |i|
+        = button_to i, ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true
+        br
