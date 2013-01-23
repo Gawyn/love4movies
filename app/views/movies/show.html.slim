@@ -3,6 +3,9 @@ h1 = @movie.title
 = @movie.runtime
 = tmdb_poster(@movie)
 
+= image_tag @movie.backdrops.first.url("w780")
+= image_tag @movie.posters.first.url("original")
+
 h2#rating_average = @movie.rating_average
 
 - if current_user
