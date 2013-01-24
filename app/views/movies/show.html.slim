@@ -14,6 +14,10 @@ h2#rating_average = @movie.rating_average
 #comments
   h2 Comments
   - @movie.comments.each do |comment|
-    .comment
-      = comment.text
-      = comment.user.avatar
+    = render :partial => "comments/show", :locals => {:comment => comment}
+
+- if current_user
+  = simple_form_for @movie.comments.new, :remote => true do |f|
+    = f.input :content, :label => nil
+    = f.input :movie_id, :as => :hidden, :value => @movie.id
+    = f.submit  
