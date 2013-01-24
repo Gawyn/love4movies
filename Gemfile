@@ -15,6 +15,9 @@ gem 'omniauth-facebook'
 # Facebook
 gem 'koala'
 
+# Forms
+gem 'simple_form'
+
 # Development
 group :development do
   gem 'mysql2'
