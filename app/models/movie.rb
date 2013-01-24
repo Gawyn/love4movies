@@ -16,6 +16,7 @@ class Movie < ActiveRecord::Base
   has_many :images
   has_many :posters
   has_many :backdrops
+  has_many :comments
 
   def calculate_rating_average
     if ratings.any?

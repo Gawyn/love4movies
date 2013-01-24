@@ -7,6 +7,7 @@ Love4movies::Application.routes.draw do
 
   resources :movies, :only => [:show, :index]
   resources :ratings, :only => :create
+  resources :comments, :only => :create
 
   root :to => 'home#index'
 end
