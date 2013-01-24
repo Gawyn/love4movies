@@ -10,3 +10,10 @@ h2#rating_average = @movie.rating_average
     - 10.downto(1).each do |i|
       = button_to i, ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true
       br
+
+#comments
+  h2 Comments
+  - @movie.comments.each do |comment|
+    .comment
+      = comment.text
+      = comment.user.avatar
