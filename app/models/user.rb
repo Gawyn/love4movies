@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
     user = User.new
     user.email = omniauth["info"]["email"]
     user.fb_uid = omniauth["uid"]
+    user.password = Devise.friendly_token[0,20]
     user.update_data!(omniauth)
     user
   end
