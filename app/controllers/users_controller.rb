@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     end
 
     if user.save
+      session[:just_logged_in] = true
       sign_in_and_redirect(:user, user)
     end
   end
