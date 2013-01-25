@@ -12,8 +12,9 @@ class UsersController < ApplicationController
       user = User.generate_from_omniauth(omniauth)
       flash[:notice] = "¡Bienvenido!"
     end
-    user.save
 
-    sign_in_and_redirect(:user, user)
+    if user.save
+      sign_in_and_redirect(:user, user)
+    end
   end
 end
