@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable
 
   attr_accessible :email, :password, :password_confirmation, 
-    :remember_me, :fb_uid, :token, :avatar
+    :remember_me, :fb_uid, :token, :avatar, :nickname, :name,
+    :first_name, :last_name
 
   has_many :ratings, :dependent => :destroy
   has_many :friendships, :dependent => :destroy
@@ -21,6 +22,10 @@ class User < ActiveRecord::Base
   def self.generate_from_omniauth(omniauth)
     user = User.new
     user.email = omniauth["info"]["email"]
+    user.nickname = omniauth["info"]["nickname"]
+    user.name = omniauth["info"]["name"]
+    user.first_name = omniauth["info"]["first_name"]
+    user.last_name = omniauth["info"]["last_name"]
     user.fb_uid = omniauth["uid"]
     user.password = Devise.friendly_token[0,20]
     user.update_data!(omniauth)
