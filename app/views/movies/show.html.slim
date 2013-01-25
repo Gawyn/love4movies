@@ -6,6 +6,10 @@ h1 = @movie.title
 h2#rating_average = @movie.rating_average
 
 - if current_user
+  - if @my_rating
+    ' You have voted it with
+    = @my_rating.value
+
   #rating_form
     - 10.downto(1).each do |i|
       = button_to i, ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true
