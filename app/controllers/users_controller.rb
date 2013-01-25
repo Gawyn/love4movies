@@ -10,7 +10,6 @@ class UsersController < ApplicationController
       user.update_data!(omniauth)
     else
       user = User.generate_from_omniauth(omniauth)
-      flash[:notice] = "¡Bienvenido!"
     end
 
     if user.save
