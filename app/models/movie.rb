@@ -5,18 +5,18 @@ class Movie < ActiveRecord::Base
 
   validates_uniqueness_of :tmdb_id
 
-  has_many :participations
+  has_many :participations, :dependent => :destroy
   has_many :performances
   has_many :technical_participations
   has_many :people, :through => :participations
   has_many :actors, :through => :performances, :source => :person
   has_many :technical_members, :through => :technical_participations, :source => :person
   has_and_belongs_to_many :genres
-  has_many :ratings
-  has_many :images
+  has_many :ratings, :dependent => :destroy
+  has_many :images, :dependent => :destroy
   has_many :posters
   has_many :backdrops
-  has_many :comments
+  has_many :comments, :dependent => :destroy
 
   def calculate_rating_average
     if ratings.any?
