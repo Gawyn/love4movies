@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable
 
   attr_accessible :email, :password, :password_confirmation, 
-    :remember_me, :fb_uid, :token, :expires_at, :avatar
+    :remember_me, :fb_uid, :token, :avatar
 
   has_many :ratings, :dependent => :destroy
   has_many :friendships, :dependent => :destroy
