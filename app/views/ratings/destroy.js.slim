@@ -1,5 +1,5 @@
 | $("#rating_form").html("Voto elimnado.");
 | old_rating = $("#rating_average").val();
-| new_rating = #{@rating.movie.rating_average};
-| if(old_rating != new_rating){ $("#rating_average").text(new_rating) }
+| new_rating = #{@rating.movie.rating_average.round(2)};
+| if(old_rating != new_rating){ $("#rating_average").text(new_rating }
 | $("#my_rating").text("No la has visto.");
