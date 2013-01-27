@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :ratings, :dependent => :destroy
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
-  has_many :comments
+  has_many :comments, :dependent => :destroy
 
   after_create :create_friendships!
 
