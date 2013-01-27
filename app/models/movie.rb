@@ -24,7 +24,7 @@ class Movie < ActiveRecord::Base
       my_ratings_average = ratings.pluck(:value).sum.to_f/total_ratings
       (my_ratings_average * total_ratings + tmdb_vote_average * tmdb_vote_count) / (total_ratings + tmdb_vote_count)
     else
-      tmdb_vote_average / tmdb_vote_count
+      tmdb_vote_average
     end
   end
 end
