@@ -5,11 +5,23 @@ h1 = @movie.title
 
 h2#rating_average = @movie.rating_average
 
-- if current_user
+#my_rating
+  - if current_user
+    - if @my_rating
+      = @my_rating.value
+    - else
+      | No la has visto.
+
   #rating_form
-    - 10.downto(1).each do |i|
-      = button_to i, ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true
-      br
+    - if @my_rating
+      - 10.downto(1).each do |i|
+        - unless @my_rating.value == i
+          = button_to i, rating_path(:id => @my_rating.id, :value => i), :method => :put, :remote => true
+      = button_to "No la he visto", rating_path(:id => @my_rating.id), :method => :delete, :remote => true
+    - else
+      - 10.downto(1).each do |i|
+        = button_to i, ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true
+        br
 
 #comments
   h2 Comments
