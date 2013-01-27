@@ -12,6 +12,7 @@ h2#rating_average = @movie.rating_average.round(2)
     - else
       | No la has visto.
 
+- if current_user
   #rating_form
     - if @my_rating
       - 10.downto(1).each do |i|
