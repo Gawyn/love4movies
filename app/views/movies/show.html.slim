@@ -17,6 +17,7 @@ h2#rating_average = @movie.rating_average
       - 10.downto(1).each do |i|
         - unless @my_rating.value == i
           = button_to i, rating_path(:id => @my_rating.id, :value => i), :method => :put, :remote => true
+      = button_to "No la he visto", rating_path(:id => @my_rating.id), :method => :delete, :remote => true
     - else
       - 10.downto(1).each do |i|
         = button_to i, ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true

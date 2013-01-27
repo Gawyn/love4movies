@@ -19,4 +19,15 @@ class RatingsController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @rating = Rating.find params[:id]
+
+    if @rating.destroy
+      respond_to do |format|
+        format.html { redirect_to :back } 
+        format.js
+      end
+    end
+  end
 end

@@ -9,6 +9,7 @@ class Rating < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => :movie_id
 
   after_save :recalculate_movie_rating
+  after_destroy :recalculate_movie_rating
 
   private
 
