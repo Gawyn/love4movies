@@ -18,6 +18,9 @@ gem 'koala'
 # Forms
 gem 'simple_form'
 
+# Decorator
+gem 'draper'
+
 # Development
 group :development do
   gem 'pg'
