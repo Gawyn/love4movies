@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, 
     :remember_me, :fb_uid, :token, :avatar, :nickname, :name,
-    :first_name, :last_name, :location
+    :first_name, :last_name, :location, :big_avatar
 
   has_many :ratings, :dependent => :destroy
   has_many :friendships, :dependent => :destroy
