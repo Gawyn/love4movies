@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
+  AVATAR_SIZES = %w{ small medium big }
+
   devise :database_authenticatable, :omniauthable,
          :rememberable, :trackable, :validatable
 
   attr_accessible :email, :password, :password_confirmation, 
-    :remember_me, :fb_uid, :token, :avatar, :nickname, :name,
-    :first_name, :last_name, :location, :big_avatar
+    :remember_me, :fb_uid, :token, :small_avatar, :nickname, :name,
+    :first_name, :last_name, :location, :big_avatar, :medium_avatar
 
   has_many :ratings, :dependent => :destroy
   has_many :friendships, :dependent => :destroy
@@ -16,7 +18,11 @@ class User < ActiveRecord::Base
   def update_data!(omniauth)
     credentials = omniauth["credentials"]
     self.token = credentials["token"]
-    self.avatar = graph.get_picture("me")
+    self.small_avatar = graph.get_picture("me")
+    self.big_avatar = graph.get_picture("me", { :width => 200,
+      :height => 200 })
+    self.medium_avatar = graph.get_picture("me", { :width => 100,
+      :height => 100 })
   end
 
   def self.generate_from_omniauth(omniauth)
@@ -39,6 +45,11 @@ class User < ActiveRecord::Base
     User.where(:fb_uid => friends_fb_uid).pluck(:id).each do |friend_id|
       Friendship.create(:user_id => id, :friend_id => friend_id)
     end
+  end
+
+  def avatar(size = "medium")
+    return unless AVATAR_SIZES.include? size
+    send("#{size}_avatar")
   end
 
   private
