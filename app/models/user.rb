@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, 
     :remember_me, :fb_uid, :token, :avatar, :nickname, :name,
-    :first_name, :last_name, :location, :big_avatar
+    :first_name, :last_name, :location, :big_avatar, :medium_avatar
 
   has_many :ratings, :dependent => :destroy
   has_many :friendships, :dependent => :destroy
@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
     self.avatar = graph.get_picture("me")
     self.big_avatar = graph.get_picture("me", { :width => 200,
       :height => 200 })
+    self.medium_avatar = graph.get_picture("me", { :width => 100,
+      :height => 100 })
   end
 
   def self.generate_from_omniauth(omniauth)
