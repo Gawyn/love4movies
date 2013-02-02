@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
     credentials = omniauth["credentials"]
     self.token = credentials["token"]
     self.avatar = graph.get_picture("me")
+    self.big_avatar = graph.get_picture("me", { :width => 200,
+      :height => 200 })
   end
 
   def self.generate_from_omniauth(omniauth)
