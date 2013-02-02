@@ -10,10 +10,11 @@ class UsersController < ApplicationController
       user.update_data!(omniauth)
     else
       user = User.generate_from_omniauth(omniauth)
-      flash[:notice] = "¡Bienvenido!"
     end
-    user.save
 
-    sign_in_and_redirect(:user, user)
+    if user.save
+      session[:just_logged_in] = true
+      sign_in_and_redirect(:user, user)
+    end
   end
 end

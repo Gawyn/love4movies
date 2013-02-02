@@ -6,8 +6,10 @@ class Rating < ActiveRecord::Base
 
   validates_inclusion_of :value, :in => 1..10
   validates_presence_of :movie_id, :user_id
+  validates_uniqueness_of :user_id, :scope => :movie_id
 
-  after_create :recalculate_movie_rating
+  after_save :recalculate_movie_rating
+  after_destroy :recalculate_movie_rating
 
   private
 

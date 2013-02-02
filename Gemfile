@@ -15,9 +15,12 @@ gem 'omniauth-facebook'
 # Facebook
 gem 'koala'
 
+# Forms
+gem 'simple_form'
+
 # Development
 group :development do
-  gem 'mysql2'
+  gem 'pg'
   gem 'quiet_assets'
   gem 'thin'
 end
@@ -29,7 +32,7 @@ end
 
 # Production
 group :production do
-  gem 'mysql2'
+  gem 'pg'
 end
 
 # Assets
