@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  AVATAR_SIZES = %w{ small medium big }
+
   devise :database_authenticatable, :omniauthable,
          :rememberable, :trackable, :validatable
 
@@ -43,6 +45,11 @@ class User < ActiveRecord::Base
     User.where(:fb_uid => friends_fb_uid).pluck(:id).each do |friend_id|
       Friendship.create(:user_id => id, :friend_id => friend_id)
     end
+  end
+
+  def avatar(size = "medium")
+    return unless AVATAR_SIZES.include? size
+    send("#{size}_avatar")
   end
 
   private
