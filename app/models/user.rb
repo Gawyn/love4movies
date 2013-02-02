@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable
 
   attr_accessible :email, :password, :password_confirmation, 
-    :remember_me, :fb_uid, :token, :avatar, :nickname, :name,
+    :remember_me, :fb_uid, :token, :small_avatar, :nickname, :name,
     :first_name, :last_name, :location, :big_avatar, :medium_avatar
 
   has_many :ratings, :dependent => :destroy
@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   def update_data!(omniauth)
     credentials = omniauth["credentials"]
     self.token = credentials["token"]
-    self.avatar = graph.get_picture("me")
+    self.small_avatar = graph.get_picture("me")
     self.big_avatar = graph.get_picture("me", { :width => 200,
       :height => 200 })
     self.medium_avatar = graph.get_picture("me", { :width => 100,
