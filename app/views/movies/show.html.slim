@@ -1,36 +1,42 @@
-h1 = @movie.title
-= @movie.overview
-= @movie.runtime
-= tmdb_poster(@movie)
+.main.wrapper.clearfix
+  h1 = @movie.title
+  = @movie.overview
+  = @movie.runtime
+  .wrapper
+    = tmdb_poster(@movie)
+.wrapper
+  = image_tag @movie.backdrops.first.url("w780")
+  = image_tag @movie.posters.first.url("original")
 
-h2#rating_average = @movie.rating_average.round(2)
+.wrapper
+  h2#rating_average = @movie.rating_average.round(2)
 
-#my_rating
+  #my_rating
+    - if current_user
+      - if @my_rating
+        = @my_rating.value
+      - else
+        | No la has visto.
+
   - if current_user
-    - if @my_rating
-      = @my_rating.value
-    - else
-      | No la has visto.
+    #rating_form
+      - if @my_rating
+        - 10.downto(1).each do |i|
+          - unless @my_rating.value == i
+            = button_to i, rating_path(:id => @my_rating.id, :value => i), :method => :put, :remote => true
+        = button_to "No la he visto", rating_path(:id => @my_rating.id), :method => :delete, :remote => true
+      - else
+        - 10.downto(1).each do |i|
+          = button_to i, ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true
+          br
 
-- if current_user
-  #rating_form
-    - if @my_rating
-      - 10.downto(1).each do |i|
-        - unless @my_rating.value == i
-          = button_to i, rating_path(:id => @my_rating.id, :value => i), :method => :put, :remote => true
-      = button_to "No la he visto", rating_path(:id => @my_rating.id), :method => :delete, :remote => true
-    - else
-      - 10.downto(1).each do |i|
-        = button_to i, ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true
-        br
+  #comments
+    h2 Comments
+    - @movie.comments.each do |comment|
+      = render :partial => "comments/show", :locals => {:comment => comment}
 
-#comments
-  h2 Comments
-  - @movie.comments.each do |comment|
-    = render :partial => "comments/show", :locals => {:comment => comment}
-
-- if current_user
-  = simple_form_for @movie.comments.new, :remote => true do |f|
-    = f.input :content, :label => nil
-    = f.input :movie_id, :as => :hidden, :value => @movie.id
-    = f.submit  
+  - if current_user
+    = simple_form_for @movie.comments.new, :remote => true do |f|
+      = f.input :content, :label => nil
+      = f.input :movie_id, :as => :hidden, :value => @movie.id
+      = f.submit  
