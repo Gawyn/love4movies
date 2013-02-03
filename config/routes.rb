@@ -5,9 +5,16 @@ Love4movies::Application.routes.draw do
 
   devise_for :users
 
-  resources :movies, :only => [:show, :index]
+  resources :users, :only => :none do
+    get :ranking
+  end
+
+  resources :movies, :only => [:show, :index] do
+    get :ranking, :on => :collection
+  end
   resources :ratings, :only => [:create, :update, :destroy]
   resources :comments, :only => :create
 
+  match "ranking" => "movies#ranking"
   root :to => 'home#index'
 end
