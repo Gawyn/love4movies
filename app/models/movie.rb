@@ -18,6 +18,8 @@ class Movie < ActiveRecord::Base
   has_many :backdrops
   has_many :comments, :dependent => :destroy
 
+  scope :by_rating_average, order(arel_table[:rating_average].desc)
+
   def calculate_rating_average
     if ratings.any?
       total_ratings = ratings.count

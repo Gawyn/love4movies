@@ -1,0 +1,5 @@
+- @movies.each_with_index do |movie, i|
+  .movie
+    = i + 1
+    = movie.print_poster
+    = link_to movie.title, movie

@@ -13,4 +13,8 @@ class MoviesController < ApplicationController
       Movie.all
     end
   end
+
+  def ranking
+    @movies = Movie.by_rating_average.decorate
+  end
 end
