@@ -5,6 +5,10 @@ Love4movies::Application.routes.draw do
 
   devise_for :users
 
+  resources :users, :only => :none do
+    get :ranking
+  end
+
   resources :movies, :only => [:show, :index] do
     get :ranking, :on => :collection
   end
