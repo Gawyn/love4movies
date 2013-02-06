@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202112652) do
+ActiveRecord::Schema.define(:version => 20130206012746) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -65,9 +65,11 @@ ActiveRecord::Schema.define(:version => 20130202112652) do
     t.integer  "revenue"
     t.float    "popularity"
     t.string   "tmdb_poster_path"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.float    "rating_average"
+    t.boolean  "hidden",            :default => false
+    t.integer  "total_ratings",     :default => 0
   end
 
   create_table "participations", :force => true do |t|

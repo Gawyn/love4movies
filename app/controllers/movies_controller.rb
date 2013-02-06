@@ -10,11 +10,11 @@ class MoviesController < ApplicationController
       TMDBFeeder.generate_movies(params[:search])
       Movie.where(Movie.arel_table[:title].matches("%#{params[:search]}%"))
     else
-      Movie.all
-    end
+      Movie
+    end.not_hidden
   end
 
   def ranking
-    @movies = Movie.by_rating_average.decorate
+    @movies = Movie.by_rating_average.not_hidden.more_total_ratings_than(3).decorate
   end
 end
