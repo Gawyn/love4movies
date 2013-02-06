@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
       Movie.where(Movie.arel_table[:title].matches("%#{params[:search]}%"))
     else
       Movie
-    end.not_hidden.all
+    end.not_hidden
   end
 
   def ranking
