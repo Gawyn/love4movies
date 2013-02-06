@@ -2,18 +2,22 @@
   .g.four-twelfths.lap-one-whole.palm-one-whole
     = image_tag @movie.posters.first.url("w342")
 
-  .g.four-twelfths.lap-one-whole.palm-one-whole
+  .g.six-twelfths.lap-one-whole.palm-one-whole
     h1= @movie.title
     p.subheader
       | Directed by
       b  Cristian Planas
     p= @movie.overview
-    date= @movie.runtime
-    ul
+    date
+      =' @movie.runtime
+      | min
+    .tags
       - @movie.genres.each do |genre|
-        li= genre.name
+        span
+          =' genre.name
+          | /
   .g.two-twelfths.lap-one-whole.palm-one-whole
-    #rating_average = @movie.rating_average.round(2)
+    h2#rating_average = @movie.rating_average.round(2)
     #my_rating
       - if current_user
         - if @my_rating
