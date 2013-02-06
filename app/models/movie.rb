@@ -20,6 +20,7 @@ class Movie < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
 
   scope :by_rating_average, order(arel_table[:rating_average].desc)
+  scope :public, where(:hidden => false)
 
   before_create :set_hidden
 
