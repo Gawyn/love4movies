@@ -36,14 +36,6 @@
           - 10.downto(1).each do |i|
             = button_to i, ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true
 
-
-  .g.one-whole.lap-one-whole.palm-one-whole
-    - @movie.backdrops.each do |backdrop|
-      = image_tag backdrop.url("w1280")
-
-  .g.one-whole.lap-one-whole.palm-one-whole
-    = image_tag @movie.posters.first.url("original")
-
   .g.one-whole.lap-one-whole.palm-one-whole
     #comments
       h2 Comments
