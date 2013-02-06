@@ -23,6 +23,7 @@ class Movie < ActiveRecord::Base
   scope :public, where(:hidden => false)
 
   before_create :set_hidden
+  before_create :set_total_ratings
 
   def calculate_rating_average
     if ratings.any?
@@ -38,5 +39,9 @@ class Movie < ActiveRecord::Base
 
   def set_hidden
     self.hidden ||= true if tmdb_vote_count == 0 || genres.empty?
+  end
+
+  def set_total_ratings
+    self.total_ratings = tmdb_vote_count
   end
 end
