@@ -21,6 +21,8 @@ class Movie < ActiveRecord::Base
 
   scope :by_rating_average, order(arel_table[:rating_average].desc)
 
+  before_create :set_hidden
+
   def calculate_rating_average
     if ratings.any?
       total_ratings = ratings.count
@@ -29,5 +31,11 @@ class Movie < ActiveRecord::Base
     else
       tmdb_vote_average
     end
+  end
+
+  private
+
+  def set_hidden
+    self.hidden ||= true if tmdb_vote_count == 0 || genres.empty?
   end
 end
