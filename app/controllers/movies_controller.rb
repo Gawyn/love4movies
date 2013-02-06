@@ -11,10 +11,10 @@ class MoviesController < ApplicationController
       Movie.where(Movie.arel_table[:title].matches("%#{params[:search]}%"))
     else
       Movie
-    end.public.all
+    end.not_hidden.all
   end
 
   def ranking
-    @movies = Movie.by_rating_average.public.more_total_ratings_than(3).decorate
+    @movies = Movie.by_rating_average.not_hidden.more_total_ratings_than(3).decorate
   end
 end
