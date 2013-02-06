@@ -5,8 +5,10 @@
   .wrapper
     = tmdb_poster(@movie)
 .wrapper
-  = image_tag @movie.backdrops.first.url("w780")
-  = image_tag @movie.posters.first.url("original")
+  - if @movie.backdrops.any?
+    = image_tag @movie.backdrops.first.url("w780")
+  - if @movie.posters.any?
+    = image_tag @movie.posters.first.url("original")
 
 .wrapper
   h2#rating_average = @movie.rating_average.round(2)
