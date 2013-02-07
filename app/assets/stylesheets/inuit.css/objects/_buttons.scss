@@ -3,9 +3,9 @@
 \*------------------------------------*/
 /**
  * Basic button structural styling. Extend in your theme stylesheet.
- * 
+ *
  * Demo: jsfiddle.net/inuitcss/RqHcp
- * 
+ *
  */
 .btn{
     font:inherit;
@@ -14,15 +14,19 @@
     display:inline-block;
     margin: 0;
     line-height:1;
+    background-color: $text-color;
+    border-radius: 3px;
+    color: white;
+    @include transition(all, ease, 0.3s);
     /**
      * Set padding in ems so we can change the size of a button by merely
      * altering its `font-size`.
      */
     padding:0.5em;
 }
-    .btn,
     .btn:hover{
         text-decoration:none;
+        background-color: #34a6d0;
     }
 
 /**

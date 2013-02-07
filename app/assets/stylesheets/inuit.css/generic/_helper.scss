@@ -32,11 +32,27 @@
 .full-bleed{
     margin-right:-$base-spacing-unit!important;
     margin-left: -$base-spacing-unit!important;
-    
+
     .islet &{
         margin-right:-($half-spacing-unit)!important;
         margin-left: -($half-spacing-unit)!important;
     }
+}
+
+.leader{
+    @include margin-leader(1);
+}
+
+.trailer{
+    @include margin-trailer(1);
+}
+
+.leader--lrg{
+    @include margin-leader(2);
+}
+
+.trailer-lrg{
+    @include margin-trailer(2);
 }
 
 
@@ -60,9 +76,9 @@
 
 /**
  * Align items to the right where they imply progression/movement forward, e.g.:
- * 
+ *
    <p class=proceed><a href=#>Read more...</a></p>
- * 
+ *
  */
 .proceed{
     text-align:right;
@@ -71,9 +87,9 @@
 
 /**
  * Add a right-angled quote to links that imply movement, e.g.:
- * 
+ *
    <a href=# class=go>Read more</a>
- * 
+ *
  */
 .go:after{
     content:" »";

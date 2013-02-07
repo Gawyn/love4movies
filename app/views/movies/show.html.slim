@@ -1,41 +1,49 @@
 .grid-extends
   .grid-wrapper
     .g.four-twelfths.lap-one-whole.palm-one-whole
-      = image_tag @movie.posters.first.url("w342")
+      figure
+        = image_tag @movie.posters.first.url("w500")
 
-    .g.six-twelfths.lap-one-whole.palm-one-whole
-      h1= @movie.title
-      p.subheader
-        | Directed by
-        b  Cristian Planas
-      p= @movie.overview
-      date
-        =' @movie.runtime
-        | min
-      .tags
-        - @movie.genres.each do |genre|
-          span
-            =' genre.name
-            | /
-    .g.two-twelfths.lap-one-whole.palm-one-whole
-      h2#rating_average = @movie.rating_average.round(2)
-      #my_rating
-        - if current_user
-          - if @my_rating
-            = @my_rating.value
-          - else
-            | No la has visto.
+    section.g.six-twelfths.lap-one-whole.palm-one-whole.movie
+      .g.ten-twelfths.lap-one-whole.palm-one-whole
+        section.movie--description
+          hgroup
+            h1.hN.caps= @movie.title
+            p.subheader.hN
+              | Directed by
+              b  Cristian Planas
+          p= @movie.overview
+          date
+            =' @movie.runtime
+            | min
+          .tags.leader--lrg
+            - @movie.genres.each do |genre|
+              span
+                =' genre.name
+                | /
+      .g.two-twelfths.lap-one-whole.palm-one-whole
+        section.movie--rating
+          #rating_average.movie-ratio.kilo = @movie.rating_average.round(1)
+          button.btn.btn--full.btn-lrg
+            | Vote
+          #my_rating
+            - if current_user
+              - if @my_rating
+                = @my_rating.value
+              - else
+                | No la has visto
 
-      - if current_user
-        #rating_form
-          - if @my_rating
-            - 10.downto(1).each do |i|
-              - unless @my_rating.value == i
-                = button_to i, rating_path(:id => @my_rating.id, :value => i), :method => :put, :remote => true
-            = button_to "No la he visto", rating_path(:id => @my_rating.id), :method => :delete, :remote => true
-          - else
-            - 10.downto(1).each do |i|
-              = button_to i, ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true
+          .rating-buttons.hide
+            - if current_user
+              #rating_form
+                - if @my_rating
+                  - 10.downto(1).each do |i|
+                    - unless @my_rating.value == i
+                      = button_to i, rating_path(:id => @my_rating.id, :value => i), :method => :put, :remote => true
+                  = button_to "No la he visto", rating_path(:id => @my_rating.id), :method => :delete, :remote => true
+                - else
+                  - 10.downto(1).each do |i|
+                    = button_to i, ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true
 
 .grid-extends
   .grid-wrapper

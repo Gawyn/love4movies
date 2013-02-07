@@ -1,0 +1,32 @@
+%ultra-leader{
+  @include margin-leader(5);
+}
+
+%bottom{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+%number{
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.25em;
+}
+
+.movie{
+  position: relative;
+}
+
+.movie--rating{
+  @extend %ultra-leader;
+  @extend %bottom;
+}
+
+.movie-ratio{
+  @extend %number;
+}
+
+.movie--description{
+  @extend %ultra-leader;
+}
