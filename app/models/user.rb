@@ -53,6 +53,11 @@ class User < ActiveRecord::Base
     send("#{size}_avatar")
   end
 
+  def available_patterns
+    completed_patterns = lists.pluck(:list_pattern_id)
+    completed_patterns.any? ? ListPattern.where(ListPattern.arel_table[:id].not_in(completed_patterns)) : ListPattern.all
+  end
+
   private
 
   def graph

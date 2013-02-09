@@ -2,3 +2,6 @@
   h1 Lists
   - @lists.each do |list|
     = list.title
+
+- @available_patterns.each do |pattern|
+  = link_to pattern.title, lists_path(:list_pattern_id => pattern.id), :method => :post
