@@ -7,6 +7,7 @@ Love4movies::Application.routes.draw do
 
   resources :users, :only => :none do
     get :ranking
+    resources :lists, :only => [:show, :index]
   end
 
   resources :movies, :only => [:show, :index] do
