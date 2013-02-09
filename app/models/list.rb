@@ -5,4 +5,7 @@ class List < ActiveRecord::Base
   belongs_to :list_pattern
   has_many :list_belongings
   has_many :movies, :through => :list_belongings
+
+  validates_presence_of :user
+  validates_presence_of :title, :unless => :list_pattern
 end
