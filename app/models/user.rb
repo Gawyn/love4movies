@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
   has_many :comments, :dependent => :destroy
+  has_many :lists, :dependent => :destroy
 
   after_create :create_friendships!
 
