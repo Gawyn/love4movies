@@ -26,7 +26,7 @@
           #rating_average.movie-ratio.kilo = @movie.rating_average.round(1)
           .js-rate-button.button.btn.btn--full.btn-lrg
             | Vote
-          #my_rating
+          #my_rating.text--center
             - if current_user
               - if @my_rating
                 = @my_rating.value
