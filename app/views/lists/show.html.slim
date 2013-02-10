@@ -8,4 +8,4 @@ h1 = @list.title
 
 #movies_list
   - @movies.each do |movie|
-    = render "show_movie", :movie => movie
+    = render "listed_movie", :movie => movie, :list => @list
