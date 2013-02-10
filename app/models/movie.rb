@@ -38,6 +38,11 @@ class Movie < ActiveRecord::Base
     end
   end
 
+  def self.search(title)
+    TMDBFeeder.generate_movies(title)
+    Movie.where(Movie.arel_table[:title].matches("%#{title}%"))
+  end
+
   private
 
   def set_hidden
