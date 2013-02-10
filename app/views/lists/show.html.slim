@@ -6,5 +6,6 @@ h1 = @list.title
 
 #js-movies-index
 
-- @list.movies.each do |movie|
-  = movie.title
+#movies_list
+  - @movies.each do |movie|
+    = render "show_movie", :movie => movie
