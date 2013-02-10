@@ -4,7 +4,7 @@ class RatingsController < ApplicationController
       :movie_id => params[:movie_id], :value => params[:value])
 
     respond_to do |format|
-      format.html { redirect_to :back } 
+      format.html { redirect_to :back }
       format.js
     end
   end
@@ -14,7 +14,7 @@ class RatingsController < ApplicationController
 
     if @rating.update_attribute(:value, params[:value])
       respond_to do |format|
-        format.html { redirect_to :back } 
+        format.html { redirect_to :back }
         format.js { render :create }
       end
     end
@@ -25,7 +25,7 @@ class RatingsController < ApplicationController
 
     if @rating.destroy
       respond_to do |format|
-        format.html { redirect_to :back } 
+        format.html { redirect_to :back }
         format.js
       end
     end

@@ -1,0 +1,70 @@
+%ultra-leader{
+  @include margin-leader(5);
+}
+
+%bottom{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+%number{
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.25em;
+}
+
+%hide-list{
+  background-color: $text-color;
+  opacity: 0;
+  filter:alpha(opacity = 0);
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 1.25em;
+  border-radius: 3px;
+  @include transition(opacity, ease, 0.25s);
+}
+
+%top-left{
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+}
+
+%comments{
+  background-color: whitesmoke;
+}
+
+%flush-padding-top{
+  width: 100%;
+  max-width: none;
+  padding-top: 3%
+}
+
+.comments{
+  @extend %flush-padding-top;
+  @extend %comments;
+}
+
+.movie{
+  position: relative;
+}
+
+.movie--rating{
+  @extend %ultra-leader;
+  @extend %bottom;
+}
+
+.rating-list{
+  @extend %top-left;
+  @extend %hide-list;
+}
+
+.movie-ratio{
+  @extend %number;
+}
+
+.movie--description{
+  @extend %ultra-leader;
+}
