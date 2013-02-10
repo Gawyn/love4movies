@@ -19,7 +19,7 @@ class Rating < ActiveRecord::Base
     new_rating = movie.calculate_rating_average
 
     if movie.rating_average != new_rating
-      movie.rating = new_rating
+      movie.rating_average = new_rating
     end
 
     movie.total_ratings += 1
