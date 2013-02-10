@@ -6,12 +6,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = if params[:search]
-      TMDBFeeder.generate_movies(params[:search])
-      Movie.where(Movie.arel_table[:title].matches("%#{params[:search]}%"))
-    else
-      Movie
-    end.not_hidden
+    @movies = (params[:search] ? Movie.search(params[:search]) : Movie).not_hidden
   end
 
   def ranking

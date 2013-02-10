@@ -18,6 +18,8 @@ class Movie < ActiveRecord::Base
   has_many :posters
   has_many :backdrops
   has_many :comments, :dependent => :destroy
+  has_many :list_belongings, :dependent => :destroy
+  has_many :lists, :through => :list_belongings
 
   scope :by_rating_average, order(arel_table[:rating_average].desc)
   scope :not_hidden, where(:hidden => false)
@@ -34,6 +36,11 @@ class Movie < ActiveRecord::Base
     else
       tmdb_vote_average
     end
+  end
+
+  def self.search(title)
+    TMDBFeeder.generate_movies(title)
+    Movie.where(Movie.arel_table[:title].matches("%#{title}%"))
   end
 
   private
