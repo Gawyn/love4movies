@@ -1,7 +1,8 @@
 class Movie < ActiveRecord::Base
   attr_accessible :budget, :imdb_id, :original_title, :overview, 
     :popularity, :release_date, :revenue, :runtime, :tmdb_id, 
-    :tmdb_vote_average, :tmdb_vote_count, :rating_average
+    :tmdb_vote_average, :tmdb_vote_count, :rating_average,
+    :hidden, :total_ratings
 
   validates_uniqueness_of :tmdb_id
 
@@ -17,6 +18,15 @@ class Movie < ActiveRecord::Base
   has_many :posters
   has_many :backdrops
   has_many :comments, :dependent => :destroy
+  has_many :list_belongings, :dependent => :destroy
+  has_many :lists, :through => :list_belongings
+
+  scope :by_rating_average, order(arel_table[:rating_average].desc)
+  scope :not_hidden, where(:hidden => false)
+  scope :more_total_ratings_than, lambda { |total| where(arel_table[:total_ratings].gt(total)) }
+
+  before_create :set_hidden
+  before_create :set_total_ratings
 
   def calculate_rating_average
     if ratings.any?
@@ -26,5 +36,20 @@ class Movie < ActiveRecord::Base
     else
       tmdb_vote_average
     end
+  end
+
+  def self.search(title)
+    TMDBFeeder.generate_movies(title)
+    Movie.where(Movie.arel_table[:title].matches("%#{title}%"))
+  end
+
+  private
+
+  def set_hidden
+    self.hidden ||= true if tmdb_vote_count == 0 || genres.empty?
+  end
+
+  def set_total_ratings
+    self.total_ratings = tmdb_vote_count
   end
 end

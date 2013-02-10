@@ -1,0 +1,9 @@
+h1
+  =' @user.name
+  | Ranking
+
+- @ratings.each_with_index do |rating, i|
+  .movie
+    = i + 1
+    = rating.movie.decorate.print_poster
+    = link_to rating.movie.title, rating.movie

@@ -17,4 +17,9 @@ class UsersController < ApplicationController
       sign_in_and_redirect(:user, user)
     end
   end
+
+  def ranking
+    @user = User.find params[:user_id]
+    @ratings = @user.ratings.by_value.includes(:movie)
+  end
 end

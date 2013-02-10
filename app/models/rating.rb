@@ -11,13 +11,18 @@ class Rating < ActiveRecord::Base
   after_save :recalculate_movie_rating
   after_destroy :recalculate_movie_rating
 
+  scope :by_value, order(arel_table[:value].desc)
+
   private
 
   def recalculate_movie_rating
     new_rating = movie.calculate_rating_average
 
     if movie.rating_average != new_rating
-      movie.update_attribute(:rating_average, new_rating)
+      movie.rating_average = new_rating
     end
+
+    movie.total_ratings += 1
+    movie.save
   end
 end

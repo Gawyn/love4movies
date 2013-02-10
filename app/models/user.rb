@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
   has_many :comments, :dependent => :destroy
+  has_many :lists, :dependent => :destroy
 
   after_create :create_friendships!
 
@@ -50,6 +51,11 @@ class User < ActiveRecord::Base
   def avatar(size = "medium")
     return unless AVATAR_SIZES.include? size
     send("#{size}_avatar")
+  end
+
+  def available_patterns
+    completed_patterns = lists.pluck(:list_pattern_id)
+    completed_patterns.any? ? ListPattern.where(ListPattern.arel_table[:id].not_in(completed_patterns)) : ListPattern.all
   end
 
   private

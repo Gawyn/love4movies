@@ -1,0 +1,3 @@
+.listed_movie id="#{movie.id}"
+  = render "show_movie", :movie => movie
+  = link_to "Delete", list_belongings_path(:movie_id => movie.id, :list_id => list.id), :method => :delete, :remote => true
