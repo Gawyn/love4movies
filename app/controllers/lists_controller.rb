@@ -13,12 +13,16 @@ class ListsController < ApplicationController
   def create
     pattern = ListPattern.find(params[:list_pattern_id]) if params[:list_pattern_id]
     @list = if pattern
-      List.create(:user => current_user, :list_pattern => pattern)
+      List.new(:user => current_user, :list_pattern => pattern)
     else
-      List.create(:user => current_user, :title => params[:title])
+      List.new(:user => current_user, :title => params[:title])
     end
-
-    redirect_to user_list_path(@list, :user_id => current_user)
+    
+    if @list.save
+      redirect_to user_list_path(@list, :user_id => current_user)
+    else
+      redirect_to user_lists_path(current_user)
+    end
   end
 
   def movie_search
