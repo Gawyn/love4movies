@@ -1,3 +1,4 @@
 - movies.each do |movie|
   .movie
     = link_to movie.title, movie
+    = button_to "Add to list", list_belongings_path(:movie_id => movie.id, :list_id => list.id), :method => :post, :remote => true
