@@ -5,3 +5,6 @@
 
 - @available_patterns.each do |pattern|
   = link_to pattern.title, lists_path(:list_pattern_id => pattern.id), :method => :post
+
+= form_tag lists_path, :method => "post" do |f|
+  = text_field_tag :title
