@@ -39,13 +39,15 @@
                 - if @my_rating
                   - 10.downto(1).each do |i|
                     - unless @my_rating.value == i
-                      = link_to rating_path(:id => @my_rating.id, :value => i), :method => :put, :remote => true do
-                        i.icon-star
+                      = link_to rating_path(:id => @my_rating.id, :value => i), :method => :put, :remote => true, :class => "icon-rating" do
+                        i.icon-star-empty.icon-large
 
-                  = button_to "No la he visto", rating_path(:id => @my_rating.id), :method => :delete, :remote => true
+                  = link_to rating_path(:id => @my_rating.id), :method => :delete, :remote => true, :class => "icon-rating" do
+                    i.icon-star-empty.icon-large
                 - else
                   - 10.downto(1).each do |i|
-                    = button_to i, ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true
+                    = link_to ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true, :class => "icon-rating"  do
+                      i.icon-star-empty.icon-large
 
 .grid-extends
   .grid-wrapper
@@ -65,7 +67,21 @@
 - content_for :custom_js do
   javascript:
     $(document).ready(function() {
-      $(".js-rate-button").click(function () {
-        $(".rating-buttons").find(".rating-list").toggleClass("visible");
+      $('.js-rate-button').click(function () {
+        $('.rating-buttons').find('.rating-list').toggleClass("visible");
       });
+      //ui interaction with rating simbols
+
+      $('.icon-rating').hover(
+          // Handles the mouseover
+
+          function() {
+              $(this).nextAll().andSelf().children().addClass('icon-star').removeClass('icon-star-empty');
+          },
+          // Handles the mouseout
+          function() {
+              $(this).nextAll().andSelf().children().removeClass('icon-star').addClass('icon-star-empty');
+          }
+      );
+
     });
