@@ -1,4 +1,10 @@
 h1 = @list.title
 
+= form_tag movies_path, :method => "get", :remote => true do |f|
+  = text_field_tag :search
+  = submit_tag "Search"
+
+#js-movies-index
+
 - @list.movies.each do |movie|
   = movie.title
