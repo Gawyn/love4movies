@@ -7,6 +7,7 @@ Love4movies::Application.routes.draw do
 
   resources :users, :only => :none do
     get :ranking
+    resources :lists, :only => [:show, :index]
   end
 
   resources :movies, :only => [:show, :index] do
@@ -14,6 +15,12 @@ Love4movies::Application.routes.draw do
   end
   resources :ratings, :only => [:create, :update, :destroy]
   resources :comments, :only => :create
+  resources :lists, :only => :create do
+    get :movie_search, :on => :member
+  end
+  resources :list_belongings, :only => :create do
+    delete :destroy, :on => :collection
+  end
 
   match "ranking" => "movies#ranking"
   root :to => 'home#index'
