@@ -1,4 +1,9 @@
 - movies.each do |movie|
-  .candidate_movie
+  .candidate_movie id="#{movie.id}"
     = render "show_movie", :movie => movie
-    = button_to "Add to list", list_belongings_path(:movie_id => movie.id, :list_id => list.id), :method => :post, :remote => true
+    = button_to "Add to list", list_belongings_path(:movie_id => movie.id, :list_id => list.id), {:method => :post, :form_class => "add_movie", :remote => true}
+
+javascript:
+  $(".add_movie").on("submit", function(e){
+    $(this).parents(".candidate_movie").remove();
+  });
