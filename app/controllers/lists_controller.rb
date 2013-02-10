@@ -19,4 +19,9 @@ class ListsController < ApplicationController
 
     redirect_to user_list_path(@list, :user_id => current_user)
   end
+
+  def movie_search
+    @list = List.find params[:list_id]
+    @movies = Movie.search(params[:search])
+  end
 end
