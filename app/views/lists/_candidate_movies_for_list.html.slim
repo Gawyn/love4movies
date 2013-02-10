@@ -1,4 +1,4 @@
 - movies.each do |movie|
-  .movie
+  .candidate_movie
     = render "show_movie", :movie => movie
     = button_to "Add to list", list_belongings_path(:movie_id => movie.id, :list_id => list.id), :method => :post, :remote => true
