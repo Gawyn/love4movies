@@ -110,19 +110,14 @@
 .accessibility              { position:absolute; left:-99999px; }
 [dir=rtl] .accessibility    { left:auto; right:-99999px; }
 
-
-/**
- * Hide content based on breakpoint
- */
 .hide{
-    position:absolute;
-    left:-9999px;
+    display: none;
 }
-@each $state in palm, lap, portable, desk{
-    @include media-query(#{$state}){
-        .hide--#{$state}{
-            position:absolute;
-            left:-9999px;
-        }
-    }
+
+.show{
+    display: block;
+}
+
+.visible{
+    opacity: 1 !important;
 }

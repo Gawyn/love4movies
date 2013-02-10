@@ -24,7 +24,7 @@
       .g.two-twelfths.lap-one-whole.palm-one-whole
         section.movie--rating
           #rating_average.movie-ratio.kilo = @movie.rating_average.round(1)
-          button.btn.btn--full.btn-lrg
+          .js-rate-button.button.btn.btn--full.btn-lrg
             | Vote
           #my_rating
             - if current_user
@@ -33,13 +33,15 @@
               - else
                 | No la has visto
 
-          .rating-buttons.hide
+          .rating-buttons
             - if current_user
-              #rating_form
+              #rating_form.rating-list
                 - if @my_rating
                   - 10.downto(1).each do |i|
                     - unless @my_rating.value == i
-                      = button_to i, rating_path(:id => @my_rating.id, :value => i), :method => :put, :remote => true
+                      = link_to rating_path(:id => @my_rating.id, :value => i), :method => :put, :remote => true do
+                        i.icon-star
+
                   = button_to "No la he visto", rating_path(:id => @my_rating.id), :method => :delete, :remote => true
                 - else
                   - 10.downto(1).each do |i|
@@ -59,3 +61,11 @@
             = f.input :content, :label => nil
             = f.input :movie_id, :as => :hidden, :value => @movie.id
             = f.submit
+
+- content_for :custom_js do
+  javascript:
+    $(document).ready(function() {
+      $(".js-rate-button").click(function () {
+        $(".rating-buttons").find(".rating-list").toggleClass("visible");
+      });
+    });
