@@ -73,6 +73,13 @@
     filter:alpha(opacity = 50);
 }
 
+/**
+ * Circular UI
+ */
+.circle{
+    border-radius: 50%;
+}
+
 
 /**
  * Align items to the right where they imply progression/movement forward, e.g.:
@@ -120,4 +127,5 @@
 
 .visible{
     opacity: 1 !important;
+    filter:alpha(opacity = 1);
 }

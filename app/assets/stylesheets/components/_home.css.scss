@@ -17,6 +17,7 @@
 %hide-list{
   background-color: $text-color;
   opacity: 0;
+  filter:alpha(opacity = 0);
   text-align: center;
   padding: 20px;
   width: 100%;
@@ -31,9 +32,19 @@
   left: 0;
 }
 
-.rating-list{
-  @extend %top-left;
-  @extend %hide-list;
+%comments{
+  background-color: whitesmoke;
+}
+
+%flush-padding-top{
+  width: 100%;
+  max-width: none;
+  padding-top: 3%
+}
+
+.comments{
+  @extend %flush-padding-top;
+  @extend %comments;
 }
 
 .movie{
@@ -43,6 +54,11 @@
 .movie--rating{
   @extend %ultra-leader;
   @extend %bottom;
+}
+
+.rating-list{
+  @extend %top-left;
+  @extend %hide-list;
 }
 
 .movie-ratio{

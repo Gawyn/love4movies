@@ -49,20 +49,21 @@
                     = link_to ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true, :class => "icon-rating"  do
                       i.icon-star-empty.icon-large
 
-.grid-extends
+.grid-extends.comments
   .grid-wrapper
-    .g.one-whole.lap-one-whole.palm-one-whole
-      #comments
-        h3 Comments
-        - @movie.comments.each do |comment|
-          = render :partial => "comments/show", :locals => {:comment => comment}
+    section.g.six-twelfths.push--four-twelfths.push--palm-clear.push--lap-clear.lap-ten-twelfths.palm-one-whole
+      .g.ten-twelfths.lap-one-whole.palm-one-whole
+        #comments.trailer
+          h3.trailer People says...
+          - @movie.comments.each do |comment|
+            = render :partial => "comments/show", :locals => {:comment => comment}
 
-      - if current_user
-        g.one-whole.lap-one-whole.palm-one-whole
-          = simple_form_for @movie.comments.new, :remote => true do |f|
-            = f.input :content, :label => nil
-            = f.input :movie_id, :as => :hidden, :value => @movie.id
-            = f.submit
+        - if current_user
+          .do-comment
+            = simple_form_for @movie.comments.new, :remote => true do |f|
+              = f.input :content, :label => "Post your comment"
+              = f.input :movie_id, :as => :hidden, :value => @movie.id
+              .leader= f.submit :class => 'btn btn--full'
 
 - content_for :custom_js do
   javascript:
