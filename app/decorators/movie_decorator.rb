@@ -5,4 +5,8 @@ class MovieDecorator < Draper::Decorator
     return unless posters.any?
     h.image_tag posters.first.url(Poster::SIZES.first)
   end
+
+  def director
+    technical_participations.where(:job => "Director").map{ |participation| participation.person.name }.to_sentence
+  end
 end

@@ -10,8 +10,8 @@
           hgroup
             h1.hN.caps= @movie.title
             p.subheader.hN
-              | Directed by
-              b  Cristian Planas
+              ' Directed by
+              b  = @movie.director
           p= @movie.overview
           date
             =' @movie.runtime
