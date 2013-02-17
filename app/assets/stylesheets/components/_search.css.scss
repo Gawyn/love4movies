@@ -1,0 +1,27 @@
+%center-text{
+  text-align: center;
+}
+
+%light-text{
+  font-weight: 100;
+}
+
+.search-value{
+  @extend %center-text;
+  @extend %light-text;
+  @include font-size($h4-size);
+  color: #999;
+  span{
+    color: $brand-color;
+  }
+}
+
+.search-keys{
+  @extend %center-text;
+  @extend %light-text;
+}
+
+.search-keys__key{
+  text-transform: uppercase;
+  font-weight: 900;
+}
