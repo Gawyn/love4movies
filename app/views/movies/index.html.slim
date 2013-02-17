@@ -16,5 +16,6 @@ section.movie-list
   ul.multi-list.four-cols
     - @movies.each do |movie|
         li.movie= link_to  movie do
-          = image_tag movie.posters.first.url("w342")
-          .movie__title= movie.title
+          = image_tag movie.posters.first.url("w500")
+          .movie__title
+            span= movie.title

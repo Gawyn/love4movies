@@ -84,8 +84,15 @@
     }
     .four-cols > li{
         width:25%;
+        &:nth-child(4n+1){
+            clear:left
+        }
         @include media-query(lap){
             width: 50%;
+            &:nth-child(2n+1){
+            clear:left
+        }
+
         }
         @include media-query(palm){
             width: 100%;
