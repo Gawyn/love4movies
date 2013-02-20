@@ -1,9 +1,12 @@
-| Welcome to Love4Movies.
-- if current_user
-  = link_to('Logout', destroy_user_session_path, :method => :delete)
-- else
-  = link_to "Login", user_omniauth_authorize_path("facebook")
+h1 Love 4 movies
+h2 Search your favorite movie
+h3.subheader rate it, share it
 
 = form_tag movies_path, :method => "get" do |f|
   = text_field_tag :search
   = submit_tag "Search"
+
+- if current_user
+  = link_to('Logout', destroy_user_session_path, :method => :delete)
+- else
+  = link_to "Login", user_omniauth_authorize_path("facebook")
