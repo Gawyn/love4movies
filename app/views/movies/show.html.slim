@@ -17,10 +17,7 @@
             =' @movie.runtime
             | min
           .tags.leader--lrg
-            - @movie.genres.each do |genre|
-              span
-                =' genre.name
-                | /
+            span = @movie.full_genres
       .g.two-twelfths.lap-one-whole.palm-one-whole
         section.movie--rating
           #rating_average.movie-ratio.kilo = @movie.rating_average.round(1)
