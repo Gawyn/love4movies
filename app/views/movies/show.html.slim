@@ -36,18 +36,7 @@
           .rating-buttons
             - if current_user
               #rating_form.rating-list
-                - if @my_rating
-                  - 10.downto(1).each do |i|
-                    - unless @my_rating.value == i
-                      = link_to rating_path(:id => @my_rating.id, :value => i), :method => :put, :remote => true, :class => "icon-rating" do
-                        i.icon-star-empty.icon-large
-
-                  = link_to rating_path(:id => @my_rating.id), :method => :delete, :remote => true, :class => "icon-rating" do
-                    i.icon-star-empty.icon-large
-                - else
-                  - 10.downto(1).each do |i|
-                    = link_to ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true, :class => "icon-rating"  do
-                      i.icon-star-empty.icon-large
+                = render "ratings/form", :movie => @movie
 
 .grid-extends.comments
   .grid-wrapper
