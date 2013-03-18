@@ -3,6 +3,6 @@
     .media__img= image_tag comment.user.avatar("small"), :class => 'circle'
     .media__body
       h4
-        .author Christian Planas
-        small.date.subheader February 8th, 2013 9:04 am
+        .author = comment.user.name
+        small.date.subheader = comment.created_at.to_s :long_ordinal
       p= comment.content

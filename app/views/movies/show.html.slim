@@ -10,17 +10,14 @@
           hgroup
             h1.hN.caps= @movie.title
             p.subheader.hN
-              | Directed by
-              b  Cristian Planas
+              ' Directed by
+              b  = @movie.director
           p= @movie.overview
           date
             =' @movie.runtime
             | min
           .tags.leader--lrg
-            - @movie.genres.each do |genre|
-              span
-                =' genre.name
-                | /
+            span = @movie.full_genres
       .g.two-twelfths.lap-one-whole.palm-one-whole
         section.movie--rating
           #rating_average.movie-ratio.kilo = @movie.rating_average.round(1)
@@ -31,23 +28,12 @@
               - if @my_rating
                 = @my_rating.value
               - else
-                | No la has visto
+                | Not watched
 
           .rating-buttons
             - if current_user
               #rating_form.rating-list
-                - if @my_rating
-                  - 10.downto(1).each do |i|
-                    - unless @my_rating.value == i
-                      = link_to rating_path(:id => @my_rating.id, :value => i), :method => :put, :remote => true, :class => "icon-rating" do
-                        i.icon-star-empty.icon-large
-
-                  = link_to rating_path(:id => @my_rating.id), :method => :delete, :remote => true, :class => "icon-rating" do
-                    i.icon-star-empty.icon-large
-                - else
-                  - 10.downto(1).each do |i|
-                    = link_to ratings_path(:movie_id => @movie.id, :value => i), :method => :post, :remote => true, :class => "icon-rating"  do
-                      i.icon-star-empty.icon-large
+                = render "ratings/form", :movie => @movie
 
 .grid-extends.comments
   .grid-wrapper
