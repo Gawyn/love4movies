@@ -1,0 +1,8 @@
+.main-header{
+  background-color: #333;
+}
+
+.header-grid{
+  @include padding-trailer(.5);
+  @include padding-leader(.5);
+}
