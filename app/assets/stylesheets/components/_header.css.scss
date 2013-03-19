@@ -3,6 +3,6 @@
 }
 
 .header-grid{
-  @include padding-trailer(.5);
-  @include padding-leader(.5);
+  @include padding-trailer;
+  @include padding-leader;
 }

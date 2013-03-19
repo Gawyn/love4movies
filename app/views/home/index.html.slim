@@ -1,10 +1,13 @@
-h2.caps.text--center Search & share your favorite movies
+.grid-extends
+  .grid-wrapper
+    .g.one-whole.lap-one-whole.palm-one-whole.text--center
 
-= form_tag movies_path, :method => "get" do |f|
-  = text_field_tag :search
-  = submit_tag "Search"
+      h2.caps Search & share your favorite movies
+      = form_tag movies_path, :method => "get" do |f|
+        = text_field_tag :search
+        = submit_tag "Search"
 
-- if current_user
-  = link_to('Logout', destroy_user_session_path, :method => :delete)
-- else
-  = link_to "Login", user_omniauth_authorize_path("facebook")
+      - if current_user
+        = link_to('Logout', destroy_user_session_path, :method => :delete)
+      - else
+        = link_to "Login", user_omniauth_authorize_path("facebook")
