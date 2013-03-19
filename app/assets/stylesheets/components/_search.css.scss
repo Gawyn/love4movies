@@ -1,0 +1,61 @@
+%film-title{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: transparentize($brand-color, 0.25);
+  width: 100%;
+  opacity: 0;
+  @include transition(opacity, ease, 0.25s);
+  &:hover{
+    opacity: 1;
+  }
+}
+
+%strong-title{
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+%center-text{
+  text-align: center;
+}
+
+%light-text{
+  font-weight: 100;
+}
+
+.search-value{
+  @extend %center-text;
+  @extend %light-text;
+  @include font-size($h4-size);
+  span{
+    color: $brand-color;
+  }
+}
+
+.search-keys{
+  @extend %center-text;
+  @extend %light-text;
+}
+
+.search-keys__key{
+  @extend %strong-title;
+}
+
+.movie__title{
+  @extend %film-title;
+  span{
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    margin-top: -10px;
+    font-size: 26px;
+    font-weight: 400;
+    color: white;
+    text-transform: uppercase;
+  }
+}
+.movie-list{
+  @extend %comments;
+}

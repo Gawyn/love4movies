@@ -1,3 +1,21 @@
-- @movies.each do |movie|
-  .movie
-    = link_to movie.title, movie
+.grid-extends
+  .grid-wrapper
+    .g.one-whole.lap-one-whole.palm-one-whole
+      hgroup
+        h1.search-keys.flush
+          | Search results for
+          .search-keys__key= params[:search]
+        h2.search-value.subheader
+          | find
+          '
+          b
+            span=' @movies.count
+          | movies
+
+section.movie-list
+  ul.multi-list.four-cols
+    - @movies.each do |movie|
+        li.movie= link_to  movie do
+          = image_tag movie.posters.first.url("w500")
+          .movie__title
+            span= movie.title

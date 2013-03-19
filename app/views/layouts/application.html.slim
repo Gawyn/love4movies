@@ -15,5 +15,6 @@ html
       - session[:just_logged_in] = false
 
   body
+    = render "shared/header"
     = yield
     = yield :custom_js
