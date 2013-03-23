@@ -22,4 +22,8 @@ class UsersController < ApplicationController
     @user = User.find params[:user_id]
     @ratings = @user.ratings.by_value.includes(:movie)
   end
+
+  def show
+    @user = User.find params[:id]
+  end
 end
