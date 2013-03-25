@@ -1,8 +1,8 @@
 .comment
   .media
-    .media__img= image_tag comment.user.avatar("small"), :class => 'circle'
+    .media__img= link_to image_tag(comment.user.avatar("small"), :class => 'circle'), comment.user
     .media__body
       h4
-        .author = comment.user.name
+        .author = link_to comment.user.name, comment.user
         small.date.subheader = comment.created_at.to_s :long_ordinal
       p= comment.content
