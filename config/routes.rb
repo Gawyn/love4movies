@@ -5,7 +5,7 @@ Love4movies::Application.routes.draw do
 
   devise_for :users
 
-  resources :users, :only => :none do
+  resources :users, :only => :show do
     get :ranking
     resources :lists, :only => [:show, :index]
   end
