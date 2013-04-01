@@ -3,7 +3,7 @@ class AddRatingsCountToUser < ActiveRecord::Migration
     add_column :users, :ratings_count, :integer, :default => 0
 
     User.all.each do |user|
-      user.update_attribute(:ratings_count, user.ratings.count)
+      User.reset_counters(user.id, :ratings)
     end
   end
 end
