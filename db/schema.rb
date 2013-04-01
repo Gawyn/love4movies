@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130323111947) do
     t.integer  "list_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "position"
   end
 
   create_table "list_patterns", :force => true do |t|
