@@ -2,8 +2,8 @@ class AddRatingsCountToUser < ActiveRecord::Migration
   def change
     add_column :users, :ratings_count, :integer, :default => 0
 
-    User.all.each do |user|
-      user.update_attribute(:ratings_count, user.ratings.count)
+    User.pluck(:id).each do |user_id|
+      User.reset_counters(user_id, :ratings)
     end
   end
 end
