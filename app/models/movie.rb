@@ -1,4 +1,6 @@
 class Movie < ActiveRecord::Base
+  translates :title, :overview
+
   validates_uniqueness_of :tmdb_id
 
   has_many :participations, :dependent => :destroy
