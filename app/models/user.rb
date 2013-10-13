@@ -13,6 +13,12 @@ class User < ActiveRecord::Base
 
   validates_inclusion_of :role, in: ROLES
 
+  ROLES.each do |role_type|
+    define_method "#{role_type}?" do
+      role == role_type
+    end
+  end
+
   after_create :create_friendships!
 
   def update_data!(omniauth)
