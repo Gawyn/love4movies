@@ -25,3 +25,9 @@
 
 # Ignore .DS_Store
 .DS_Store
+
+# Ignore .sass-cache
+.sass-cache
+
+# Ignore assets
+public/assets
