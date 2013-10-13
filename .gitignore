@@ -17,5 +17,11 @@
 # Ignore .rvmrc
 .rvmrc
 
+# Ignore .ruby-gemser
+.ruby-gemset
+
+# Ignore .ruby-version
+.ruby-version
+
 # Ignore .DS_Store
 .DS_Store
