@@ -39,7 +39,6 @@ class Movie < ActiveRecord::Base
   end
 
   def self.search(title)
-    TMDBFeeder.generate_movies(title)
     Movie.where(Movie.arel_table[:title].matches("%#{title}%"))
   end
 
