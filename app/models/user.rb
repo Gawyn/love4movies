@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   AVATAR_SIZES = %w{ small medium big }
+  ROLES = %w{ user admin }
 
   devise :database_authenticatable, :omniauthable,
          :rememberable, :trackable, :validatable
@@ -9,6 +10,14 @@ class User < ActiveRecord::Base
   has_many :friends, :through => :friendships
   has_many :comments, :dependent => :destroy
   has_many :lists, :dependent => :destroy
+
+  validates_inclusion_of :role, in: ROLES
+
+  ROLES.each do |role_type|
+    define_method "#{role_type}?" do
+      role == role_type
+    end
+  end
 
   after_create :create_friendships!
 

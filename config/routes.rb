@@ -5,6 +5,10 @@ Love4movies::Application.routes.draw do
 
   devise_for :users
 
+  namespace :admin do
+    root to: "home#index"
+  end
+
   resources :users, :only => :show do
     get :ranking
     resources :lists, :only => [:show, :index]

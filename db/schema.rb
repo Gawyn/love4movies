@@ -9,71 +9,71 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130323111947) do
+ActiveRecord::Schema.define(version: 20131013211625) do
 
-  create_table "comments", :force => true do |t|
+  create_table "comments", force: true do |t|
     t.integer  "user_id"
     t.integer  "movie_id"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "friendships", :force => true do |t|
+  create_table "friendships", force: true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "genres", :force => true do |t|
+  create_table "genres", force: true do |t|
     t.integer  "tmdb_id"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "genres_movies", :force => true do |t|
+  create_table "genres_movies", force: true do |t|
     t.integer "genre_id"
     t.integer "movie_id"
   end
 
-  create_table "images", :force => true do |t|
+  create_table "images", force: true do |t|
     t.integer  "movie_id"
     t.integer  "width"
     t.integer  "height"
     t.float    "aspect_ratio"
     t.string   "file_path"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "type"
   end
 
-  create_table "list_belongings", :force => true do |t|
+  create_table "list_belongings", force: true do |t|
     t.integer  "movie_id"
     t.integer  "list_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "position"
   end
 
-  create_table "list_patterns", :force => true do |t|
+  create_table "list_patterns", force: true do |t|
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "lists", :force => true do |t|
+  create_table "lists", force: true do |t|
     t.integer  "user_id"
     t.string   "title"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "list_pattern_id"
   end
 
-  create_table "movies", :force => true do |t|
+  create_table "movies", force: true do |t|
     t.integer  "tmdb_id"
     t.string   "imdb_id"
     t.string   "original_title"
@@ -87,18 +87,18 @@ ActiveRecord::Schema.define(:version => 20130323111947) do
     t.integer  "revenue"
     t.float    "popularity"
     t.string   "tmdb_poster_path"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.float    "rating_average"
-    t.boolean  "hidden",            :default => false
-    t.integer  "total_ratings",     :default => 0
+    t.boolean  "hidden",            default: false
+    t.integer  "total_ratings",     default: 0
   end
 
-  create_table "participations", :force => true do |t|
+  create_table "participations", force: true do |t|
     t.integer  "movie_id"
     t.integer  "person_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "type"
     t.string   "character"
     t.integer  "tmdb_order"
@@ -106,33 +106,33 @@ ActiveRecord::Schema.define(:version => 20130323111947) do
     t.string   "job"
   end
 
-  create_table "people", :force => true do |t|
+  create_table "people", force: true do |t|
     t.string   "name"
     t.string   "tmdb_profile_path"
     t.integer  "tmdb_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
-  create_table "ratings", :force => true do |t|
+  create_table "ratings", force: true do |t|
     t.integer  "movie_id"
     t.integer  "user_id"
     t.integer  "value"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "email",               :default => "", :null => false
-    t.string   "encrypted_password",  :default => "", :null => false
+  create_table "users", force: true do |t|
+    t.string   "email",               default: "", null: false
+    t.string   "encrypted_password",  default: "", null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",       :default => 0
+    t.integer  "sign_in_count",       default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "fb_uid"
     t.string   "token"
     t.string   "small_avatar"
@@ -143,9 +143,10 @@ ActiveRecord::Schema.define(:version => 20130323111947) do
     t.string   "location"
     t.string   "big_avatar"
     t.string   "medium_avatar"
-    t.integer  "ratings_count",       :default => 0
+    t.integer  "ratings_count",       default: 0
+    t.string   "role"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end
