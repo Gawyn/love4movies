@@ -9,7 +9,7 @@ class Rating < ActiveRecord::Base
   after_save :recalculate_movie_rating
   after_destroy :recalculate_movie_rating
 
-  scope :by_value, order(arel_table[:value].desc)
+  scope :by_value, -> { order(arel_table[:value].desc) }
 
   private
 
