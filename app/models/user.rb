@@ -4,10 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :omniauthable,
          :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, 
-    :remember_me, :fb_uid, :token, :small_avatar, :nickname, :name,
-    :first_name, :last_name, :location, :big_avatar, :medium_avatar
-
   has_many :ratings, :dependent => :destroy
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
