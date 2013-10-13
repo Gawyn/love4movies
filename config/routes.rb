@@ -1,6 +1,6 @@
 Love4movies::Application.routes.draw do
   devise_scope :user do
-    match "/users/auth/:provider/callback" => "users#login"
+    get "/users/auth/:provider/callback" => "users#login"
   end
 
   devise_for :users
@@ -24,6 +24,6 @@ Love4movies::Application.routes.draw do
     delete :destroy, :on => :collection
   end
 
-  match "ranking" => "movies#ranking"
+  get "ranking" => "movies#ranking"
   root :to => 'home#index'
 end

@@ -1,6 +1,4 @@
 class Friendship < ActiveRecord::Base
-  attr_accessible :friend, :user
-
   after_create :create_reciprocal_friendship
   after_destroy :destroy_reciprocal_friendship
 

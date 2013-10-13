@@ -6,6 +6,9 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   config.mailer_sender = "notifier@love4movies.com"
 
+  # Setting secret key
+  config.secret_key = '199b4a79ca29656251c47170ce9cf9f2f57a8f2de8485ba3523a99387a80ec445d80d847031aea2f4a9f6f6db2df1579365e04413a6f87743b4e3decfa4e1f39'
+
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
 

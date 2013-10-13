@@ -1,6 +1,4 @@
 class List < ActiveRecord::Base
-  attr_accessible :title, :user, :list_pattern
-
   belongs_to :user
   belongs_to :list_pattern
   has_many :list_belongings
