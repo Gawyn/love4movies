@@ -27,6 +27,9 @@ gem 'traco'
 # Turbolinks
 gem 'turbolinks'
 
+# Sidekiq
+gem 'sidekiq'
+
 # Assets
 gem 'sass-rails',   '~> 4.0.0'
 gem "compass-rails", "~> 2.0.alpha.0"
