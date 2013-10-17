@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131013211625) do
+ActiveRecord::Schema.define(version: 20131016182109) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -77,21 +77,23 @@ ActiveRecord::Schema.define(version: 20131013211625) do
     t.integer  "tmdb_id"
     t.string   "imdb_id"
     t.string   "original_title"
-    t.string   "title"
     t.string   "release_date"
     t.integer  "budget"
-    t.text     "overview"
     t.float    "tmdb_vote_average"
     t.integer  "tmdb_vote_count"
     t.integer  "runtime"
     t.integer  "revenue"
     t.float    "popularity"
     t.string   "tmdb_poster_path"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.float    "rating_average"
-    t.boolean  "hidden",            default: false
+    t.boolean  "hidden",            default: true
     t.integer  "total_ratings",     default: 0
+    t.string   "title_es"
+    t.text     "overview_es"
+    t.string   "title_en"
+    t.text     "overview_en"
   end
 
   create_table "participations", force: true do |t|

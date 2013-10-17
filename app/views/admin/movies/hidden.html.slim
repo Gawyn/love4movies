@@ -1,0 +1,15 @@
+table
+  - @movies.each do |movie|
+    tr
+      td
+        h2 = "#{movie.original_title} (#{movie.release_date.slice(0..3) if movie.release_date})"
+      td 
+        - if movie.posters.any?
+          = image_tag movie.posters.first.url("w92")
+    tr
+      - LOCALES.each do |locale|
+        td = movie.send("title_#{locale}")
+    tr
+      - LOCALES.each do |locale|
+        td = movie.send("overview_#{locale}")
+  

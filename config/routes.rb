@@ -6,6 +6,9 @@ Love4movies::Application.routes.draw do
   devise_for :users
 
   namespace :admin do
+    resources :movies, only: :none do
+      get :hidden, on: :collection
+    end
     root to: "home#index"
   end
 

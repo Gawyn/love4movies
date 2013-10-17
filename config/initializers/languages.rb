@@ -1,0 +1,3 @@
+LANGUAGES_AND_LOCALES = { "English" => "en", "Español" => "es" }
+LANGUAGES = LANGUAGES_AND_LOCALES.keys
+LOCALES = LANGUAGES_AND_LOCALES.values

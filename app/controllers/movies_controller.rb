@@ -6,6 +6,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    BackgroundSystem.enqueue(MovieSearcher, params[:search]) if params[:search]
     @movies = (params[:search] ? Movie.search(params[:search]) : Movie).not_hidden
   end
 

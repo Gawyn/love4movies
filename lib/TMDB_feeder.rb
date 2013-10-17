@@ -5,11 +5,15 @@ module TMDBFeeder
       results.each do |result|
         tmdb_id = result["id"]
         unless Movie.find_by_tmdb_id(tmdb_id) 
-          movie = generate_basic_movie(tmdb_id)
-          generate_cast_and_crew(movie)
-          generate_images(movie)
+          generate_movie(tmdb_id)
         end
       end
+    end
+
+    def generate_movie(tmdb_id)
+      movie = generate_basic_movie(tmdb_id)
+      generate_cast_and_crew(movie)
+      generate_images(movie)
     end
 
     private
@@ -30,11 +34,12 @@ module TMDBFeeder
     end
 
     def generate_basic_movie(tmdb_id)
-      movie_data = TMDBClient.get_movie(tmdb_id)
+      locale = LOCALES.first
+      movie_data = TMDBClient.get_movie(tmdb_id, locale)
       movie = Movie.new
-      [ "title", "original_title", "release_date",
+      [ "original_title", "release_date",
         "popularity", "revenue", "runtime", "budget",
-        "overview", "imdb_id" ].each do |attribute|
+        "imdb_id" ].each do |attribute|
           movie.send("#{attribute}=", movie_data["#{attribute}"])
         end
 
@@ -43,12 +48,23 @@ module TMDBFeeder
         movie.send("tmdb_#{attribute}=", movie_data["#{attribute}"])
       end
 
+      [ "title", "overview" ].each do |attribute|
+        movie.send("#{attribute}_#{locale}=", movie_data["#{attribute}"])
+      end
+
       movie.rating_average = movie.tmdb_vote_average
 
       movie_data["genres"].each do |genre_data|
         genre = Genre.find_or_create(:tmdb_id => genre_data["id"],
           :name => genre_data["name"])
         movie.genres << genre
+      end
+
+      (LOCALES - [LOCALES.first]).each do |locale|
+        movie_data = TMDBClient.get_movie(tmdb_id, locale)
+        ["title", "overview"].each do |attribute|
+          movie.send("#{attribute}_#{locale}=", movie_data["#{attribute}"])
+        end
       end
 
       movie.save
