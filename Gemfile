@@ -43,6 +43,10 @@ group :development do
   gem 'pg'
   gem 'quiet_assets'
   gem 'thin'
+  gem 'capistrano'
+  gem 'capistrano-ext'
+  gem 'rvm-capistrano'
+  gem 'capistrano_colors', :require => false
 end
 
 # Test
