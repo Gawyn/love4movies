@@ -1,5 +1,8 @@
 class Movie < ActiveRecord::Base
+  translates :title, :overview
+
   validates_uniqueness_of :tmdb_id
+  validate :not_hidden_needs_poster
 
   has_many :participations, :dependent => :destroy
   has_many :performances
@@ -17,8 +20,10 @@ class Movie < ActiveRecord::Base
   has_many :lists, :through => :list_belongings
 
   scope :by_rating_average, -> { order(arel_table[:rating_average].desc) }
+  scope :hidden, -> { where(hidden: true) }
   scope :not_hidden, -> { where(:hidden => false) }
   scope :more_total_ratings_than, lambda { |total| where(arel_table[:total_ratings].gt(total)) }
+  scope :by_popularity, -> { order(arel_table[:popularity].desc) }
 
   before_create :set_hidden
   before_create :set_total_ratings
@@ -34,7 +39,7 @@ class Movie < ActiveRecord::Base
   end
 
   def self.search(title)
-    Movie.where(Movie.arel_table[:title].matches("%#{title}%"))
+    Movie.where(Movie.arel_table[:title_en].matches("%#{title}%"))
   end
 
   private
@@ -45,5 +50,9 @@ class Movie < ActiveRecord::Base
 
   def set_total_ratings
     self.total_ratings = tmdb_vote_count
+  end
+
+  def not_hidden_needs_poster
+    errors.add(:not_hidden_needs_poster, "A public movie needs a poster") if !hidden && !tmdb_poster_path
   end
 end
