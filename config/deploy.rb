@@ -1,5 +1,5 @@
 set :application, "love4movies"
-set :repository,  "git@github.com:love4movies/love4movies.git"
+set :repository,  "git@github.com:Gawyn/love4movies.git"
 set :branch, 'production'
 set :rails_env, "production"
 set :deploy_to, "/home/rails/love4movies"
@@ -7,17 +7,15 @@ set :keep_releases, 5
 set :bundle_without, [:development, :test, :test_ssl]
 
 set :scm, :git
-set :deploy_via, :remote_cache
 
 # Sidekiq
-after "deploy:update_code", "deploy:cleanup"
-after "deploy:update_code", 'deploy:symlink_config'
 
 # Users
 set :use_sudo, false
 _cset :user, "deployer"
 
 # Misc
+set :config_files, ['config/database.yml', 'config/app.yml', 'config/sidekiq.yml']
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
