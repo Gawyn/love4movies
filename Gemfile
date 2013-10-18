@@ -30,6 +30,9 @@ gem 'turbolinks'
 # Sidekiq
 gem 'sidekiq'
 
+# SQLite3
+gem 'sqlite3'
+
 # Assets
 gem 'sass-rails',   '~> 4.0.0'
 gem "compass-rails", "~> 2.0.alpha.0"
