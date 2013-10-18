@@ -45,6 +45,7 @@ group :development do
   gem 'thin'
   gem 'capistrano'
   gem 'capistrano-ext'
+  gem 'capistrano-unicorn', require: false
   gem 'rvm-capistrano'
   gem 'capistrano_colors', :require => false
 end
