@@ -46,6 +46,11 @@ group :development do
   gem 'pg'
   gem 'quiet_assets'
   gem 'thin'
+  gem 'capistrano'
+  gem 'capistrano-ext'
+  gem 'capistrano-unicorn', require: false
+  gem 'rvm-capistrano'
+  gem 'capistrano_colors', :require => false
   gem 'sqlite3'
 end
 
