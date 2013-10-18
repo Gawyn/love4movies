@@ -62,4 +62,5 @@ end
 # Production
 group :production do
   gem 'pg'
+  gem 'unicorn'
 end
