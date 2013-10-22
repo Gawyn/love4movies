@@ -46,7 +46,7 @@ group :development do
   gem 'pg'
   gem 'quiet_assets'
   gem 'thin'
-  gem 'capistrano'
+  gem 'capistrano', "2.15.5"
   gem 'capistrano-ext'
   gem 'capistrano-unicorn', require: false
   gem 'rvm-capistrano'
