@@ -33,6 +33,10 @@ gem 'sidekiq'
 # SQLite3
 gem 'sqlite3'
 
+# Sinatra - Needed for Sidekiq web
+gem 'sinatra', require: false
+
+
 # Assets
 gem 'sass-rails',   '~> 4.0.0'
 gem "compass-rails", "~> 2.0.alpha.0"
