@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Love4movies::Application.routes.draw do
   devise_scope :user do
     get "/users/auth/:provider/callback" => "users#login"
