@@ -1,8 +1,8 @@
 # RVM
-set :rvm_ruby_string, "2.0.0"
+set :rvm_ruby_version, "2.0.0"
 set :rvm_type, :system
 set :rvm_install_with_sudo, true
-set :rvm_bin_path, '/usr/local/rvm/bin'
+set :rvm_custom_path, '/usr/local/rvm/bin'
 
 set :application, "love4movies"
 set :repository,  "git@github.com:Gawyn/love4movies.git"
@@ -29,4 +29,3 @@ after "deploy:update_code", "deploy:cleanup"
 after "deploy:update_code", 'deploy:symlink_config'
 
 require './config/boot'
-require 'capistrano-unicorn'
