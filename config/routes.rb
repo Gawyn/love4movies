@@ -3,6 +3,8 @@ Love4movies::Application.routes.draw do
     get "/users/auth/:provider/callback" => "users#login"
   end
 
+  mount Sidekiq::Web => '/sidekiq'
+
   devise_for :users
 
   namespace :admin do
