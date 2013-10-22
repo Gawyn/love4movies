@@ -1,4 +1,4 @@
-module MovieFeeder
+class MovieFeeder
   class << self
     def generate_movies(query)
       results = TMDBClient.search(query, false)
