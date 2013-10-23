@@ -67,12 +67,9 @@ class MovieFeeder
         end
       end
       
-      attrs = LOCALES.map do |locale|
-        ["title", "overview"].map do |attr|
-          p movie.send("#{attr}_#{locale}")
-          movie.send("#{attr}_#{locale}")
-        end
-      end.flatten
+      attrs = Movie::BASIC_ATTRIBUTES.map do |attr|
+        movie.send(attr)
+      end
 
       movie.hidden = !(attrs.all?{ |value| value.present? })
 

@@ -1,4 +1,10 @@
 class Movie < ActiveRecord::Base
+  BASIC_ATTRIBUTES = ["title", "overview"].map do |attr|
+    LOCALES.map do |locale|
+      "#{attr}_#{locale}"
+    end
+  end.flatten
+
   translates :title, :overview
 
   validates_uniqueness_of :tmdb_id
