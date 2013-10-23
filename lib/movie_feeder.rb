@@ -66,6 +66,15 @@ class MovieFeeder
           movie.send("#{attribute}_#{locale}=", movie_data["#{attribute}"])
         end
       end
+      
+      attrs = LOCALES.map do |locale|
+        ["title", "overview"].map do |attr|
+          p movie.send("#{attr}_#{locale}")
+          movie.send("#{attr}_#{locale}")
+        end
+      end.flatten
+
+      movie.hidden = !(attrs.all?{ |value| value.present? })
 
       movie.save
       movie
