@@ -27,5 +27,6 @@ ssh_options[:forward_agent] = true
 # Callbacks
 after "deploy:update_code", "deploy:cleanup"
 after "deploy:update_code", 'deploy:symlink_config'
+after 'deploy:restart', 'unicorn:restart'
 
 require './config/boot'
