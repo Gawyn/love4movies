@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   validates_inclusion_of :role, in: ROLES
 
+  before_validation :define_role, on: :create
+
   ROLES.each do |role_type|
     define_method "#{role_type}?" do
       role == role_type
@@ -67,5 +69,9 @@ class User < ActiveRecord::Base
 
   def graph
     @graph ||= Koala::Facebook::API.new(token)
+  end
+
+  def define_role
+    self.role ||= "user"
   end
 end
