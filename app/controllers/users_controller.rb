@@ -15,6 +15,8 @@ class UsersController < ApplicationController
     if user.save
       session[:just_logged_in] = true
       sign_in_and_redirect(:user, user)
+    else
+      redirect_to root_path
     end
   end
 
