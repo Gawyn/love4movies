@@ -1,5 +1,6 @@
 class Friendship < ActiveRecord::Base
   after_create :create_reciprocal_friendship
+  after_create :follow_friend
   after_destroy :destroy_reciprocal_friendship
 
   belongs_to :user
@@ -21,5 +22,9 @@ class Friendship < ActiveRecord::Base
   def destroy_reciprocal_friendship
     friendship = Friendship.find_by_user_id_and_friend_id(friend, user)
     friendship.destroy if friendship
+  end
+
+  def follow_friend
+    Follow.create(follower_id: user_id, followed_id: friend_id)
   end
 end
