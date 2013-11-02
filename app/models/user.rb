@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
 
   after_create :create_friendships!
 
+  def following?(user)
+    active_follows.pluck(:followed_id).include? user.id
+  end
+
   def update_data!(omniauth)
     credentials = omniauth["credentials"]
     self.token = credentials["token"]

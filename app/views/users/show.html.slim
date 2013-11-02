@@ -8,3 +8,6 @@
       h1 = @user.name
       h3 = @user.location
       h3 = "Ratings: #{@user.ratings_count}"
+
+      - if current_user && !current_user.following?(@user)
+        #follow_link = link_to "Follow", user_follows_path(@user), method: :post, remote: true

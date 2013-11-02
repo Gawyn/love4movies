@@ -18,6 +18,7 @@ Love4movies::Application.routes.draw do
   resources :users, :only => :show do
     get :ranking
     resources :lists, :only => [:show, :index]
+    resources :follows, only: :create
   end
 
   resources :persons, :only => :show
