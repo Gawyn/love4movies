@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   has_many :passive_follows, dependent: :destroy, foreign_key: "followed_id", class_name: "Follow"
   has_many :active_follows, dependent: :destroy, foreign_key: "follower_id", class_name: "Follow"
   has_many :followers, through: :passive_follows, source: "follower"
-  has_many :followeds, through: :passive_follows, source: "followed"
+  has_many :followeds, through: :active_follows, source: "followed"
+  has_many :activities
 
   validates_inclusion_of :role, in: ROLES
 
