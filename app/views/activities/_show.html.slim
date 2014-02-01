@@ -1,0 +1,13 @@
+.g.four-twelfths.lap-one-whole.palm-one-whole
+  figure.g.six-twelfths.lap-one-whole.palm-one-whole
+    = link_to image_tag(content.movie.posters.first.url("w154")), content.movie
+  .g.six-twelfths.lap-one.whole.palm-one-whole
+    .media__img = link_to image_tag(user.avatar("small"), class: 'circle'), user
+    .media__body
+      h4
+        .author = link_to user.name, user
+
+    - if content.is_a? Rating
+      h3 = content.value
+    - elsif content.is_a? Comment
+      = content.content
