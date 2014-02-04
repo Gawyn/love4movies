@@ -3,4 +3,6 @@ class Activity < ActiveRecord::Base
 
   belongs_to :content, polymorphic: true
   belongs_to :user
+
+  validates_uniqueness_of :content_id
 end
