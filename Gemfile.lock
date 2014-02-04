@@ -38,7 +38,7 @@ GEM
       net-ssh-gateway (>= 1.1.0)
     capistrano-ext (1.2.1)
       capistrano (>= 1.0.0)
-    capistrano-unicorn (0.1.10)
+    capistrano-unicorn (0.2.0)
       capistrano
     capistrano_colors (0.5.5)
     celluloid (0.15.2)
