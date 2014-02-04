@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131102172445) do
+ActiveRecord::Schema.define(version: 20140204235002) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -161,8 +161,10 @@ ActiveRecord::Schema.define(version: 20131102172445) do
     t.string   "medium_avatar"
     t.integer  "ratings_count",       default: 0
     t.string   "role"
+    t.integer  "experience",          default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["experience"], name: "index_users_on_experience"
 
 end
