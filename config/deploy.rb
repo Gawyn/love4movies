@@ -27,6 +27,7 @@ ssh_options[:forward_agent] = true
 
 
 # Callbacks
+before 'deploy:update_code', "sidekiq:stop"
 after "deploy:update_code", "deploy:cleanup"
 after "deploy:update_code", 'deploy:symlink_config'
 after 'deploy:restart', 'unicorn:restart'
