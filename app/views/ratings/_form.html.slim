@@ -1,4 +1,4 @@
 - 10.downto(1).each do |i|
   = link_to ratings_path(:movie_id => movie.id, :value => i), :method => :post, :remote => true, :class => "icon-rating"  do
-    = fa_icon "star-o"
+    = fa_icon "star-o", class: "fa-lg"
 
