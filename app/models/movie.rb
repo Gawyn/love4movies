@@ -45,7 +45,8 @@ class Movie < ActiveRecord::Base
   end
 
   def self.search(title)
-    Movie.where(Movie.arel_table[:title_en].matches("%#{title}%"))
+    searched_title = "%" + title + "%"
+    Movie.where(Movie.arel_table[:title_en].matches(searched_title).or(Movie.arel_table[:title_es].matches(searched_title)))
   end
 
   private
