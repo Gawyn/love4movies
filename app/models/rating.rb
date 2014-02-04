@@ -8,6 +8,7 @@ class Rating < ActiveRecord::Base
 
   after_save :recalculate_movie_rating
   after_destroy :recalculate_movie_rating
+  after_create :create_activity!
 
   scope :by_value, -> { order(arel_table[:value].desc) }
 
@@ -22,5 +23,9 @@ class Rating < ActiveRecord::Base
 
     movie.total_ratings += 1
     movie.save
+  end
+
+  def create_activity!
+    Activity.create(user_id: user_id, content: self) 
   end
 end
