@@ -1,3 +1,5 @@
+require 'capistrano-unicorn'
+
 # RVM
 set :rvm_ruby_version, "2.0.0"
 set :rvm_type, :system
@@ -27,5 +29,6 @@ ssh_options[:forward_agent] = true
 # Callbacks
 after "deploy:update_code", "deploy:cleanup"
 after "deploy:update_code", 'deploy:symlink_config'
+after 'deploy:restart', 'unicorn:restart'
 
 require './config/boot'
