@@ -2,7 +2,7 @@ class Comment < ActiveRecord::Base
   belongs_to :movie
   belongs_to :user
 
-  after_create :create_activity!
+  after_commit :create_activity!, on: :create
 
   private
 

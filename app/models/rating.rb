@@ -8,7 +8,7 @@ class Rating < ActiveRecord::Base
 
   after_save :recalculate_movie_rating
   after_destroy :recalculate_movie_rating
-  after_create :create_activity!
+  after_commit :create_activity!, on: :create
 
   scope :by_value, -> { order(arel_table[:value].desc) }
 
