@@ -7,11 +7,7 @@ class MovieDecorator < Draper::Decorator
   end
 
   def director
-    technical_participations.where(:job => "Director").map{ |participation| participation.person.name }.to_sentence
-  end
-
-  def linked_director
-    technical_participations.where(:job => "Director").map{ |participation| participation.person.name }.to_sentence
+    technical_participations.where(:job => "Director").map{ |participation| h.link_to(participation.person.name, participation.person) }.to_sentence
   end
 
   def full_genres
