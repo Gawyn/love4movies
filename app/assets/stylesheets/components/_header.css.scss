@@ -3,6 +3,7 @@
 }
 
 .header-grid{
-  @include padding-trailer;
-  @include padding-leader;
+  .logo       { width: 3.75em; margin: 0; }
+  @include padding-trailer(.5);
+  @include padding-leader(.1);
 }
