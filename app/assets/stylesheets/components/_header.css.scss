@@ -1,9 +1,11 @@
 .main-header{
   background-color: #333;
+  position: relative;
 }
 
 .header-grid{
-  .logo       { width: 3.75em; margin: 0; }
-  @include padding-trailer(.5);
-  @include padding-leader(.1);
+  .logo                 { width: 3.5em; margin: 0; line-height: 1; }
+  .user-profile         { position: absolute; right: 0; top: 0;}
+  height: 50px;
+  padding: 0;
 }
