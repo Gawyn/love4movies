@@ -1,8 +1,9 @@
 /*------------------------------------*\
     $MAIN
 \*------------------------------------*/
-html{
-    font:#{($base-font-size/16px)*1em}/#{$line-height-ratio} serif;
-    overflow-y:scroll;
-    min-height:100%;
-}
+@include establish-baseline;
+
+html        { overflow-y: scroll; min-height: 100%; }
+body        { color: $text-color; font-family:$brand-face +!important; }
+p           { font-weight: 300; }
+a           { @include unstyled-link; @include link-colors($brand-color); }
