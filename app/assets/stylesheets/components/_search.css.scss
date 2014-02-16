@@ -27,7 +27,7 @@
 .search-value{
   @extend %center-text;
   @extend %light-text;
-  @include font-size($h4-size);
+  @include adjust-font-size-to($h4-size);
   span{
     color: $brand-color;
   }
