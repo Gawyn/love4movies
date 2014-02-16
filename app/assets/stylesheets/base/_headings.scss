@@ -8,65 +8,19 @@
  * This allows us to apply, say, `class=alpha` to a `h3`; a double-stranded
  * heading hierarchy.
  */
-h1,.alpha{
-    @include font-size($h1-size);
-    font-weight: 900;
-}
-h2,.beta{
-    @include font-size($h2-size);
-    font-weight: 900;
-}
-h3,.gamma{
-    @include font-size($h3-size);
-    font-weight: 700;
-}
-h4,.delta{
-    @include font-size($h4-size);
-    font-weight: 700;
-}
-h5,.epsilon{
-    @include font-size($h5-size);
-    font-weight: 400;
-}
-h6,.zeta{
-    @include font-size($h6-size);
-    font-weight: 400;
-}
-
-
-/**
- * Heading groups and generic any-heading class.
- * To target any heading of any level simply apply a class of `.hN`, e.g.:
- *
-   <hgroup>
-       <h1 class=hN>inuit.css</h1>
-       <h2 class=hN>Best. Framework. Ever!</h2>
-   </hgroup>
- *
- */
-.hN{
-}
-hgroup .hN{
-    margin-bottom:0;
-}
-
-.subheader{
-    line-height: 1.3;
-    color: #818181;
-    font-weight: 300;
-    margin-bottom: 17px;
-}
+h1,.alpha       { @include adjust-font-size-to($h1-size); font-weight: 900; }
+h2,.beta        { @include adjust-font-size-to($h2-size); font-weight: 900; }
+h3,.gamma       { @include adjust-font-size-to($h3-size); font-weight: 700; }
+h4,.delta       { @include adjust-font-size-to($h4-size); font-weight: 700; }
+h5,.epsilon     { @include adjust-font-size-to($h5-size); font-weight: 400; }
+h6,.zeta        { @include adjust-font-size-to($h6-size); font-weight: 400; }
 
 /**
  * A series of classes for setting massive type; for use in heroes, mastheads,
  * promos, etc.
  */
-.giga{
-    @include font-size($giga-size);
-}
-.mega{
-    @include font-size($mega-size);
-}
-.kilo{
-    @include font-size($kilo-size);
-}
+.giga           { @include adjust-font-size-to($giga-size); }
+.mega           { @include adjust-font-size-to($mega-size); }
+.kilo           { @include adjust-font-size-to($kilo-size); }
+
+.subheader      { line-height: 1.3; font-weight: 300; margin-bottom: 17px; color: #818181; }
