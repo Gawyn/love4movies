@@ -1,12 +1,7 @@
-%ultra-leader{
-  @include margin-leader(5);
-}
+%text-center {  text-align: center; }
+%ultra-leader{ @include margin-leader(5); }
 
-%bottom{
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
+%bottom{ position: absolute; bottom: 0; right: 0; }
 
 %number{
   font-weight: 700;
@@ -17,12 +12,10 @@
 %hide-list{
   background-color: $text-color;
   opacity: 0;
-  filter:alpha(opacity = 0);
   text-align: center;
   padding: 20px;
   width: 100%;
   margin-bottom: 1.25em;
-  border-radius: 3px;
   @include transition(opacity, ease, 0.25s);
 }
 
@@ -67,4 +60,12 @@
 
 .movie--description{
   @extend %ultra-leader;
+}
+
+
+.activities{
+  @extend %block-grid;
+  @extend %small-block-grid-2;
+  @extend %medium-block-grid-3;
+  @extend %large-block-grid-4;
 }
