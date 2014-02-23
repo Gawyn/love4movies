@@ -8,8 +8,8 @@
       .g.ten-twelfths.lap-one-whole.palm-one-whole
         section.movie--description
           hgroup
-            h1.hN.caps= @movie.title
-            p.subheader.hN
+            h1= @movie.title
+            p.subheader
               ' Directed by
               - @movie.decorate.directors.each do |director|
                 b= link_to director.name, director

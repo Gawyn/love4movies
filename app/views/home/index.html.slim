@@ -1,6 +1,7 @@
-= form_tag movies_path, :method => "get" do |f|
-  = text_field_tag :search
-  = submit_tag "Search"
+section.search-form
+  = form_tag movies_path, :method => "get" do |f|
+    = text_field_tag :search,  nil, placeholder: 'Search a movie', :autofocus=>true
+    = submit_tag "Search", :hidden => true
 
 - if @followeds_activities
   section.activities
