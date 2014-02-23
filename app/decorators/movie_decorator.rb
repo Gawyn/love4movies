@@ -6,8 +6,13 @@ class MovieDecorator < Draper::Decorator
     h.image_tag posters.first.url(Poster::SIZES.first)
   end
 
-  def director
-    technical_participations.where(:job => "Director").map{ |participation| h.link_to(participation.person.name, participation.person) }.to_sentence
+  def directors
+    technical_participations.where(:job => "Director").map{ |participation| participation.person }
+  end
+
+  def movie_year
+    date = DateTime.parse(release_date)
+    date.strftime('%Y')
   end
 
   def full_genres
