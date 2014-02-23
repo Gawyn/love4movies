@@ -6,6 +6,7 @@
 // Application
 
 @import "font-awesome";
+@import "functions";
 @import "vars";
 
 /*------------------------------------*\
@@ -33,13 +34,13 @@
  */
    @import "objects/grids";
    @import "objects/media";
-   @import "objects/matrix";
    @import "objects/buttons";
 
 /**
  * Style trumps; helper and brand classes
  */
    @import "generic/widths";
+   @import "generic/blocks";
    @import "generic/push";
    @import "generic/pull";
    @import "generic/brand";
@@ -50,4 +51,4 @@
  */
 @import "components/home";
 @import "components/header";
-@import "components/search";
+@import "components/movies-list";
