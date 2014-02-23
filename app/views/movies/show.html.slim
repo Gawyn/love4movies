@@ -11,7 +11,8 @@
             h1.hN.caps= @movie.title
             p.subheader.hN
               ' Directed by
-              b  = @movie.director
+              - @movie.decorate.directors.each do |director|
+                b= link_to director.name, director
           p= @movie.overview
           date
             =' @movie.runtime
