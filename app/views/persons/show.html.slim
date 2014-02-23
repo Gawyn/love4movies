@@ -7,3 +7,6 @@
         section.movie--description
           hgroup
             h1.hN.caps= @person.name
+    section.g.six-twelfths.lap-one-whole.palm-one-whole.movie
+      - @person.movies.each do |movie|
+        = link_to movie.title, movie
