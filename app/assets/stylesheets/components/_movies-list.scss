@@ -16,6 +16,7 @@
   @extend %small-block-grid-2;
   @extend %medium-block-grid-3;
   @extend %large-block-grid-4;
+  article                         { @include rposition($type: relative); }
   figcaption{
     @include rposition($type: absolute, $top: 0, $bottom: 0);
     @include transition(opacity, ease, 0.25s);

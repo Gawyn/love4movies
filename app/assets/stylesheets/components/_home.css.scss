@@ -39,11 +39,6 @@
   @extend %flush-padding-top;
   @extend %comments;
 }
-
-.movie{
-  position: relative;
-}
-
 .movie--rating{
   @extend %ultra-leader;
   @extend %bottom;
@@ -60,12 +55,4 @@
 
 .movie--description{
   @extend %ultra-leader;
-}
-
-
-.activities{
-  @extend %block-grid;
-  @extend %small-block-grid-2;
-  @extend %medium-block-grid-3;
-  @extend %large-block-grid-4;
 }

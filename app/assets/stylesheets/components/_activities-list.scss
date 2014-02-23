@@ -1,0 +1,25 @@
+.activities{
+  @extend %block-grid;
+  @extend %small-block-grid-2;
+  @extend %medium-block-grid-3;
+  @extend %large-block-grid-4;
+  article                         { @include rposition($type: relative); }
+  figcaption{
+    @include rposition($type: absolute, $top: 0, $bottom: 0);
+    @include transition(opacity, ease, 0.25s);
+    width: 100%;
+    background-color: transparentize($brand-color, 0.25);
+    @extend %invisible;
+    &:hover                       { @extend %visible; }
+  }
+  .avatar{
+    width: $base-font-size*3;
+    height: $base-font-size*3;
+  }
+}
+
+.movie__activity{
+  @include rposition($type: absolute, $bottom: $base-font-size*0, $left: $base-font-size*2, $right: $base-font-size*2 );
+  background-color: transparentize(black, .2);
+  color: $white;
+}

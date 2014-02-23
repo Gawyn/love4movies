@@ -5,9 +5,19 @@ article.activity
       = image_tag(content.movie.posters.first.url("w500"))
 
       figcaption
-        = link_to image_tag(user.avatar("small")), user
-        = link_to user.name, user
-        - if content.is_a? Rating
-          = content.value
-        - elsif content.is_a? Comment
-          = content.content
+        .movie__description
+          .movie__year= content.movie.decorate.movie_year
+          .movie__title= content.movie.title
+          .movie__director
+            - content.movie.decorate.directors.each do |director|
+              = director.name
+
+
+  .movie__activity.media
+    = image_tag user.avatar("medium"), class: "media__img avatar"
+    .media__body
+      = link_to user.name, user
+      - if content.is_a? Rating
+        p= content.value
+      - elsif content.is_a? Comment
+        p= content.content
