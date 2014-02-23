@@ -61,6 +61,7 @@ $desk-wide-start: 	1200px!default;
  * Brand stuff
  */
 $text-color:        #2b2b2b!default;
+$white:             #FFF!default;
 $brand-color:       #34a6d0!default;
 $brand-face:        'Lato','Helvetica', Helvetica Neue, Arial!default;
 
@@ -72,7 +73,6 @@ $brand-face:        'Lato','Helvetica', Helvetica Neue, Arial!default;
 $base-spacing-unit: $base-line-height!default;
 $half-spacing-unit: $base-spacing-unit / 2!default;
 $line-height-ratio: $base-line-height / $base-font-size;
-
 
 // Here we define the lower and upper bounds for each media size
 $small-range: (0em, 40em); /* 0, 640px */
