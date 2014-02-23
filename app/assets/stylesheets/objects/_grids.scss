@@ -4,29 +4,9 @@
 /**
  * Fluid and nestable grid system, e.g.:
  *
-   <div class=gw>
-
-       <div class="g  one-third">
-           <p>One third grid</p>
-       </div>
-
-       <div class="g  two-thirds">
-           <p>Two thirds grid</p>
-       </div>
-
-       <div class="g  one-half">
-           <p>One half grid</p>
-       </div>
-
-       <div class="g  one-quarter">
-           <p>One quarter grid</p>
-       </div>
-
-       <div class="g  one-quarter">
-           <p>One quarter grid</p>
-       </div>
-
-   </div>
+   .gw
+      .g.one-third
+        p One third grid
  *
  * Demo: jsfiddle.net/inuitcss/CLYUC
  *
@@ -55,7 +35,7 @@
      */
     list-style:none;
     margin-bottom:0;
-    @extend .cf;
+    @extend %cf;
 }
 
 

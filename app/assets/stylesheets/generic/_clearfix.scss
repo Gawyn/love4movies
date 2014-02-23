@@ -6,7 +6,7 @@
  * Extend the clearfix class with Sass to avoid the `.cf` class appearing over
  * and over in your markup.
  */
-.cf{
+%cf{
     zoom:1;
     &:before,
     &:after     { content:" "; display:table; }

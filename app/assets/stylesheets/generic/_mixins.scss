@@ -31,3 +31,27 @@ $lap-end:               $desk-start - 1px;
 
     @if $media-query == desk-wide       { @media only screen and (min-width: $desk-wide-start) { @content; } }
 }
+
+/**
+ * Position mixin
+ */
+
+$position-default:    null !default;
+
+@mixin rposition($type, $top: $position-default, $right: $position-default,
+                 $bottom: $position-default, $left: $position-default) {
+
+  $allowed_types: 'absolute' 'relative' 'fixed';
+
+  @if not index($allowed_types, $type) {
+    @warn "Unknow position: #{$type}.";
+  }
+
+  position: $type;
+  @each $data in top $top, right $right, bottom $bottom, left $left {
+    // Because of null value to default, if a position argument (eg `$top`) is not set,
+    // Sass does not output the property.
+    // Thus, values like 12px, 23em, -4rem, inherit or initial are accepted.
+    #{nth($data, 1)}: nth($data, 2);
+  }
+}
