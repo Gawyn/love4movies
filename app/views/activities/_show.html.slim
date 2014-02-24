@@ -10,7 +10,7 @@ article.activity
           .movie__title= content.movie.title
           .movie__director
             - content.movie.decorate.directors.each do |director|
-              = director.name
+              p= director.name
 
 
   .movie__activity.media
