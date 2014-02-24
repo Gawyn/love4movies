@@ -1,25 +1,24 @@
-.activities{
+.activities, .movies-list{
   @extend %block-grid;
   @extend %small-block-grid-2;
   @extend %medium-block-grid-3;
   @extend %large-block-grid-4;
   article                         { @include rposition($type: relative); }
-  figcaption{
-    @include rposition($type: absolute, $top: 0, $bottom: 0);
-    @include transition(opacity, ease, 0.25s);
-    width: 100%;
-    background-color: transparentize($brand-color, 0.25);
-    @extend %invisible;
-    &:hover                       { @extend %visible; }
+  figure{
+    background-color: $white;
+    overflow: hidden;
+    img                           { @include transition(all, ease, 0.6s); }
+    &:hover{
+      img                         { opacity: .25; @include scale(1.1); }
+      figcaption                  { @extend %visible; }
+    }
   }
-  .avatar{
-    width: $base-font-size*3;
-    height: $base-font-size*3;
-  }
+  figcaption{ @include transition(opacity, ease, 0.4s); @extend %invisible; }
 }
 
 .movie__activity{
-  @include rposition($type: absolute, $bottom: $base-font-size*0, $left: $base-font-size*2, $right: $base-font-size*2 );
-  background-color: transparentize(black, .2);
-  color: $white;
+  display: none;
+  @include rposition($type: absolute, $bottom: $base-font-size*0, $left: $base-font-size*0, $right: $base-font-size*0 );
+  background-color: transparentize(white, .2);
+  .avatar{ width: $base-font-size*3; height: $base-font-size*3; }
 }

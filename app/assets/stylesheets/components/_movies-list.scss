@@ -11,28 +11,14 @@
   }
 }
 
-.movies-list{
-  @extend %block-grid;
-  @extend %small-block-grid-2;
-  @extend %medium-block-grid-3;
-  @extend %large-block-grid-4;
-  article                         { @include rposition($type: relative); }
-  figcaption{
-    @include rposition($type: absolute, $top: 0, $bottom: 0);
-    @include transition(opacity, ease, 0.25s);
-    width: 100%;
-    background-color: transparentize($brand-color, 0.25);
-    @extend %invisible;
-    &:hover                       { @extend %visible; }
-  }
-}
-
 .movie__description{
   @include rposition($type: absolute, $top: 40%);
-  @extend %text--inverse;
+  color: $text-color;
   @extend %text--center;
   width: 100%;
-  .movie__title     { @include adjust-font-size-to($h4-size, 1); @extend %text--medium; @extend %caps; color: $white; }
-  .movie__year      { @include adjust-font-size-to($h6-size, 1); @extend %text--light; }
+  .movie__title     { @include adjust-font-size-to($h4-size, 1); @extend %text--black; @extend %caps; }
+  .movie__year      { @include adjust-font-size-to($h6-size, 1); @extend %text--regular; }
   .movie__director  { @include adjust-font-size-to($h5-size, 1); @extend %text--regular; }
 }
+
+// opacity 0.6s ease
