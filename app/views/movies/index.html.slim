@@ -11,7 +11,7 @@ section.movies-list
       article.movie= link_to  movie do
         - if movie.posters.any?
           figure
-            = image_tag movie.posters.first.url("w500")
+            = image_tag movie.posters.first.url("w342")
             figcaption
               .movie__description
                 .movie__year= movie.decorate.movie_year

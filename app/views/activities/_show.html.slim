@@ -2,7 +2,7 @@ article.activity
   = link_to content.movie do
 
     figure
-      = image_tag(content.movie.posters.first.url("w500"))
+      = image_tag(content.movie.posters.first.url("w342"))
 
       figcaption
         .movie__description
@@ -16,8 +16,7 @@ article.activity
   .movie__activity.media
     = image_tag user.avatar("medium"), class: "media__img avatar"
     .media__body
-      = link_to user.name, user
       - if content.is_a? Rating
-        p= content.value
+        i.fa.fa-star-o
       - elsif content.is_a? Comment
-        p= content.content
+        i.fa.fa-comment-o
