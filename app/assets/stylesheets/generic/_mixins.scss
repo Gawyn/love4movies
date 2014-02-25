@@ -55,3 +55,19 @@ $position-default:    null !default;
     #{nth($data, 1)}: nth($data, 2);
   }
 }
+
+// Square
+@mixin ssquare( $size:$base-font-size*2, $color: $white, $bgcolor: $brand-color,
+                $fsize: $base-font-size, $bgchover: $brand-color){
+
+  width: $size;
+  height: $size;
+  line-height: $size;
+  font-size: $fsize;
+  @extend %text-bold;
+  @extend %text-center;
+  color: $color;
+  background-color: $bgcolor;
+
+  &:hover       { background-color: $bgchover; }
+}
