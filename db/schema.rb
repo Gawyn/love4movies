@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204235002) do
+ActiveRecord::Schema.define(version: 20140227162848) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20140204235002) do
   end
 
   create_table "images", force: true do |t|
-    t.integer  "movie_id"
+    t.integer  "owner_id"
     t.integer  "width"
     t.integer  "height"
     t.float    "aspect_ratio"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140204235002) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
+    t.string   "owner_type"
   end
 
   create_table "list_belongings", force: true do |t|

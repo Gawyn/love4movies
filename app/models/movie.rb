@@ -18,9 +18,9 @@ class Movie < ActiveRecord::Base
   has_many :technical_members, :through => :technical_participations, :source => :person
   has_and_belongs_to_many :genres
   has_many :ratings, :dependent => :destroy
-  has_many :images, :dependent => :destroy
-  has_many :posters
-  has_many :backdrops
+  has_many :images, as: :owner, :dependent => :destroy
+  has_many :posters, as: :owner
+  has_many :backdrops, as: :owner
   has_many :comments, :dependent => :destroy
   has_many :list_belongings, :dependent => :destroy
   has_many :lists, :through => :list_belongings
