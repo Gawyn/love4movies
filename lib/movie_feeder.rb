@@ -18,18 +18,27 @@ class MovieFeeder
 
     private
 
-    def generate_images(movie)
-      images = TMDBClient.get_images(movie.tmdb_id)
-      images["posters"].each do |poster|
-        Poster.find_or_create(:file_path => poster["file_path"],
-          :width => poster["width"], :height => poster["height"],
-          :aspect_ratio => poster["aspect_ratio"], :movie_id => movie.id)
+    def get_object_images(object)
+      if object.is_a? Person
+        TMDBClient.get_person_images(object.tmdb_id)
+      elsif object.is_a? Movie
+        TMDBClient.get_images(object.tmdb_id)
       end
+    end
 
-      images["backdrops"].each do |backdrop|
-        Backdrop.find_or_create(:file_path => backdrop["file_path"],
-          :width => backdrop["width"], :height => backdrop["height"],
-          :aspect_ratio => backdrop["aspect_ratio"], :movie_id => movie.id)
+    def generate_images(owner)
+      images = get_object_images(owner)
+      [Poster, Backdrop, Profile].each do |image_subclass|
+        image_instances = images[image_subclass.to_s.underscore.pluralize] || []
+        image_instances.each do |image|
+          image_subclass.find_or_create(
+            :file_path => image["file_path"], 
+            :width => image["width"], 
+            :height => image["height"],
+            :aspect_ratio => image["aspect_ratio"], 
+            :owner_id => owner.id, owner_type: owner.class.to_s
+          )
+        end
       end
     end
 

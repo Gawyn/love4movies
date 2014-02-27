@@ -1,7 +1,7 @@
 class Image < ActiveRecord::Base
   IMAGE_BASE_URL = "http://cf2.imgobject.com/t/p/"
 
-  belongs_to :movie
+  belongs_to :owner, polymorphic: true
 
   def url(size)
     return unless self.class::SIZES.include?(size)

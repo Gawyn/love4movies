@@ -3,4 +3,7 @@ class Person < ActiveRecord::Base
 
   has_many :participations
   has_many :movies, :through => :participations
+
+  has_many :images, as: :owner, :dependent => :destroy
+  has_many :profiles, as: :owner
 end
