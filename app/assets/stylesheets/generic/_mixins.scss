@@ -64,8 +64,8 @@ $position-default:    null !default;
   height: $size;
   line-height: $size;
   font-size: $fsize;
-  @extend %text-bold;
-  @extend %text-center;
+  @extend %text--bold;
+  @extend %text--center;
   color: $color;
   background-color: $bgcolor;
 
