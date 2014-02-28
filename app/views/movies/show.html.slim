@@ -1,62 +1,59 @@
-.grid-extends
-  .grid-wrapper
-    .g.four-twelfths.lap-one-whole.palm-one-whole
-      figure
-        = image_tag @movie.posters.first.url("w500")
+- movie_backdrop = @movie.backdrops.first
 
-    section.g.six-twelfths.lap-one-whole.palm-one-whole.movie
-      .g.ten-twelfths.lap-one-whole.palm-one-whole
-        section.movie--description
-          hgroup
-            h1= @movie.title
-            p.subheader
-              ' Directed by
-              - @movie.decorate.directors.each do |director|
-                b= link_to director.name, director
-          p= @movie.overview
-          date
-            =' @movie.runtime
-            | min
-          .tags.leader--lrg
-            span = @movie.full_genres
-      .g.two-twelfths.lap-one-whole.palm-one-whole
-        section.movie--rating
-          #rating_average.movie-ratio.kilo = @movie.rating_average.round(1)
-          .js-rate-button.button.btn.btn--full.btn-lrg
-            | Vote
-          #my_rating.text--center
-            - if current_user
-              - if @my_rating
-                = @my_rating.value
-              - else
-                | Not watched
-
-          .rating-buttons
-            - if current_user
-              #rating_form.rating-list
-                = render "ratings/form", :movie => @movie
-
-.grid-extends.comments
-  .grid-wrapper
-    section.g.six-twelfths.push--four-twelfths.push--palm-clear.push--lap-clear.lap-ten-twelfths.palm-one-whole
-      .g.ten-twelfths.lap-one-whole.palm-one-whole
-        #comments.trailer
-          h3.trailer People says...
-          - @movie.comments.each do |comment|
-            = render :partial => "comments/show", :locals => {:comment => comment}
-
+section.movie--backdrop style="#{"background-image: url(#{movie_backdrop.url("w1280")})" if movie_backdrop.present?}"
+  article.movie--rating
+    .js-rate-button.movie--rating__button
+      i.fa.fa-star-o.movie--rating__icon
+      span#rating_average.movie-ratio= @movie.rating_average.round(1)
+      #my_rating.movie--rating__user-rating
         - if current_user
-          .do-comment
-            = simple_form_for @movie.comments.new, :remote => true do |f|
-              = f.input :content, :label => "Post your comment"
-              = f.input :movie_id, :as => :hidden, :value => @movie.id
-              .leader= f.submit :class => 'btn btn--full'
+          - if @my_rating
+            ' Your rate
+            span.js-my-rating= @my_rating.value
+
+    article.rating-buttons.invisible
+      - if current_user
+        #rating_form.rating-list
+          = render "ratings/form", :movie => @movie
+
+section.movie--show
+  figure.movie__img
+    = image_tag @movie.posters.first.url("w500")
+
+  article.movie__info
+    header.movie__header
+      h1.movie__title= @movie.title
+      p.movie__subheader
+        ' Directed by
+        - @movie.decorate.directors.each do |director|
+          span=' link_to director.name, director
+
+    p.movie__summary= @movie.overview
+    date.movie__date
+      =' @movie.runtime
+      | min
+    .movie__tags
+      span = @movie.full_genres
+
+section.movie--chat
+  h2.movie--chat__title Comments
+  .movie--chat__wrapper
+    #comments
+      - @movie.comments.each do |comment|
+        = render :partial => "comments/show", :locals => {:comment => comment}
+
+    - if current_user
+      .do-comment
+        = simple_form_for @movie.comments.new, :remote => true do |f|
+          = f.input :content, :label => false
+          = f.input :movie_id, :as => :hidden, :value => @movie.id
+          = f.submit :class => 'btn btn--full btn--chat'
 
 - content_for :custom_js do
   javascript:
     $(document).ready(function() {
       $('.js-rate-button').click(function () {
-        $('.rating-buttons').find('.rating-list').toggleClass("visible");
+        $('.rating-buttons').toggleClass("invisible");
       });
       //ui interaction with rating simbols
 
