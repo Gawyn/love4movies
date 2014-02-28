@@ -16,6 +16,6 @@ class MovieDecorator < Draper::Decorator
   end
 
   def full_genres
-    genres.map(&:name).join "/"
+    genres.map(&:name).join " · "
   end
 end
