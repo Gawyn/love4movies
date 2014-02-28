@@ -15,7 +15,6 @@
     margin: 0;
     line-height:1;
     background-color: $brand-color;
-    border-radius: 3px;
     color: white;
     @include transition(all, ease, 0.3s);
     /**
@@ -27,7 +26,7 @@
 }
     .btn:hover{
         text-decoration:none;
-        background-color: darken($brand-color, 35%);
+        background-color: $text-color;
     }
 
 /**

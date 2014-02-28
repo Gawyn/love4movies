@@ -32,7 +32,10 @@
 // Visibility
 %hide           { display: none; }
 %show           { display: block; }
+.visible,
 %visible        { opacity: 1; }
+
+.invisible,
 %invisible      { opacity: 0; }
 
 
