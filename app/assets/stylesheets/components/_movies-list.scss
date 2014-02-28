@@ -1,0 +1,40 @@
+.search-keys{
+  @extend %text--center;
+  @extend %leader;
+  @extend %trailer;
+  &> h1                           { @extend %caps; @extend %text--black; }
+  .search-keys__for               { @extend %text--regular; @include adjust-font-size-to($h3-size); }
+  .search-keys__results {
+    @extend %text--regular;
+    @include adjust-font-size-to($h4-size);
+    &> b                          { color: $brand-color; }
+  }
+}
+
+.movie__description{
+  @include rposition($type: absolute, $top: 40%);
+  color: $text-color;
+  @extend %text--center;
+  width: 100%;
+  .movie__title     { @include adjust-font-size-to($h4-size, 1); @extend %text--black; @extend %caps; }
+  .movie__year      { @include adjust-font-size-to($h6-size, 1); @extend %text--regular; }
+  .movie__director  { @include adjust-font-size-to($h5-size, 1); @extend %text--regular; }
+}
+
+.activities, .movies-list{
+  @extend %block-grid;
+  @extend %small-block-grid-2;
+  @extend %medium-block-grid-3;
+  @extend %large-block-grid-4;
+  article                         { @include rposition($type: relative); }
+  figure{
+    background-color: $white;
+    overflow: hidden;
+    img                           { @include transition(all, ease, 0.6s); }
+    &:hover{
+      img                         { opacity: .25; @include scale(1.1); }
+      figcaption                  { @extend %visible; }
+    }
+  }
+  figcaption{ @include transition(opacity, ease, 0.4s); @extend %invisible; }
+}

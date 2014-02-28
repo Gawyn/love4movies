@@ -1,13 +1,22 @@
-.g.four-twelfths.lap-one-whole.palm-one-whole
-  figure.g.six-twelfths.lap-one-whole.palm-one-whole
-    = link_to image_tag(content.movie.posters.first.url("w154")), content.movie
-  .g.six-twelfths.lap-one.whole.palm-one-whole
-    .media__img = link_to image_tag(user.avatar("small"), class: 'circle'), user
-    .media__body
-      h4
-        .author = link_to user.name, user
+article.activity
+  = link_to content.movie do
 
-    - if content.is_a? Rating
-      h3 = content.value
-    - elsif content.is_a? Comment
-      = content.content
+    figure
+      = image_tag(content.movie.posters.first.url("w342"))
+
+      figcaption
+        .movie__description
+          .movie__year= content.movie.decorate.movie_year
+          .movie__title= content.movie.title
+          .movie__director
+            - content.movie.decorate.directors.each do |director|
+              p= director.name
+
+
+  .movie__activity.media
+    = image_tag user.avatar("medium"), class: "media__img avatar"
+    .media__body
+      - if content.is_a? Rating
+        i.fa.fa-star-o
+      - elsif content.is_a? Comment
+        i.fa.fa-comment-o

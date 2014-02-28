@@ -1,0 +1,52 @@
+/*------------------------------------*\
+    $HELPERS
+\*------------------------------------*/
+
+// Floating
+%float--right   { float:right!important; }
+%float--left    { float:left !important; }
+
+// Text
+%text--left     { text-align:left  !important; }
+%text--center   { text-align:center!important; }
+%text--right    { text-align:right !important; }
+
+%text--light    { font-weight: 100; }
+%text--regular  { font-weight: 300; }
+%text--medium   { font-weight: 400; }
+%text--bold     { font-weight: 700; }
+%text--black    { font-weight: 900; }
+
+%text--inverse  { color: $white; }
+%caps           { text-transform:uppercase; }
+
+// Flush
+%flush          { margin:       0!important; }
+%flush--top     { margin-top:   0!important; }
+%flush--right   { margin-right: 0!important; }
+%flush--bottom  { margin-bottom:0!important; }
+%flush--left    { margin-left:  0!important; }
+%flush--ends    { margin-top:   0!important; margin-bottom:0!important; }
+%flush--sides   { margin-right: 0!important; margin-left:  0!important; }
+
+// Visibility
+%hide           { display: none; }
+%show           { display: block; }
+.visible,
+%visible        { opacity: 1; }
+
+.invisible,
+%invisible      { opacity: 0; }
+
+
+// Leading
+%leader         { @include margin-leader(1); }
+%trailer        { @include margin-trailer(1); }
+%leader--lg     { @include margin-leader(2); }
+%trailer--lg    { @include margin-trailer(2); }
+
+// Mute an object by reducing its opacity.
+%muted          { opacity:0.5;}
+
+// Circular UI
+%circle         { border-radius: 50%; }

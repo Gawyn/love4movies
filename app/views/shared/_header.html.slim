@@ -1,8 +1,5 @@
 header.main-header
   .grid-extends.header-grid
-    .grid-wrapper
-      .g.one-whole.text--center
-        .logo
-          h1
-            = link_to root_path do
-              = image_tag "love4movies.png"
+    h1.logo= link_to image_tag("love4movies.png"), root_path
+    - if current_user
+      .user-profile= link_to image_tag(current_user.avatar("medium")), current_user

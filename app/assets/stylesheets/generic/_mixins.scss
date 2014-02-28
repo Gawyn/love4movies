@@ -1,0 +1,73 @@
+/*------------------------------------*\
+    $MIXINS
+\*------------------------------------*/
+/**
+
+/**
+ *
+ * Courtesy of @integralist: twitter.com/integralist/status/260484115315437569
+ */
+@mixin keyframe ($animation-name){
+  @-webkit-keyframes $animation-name    { @content; }
+  @keyframes $animation-name            { @content; }
+}
+
+/**
+ * Media query mixin.
+ */
+$palm-end:              $lap-start - 1px;
+$lap-end:               $desk-start - 1px;
+
+@mixin media-query($media-query){
+    @if $media-query == palm            { @media only screen and (max-width:$palm-end) { @content; } }
+
+    @if $media-query == lap             { @media only screen and (min-width:$lap-start) and (max-width:$lap-end) { @content; } }
+
+    @if $media-query == lap-and-up      { @media only screen and (min-width:$lap-start) { @content; } }
+
+    @if $media-query == portable        { @media only screen and (max-width:$lap-end) { @content; } }
+
+    @if $media-query == desk            { @media only screen and (min-width:$desk-start) { @content; } }
+
+    @if $media-query == desk-wide       { @media only screen and (min-width: $desk-wide-start) { @content; } }
+}
+
+/**
+ * Position mixin
+ */
+
+$position-default:    null !default;
+
+@mixin rposition($type, $top: $position-default, $right: $position-default,
+                 $bottom: $position-default, $left: $position-default) {
+
+  $allowed_types: 'absolute' 'relative' 'fixed';
+
+  @if not index($allowed_types, $type) {
+    @warn "Unknow position: #{$type}.";
+  }
+
+  position: $type;
+  @each $data in top $top, right $right, bottom $bottom, left $left {
+    // Because of null value to default, if a position argument (eg `$top`) is not set,
+    // Sass does not output the property.
+    // Thus, values like 12px, 23em, -4rem, inherit or initial are accepted.
+    #{nth($data, 1)}: nth($data, 2);
+  }
+}
+
+// Square
+@mixin ssquare( $size:$base-font-size*2, $color: $white, $bgcolor: $brand-color,
+                $fsize: $base-font-size, $bgchover: $brand-color){
+
+  width: $size;
+  height: $size;
+  line-height: $size;
+  font-size: $fsize;
+  @extend %text--bold;
+  @extend %text--center;
+  color: $color;
+  background-color: $bgcolor;
+
+  &:hover       { background-color: $bgchover; }
+}

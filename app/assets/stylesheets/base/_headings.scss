@@ -1,0 +1,24 @@
+/*------------------------------------*\
+    $HEADINGS
+\*------------------------------------*/
+/**
+ * As per: csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css
+ *
+ * When we define a heading we also define a corresponding class to go with it.
+ * This allows us to apply, say, `class=alpha` to a `h3`; a double-stranded
+ * heading hierarchy.
+ */
+h1,.alpha       { @include adjust-font-size-to($h1-size); font-weight: 900; }
+h2,.beta        { @include adjust-font-size-to($h2-size); font-weight: 900; }
+h3,.gamma       { @include adjust-font-size-to($h3-size); font-weight: 700; }
+h4,.delta       { @include adjust-font-size-to($h4-size); font-weight: 700; }
+h5,.epsilon     { @include adjust-font-size-to($h5-size); font-weight: 400; }
+h6,.zeta        { @include adjust-font-size-to($h6-size); font-weight: 400; }
+
+/**
+ * A series of classes for setting massive type; for use in heroes, mastheads,
+ * promos, etc.
+ */
+.giga           { @include adjust-font-size-to($giga-size); }
+.mega           { @include adjust-font-size-to($mega-size); }
+.kilo           { @include adjust-font-size-to($kilo-size); }

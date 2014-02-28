@@ -1,0 +1,56 @@
+// ------------------------------------------------------------------
+// Framework
+@import "compass";
+
+// ------------------------------------------------------------------
+// Application
+
+@import "font-awesome";
+@import "functions";
+@import "vars";
+
+/*------------------------------------*\
+    $IMPORTS
+\*------------------------------------*/
+/**
+ * Generic utility styles etc.
+ */
+   @import "generic/mixins";
+   @import "generic/normalize";
+   @import "generic/reset";
+   @import "generic/clearfix";
+
+
+/**
+ * Base styles; unclassed HTML elements etc.
+ */
+   @import "base/main";
+   @import "base/headings";
+   @import "base/images";
+   @import "base/forms";
+
+/**
+ * Objects and abstractions
+ */
+   @import "objects/grids";
+   @import "objects/media";
+   @import "objects/buttons";
+
+/**
+ * Style trumps; helper and brand classes
+ */
+   @import "generic/widths";
+   @import "generic/blocks";
+   @import "generic/push";
+   @import "generic/pull";
+   @import "generic/brand";
+   @import "generic/helper";
+
+/**
+ * Main web components
+ */
+@import "components/movie";
+@import "components/header";
+@import "components/movies-list";
+@import "components/activities-list";
+@import "components/search-form";

@@ -1,0 +1,18 @@
+.search-form{
+  input{
+    border: 0;
+    width: 100%;
+    @include adjust-font-size-to($h3-size);
+    letter-spacing: 1px;
+    height: 5em;
+    padding-left: 4%;
+    font-weight: 400;
+    background-color: #f8f8f8;
+    &:focus,
+    &:hover {
+      background-color: white;
+      border: none;
+      outline: none;
+    }
+  }
+}
