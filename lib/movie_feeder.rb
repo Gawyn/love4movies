@@ -16,16 +16,6 @@ class MovieFeeder
       generate_images(movie)
     end
 
-    private
-
-    def get_object_images(object)
-      if object.is_a? Person
-        TMDBClient.get_person_images(object.tmdb_id)
-      elsif object.is_a? Movie
-        TMDBClient.get_images(object.tmdb_id)
-      end
-    end
-
     def generate_images(owner)
       images = get_object_images(owner)
       [Poster, Backdrop, Profile].each do |image_subclass|
@@ -39,6 +29,16 @@ class MovieFeeder
             :owner_id => owner.id, owner_type: owner.class.to_s
           )
         end
+      end
+    end
+
+    private
+
+    def get_object_images(object)
+      if object.is_a? Person
+        TMDBClient.get_person_images(object.tmdb_id)
+      elsif object.is_a? Movie
+        TMDBClient.get_images(object.tmdb_id)
       end
     end
 
@@ -97,6 +97,7 @@ class MovieFeeder
           person = Person.create(:tmdb_id => person_data["id"],
             :name => person_data["name"],
             :tmdb_profile_path => person_data["profile_path"])
+          generate_images(person)
         end
 
         Performance.find_or_create(:person_id => person.id, 
@@ -111,6 +112,7 @@ class MovieFeeder
           person = Person.create(:tmdb_id => person_data["id"],
             :name => person_data["name"],
             :tmdb_profile_path => person_data["profile_path"])
+          generate_images(person)
         end
 
         TechnicalParticipation.find_or_create(:person_id => person.id, 
