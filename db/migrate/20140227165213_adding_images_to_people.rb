@@ -1,7 +1,7 @@
 class AddingImagesToPeople < ActiveRecord::Migration
   def change
-    Person.all.each do |person|
-      MovieFeeder.send(:generate_images, person)
+    Person.pluck(:id).each do |id|
+      ImageGenerator.perform_async("Person", id)
     end
   end
 end
