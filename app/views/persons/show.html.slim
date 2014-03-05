@@ -3,13 +3,14 @@
     .g.four-twelfths.lap-one-whole.palm-one-whole
       - if @person.profiles.any?
         figure
-          = image_tag @person.profiles.first.url("h632")
+          = image_tag @person.profiles.first.url("w185")
 
     section.g.six-twelfths.lap-one-whole.palm-one-whole.movie
       .g.ten-twelfths.lap-one-whole.palm-one-whole
         section.movie--description
           hgroup
             h1.hN.caps= @person.name
-    section.g.six-twelfths.lap-one-whole.palm-one-whole.movie
-      - @person.movies.each do |movie|
-        = link_to movie.title, movie
+  - @person.participations.pluck(:job, :movie_id).group_by(&:first).each do |job, job_and_movie_id|
+    h2 = job
+    - movies = Movie.where(id: job_and_movie_id.map(&:last))
+    = render "movies/index", movies: movies
