@@ -1,0 +1,13 @@
+section.movies-list
+  - movies.each do |movie|
+      article.movie= link_to  movie do
+        - if movie.posters.any?
+          figure
+            = image_tag movie.posters.first.url("w342")
+            figcaption
+              .movie__description
+                .movie__year= movie.decorate.movie_year
+                .movie__title= movie.title
+                .movie__director
+                  - movie.decorate.directors.each do |director|
+                    = director.name
