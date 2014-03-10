@@ -49,6 +49,10 @@ section.movie--chat
           = f.input :movie_id, :as => :hidden, :value => @movie.id
           = f.submit :class => 'btn btn--full btn--chat'
 
+- if @friends_ratings
+  - @friends_ratings.each do |rating|
+    = render "ratings/short", rating: rating
+
 - content_for :custom_js do
   javascript:
     $(document).ready(function() {
