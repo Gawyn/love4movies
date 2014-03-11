@@ -8,6 +8,17 @@
   position: relative;
 }
 
+.friends--ratings{
+  width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 40px;
+
+  .rating {
+    margin-bottom: 10px
+  }
+}
+
 .movie--show{
   max-width: 1400px;
   width: 80%;

@@ -35,6 +35,11 @@ section.movie--show
     .movie__tags
       span = @movie.full_genres
 
+- if @friends_ratings
+  section.friends--ratings
+    - @friends_ratings.each do |rating|
+      = render "ratings/short", rating: rating
+
 section.movie--chat
   h2.movie--chat__title Comments
   .movie--chat__wrapper
@@ -48,10 +53,6 @@ section.movie--chat
           = f.input :content, :label => false
           = f.input :movie_id, :as => :hidden, :value => @movie.id
           = f.submit :class => 'btn btn--full btn--chat'
-
-- if @friends_ratings
-  - @friends_ratings.each do |rating|
-    = render "ratings/short", rating: rating
 
 - content_for :custom_js do
   javascript:
