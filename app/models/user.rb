@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :ratings, :dependent => :destroy
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
-  has_many :comments, :dependent => :destroy
+  has_many :reviews, :dependent => :destroy
   has_many :lists, :dependent => :destroy
   has_many :passive_follows, dependent: :destroy, foreign_key: "followed_id", class_name: "Follow"
   has_many :active_follows, dependent: :destroy, foreign_key: "follower_id", class_name: "Follow"

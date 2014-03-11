@@ -1,5 +1,5 @@
 class Activity < ActiveRecord::Base
-  ACTIVITY_TYPES = [Comment, Rating]
+  ACTIVITY_TYPES = [Rating, Review]
 
   belongs_to :content, polymorphic: true
   belongs_to :user

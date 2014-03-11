@@ -41,15 +41,15 @@ section.movie--show
       = render "ratings/short", rating: rating
 
 section.movie--chat
-  h2.movie--chat__title Comments
+  h2.movie--chat__title Reviews
   .movie--chat__wrapper
-    #comments
-      - @movie.comments.each do |comment|
-        = render :partial => "comments/show", :locals => {:comment => comment}
+    #reviews
+      - @movie.reviews.each do |review|
+        = render :partial => "reviews/show", :locals => {:review => review}
 
     - if current_user
-      .do-comment
-        = simple_form_for @movie.comments.new, :remote => true do |f|
+      .do-review
+        = simple_form_for @movie.reviews.new, :remote => true do |f|
           = f.input :content, :label => false
           = f.input :movie_id, :as => :hidden, :value => @movie.id
           = f.submit :class => 'btn btn--full btn--chat'

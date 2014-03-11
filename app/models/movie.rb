@@ -21,7 +21,7 @@ class Movie < ActiveRecord::Base
   has_many :images, as: :owner, :dependent => :destroy
   has_many :posters, as: :owner
   has_many :backdrops, as: :owner
-  has_many :comments, :dependent => :destroy
+  has_many :reviews, :dependent => :destroy
   has_many :list_belongings, :dependent => :destroy
   has_many :lists, :through => :list_belongings
 
