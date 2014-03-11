@@ -35,6 +35,11 @@ section.movie--show
     .movie__tags
       span = @movie.full_genres
 
+- if @friends_ratings
+  section.friends--ratings
+    - @friends_ratings.each do |rating|
+      = render "ratings/short", rating: rating
+
 section.movie--chat
   h2.movie--chat__title Comments
   .movie--chat__wrapper
