@@ -162,8 +162,10 @@ ActiveRecord::Schema.define(version: 20140227165213) do
     t.string   "medium_avatar"
     t.integer  "ratings_count",       default: 0
     t.string   "role"
+    t.integer  "experience",          default: 0
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["experience"], name: "index_users_on_experience"
 
 end
