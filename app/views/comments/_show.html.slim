@@ -1,7 +1,0 @@
-.comment
-  .media
-    .media__img= link_to image_tag(comment.user.avatar("small")), comment.user
-    .media__body
-      .author = link_to comment.user.name, comment.user
-      small.date.subheader = comment.created_at.to_s :long_ordinal
-      p= comment.content

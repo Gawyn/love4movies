@@ -126,10 +126,10 @@
     float: left;
     width: 66.66666%;
   }
-  .comment{ @include trailer; }
+  .review{ @include trailer; }
 }
 
-.do-comment{
+.do-review{
   @include leader(3);
   form{
     margin-left: 70px;

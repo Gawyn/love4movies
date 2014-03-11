@@ -11,20 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311221212) do
+ActiveRecord::Schema.define(version: 20140311224958) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
     t.string   "content_type"
     t.integer  "content_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "comments", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "movie_id"
-    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -135,6 +127,14 @@ ActiveRecord::Schema.define(version: 20140311221212) do
     t.integer  "movie_id"
     t.integer  "user_id"
     t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reviews", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "movie_id"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
