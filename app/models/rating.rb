@@ -2,6 +2,8 @@ class Rating < ActiveRecord::Base
   belongs_to :movie
   belongs_to :user, :counter_cache => true
 
+  has_many :comments, as: :commentable
+
   validates_inclusion_of :value, :in => 1..10
   validates_presence_of :movie_id, :user_id
   validates_uniqueness_of :user_id, :scope => :movie_id
