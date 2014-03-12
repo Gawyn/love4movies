@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  COMMENTABLE_TYPES = [Rating, Review]
+  COMMENTABLE_TYPES = ["Rating", "Review"]
 
   belongs_to :commentable, polymorphic: true
   belongs_to :user
