@@ -3,14 +3,12 @@ class MovieFeeder
     def generate_movies(query)
       results = TMDBClient.search(query, false)
       results.each do |result|
-        tmdb_id = result["id"]
-        unless Movie.find_by_tmdb_id(tmdb_id) 
-          generate_movie(tmdb_id)
-        end
+        generate_movie(result['id']
       end
     end
 
     def generate_movie(tmdb_id)
+      return if Movie.find_by_tmdb_id(tmdb_id)
       movie = generate_basic_movie(tmdb_id)
       generate_cast_and_crew(movie)
       generate_images(movie)
