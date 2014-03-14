@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
     @my_rating = Rating.where(:user_id => current_user.id,
       :movie_id => @movie.id).first if current_user
 
-    @friends_ratings = Rating.where(user_id: current_user.active_follows.pluck(:followed_id), 
+    @friends_ratings = Rating.where(user_id: current_user.followed_users_and_me_ids, 
                                     movie_id: @movie.id).includes(:user) if current_user
   end
 

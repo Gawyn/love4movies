@@ -28,8 +28,16 @@ class User < ActiveRecord::Base
 
   after_create :create_friendships!
 
+  def followed_users_ids
+    active_follows.pluck(:followed_id)
+  end
+
+  def followed_users_and_me_ids
+    followed_users_ids + [id]
+  end
+
   def following?(user)
-    active_follows.pluck(:followed_id).include? user.id
+    followed_users_ids.include? user.id
   end
 
   def update_data!(omniauth)
