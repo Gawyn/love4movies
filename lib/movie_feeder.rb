@@ -3,7 +3,7 @@ class MovieFeeder
     def generate_movies(query)
       results = TMDBClient.search(query, false)
       results.each do |result|
-        generate_movie(result['id']
+        generate_movie(result['id'])
       end
     end
 
