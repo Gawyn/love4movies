@@ -30,7 +30,8 @@
 %flush--sides   { margin-right: 0!important; margin-left:  0!important; }
 
 // Visibility
-%hide           { display: none; }
+%hide,
+.hide           { display: none; }
 %show           { display: block; }
 .visible,
 %visible        { opacity: 1; }

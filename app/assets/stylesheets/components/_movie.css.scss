@@ -1,22 +1,11 @@
 .movie--backdrop{
-  height: 50em;
+  height: 47.5em;
   width: 100%;
   background-color: $white;
   background-repeat: no-repeat;
   background-position: center center;
   @include background-size(cover);
   position: relative;
-}
-
-.friends--ratings{
-  width: 260px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 40px;
-
-  .rating {
-    margin-bottom: 10px
-  }
 }
 
 .movie--show{
@@ -43,6 +32,7 @@
     padding: .5em 20px;
     @extend %caps;
     @extend %text--light;
+    @extend %flush;
     display: inline-block;
   }
   .movie__subheader{
@@ -62,32 +52,59 @@
     padding: 1em 20px;
   }
   .movie__tags{
-    background-color: transparentize($brand-color, 0);
-    padding: 1em 20px;
     display: inline-block;
-    color: $white;
-    font-weight: 100;
+    color: gray;
+  }
+  .movie__year{
+    // margin-left: .5em;
+    font-weight: 300;
+    font-size: .85em;
   }
 }
 
 .movie--rating{
   position: absolute;
-  top: 1em;
+  top: 5em;
+  right: 0;
+  min-width: 125px;
+}
+
+.movie--review{
+  position: absolute;
+  top: 1.5em;
   right: 0;
 }
 
-.movie--rating__button{
-  font-size: 30px;
-  color: $white;
-  font-weight: 300;
-  background-color: transparentize($brand-color, .1);
+.movie--rating__my-rating{
+  @include adjust-font-size-to($base-font-size*1);
+  @extend %text--inverse;
+  @extend %text--regular;
+  background-color: darken(transparentize($brand-color, .25), 10%);
+  padding: .25em 1em;
+  cursor: pointer;
+}
+
+.movie--rating__button, .movie--review__button{
+  @include adjust-font-size-to($base-font-size*1.25);
+  @extend %text--inverse;
+  @extend %text--regular;
+  background-color: transparentize($brand-color, .25);
   padding: .5em 1em;
   cursor: pointer;
   @include transition(background-color, ease, 0.6s);
-  &:hover{
-    background-color: transparentize($brand-color, 0);
+  &:hover, &:focus{
+    background-color: $brand-color;
   }
 }
+
+.movie--review__button{
+  display: block;
+  background-color: transparentize($text-color, .25);
+  &:hover, &:focus {
+    background-color: $text-color;
+  }
+}
+
 .movie--rating__icon{
   margin-right: .5em;
 }
@@ -102,17 +119,18 @@
   position: absolute;
   right: 100%;
   top: 0;
-  width: 275%;
+  width: 300%;
   height: 100%;
   background-color: transparentize($brand-color, .3);
-  font-size: 24px;
-  line-height: 55px;
+  font-size: 1.65em;
+  line-height: 3;
   text-align: center;
   @include transition(opacity, ease, 0.3s);
   a { color: $white; padding-right: 5px; }
 }
 
-.movie--chat{
+.movie--chat,
+.movie--ratings{
   max-width: 1400px;
   width: 80%;
   margin-left: auto;
@@ -121,7 +139,6 @@
   z-index: 10;
   @include trailer(5);
   @extend %cf;
-  .movie--chat__title{ @include trailer;}
   .movie--chat__wrapper {
     float: left;
     width: 66.66666%;
@@ -129,21 +146,37 @@
   .review{ @include trailer; }
 }
 
-.do-review{
-  @include leader(3);
-  form{
-    margin-left: 70px;
-  }
-  .btn--chat{
-    @include leader(.5);
-    padding: 2em 0;
-    @extend %caps;
-  }
-}
-
 .comments {
   margin-left: 5%;
-  .comment {
-    margin: 5px 0;
+}
+
+
+.do-review{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 4em 5%;
+  overflow: hidden;
+  @include transform(translate3d(0, 100%, 0));
+  background-color: transparentize(white, 0);
+  .do-review__title       { opacity: 0; }
+  .do-review__subtitle    { display: block; color: gray; font-weight: 300; font-style: italic; @include trailer; }
+  .do-review__input{
+    width: 100%;
+    height: 300px;
+    border: none;
+    background-color: inherit;
+    @include adjust-font-size-to($base-font-size*2);
+    font-weight: 400;
+  }
+  .do-review__close{
+    position: absolute;
+    top: 2em;
+    right: 2em;
+    cursor: pointer;
+    font-size: 2em;
+    font-weight: 300;
   }
 }

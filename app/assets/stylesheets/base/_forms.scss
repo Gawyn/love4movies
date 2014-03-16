@@ -20,9 +20,7 @@ fieldset{
    <input type=password class=text-input>
  *
  */
-.text-input,
-textarea{
-    resize: none;
+.text-input{
     width: 100%;
     height: 150px;
     padding: 1em;
@@ -172,3 +170,9 @@ label,
 .text-input:focus + .extra-help{
     visibility:visible;
 }
+
+// Placeholders
+::-webkit-input-placeholder   { color: lighten($text-color, 30%); }
+::-moz-placeholder            { color: lighten($text-color, 30%); } /* firefox 19+ */
+:-ms-input-placeholder        { color: lighten($text-color, 30%); } /* ie */
+input:-moz-placeholder        { color: lighten($text-color, 30%); }

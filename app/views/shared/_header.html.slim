@@ -1,5 +1,21 @@
+section.search-form
+  = form_tag movies_path, :method => "get" do |f|
+    = text_field_tag :search,  nil, class: 'search-form__input', placeholder: 'Search a movie and write your review'
+    = submit_tag "Search", :hidden => true
+
 header.main-header
   .grid-extends.header-grid
     h1.logo= link_to image_tag("love4movies.png"), root_path
     - if current_user
+      i.fa.fa-search.js-search.fa-inverse.search-icon
       .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
+
+
+- content_for :custom_js do
+  javascript:
+    $(document).ready(function() {
+      $('.js-search').click(function () {
+        $(".search-form").toggleClass('active');
+        $(".search-form__input").focus();
+      });
+    });
