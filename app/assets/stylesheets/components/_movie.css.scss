@@ -17,7 +17,7 @@
   position: relative;
   z-index: 10;
   @extend %cf;
-  @include trailer(5);
+  @include trailer(2);
   .movie__img {
     width: 30%;
     float: left;
@@ -137,7 +137,7 @@
   margin-right: auto;
   position: relative;
   z-index: 10;
-  @include trailer(5);
+  @include trailer(2);
   @extend %cf;
   .movie--chat__wrapper {
     float: left;
