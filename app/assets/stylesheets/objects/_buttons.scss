@@ -8,26 +8,25 @@
  *
  */
 .btn{
-    font:inherit;
-    cursor:pointer;
-    border:none;
-    display:inline-block;
-    margin: 0;
-    line-height:1;
-    background-color: $brand-color;
-    color: white;
-    @include transition(all, ease, 0.3s);
-    /**
-     * Set padding in ems so we can change the size of a button by merely
-     * altering its `font-size`.
-     */
-    padding:0.5em;
-    font-weight: 300;
+  font: inherit;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1;
+  padding: 1em 3em;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  background-color: $brand-color;
+  background: transparent;
+  border: 2px solid $text-color;
+  @include transition(all, ease, 0.3s);
+  &:hover,
+  &:focus{
+    background-color: $text-color;
+    color: $white;
+    outline: none;
+  }
 }
-    .btn:hover{
-        text-decoration:none;
-        background-color: $text-color;
-    }
 
 /**
  * Basic button modifiers
