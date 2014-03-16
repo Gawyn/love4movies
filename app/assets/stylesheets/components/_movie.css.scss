@@ -146,21 +146,37 @@
   .review{ @include trailer; }
 }
 
-.do-review{
-  @include leader(3);
-  form{
-    margin-left: 70px;
-  }
-  .btn--chat{
-    @include leader(.5);
-    padding: 2em 0;
-    @extend %caps;
-  }
-}
-
 .comments {
   margin-left: 5%;
-  .comment {
-    margin: 5px 0;
+}
+
+
+.do-review{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 4em 5%;
+  overflow: hidden;
+  @include transform(translate3d(0, 100%, 0));
+  background-color: transparentize(white, 0);
+  .do-review__title       { opacity: 0; }
+  .do-review__subtitle    { display: block; color: gray; font-weight: 300; font-style: italic; @include trailer; }
+  .do-review__input{
+    width: 100%;
+    height: 300px;
+    border: none;
+    background-color: inherit;
+    @include adjust-font-size-to($base-font-size*2);
+    font-weight: 400;
+  }
+  .do-review__close{
+    position: absolute;
+    top: 2em;
+    right: 2em;
+    cursor: pointer;
+    font-size: 2em;
+    font-weight: 300;
   }
 }

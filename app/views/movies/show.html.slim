@@ -1,77 +1,127 @@
 - movie_backdrop = @movie.backdrops.first
 
-section.movie--backdrop style="#{"background-image: url(#{movie_backdrop.url("w1280")})" if movie_backdrop.present?}"
-  article.movie--rating
-    .js-rate-button.movie--rating__button
-      i.fa.fa-star-o.movie--rating__icon
-      span#rating_average.movie-ratio= @movie.rating_average.round(1)
-      #my_rating.movie--rating__user-rating
-        - if current_user
-          - if @my_rating
-            ' Your rate
-            span.js-my-rating= @my_rating.value
+.movie-wrapper
+  section.movie--backdrop style="#{"background-image: url(#{movie_backdrop.url("w1280")})" if movie_backdrop.present?}"
 
-    article.rating-buttons.invisible
+    / Review
+    article.movie--review
+      span.js-comment-button.movie--review__button
+       | Write a review
+
+    / Rating
+    article.movie--rating
+
+      .js-rate-button.movie--rating__button
+        i.fa.fa-star-o.movie--rating__icon
+        span#rating_average.movie-ratio= @movie.rating_average.round(1)
+        #my_rating.movie--rating__user-rating
       - if current_user
-        #rating_form.rating-list
-          = render "ratings/form", :movie => @movie
+        .js-rate-button.movie--rating__my-rating
+          - if @my_rating
+            ' Your rating
+            span.js-my-rating= @my_rating.value
+          - else
+            ' Your rating
+            span.js-my-rating
 
-section.movie--show
-  figure.movie__img
-    = image_tag @movie.posters.first.url("w500")
+      .rating-buttons.invisible
+        - if current_user
+          #rating_form.rating-list
+            = render "ratings/form", :movie => @movie
 
-  article.movie__info
-    header.movie__header
-      h1.movie__title= @movie.title
-      p.movie__subheader
-        ' Directed by
-        - @movie.decorate.directors.each do |director|
-          span=' link_to director.name, director
+  section.movie--show
+    figure.movie__img
+      = image_tag @movie.posters.first.url("w500")
 
-    p.movie__summary= @movie.overview
-    date.movie__date
-      =' @movie.runtime
-      | min
-    .movie__tags
-      span = @movie.full_genres
+    article.movie__info
+      header.movie__header
+        h1.movie__title= @movie.title
+        .movie__subheader-wrapper
+          p.movie__subheader
+            ' Directed by
+            - @movie.decorate.directors.each do |director|
+              span=' link_to director.name, director
+            span.movie__year
+              ' ·
+              = @movie.decorate.movie_year
 
-- if @friends_ratings
-  section.friends--ratings
-    - @friends_ratings.each do |rating|
-      = render "ratings/short", rating: rating
+      p.movie__summary= @movie.overview
+      date.movie__date
+        =' @movie.runtime
+        | min
+      .movie__tags
+        span = @movie.full_genres
 
-section.movie--chat
-  h2.movie--chat__title Reviews
-  .movie--chat__wrapper
-    #reviews
-      - @movie.reviews.each do |review|
-        = render :partial => "reviews/show", :locals => {:review => review}
+  - if @friends_ratings
+    section.movie--ratings
+      h2.movie--ratings__title Ratings
+      - @friends_ratings.each do |rating|
+        = render "ratings/short", rating: rating
 
-    - if current_user
-      .do-review
-        = simple_form_for @movie.reviews.new, :remote => true do |f|
-          = f.input :content, :label => false
-          = f.input :movie_id, :as => :hidden, :value => @movie.id
-          = f.submit :class => 'btn btn--full btn--chat'
+  section.movie--chat
+    h2.movie--chat__title Reviews
+    .movie--chat__wrapper
+      #reviews
+        - @movie.reviews.each do |review|
+          = render :partial => "reviews/show", :locals => {:review => review}
+      .btn.js-review Write a Review
+
+- if current_user
+  .do-review.js-review
+
+    h3.do-review__title
+      =' @movie.title
+      i.fa.fa-star-o
+      '
+      = @movie.rating_average.round(1)
+
+    em.do-review__subtitle Leave your review
+
+    .js-close-review.do-review__close x
+
+    = simple_form_for @movie.reviews.new, :remote => true do |f|
+      = f.input :content, :label => false, :input_html => { :class => 'do-review__input' }
+      = f.input :movie_id, :as => :hidden, :value => @movie.id
+      = f.submit :class => 'btn js-close-review', :value => "Publish"
+
 
 - content_for :custom_js do
   javascript:
     $(document).ready(function() {
-      $('.js-rate-button').click(function () {
+
+      function toggleRating() {
         $('.rating-buttons').toggleClass("invisible");
-      });
-      //ui interaction with rating simbols
+      }
+
+      function closeComment() {
+        $('.movie-wrapper').transition({ opacity: '1' });
+        $('.js-review').transition({ y: '100%' }, function() {});
+      }
+
+      function openComment() {
+        $('.movie-wrapper').transition({ opacity: '0.2' });
+        $('.js-review').transition({ y: '0' }, 500, 'cubic-bezier(.68,.05,.59,1)', function() {
+          $('.do-review__title').transition({ opacity: '1' });
+          $('.do-review__input').focus();
+        });
+      }
+
+      // Open/Close Comment Movie
+      $('.js-comment-button').on( "click", openComment );
+      $( '.js-close-review' ).on( "click", closeComment );
+
+      // Rating Movie
+      $('.js-rate-button, .icon-rating').on( "click", toggleRating );
 
       $('.icon-rating').hover(
-          // Handles the mouseover
-
-          function() {
-              $(this).nextAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');
-          },
-          // Handles the mouseout
-          function() {
-              $(this).nextAll().andSelf().children().removeClass('fa-star').addClass('fa-star-o');
-          }
+        // Handles the mouseover
+        function() {
+          $(this).nextAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');
+        },
+        // Handles the mouseout
+        function() {
+          $(this).nextAll().andSelf().children().removeClass('fa-star').addClass('fa-star-o');
+        }
       );
 
     });
