@@ -64,7 +64,7 @@
       #reviews
         - @movie.reviews.each do |review|
           = render :partial => "reviews/show", :locals => {:review => review}
-      .btn.js-review Write a Review
+      .btn.js-comment-button Write a Review
 
 - if current_user
   .do-review.js-review
