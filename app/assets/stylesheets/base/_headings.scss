@@ -8,12 +8,12 @@
  * This allows us to apply, say, `class=alpha` to a `h3`; a double-stranded
  * heading hierarchy.
  */
-h1,.alpha       { @include adjust-font-size-to($h1-size); font-weight: 900; }
-h2,.beta        { @include adjust-font-size-to($h2-size); font-weight: 900; }
-h3,.gamma       { @include adjust-font-size-to($h3-size); font-weight: 700; }
-h4,.delta       { @include adjust-font-size-to($h4-size); font-weight: 700; }
-h5,.epsilon     { @include adjust-font-size-to($h5-size); font-weight: 400; }
-h6,.zeta        { @include adjust-font-size-to($h6-size); font-weight: 400; }
+h1,.alpha       { @include adjust-font-size-to($h1-size); font-weight: 900; @include trailer(.25); }
+h2,.beta        { @include adjust-font-size-to($h2-size); font-weight: 900; @include trailer(.25); }
+h3,.gamma       { @include adjust-font-size-to($h3-size); font-weight: 700; @include trailer(.25); }
+h4,.delta       { @include adjust-font-size-to($h4-size); font-weight: 700; @include trailer(.25); }
+h5,.epsilon     { @include adjust-font-size-to($h5-size); font-weight: 400; @include trailer(.25); }
+h6,.zeta        { @include adjust-font-size-to($h6-size); font-weight: 400; @include trailer(.25); }
 
 /**
  * A series of classes for setting massive type; for use in heroes, mastheads,
