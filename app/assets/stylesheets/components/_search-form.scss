@@ -1,4 +1,6 @@
 .search-form{
+  position: relative;
+  z-index: 99;
 
   form                    { height: 0; @include transition(height cubic-bezier(.65,0,1,.95) 0.25s); overflow: hidden; }
   &.active form           { height: $base-font-size*5; }
