@@ -1,0 +1,17 @@
+.person-wrapper             { @include rposition($type: absolute, $top: 0, $right: 0, $bottom: 0, $left: 0); margin-top: $header-height; }
+
+.person-sidebar             { @include rposition($type: absolute, $top: 0, $bottom: 0, $left: 0); height: 100%; width: 240px; z-index: 3; }
+.person-works               { position: relative; height: 100%; overflow: hidden; overflow-y: scroll; margin-left: 240px; z-index: 2; }
+
+.person-bio__img            { position: relative; @include trailer; }
+.person-bio__description    { padding-left: $base-font-size*1.5; padding-right: $base-font-size; @include adjust-font-size-to($h6-size); }
+.person-bio__title{
+  @include adjust-font-size-to($h5-size);
+  @include rposition($type: absolute, $bottom: 0, $right: 0, $left: 0);
+  padding: 1em $base-font-size 1em $base-font-size*1.5;
+  @extend %flush;
+  background-color: transparentize($text-color, 0.3);
+  @extend %caps;
+  @extend %text--light;
+  @extend %text--inverse;
+}

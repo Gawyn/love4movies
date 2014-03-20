@@ -1,9 +1,15 @@
+- unless current_user
+  section.login-banner
+    = image_tag @last_activity.content.movie.backdrops.first.url("w1280")
+
+    .login-banner__wrapper
+      h1.login-banner__title Search your movies, rate it, share it.
+      = link_to "Facebook login", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--login"
+
+
 - if @followeds_activities
   section.activities
     - @followeds_activities.each do |activity|
       = render "activities/show", user: activity.user, content: activity.content
 
-- if current_user
-  = link_to('Logout', destroy_user_session_path, :method => :delete)
-- else
-  = link_to "Login", user_omniauth_authorize_path("facebook")
+= render "shared/footer"

@@ -16,6 +16,7 @@
   cursor: pointer;
   display: inline-block;
   margin: 0;
+  color: $text-color;
   background-color: $brand-color;
   background: transparent;
   border: 2px solid $text-color;
@@ -44,4 +45,30 @@
     padding-right:0;
     padding-left: 0;
     width:100%;
+}
+
+.btn--facebook{
+  background-color: $facebook;
+  border: none;
+  color: $white;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 1.5em 3em 1.5em 5em;
+  position: relative;
+  &:hover,
+  &:focus{
+    background-color: darken($facebook, 10%);
+    color: $white;
+  }
+  &:after{
+    content: "\f09a";
+    @extend .fa;
+    height: 100%;
+    line-height: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: darken($facebook, 10%);
+    padding: 1em 1.5em;
+  }
 }

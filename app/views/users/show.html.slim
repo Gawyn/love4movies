@@ -9,5 +9,10 @@
       h3 = @user.location
       h3 = "Ratings: #{@user.ratings_count}"
 
+      - if current_user
+        = link_to('Logout', destroy_user_session_path, :method => :delete)
+      - else
+        = link_to "Login", user_omniauth_authorize_path("facebook")
+
       - if current_user && (current_user != @user) && !current_user.following?(@user)
         #follow_link = link_to "Follow", user_follows_path(@user), method: :post, remote: true

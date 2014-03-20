@@ -1,0 +1,18 @@
+.login-banner{
+  position: relative;
+
+  .login-banner__wrapper{
+    position: absolute;
+    width: 100%;
+    top: 25%;
+    padding: 0 5%;
+    @extend %text--center;
+  }
+  .login-banner__title {
+    @extend %text--inverse;
+    text-shadow: 2px 2px transparentize($text-color, .5);
+    @include trailer(.5);
+    @include adjust-font-size-to($base-font-size*3);
+  }
+}
+
