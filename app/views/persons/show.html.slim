@@ -10,10 +10,10 @@
 
       .person-bio__description
         .person-bio__description__place
-          | Los Angeles, California, USA
+          = @person.place_of_birth
 
         .person-bio__description__birthday
-          | 1981-02-17
+          = @person.birthday
 
         p = @person.biography
 
