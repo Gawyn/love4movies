@@ -124,6 +124,11 @@ class MovieFeeder
         person = Person.create(:tmdb_id => data["id"],
           :name => data["name"],
           biography: data["biography"],
+          place_of_birth: data["place_of_birth"],
+          birthday: data["birthday"] ? 
+            data["birthday"].to_date : nil,
+          deathday: data["deathday"] ? 
+            data["deathday"].to_date : nil,
           :tmdb_profile_path => data["profile_path"])
 
         generate_images(person)
