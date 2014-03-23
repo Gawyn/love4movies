@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140312191514) do
+ActiveRecord::Schema.define(version: 20140323144218) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20140312191514) do
     t.integer  "tmdb_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "biography"
   end
 
   create_table "ratings", force: true do |t|

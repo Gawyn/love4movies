@@ -98,14 +98,7 @@ class MovieFeeder
       cast = cast_and_crew["cast"]
       crew = cast_and_crew["crew"]
       cast.each do |person_data|
-        person = Person.find_by_tmdb_id(person_data["id"])
-
-        unless person.present?
-          person = Person.create(:tmdb_id => person_data["id"],
-            :name => person_data["name"],
-            :tmdb_profile_path => person_data["profile_path"])
-          generate_images(person)
-        end
+        person = generate_person_with_data(person_data)
 
         Performance.find_or_create(:person_id => person.id, 
           :movie_id => movie.id, :tmdb_order => person_data["order"],
@@ -113,19 +106,30 @@ class MovieFeeder
       end
 
       crew.each do |person_data|
-        person = Person.find_by_tmdb_id(person_data["id"])
-
-        unless person.present?
-          person = Person.create(:tmdb_id => person_data["id"],
-            :name => person_data["name"],
-            :tmdb_profile_path => person_data["profile_path"])
-          generate_images(person)
-        end
+        person = generate_person_with_data(person_data)
 
         TechnicalParticipation.find_or_create(:person_id => person.id, 
           :movie_id => movie.id, :job => person_data["job"],
           :department => person_data["department"])
       end
+    end
+
+    private
+
+    def generate_person_with_data(data)
+      person = Person.find_by_tmdb_id(data["id"])
+
+      unless person.present?
+        data = TMDBClient.get_person(data["id"])
+        person = Person.create(:tmdb_id => data["id"],
+          :name => data["name"],
+          biography: data["biography"],
+          :tmdb_profile_path => data["profile_path"])
+
+        generate_images(person)
+      end
+
+      person
     end
   end
 end
