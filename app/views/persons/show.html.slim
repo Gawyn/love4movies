@@ -15,7 +15,7 @@
         .person-bio__description__birthday
           | 1981-02-17
 
-        p Maecenas faucibus mollis interdum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla vitae elit libero, a pharetra augue. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam quis risus eget urna mollis ornare vel eu leo.
+        p = @person.biography
 
   section.person-works
     - @person.participations.pluck(:job, :movie_id).group_by(&:first).each do |job, job_and_movie_id|
