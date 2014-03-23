@@ -33,9 +33,11 @@ gem 'sidekiq'
 # SQLite3
 gem 'sqlite3'
 
+# Pagination
+gem 'kaminari'
+
 # Sinatra - Needed for Sidekiq web
 gem 'sinatra', require: false
-
 
 # Assets
 gem 'sass-rails',   '~> 4.0.0'
