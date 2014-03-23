@@ -14,6 +14,15 @@ class MovieFeeder
       generate_images(movie)
     end
 
+    def generate_movies_of_person(tmdb_person_id)
+      credits = TMDBClient.get_person_credits(tmdb_person_id)
+      movie_ids = credits["crew"].map { |movie| movie["id"] } + credits["cast"].map { |movie| movie["id"] }
+
+      movie_ids.each do |movie_id|
+        BackgroundSystem.enqueue(MovieGenerator, movie_id)
+      end
+    end
+
     def generate_images(owner)
       images = get_object_images(owner)
       [Poster, Backdrop, Profile].each do |image_subclass|
