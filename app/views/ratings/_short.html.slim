@@ -4,6 +4,6 @@
     .media__body
       .author = link_to rating.user.name, rating.user
       - 1.upto(10) do |star_number|
-        = rating.value > star_number ? fa_icon("star", class: "fa-lg") : fa_icon("star-o", class: "fa-lg")
+        = rating.value >= star_number ? fa_icon("star", class: "fa-lg") : fa_icon("star-o", class: "fa-lg")
 
 = render "comments/index", commentable: rating
