@@ -1,6 +1,6 @@
 section.movies-list
   - movies.each do |movie|
-      article.movie= link_to  movie do
+      article.movie data-ratio="1.5"= link_to  movie do
         - if movie.posters.any?
           figure
             = image_tag movie.posters.first.url("w342")
