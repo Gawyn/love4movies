@@ -9,7 +9,7 @@
         li.current
           = image_tag movie_backdrop.url("w1280")
 
-        - @movie.backdrops.drop(1).first(4).each do |backdrop|
+        - @movie.backdrops.drop(1).first(3).each do |backdrop|
           li
             = image_tag backdrop.url("w1280")
 
