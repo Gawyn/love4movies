@@ -11,7 +11,7 @@ $header-height: $base-font-size*3.5;
   height: $header-height;
   padding: 0;
 
-  .logo                 { width: 3.5em; margin: 0; line-height: 1; }
+  .logo                 { width: 115px; }
   .user-profile         { position: absolute; right: 0; top: 0; width: $header-height; }
-  .search-icon          { position: absolute; left: 170px; top: 0; width: $header-height; line-height: $header-height;  text-align: center; font-size: 1.25em; }
+  .search-icon          { position: absolute; left: 120px; top: -3px; width: $header-height; line-height: $header-height;  text-align: center; font-size: 1.25em; }
 }
