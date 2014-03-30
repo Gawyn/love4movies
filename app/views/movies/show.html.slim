@@ -1,14 +1,29 @@
 - movie_backdrop = @movie.backdrops.first
 
 .movie-wrapper
-  section.movie--backdrop style="#{"background-image: url(#{movie_backdrop.url("w1280")})" if movie_backdrop.present?}"
+  section.backdrop-slider
 
-    / Review
+    / Slider
+    ul.itemwrap
+      li.current
+        = image_tag movie_backdrop.url("w1280")
+
+      - @movie.backdrops.drop(1).first(4).each do |backdrop|
+        li
+          = image_tag backdrop.url("w1280")
+    / Slider navigation
+    nav
+      = link_to "#", class: "prev" do
+        i.fa.fa-angle-left
+      = link_to "#", class: "next" do
+        i.fa.fa-angle-right
+
+    / Review movie
     article.movie--review
       span.js-comment-button.movie--review__button
        | Write a review
 
-    / Rating
+    / Rating movie
     article.movie--rating
 
       .js-rate-button.movie--rating__button
@@ -89,9 +104,11 @@
   javascript:
     $(document).ready(function() {
 
-      function toggleRating() {
-        $('.rating-buttons').toggleClass("invisible");
-      }
+      // Slider pluguin call
+      $('.backdrop-slider').slider();
+
+
+      function toggleRating() { $('.rating-buttons').toggleClass("invisible"); }
 
       function closeComment() {
         $('.movie-wrapper').transition({ opacity: '1' });
