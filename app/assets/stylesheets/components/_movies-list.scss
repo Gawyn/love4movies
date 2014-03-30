@@ -26,6 +26,7 @@
   @extend %small-block-grid-2;
   @extend %medium-block-grid-3;
   @extend %large-block-grid-4;
+  @extend %xlarge-block-grid-5;
   article                         { @include rposition($type: relative); }
   figure{
     background-color: $white;

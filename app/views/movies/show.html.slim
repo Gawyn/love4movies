@@ -1,22 +1,24 @@
 - movie_backdrop = @movie.backdrops.first
+- backdrop_is_present = movie_backdrop.present?
 
 .movie-wrapper
+  / Slider
   section.backdrop-slider
+    - if backdrop_is_present
+      ul.itemwrap
+        li.current
+          = image_tag movie_backdrop.url("w1280")
 
-    / Slider
-    ul.itemwrap
-      li.current
-        = image_tag movie_backdrop.url("w1280")
+        - @movie.backdrops.drop(1).first(4).each do |backdrop|
+          li
+            = image_tag backdrop.url("w1280")
 
-      - @movie.backdrops.drop(1).first(4).each do |backdrop|
-        li
-          = image_tag backdrop.url("w1280")
-    / Slider navigation
-    nav
-      = link_to "#", class: "prev" do
-        i.fa.fa-angle-left
-      = link_to "#", class: "next" do
-        i.fa.fa-angle-right
+      / Slider navigation
+      nav
+        = link_to "#", class: "prev" do
+          i.fa.fa-angle-left
+        = link_to "#", class: "next" do
+          i.fa.fa-angle-right
 
     / Review movie
     article.movie--review
@@ -60,12 +62,13 @@
               ' ·
               = @movie.decorate.movie_year
 
-      p.movie__summary= @movie.overview
-      date.movie__date
-        =' @movie.runtime
-        | min
-      .movie__tags
-        span = @movie.full_genres
+      .movie__summary
+        p.movie__sinopsis= @movie.overview
+        date.movie__date
+          =' @movie.runtime
+          | min
+        .movie__tags
+          span = @movie.full_genres
 
   - if @friends_ratings
     section.movie--ratings

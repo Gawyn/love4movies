@@ -7,45 +7,49 @@ $dark-trans: transparentize($text-color, 0.3);
 .movie--review          { @include rposition($type: absolute, $right: 0, $top: 1.5em ); z-index: $comment-index - 1; }
 
 .movie--show{
-  max-width: 90em;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  @include leader(-12);
-  position: relative;
-  z-index: $slider-index + 2;
+  @extend %grid-papa;
+  @extend %relative;
   @extend %cf;
   @include trailer(2);
-  .movie__img           { width: 30%; float: left; }
-  .movie__info          { width: 45%; float: left; }
+  z-index: $slider-index + 2;
+
+  @media #{$medium-up} { @include leader(-12); }
+
+  .movie__img           { @extend %grid; @extend %medium-one-third; @extend %show-medium-up; }
+  .movie__info          { @extend %grid; @extend %one-whole; @extend %medium-two-thirds; }
+
   .movie__title{
-    padding: .5em 20px;
-    background-color: $dark-trans;
+    padding: .5em 32px;
+    background-color: $text-color;
     @extend %text--inverse;
     @extend %caps;
     @extend %text--light;
     @extend %flush;
-    display: inline-block;
+    display: block;
+    @media #{$medium-up} { background-color: $dark-trans; display: inline-block; }
   }
+
   .movie__subheader{
     background-color: transparentize($white, .1);
-    padding: .5em 20px;
+    padding: .5em 32px;
     @extend %text--medium;
     display: inline-block;
   }
+
   .movie__summary{
-    background-color: transparentize($white, 0);
-    padding: 1em 40px 1em 20px;
+    background-color: $white;
+    padding: 1em 40px 1em 32px;
     @include padding-leader;
     @include padding-trailer(2);
   }
+  .movie__sinopsis{
+    @include padding-trailer;
+  }
   .movie__date{
-    background-color: transparentize($white, 0);
-    padding: 1em 20px;
+    padding-right: 1em;
   }
   .movie__tags{
     display: inline-block;
-    color: gray;
   }
   .movie__year{
     font-weight: 300;
@@ -101,11 +105,7 @@ $dark-trans: transparentize($text-color, 0.3);
 
 .movie--chat,
 .movie--ratings{
-  max-width: 90em;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
+  @extend %grid-papa;
   z-index: 10;
   @include trailer(2);
   @extend %cf;
@@ -142,9 +142,10 @@ $dark-trans: transparentize($text-color, 0.3);
 //Slider
 .backdrop-slider {
   width: 100%;
-  height: 47.5em;
+  height: 30em;
   background: $text-color;
   position: relative;
+  @media #{$medium-up} { height: 47.5em; }
   & > ul{
     width: 100%;
     max-width: 100%;
@@ -198,4 +199,3 @@ $dark-trans: transparentize($text-color, 0.3);
   nav a.prev          { right: $base-font-size*3; }
 
 }
-
