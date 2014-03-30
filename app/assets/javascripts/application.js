@@ -11,7 +11,6 @@ function posterRatios() {
 
   $("[data-ratio]").each(function(i, o) {
       height = Math.floor(Number($(o).data("ratio")) * width);
-      console.log(height);
       $(o).height(height);
   });
 }
