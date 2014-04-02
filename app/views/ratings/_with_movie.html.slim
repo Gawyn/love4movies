@@ -1,0 +1,8 @@
+.rating
+  .media
+    .media__img= link_to image_tag(rating.movie.posters.first.url("w92")), rating.user
+    .media__body
+      - 1.upto(10) do |star_number|
+        = rating.value >= star_number ? fa_icon("star", class: "fa-lg") : fa_icon("star-o", class: "fa-lg")
+
+= render "comments/index", commentable: rating

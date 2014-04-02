@@ -8,6 +8,9 @@
       h1 = @user.name
       h3 = @user.location
       h3 = "Ratings: #{@user.ratings_count}"
+      - @ratings.each do |rating|
+        = render "ratings/with_movie", rating: rating
+      = paginate @ratings
 
       - if current_user
         = link_to('Logout', destroy_user_session_path, :method => :delete)
