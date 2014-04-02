@@ -15,7 +15,7 @@ class Comment < ActiveRecord::Base
   def notify!
     Notification.create(user: commentable.user, notificable: self) if user != commentable.user
 
-    last_comment = commentable.comments.last
+    last_comment = commentable.comments.where.not(id: id).last
     Notification.create(user: last_comment.user, notificable: last_comment) if last_comment && user != last_comment.user
   end
 end
