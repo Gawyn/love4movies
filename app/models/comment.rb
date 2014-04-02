@@ -7,4 +7,15 @@ class Comment < ActiveRecord::Base
   validates_presence_of :user_id, :content, :commentable_id,
     :commentable_type
   validates_inclusion_of :commentable_type, in: COMMENTABLE_TYPES
+
+  after_create :notify!
+
+  private
+
+  def notify!
+    Notification.create(user: commentable.user, notificable: self)
+
+    last_comment = commentable.comments.last
+    Notification.create(user: last_comment.user, notificable: last_comment) if last_comment
+  end
 end
