@@ -8,6 +8,8 @@ header.main-header
     h1.logo= link_to image_tag("love4movies.png"), root_path
     - if current_user
       i.fa.fa-search.js-search.fa-inverse.search-icon
+      - if @pending_notifications.any?
+        = link_to "N", notifications_path
       .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
 
 
