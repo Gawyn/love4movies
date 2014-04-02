@@ -3,6 +3,7 @@ class Notification < ActiveRecord::Base
   belongs_to :user
 
   scope :pending, -> { where(pending: true) }
+  scope :newest_first, -> { order("created_at desc") }
 
   validate :not_to_myself
 
