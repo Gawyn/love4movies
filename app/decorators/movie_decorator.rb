@@ -7,9 +7,13 @@ class MovieDecorator < Draper::Decorator
   end
 
   def directors
-    technical_participations.where(:job => "Director").map do |participation| 
+    technical_participations.where(:job => "Director").map do |participation|
       h.link_to participation.person.name, participation.person
     end.join(", ").html_safe
+  end
+
+  def directors_list
+    technical_participations.where(:job => "Director").map{ |participation| participation.person }
   end
 
   def actors
