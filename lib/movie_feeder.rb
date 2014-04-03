@@ -29,10 +29,10 @@ class MovieFeeder
         image_instances = images[image_subclass.to_s.underscore.pluralize] || []
         image_instances.each do |image|
           image_subclass.find_or_create(
-            :file_path => image["file_path"], 
-            :width => image["width"], 
+            :file_path => image["file_path"],
+            :width => image["width"],
             :height => image["height"],
-            :aspect_ratio => image["aspect_ratio"], 
+            :aspect_ratio => image["aspect_ratio"],
             :owner_id => owner.id, owner_type: owner.class.to_s
           )
         end
@@ -59,7 +59,7 @@ class MovieFeeder
           movie.send("#{attribute}=", movie_data["#{attribute}"])
         end
 
-      [ "id", "vote_average", "vote_count", 
+      [ "id", "vote_average", "vote_count",
         "poster_path" ].each do |attribute|
         movie.send("tmdb_#{attribute}=", movie_data["#{attribute}"])
       end
@@ -82,7 +82,7 @@ class MovieFeeder
           movie.send("#{attribute}_#{locale}=", movie_data["#{attribute}"])
         end
       end
-      
+
       attrs = Movie::BASIC_ATTRIBUTES.map do |attr|
         movie.send(attr)
       end
@@ -94,13 +94,14 @@ class MovieFeeder
     end
 
     def generate_cast_and_crew(movie)
-      cast_and_crew = TMDBClient.get_cast(movie.tmdb_id)
+      cast_and_crew = TMDBClient.get_cast(movie.tmdb_id) || Hash.new([])
       cast = cast_and_crew["cast"]
       crew = cast_and_crew["crew"]
+
       cast.each do |person_data|
         person = generate_person_with_data(person_data)
 
-        Performance.find_or_create(:person_id => person.id, 
+        Performance.find_or_create(:person_id => person.id,
           :movie_id => movie.id, :tmdb_order => person_data["order"],
           :character => person_data["character"])
       end
@@ -108,7 +109,7 @@ class MovieFeeder
       crew.each do |person_data|
         person = generate_person_with_data(person_data)
 
-        TechnicalParticipation.find_or_create(:person_id => person.id, 
+        TechnicalParticipation.find_or_create(:person_id => person.id,
           :movie_id => movie.id, :job => person_data["job"],
           :department => person_data["department"])
       end
@@ -125,9 +126,9 @@ class MovieFeeder
           :name => data["name"],
           biography: data["biography"],
           place_of_birth: data["place_of_birth"],
-          birthday: data["birthday"] ? 
+          birthday: data["birthday"] ?
             data["birthday"].to_date : nil,
-          deathday: data["deathday"] ? 
+          deathday: data["deathday"] ?
             data["deathday"].to_date : nil,
           :tmdb_profile_path => data["profile_path"])
 

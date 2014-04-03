@@ -56,8 +56,7 @@
         .movie__subheader-wrapper
           p.movie__subheader
             ' Directed by
-            - @movie.decorate.directors.each do |director|
-              span=' link_to director.name, director
+            = @movie.decorate.directors
             span.movie__year
               ' ·
               = @movie.decorate.movie_year
@@ -69,6 +68,11 @@
           | min
         .movie__tags
           span = @movie.full_genres
+
+        p.movie__actors
+          ' Actors
+          = @movie.decorate.actors
+
 
   - if @friends_ratings
     section.movie--ratings

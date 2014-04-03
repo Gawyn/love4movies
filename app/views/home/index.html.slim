@@ -1,6 +1,7 @@
 - unless current_user
   section.login-banner
-    = image_tag @last_activity.content.movie.backdrops.first.url("w1280")
+    - if @last_activity
+      = image_tag @last_activity.content.movie.backdrops.first.url("w1280")
 
     .login-banner__wrapper
       h1.login-banner__title Search your movies, rate it, share it.
