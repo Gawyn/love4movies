@@ -39,11 +39,14 @@
         .movie__subheader-wrapper
           p.movie__subheader
             ' Directed by
-            - @movie.decorate.directors.each do |director|
-              span=' link_to director.name, director
+            = @movie.decorate.directors
             span.movie__year
               ' ·
               = @movie.decorate.movie_year
+
+          p.movie__subheader
+            ' Actors
+            = @movie.decorate.actors
 
       p.movie__summary= @movie.overview
       date.movie__date
