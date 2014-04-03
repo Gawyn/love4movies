@@ -145,7 +145,7 @@ $dark-trans: transparentize($text-color, 0.3);
   height: 30em;
   background: $text-color;
   position: relative;
-  @media #{$medium-up} { height: 47.5em; }
+  @media #{$medium-up} { height: 47em; }
   & > ul{
     width: 100%;
     max-width: 100%;
