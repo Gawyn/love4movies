@@ -45,6 +45,10 @@
               ' ·
               = @movie.decorate.movie_year
 
+          p.movie__subheader
+            ' Actors
+            = @movie.decorate.actors
+
       p.movie__summary= @movie.overview
       date.movie__date
         =' @movie.runtime

@@ -10,6 +10,12 @@ class MovieDecorator < Draper::Decorator
     technical_participations.where(:job => "Director").map{ |participation| participation.person }
   end
 
+  def actors
+    performances.limit(15).map do |performance|
+      h.link_to performance.person.name, performance.person
+    end.join(", ").html_safe
+  end
+
   def movie_year
     date = DateTime.parse(release_date)
     date.strftime('%Y')
