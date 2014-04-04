@@ -1,21 +1,23 @@
 .person-wrapper
   sidebar.person-sidebar
-    .person-bio
+    .person
       - if @person.profiles.any?
-        figure.person-bio__img
+        figure.person__img
           = image_tag @person.profiles.first.url("h632")
           figcaption
-            h1.person-bio__title= @person.name
+            h1.person__name= @person.name
 
 
-      .person-bio__description
-        .person-bio__description__place
-          = @person.place_of_birth
+      .person-data-wrapper
+        .person-fade-bottom
+        .person-info
+          .person-info__place
+            = @person.place_of_birth
 
-        .person-bio__description__birthday
-          = @person.birthday
+          date.person-info__birthday
+            = @person.birthday
 
-        p = @person.biography
+          p.person-info__bio = @person.biography
 
   section.person-works
     - @person.participations.pluck(:job, :movie_id).group_by(&:first).each do |job, job_and_movie_id|
