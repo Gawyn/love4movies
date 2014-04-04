@@ -5,12 +5,15 @@ section.search-form
 
 header.main-header
   .header-grid
-    h1.logo= link_to image_tag("love4movies.svg"), root_path
+    .logo= link_to image_tag("love4movies.svg"), root_path
     - if current_user
+      / Search icon
       i.fa.fa-search.js-search.fa-inverse.search-icon
-      - if @pending_notifications.any?
-        = link_to "N", notifications_path
+      / Profile avatar
       .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
+      / Notifications
+      - if @pending_notifications.any?
+        = link_to @pending_notifications.count, notifications_path, class: "user-notifications"
 
 
 - content_for :custom_js do
@@ -19,5 +22,6 @@ header.main-header
       $('.js-search').click(function () {
         $(".search-form").toggleClass('active');
         $(".search-form__input").focus();
+        $(".main-header").toggleClass('search-active');
       });
     });

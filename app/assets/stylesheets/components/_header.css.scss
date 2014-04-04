@@ -1,17 +1,44 @@
-$header-height: $base-font-size*3.5;
+// Vars
+$header-height: $base-font-size*3;
 
 .main-header{
-  background-color: black;
-  position: relative;
-  z-index: 99;
+  @include rposition($type: absolute, $top: 0);
+  width: 100%;
+  z-index: 9999;
+  @include transition(top cubic-bezier(.65,0,1,.95) 0.25s);
+  &.search-active   { top: $base-font-size*5; }
 }
 
 .header-grid{
   @extend %grid-papa;
-  height: $header-height;
-  padding: 0;
+  line-height: 1;
 
-  .logo                 { width: 115px; }
-  .user-profile         { position: absolute; right: 0; top: 0; width: $header-height; }
-  .search-icon          { position: absolute; left: 120px; top: -3px; width: $header-height; line-height: $header-height;  text-align: center; font-size: 1.25em; }
+  .logo{
+    width: $base-font-size*8;
+    height: $header-height;
+    float: left;
+    padding: 8px 10px;
+    background-color: $text-color;
+  }
+
+  .user-notifications,
+  .user-profile{
+    float: right;
+    width: $header-height;
+    height: $header-height;
+  }
+
+  .user-notifications{
+    @extend %text--center;
+    background-color: transparentize($brand-color, .5);
+    color: $white;
+    line-height: $header-height;
+  }
+
+  .search-icon{
+    float: left;
+    font-size: 1.25em;
+    padding: 10px;
+    cursor: pointer;
+  }
 }

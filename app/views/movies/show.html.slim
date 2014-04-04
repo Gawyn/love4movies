@@ -90,21 +90,21 @@
 
 - if current_user
   .do-review.js-review
+    .do-review-grid
+      h3.do-review__title
+        =' @movie.title
+        i.fa.fa-star-o
+        '
+        = @movie.rating_average.round(1)
 
-    h3.do-review__title
-      =' @movie.title
-      i.fa.fa-star-o
-      '
-      = @movie.rating_average.round(1)
+      em.do-review__subtitle Leave your review
 
-    em.do-review__subtitle Leave your review
+      .js-close-review.do-review__close x
 
-    .js-close-review.do-review__close x
-
-    = simple_form_for @movie.reviews.new, :remote => true do |f|
-      = f.input :content, :label => false, :input_html => { :class => 'do-review__input' }
-      = f.input :movie_id, :as => :hidden, :value => @movie.id
-      = f.submit :class => 'btn js-close-review', :value => "Publish"
+      = simple_form_for @movie.reviews.new, :remote => true do |f|
+        = f.input :content, :label => false, :input_html => { :class => 'do-review__input' }
+        = f.input :movie_id, :as => :hidden, :value => @movie.id
+        = f.submit :class => 'btn js-close-review', :value => "Publish"
 
 
 - content_for :custom_js do
