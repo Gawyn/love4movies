@@ -1,5 +1,6 @@
 .login-banner{
   position: relative;
+  img { max-width: none; width: 100%;  display: block; }
 
   .login-banner__wrapper{
     position: absolute;
@@ -15,4 +16,3 @@
     @include adjust-font-size-to($base-font-size*3);
   }
 }
-
