@@ -1,8 +1,76 @@
+// Animations
+@-webkit-keyframes fadeTop {
+  from { @include translateY(10%); opacity: 0; }
+  to   { @include translateY(0); opacity: 1; }
+}
+
+@keyframes fadeTop {
+  from { @include translateY(10%); opacity: 0; }
+  to   { @include translateY(0); opacity: 1; }
+}
+
+.first-activity{
+  position: relative;
+  @extend %text--inverse;
+
+  img                      { display: block; max-width: none; width: 100%; }
+
+  .overlay {
+    @include rposition($type: absolute, $bottom: 0, $left: 0, $right: 0, $top: 0 );
+    @include background-image(linear-gradient(transparent 60%, transparentize($text-color, .55)));
+    z-index: 1;
+  }
+  .first-activity__title {
+    @extend %caps;
+    @extend %text--light;
+    @extend %text--inverse;
+  }
+
+  .first-activity-info  {
+    @include rposition($type: absolute, $bottom: 0, $left: 2em, $right: 0 );
+    padding-bottom: .5em;
+    z-index: 2;
+    @extend %grid-papa;
+    @media #{$medium-up} { left: 0; padding-bottom: 5em; }
+  }
+  .first-activity__more{
+    font-size: $base-font-size*1.25;
+  }
+  .avatar{
+    width: $base-font-size*2.75;
+    height: $base-font-size*2.75;
+    @extend %flush--right;
+  }
+  .media{
+    -webkit-animation: fadeTop 1s both 170ms;
+    animation: fadeTop 1s both 170ms;
+    @include trailer(.5);
+  }
+
+  .first_activity__content {
+    display: none;
+    @media #{$medium-up} {
+      display: block;
+      @include adjust-font-size-to($h3-size, 1.75);
+      max-width: 27em;
+      -webkit-animation: fadeTop 1s both 450ms;
+      animation: fadeTop 1s both 450ms;
+     }
+  }
+
+  .media__body{
+    padding: .5em $base-font-size;
+    max-width: 40em;
+    color: #eee;
+    font-weight: 300;
+  }
+}
+
 .movie__activity{
   @include rposition($type: absolute, $bottom: $base-font-size*2, $left: $base-font-size*1 );
   background-color: transparentize($text-color, .2);
   .media__body{
-    @include ssquare($size: $base-font-size*2.5, $fsize: 1.25em, $bgcolor: transparentize($text-color, 0.35), $bgchover: transparentize($second-color, 0.35));
+    @include ssquare($size: $base-font-size*2.5, $fsize: 1.25em, $bgcolor: transparentize($text-color, 0.35), $bgchover: transparentize($brand-color, 0.35));
     @include transition(all, ease, 0.6s);
   }
   .avatar             {

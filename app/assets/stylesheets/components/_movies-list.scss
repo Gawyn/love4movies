@@ -40,3 +40,31 @@
   }
   figcaption{ @include transition(opacity, ease, 0.4s); @extend %invisible; }
 }
+
+
+// Animations
+@-webkit-keyframes zoom-out {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+@keyframes zoom-out {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+.activities,
+.movies-list,
+.first-activity{
+  article{
+    -webkit-animation: zoom-out 1s both;
+    animation: zoom-out 1s both;
+  }
+
+  @for $i from 1 through 30 {
+    article:nth-child(#{$i}) {
+      -webkit-animation-delay: $i * 150ms;
+      animation-delay: $i * 150ms;
+    }
+  }
+}
