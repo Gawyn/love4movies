@@ -1,78 +1,60 @@
-.movie--backdrop{
-  height: 47.5em;
-  width: 100%;
-  background-color: $white;
-  background-repeat: no-repeat;
-  background-position: center center;
-  @include background-size(cover);
-  position: relative;
-}
+// Vars
+$comment-index: 999;
+$slider-index: 99;
+$dark-trans: transparentize($text-color, 0.3);
+
+.movie--review          { @include rposition($type: absolute, $right: 0, $top: 5em ); z-index: $comment-index - 1; }
+.movie--rating          { @include rposition($type: absolute, $right: 0, $top: 9em ); min-width: 125px; z-index: $comment-index - 1; }
 
 .movie--show{
-  max-width: 1400px;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: -20em;
-  position: relative;
-  z-index: 10;
+  @extend %grid-papa;
+  @extend %relative;
   @extend %cf;
   @include trailer(2);
-  .movie__img {
-    width: 30%;
-    float: left;
-  }
-  .movie__info {
-    width: 45%;
-    float: left;
-  }
+  z-index: $slider-index + 2;
+
+  @media #{$medium-up} { @include leader(-12); }
+
+  .movie__img           { @extend %grid; @extend %medium-one-third; @extend %show-medium-up; }
+  .movie__info          { @extend %grid; @extend %one-whole; @extend %medium-two-thirds; }
+
   .movie__title{
-    padding: .5em 20px;
-    background-color: transparentize($text-color, 0.3);
+    padding: .5em 32px;
+    background-color: $text-color;
     @extend %text--inverse;
     @extend %caps;
     @extend %text--light;
     @extend %flush;
-    display: inline-block;
+    display: block;
+    @media #{$medium-up} { background-color: $dark-trans; display: inline-block; }
   }
+
   .movie__subheader{
     background-color: transparentize($white, .1);
-    padding: .5em 20px;
-    font-weight: 400;
+    padding: .5em 32px;
+    @extend %text--medium;
     display: inline-block;
   }
+
   .movie__summary{
-    background-color: transparentize($white, 0);
-    padding: 1em 40px 1em 20px;
+    background-color: $white;
+    padding: 1em 40px 1em 32px;
     @include padding-leader;
     @include padding-trailer(2);
   }
+  .movie__sinopsis{
+    @include padding-trailer;
+  }
   .movie__date{
-    background-color: transparentize($white, 0);
-    padding: 1em 20px;
+    padding-right: 1em;
   }
   .movie__tags{
     display: inline-block;
-    color: gray;
   }
   .movie__year{
-    // margin-left: .5em;
     font-weight: 300;
     font-size: .85em;
   }
-}
-
-.movie--rating{
-  position: absolute;
-  top: 5em;
-  right: 0;
-  min-width: 125px;
-}
-
-.movie--review{
-  position: absolute;
-  top: 1.5em;
-  right: 0;
 }
 
 .movie--rating__my-rating{
@@ -92,77 +74,63 @@
   padding: .5em 1em;
   cursor: pointer;
   @include transition(background-color, ease, 0.6s);
-  &:hover, &:focus{
-    background-color: $brand-color;
-  }
+  &:hover, &:focus          { background-color: $brand-color; }
 }
 
 .movie--review__button{
-  display: block;
+  @extend %show;
   background-color: transparentize($text-color, .25);
-  &:hover, &:focus {
-    background-color: $text-color;
-  }
+  &:hover, &:focus          { background-color: $text-color; }
 }
 
-.movie--rating__icon{
-  margin-right: .5em;
-}
+.movie--rating__icon        { margin-right: .5em; }
 .movie--rating__user-rating{
   margin-left: .5em;
   font-size: 12px;
   font-weight: 100;
-  > span { margin-left: .25em; }
+  > span                    { margin-left: .25em; }
 }
 
 .rating-buttons{
-  position: absolute;
-  right: 100%;
-  top: 0;
+  @include rposition($type: absolute, $right: 100%, $top: 0 );
   width: 300%;
   height: 100%;
   background-color: transparentize($brand-color, .3);
   font-size: 1.65em;
   line-height: 3;
-  text-align: center;
+  @extend %text--center;
   @include transition(opacity, ease, 0.3s);
-  a { color: $white; padding-right: 5px; }
+  a                         { color: $white; padding-right: 5px; }
 }
 
 .movie--chat,
 .movie--ratings{
-  max-width: 1400px;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
+  @extend %grid-papa;
   z-index: 10;
   @include trailer(2);
   @extend %cf;
-  .movie--chat__wrapper {
-    float: left;
-    width: 66.66666%;
-  }
-  .review{ @include trailer; }
-}
+  .movie--chat__wrapper     { float: left; width: 66.66666%; }
 
-.comments {
-  margin-left: 5%;
-}
+  #reviews                  { @include trailer(2); }
 
+  .review                   { @include trailer; }
+
+  .movie--ratings__title,
+  .movie--chat__title       { @include trailer(.5); font-weight: 300; }
+}
 
 .do-review{
   width: 100%;
   height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 4em 5%;
+  @include rposition($type: fixed, $left: 0, $top: 0 );
   overflow: hidden;
+  z-index: $comment-index;
   @include transform(translate3d(0, 100%, 0));
   background-color: transparentize(white, 0);
+  .do-review-grid         { @extend %grid-papa; padding-top: $header-height*2; }
   .do-review__title       { opacity: 0; }
-  .do-review__subtitle    { display: block; color: gray; font-weight: 300; font-style: italic; @include trailer; }
+  .do-review__subtitle    { @extend %show; color: gray; font-weight: 300; font-style: italic; @include trailer; }
+  .do-review__close       { @include rposition($type: absolute, $right: 0, $top: $header-height*2 ); cursor: pointer; font-size: 2em; font-weight: 300; }
   .do-review__input{
     width: 100%;
     height: 300px;
@@ -171,12 +139,65 @@
     @include adjust-font-size-to($base-font-size*2);
     font-weight: 400;
   }
-  .do-review__close{
-    position: absolute;
-    top: 2em;
-    right: 2em;
-    cursor: pointer;
-    font-size: 2em;
-    font-weight: 300;
+}
+
+//Slider
+.backdrop-slider {
+  width: 100%;
+  height: 30em;
+  background: $text-color;
+  position: relative;
+  @media #{$medium-up} { height: 47em; }
+  & > ul{
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    overflow: hidden;
   }
+  li {
+    width: 100%;
+    height: 100%;
+    @include rposition($type: absolute, $left: 0, $top: 0 );
+    pointer-events: none;
+    @extend %invisible;
+    z-index: $slider-index;
+    overflow: hidden;
+    @include transition(opacity, ease, .5s);
+  }
+
+  li img {
+    @extend %show;
+    min-width: 100%;
+    max-width: none;
+    @include rposition($type: absolute, $left: 50% );
+    @include transform(translate(-50%, -5%));
+  }
+
+  // Current state
+  .current {
+    @extend %visible;
+    pointer-events: auto;
+    z-index: $slider-index + 1;
+  }
+
+  // Navigation
+  nav a {
+    @include rposition($type: absolute, $right: 0, $bottom: 0 );
+    z-index: $slider-index + 1;
+    display: inline-block;
+    width: $base-font-size*3;
+    @extend %text--center;
+    padding: .75em;
+    background-color: $dark-trans;
+    color: $white;
+    @include transition(background-color, ease-in, .5s);
+    &:hover           { background-color: $text-color; }
+  }
+
+  nav a.prev          { right: $base-font-size*3; }
+
 }

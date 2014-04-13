@@ -1,29 +1,7 @@
 /*------------------------------------*\
     $GRIDS
 \*------------------------------------*/
-/**
- * Fluid and nestable grid system, e.g.:
- *
-   .gw
-      .g.one-third
-        p One third grid
- *
- * Demo: jsfiddle.net/inuitcss/CLYUC
- *
- */
 
-.grid-extends{
-  padding: 5%;
-  max-width: 1400px;
-  width: 94%;
-  margin: 0 auto;
-}
-
-/**
- * Grid wrapper
- *
- * Shorthand and verbose
- */
 .gw,
 .grid-wrapper{
     /**
@@ -38,48 +16,44 @@
     @extend %cf;
 }
 
-
 /**
- * Reverse grid order
- *
-   <div class="gw  gw--rev">
-
-       <div class="g  one-third">
-           <p>Appears on the right</p>
-       </div>
-
-       <div class="g  two-thirds">
-           <p>Appears on the left</p>
-       </div>
-
-   </div>
- *
+ * Very infrequently occuring grid wrappers as children of grid wrappers.
  */
-.gw--rev > .g,
-.grid-wrapper--rev > .grid{
-    float:right;
+.gw > .gw,
+.grid-wrapper > .grid-wrapper{
+    margin-left:0;
 }
 
 
-    /**
-     * Very infrequently occuring grid wrappers as children of grid wrappers.
-     */
-    .gw > .gw,
-    .grid-wrapper > .grid-wrapper{
-        margin-left:0;
+/**
+ * Grid
+ *
+ * Shorthand and verbose
+ */
+.g,
+.grid{
+    float:left;
+    padding-left:$base-spacing-unit;
+    @if $global-border-box == false{
+        @include box-sizing(border-box);
     }
+}
 
+%grid{
+  @extend %float--left;
+  @extend %relative;
+}
 
-    /**
-     * Grid
-     *
-     * Shorthand and verbose
-     */
-    .g,
-    .grid{
-        float:left;
-        padding-left:$base-spacing-unit;
-        @if $global-border-box == false{
-            @include box-sizing(border-box);
-        }
-    }
+%center-col{
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+%grid-papa{
+  max-width: 70em;
+  @extend %one-whole;
+  @extend %medium-four-fifths;
+  @extend %center-col;
+  @extend %relative;
+}

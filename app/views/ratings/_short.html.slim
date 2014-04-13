@@ -5,5 +5,19 @@
       .author = link_to rating.user.name, rating.user
       - 1.upto(10) do |star_number|
         = rating.value >= star_number ? fa_icon("star", class: "fa-lg") : fa_icon("star-o", class: "fa-lg")
+      span.js-toggle-comment.comment-action Comment
 
-= render "comments/index", commentable: rating
+  = render "comments/index", commentable: rating
+
+- content_for :custom_js do
+  javascript:
+    $(document).ready(function() {
+
+      function toggleComment() {
+        $(this).closest('.rating').find('.form-comment-wrapper').toggleClass('active').find('textarea').focus();
+      }
+
+      // Open/Close Comment Movie
+      $('.js-toggle-comment').on( "click", toggleComment );
+
+    });

@@ -1,14 +1,31 @@
 - movie_backdrop = @movie.backdrops.first
+- backdrop_is_present = movie_backdrop.present?
 
 .movie-wrapper
-  section.movie--backdrop style="#{"background-image: url(#{movie_backdrop.url("w1280")})" if movie_backdrop.present?}"
+  / Slider
+  section.backdrop-slider
+    - if backdrop_is_present
+      ul.itemwrap
+        li.current
+          = image_tag movie_backdrop.url("w1280")
 
-    / Review
+        - @movie.backdrops.drop(1).first(3).each do |backdrop|
+          li
+            = image_tag backdrop.url("w1280")
+
+      / Slider navigation
+      nav
+        = link_to "#", class: "prev" do
+          i.fa.fa-angle-left
+        = link_to "#", class: "next" do
+          i.fa.fa-angle-right
+
+    / Review movie
     article.movie--review
-      span.js-comment-button.movie--review__button
+      span.js-open-review.movie--review__button
        | Write a review
 
-    / Rating
+    / Rating movie
     article.movie--rating
 
       .js-rate-button.movie--rating__button
@@ -44,16 +61,18 @@
               ' ·
               = @movie.decorate.movie_year
 
-          p.movie__subheader
-            ' Actors
-            = @movie.decorate.actors
+      .movie__summary
+        p.movie__sinopsis= @movie.overview
+        date.movie__date
+          =' @movie.runtime
+          | min
+        .movie__tags
+          span = @movie.full_genres
 
-      p.movie__summary= @movie.overview
-      date.movie__date
-        =' @movie.runtime
-        | min
-      .movie__tags
-        span = @movie.full_genres
+        p.movie__actors
+          ' Actors
+          = @movie.decorate.actors
+
 
   - if @friends_ratings
     section.movie--ratings
@@ -61,47 +80,49 @@
       - @friends_ratings.each do |rating|
         = render "ratings/short", rating: rating
 
-  section.movie--chat
-    h2.movie--chat__title Reviews
-    .movie--chat__wrapper
-      #reviews
-        - @movie.reviews.each do |review|
-          = render :partial => "reviews/show", :locals => {:review => review}
-      .btn.js-comment-button Write a Review
+    section.movie--chat
+      h2.movie--chat__title Reviews
+      .movie--chat__wrapper
+        #reviews
+          - @movie.reviews.each do |review|
+            = render :partial => "reviews/show", :locals => {:review => review}
+        .btn.js-open-review Write a Review
 
 - if current_user
   .do-review.js-review
+    .do-review-grid
+      h3.do-review__title
+        =' @movie.title
+        i.fa.fa-star-o
+        '
+        = @movie.rating_average.round(1)
 
-    h3.do-review__title
-      =' @movie.title
-      i.fa.fa-star-o
-      '
-      = @movie.rating_average.round(1)
+      em.do-review__subtitle Leave your review
 
-    em.do-review__subtitle Leave your review
+      .js-close-review.do-review__close x
 
-    .js-close-review.do-review__close x
-
-    = simple_form_for @movie.reviews.new, :remote => true do |f|
-      = f.input :content, :label => false, :input_html => { :class => 'do-review__input' }
-      = f.input :movie_id, :as => :hidden, :value => @movie.id
-      = f.submit :class => 'btn js-close-review', :value => "Publish"
+      = simple_form_for @movie.reviews.new, :remote => true do |f|
+        = f.input :content, :label => false, :input_html => { :class => 'do-review__input' }
+        = f.input :movie_id, :as => :hidden, :value => @movie.id
+        = f.submit :class => 'btn js-close-review', :value => "Publish"
 
 
 - content_for :custom_js do
   javascript:
     $(document).ready(function() {
 
-      function toggleRating() {
-        $('.rating-buttons').toggleClass("invisible");
-      }
+      // Slider pluguin call
+      $('.backdrop-slider').slider();
 
-      function closeComment() {
+
+      function toggleRating() { $('.rating-buttons').toggleClass("invisible"); }
+
+      function closeReview() {
         $('.movie-wrapper').transition({ opacity: '1' });
         $('.js-review').transition({ y: '100%' }, function() {});
       }
 
-      function openComment() {
+      function openReview() {
         $('.movie-wrapper').transition({ opacity: '0.2' });
         $('.js-review').transition({ y: '0' }, 500, 'cubic-bezier(.68,.05,.59,1)', function() {
           $('.do-review__title').transition({ opacity: '1' });
@@ -109,9 +130,9 @@
         });
       }
 
-      // Open/Close Comment Movie
-      $('.js-comment-button').on( "click", openComment );
-      $( '.js-close-review' ).on( "click", closeComment );
+      // Open/Close Review Movie
+      $('.js-open-review').on( "click", openReview );
+      $( '.js-close-review' ).on( "click", closeReview );
 
       // Rating Movie
       $('.js-rate-button, .icon-rating').on( "click", toggleRating );

@@ -4,12 +4,16 @@ section.search-form
     = submit_tag "Search", :hidden => true
 
 header.main-header
-  .grid-extends.header-grid
-    h1.logo= link_to image_tag("love4movies.png"), root_path
+  .header-grid
+    .logo= link_to image_tag("love4movies.svg"), root_path
     - if current_user
+      / Search icon
       i.fa.fa-search.js-search.fa-inverse.search-icon
-      .notifications-icon = link_to "Notifications", notifications_path
+      / Profile avatar
       .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
+      / Notifications
+      - if @pending_notifications.any?
+        = link_to @pending_notifications.count, notifications_path, class: "user-notifications"
 
 
 - content_for :custom_js do
@@ -18,13 +22,6 @@ header.main-header
       $('.js-search').click(function () {
         $(".search-form").toggleClass('active');
         $(".search-form__input").focus();
+        $(".main-header").toggleClass('search-active');
       });
     });
-
-  - if @pending_notifications.any?
-      javascript:
-        $(document).ready(function() {
-          $('.notifications-icon a').css('color', 'red');
-          $('.notifications-icon a').css('font-size', '18px');
-          $('.notifications-icon a').css('font-weight', 'bold');
-        });

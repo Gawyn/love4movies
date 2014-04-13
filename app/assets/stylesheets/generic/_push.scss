@@ -1,13 +1,7 @@
 /*------------------------------------*\
     $PUSH
 \*------------------------------------*/
-/**
- * Push classes, to move grid items over to the right by certain amounts.
- */
 
-/**
- * Not a particularly great selector, but the DRYest way to do things.
- */
 [class*="push--"]{ position:relative; }
 
 @mixin push-setup($namespace: "") {
@@ -109,21 +103,10 @@
 @include push-setup();
 
 @if $responsive-push == true{
-
-@include media-query(palm){
-    @include push-setup("palm-");
+  // 40em up
+  @media #{$medium-up}      { @include push-setup("medium-"); }
+  // 64em up
+  @media #{$large-up}       { @include push-setup("large-"); }
+  // 90em up
+  @media #{$xlarge-up}      { @include push-setup("xlarge-"); }
 }
-
-@include media-query(lap){
-    @include push-setup("lap-");
-}
-
-@include media-query(portable){
-    @include push-setup("portable-");
-}
-
-@include media-query(desk){
-    @include push-setup("desk-");
-}
-
-} /* endif */

@@ -3,8 +3,11 @@
 \*------------------------------------*/
 
 // Floating
-%float--right   { float:right!important; }
-%float--left    { float:left !important; }
+%float--right   { float:right; }
+%float--left    { float:left; }
+
+// Position
+%relative       { position: relative; }
 
 // Text
 %text--left     { text-align:left  !important; }
@@ -39,6 +42,8 @@
 .invisible,
 %invisible      { opacity: 0; }
 
+// Adaptative visibility
+%show-medium-up { @extend %hide; @media #{$medium-up}      { display: block; }}
 
 // Leading
 %leader         { @include margin-leader(1); }

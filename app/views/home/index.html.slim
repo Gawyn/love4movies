@@ -10,7 +10,13 @@
 
 - if @followeds_activities
   section.activities
-    - @followeds_activities.each do |activity|
+
+    // Important activity
+    - first_activity = @followeds_activities.first
+    = render "activities/show_important", user: first_activity.user, content: first_activity.content
+
+    // Rest of
+    - @followeds_activities.drop(1).each do |activity|
       = render "activities/show", user: activity.user, content: activity.content
 
 = render "shared/footer"

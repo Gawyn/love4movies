@@ -1,0 +1,32 @@
+.comments {
+  margin-left: 5em;
+  @include leader;
+  @include trailer;
+  .comment   { @include trailer(.5); }
+}
+
+.comment-action{
+  cursor: pointer;
+  margin-left: 1em;
+  color: #4ece8e;
+}
+
+.form-comment-wrapper{
+  display: none;
+  &.active   { display: block; }
+  textarea{
+    border: none;
+    resize: none;
+    width: 40%;
+  }
+  input{
+    color: #4ece8e;
+    border: none;
+    background-color: $white;
+    display: block;
+    border: 1px solid #4ece8e;
+    padding: 0.4em 1em;
+    border-radius: 50px;
+    &:hover, &:focus{ outline: 0; background-color: #4ece8e; color: $white; }
+  }
+}

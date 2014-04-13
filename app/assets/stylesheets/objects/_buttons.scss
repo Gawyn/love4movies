@@ -20,6 +20,7 @@
   background-color: $brand-color;
   background: transparent;
   border: 2px solid $text-color;
+  border-radius: 50px;
   @include transition(all, ease, 0.3s);
   &:hover,
   &:focus{
