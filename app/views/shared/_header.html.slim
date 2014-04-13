@@ -25,3 +25,11 @@ header.main-header
         $(".main-header").toggleClass('search-active');
       });
     });
+
+  - if @pending_notifications && @pending_notifications.any?
+      javascript:
+        $(document).ready(function() {
+          $('.notifications-icon a').css('color', 'red');
+          $('.notifications-icon a').css('font-size', '18px');
+          $('.notifications-icon a').css('font-weight', 'bold');
+        });
