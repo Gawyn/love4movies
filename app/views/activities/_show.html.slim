@@ -10,8 +10,7 @@ article.activity data-ratio="1.5"
           .movie__title= content.movie.title
           .movie__director
             - content.movie.decorate.directors_list.each do |director|
-              p= director.name
-
+              = director.name
 
   .movie__activity.media
     = image_tag user.avatar("medium"), class: "media__img avatar"
