@@ -22,7 +22,7 @@
 
     / Review movie
     article.movie--review
-      span.js-comment-button.movie--review__button
+      span.js-open-review.movie--review__button
        | Write a review
 
     / Rating movie
@@ -80,13 +80,13 @@
       - @friends_ratings.each do |rating|
         = render "ratings/short", rating: rating
 
-  section.movie--chat
-    h2.movie--chat__title Reviews
-    .movie--chat__wrapper
-      #reviews
-        - @movie.reviews.each do |review|
-          = render :partial => "reviews/show", :locals => {:review => review}
-      .btn.js-comment-button Write a Review
+    section.movie--chat
+      h2.movie--chat__title Reviews
+      .movie--chat__wrapper
+        #reviews
+          - @movie.reviews.each do |review|
+            = render :partial => "reviews/show", :locals => {:review => review}
+        .btn.js-open-review Write a Review
 
 - if current_user
   .do-review.js-review
@@ -117,12 +117,12 @@
 
       function toggleRating() { $('.rating-buttons').toggleClass("invisible"); }
 
-      function closeComment() {
+      function closeReview() {
         $('.movie-wrapper').transition({ opacity: '1' });
         $('.js-review').transition({ y: '100%' }, function() {});
       }
 
-      function openComment() {
+      function openReview() {
         $('.movie-wrapper').transition({ opacity: '0.2' });
         $('.js-review').transition({ y: '0' }, 500, 'cubic-bezier(.68,.05,.59,1)', function() {
           $('.do-review__title').transition({ opacity: '1' });
@@ -130,9 +130,9 @@
         });
       }
 
-      // Open/Close Comment Movie
-      $('.js-comment-button').on( "click", openComment );
-      $( '.js-close-review' ).on( "click", closeComment );
+      // Open/Close Review Movie
+      $('.js-open-review').on( "click", openReview );
+      $( '.js-close-review' ).on( "click", closeReview );
 
       // Rating Movie
       $('.js-rate-button, .icon-rating').on( "click", toggleRating );

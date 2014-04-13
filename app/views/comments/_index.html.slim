@@ -3,6 +3,7 @@
     = render "comments/show", comment: comment
 
   - if current_user
-    = form_tag eval("#{commentable.class.to_s.underscore}_comments_path(#{commentable.id})") do |f|
-      = text_area_tag :content, nil
-      = submit_tag "Comment"
+    .form-comment-wrapper
+      = form_tag eval("#{commentable.class.to_s.underscore}_comments_path(#{commentable.id})") do |f|
+        = text_area_tag :content, nil
+        = submit_tag "Publish"

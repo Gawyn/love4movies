@@ -110,15 +110,16 @@ $dark-trans: transparentize($text-color, 0.3);
   @include trailer(2);
   @extend %cf;
   .movie--chat__wrapper     { float: left; width: 66.66666%; }
-  .review                   { @include trailer; }
-}
 
-.comments {
-  margin-left: 5%;
+  #reviews                  { @include trailer(2); }
+
+  .review                   { @include trailer; }
+
+  .movie--ratings__title,
+  .movie--chat__title       { @include trailer(.5); font-weight: 300; }
 }
 
 .do-review{
-
   width: 100%;
   height: 100%;
   @include rposition($type: fixed, $left: 0, $top: 0 );
