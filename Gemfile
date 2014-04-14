@@ -30,9 +30,6 @@ gem 'turbolinks'
 # Sidekiq
 gem 'sidekiq'
 
-# SQLite3
-gem 'sqlite3'
-
 # Pagination
 gem 'kaminari'
 
@@ -50,7 +47,6 @@ gem 'font-awesome-rails'
 
 # Development
 group :development do
-  gem 'pg'
   gem 'quiet_assets'
   gem 'thin'
   gem 'capistrano', "2.15.5"
@@ -58,11 +54,10 @@ group :development do
   gem 'capistrano-unicorn', require: false
   gem 'rvm-capistrano'
   gem 'capistrano_colors', :require => false
-  gem 'sqlite3'
 end
 
-# Test
-group :test do
+# Development & Test
+group :development, :test do
   gem 'sqlite3'
 end
 
