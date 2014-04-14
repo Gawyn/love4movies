@@ -23,6 +23,9 @@
 # Ignore .ruby-version
 .ruby-version
 
+# Ignore .rbenv-gemsets
+.rbenv-gemsets
+
 # Ignore .DS_Store
 .DS_Store
 
@@ -31,3 +34,6 @@
 
 # Ignore assets
 public/assets
+
+# Ignore vim trash
+*.swp
