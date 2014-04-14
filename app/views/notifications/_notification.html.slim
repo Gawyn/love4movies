@@ -1,6 +1,6 @@
 .notification
   .media
-    .media__img= link_to image_tag(notification.user.avatar("small")), notification.user
+    .media__img= link_to image_tag(notification.notificable.user.avatar("small")), notification.user
     .media__body
       - if notification.notificable_type == "Rating"
         = link_to "#{notification.notificable.user.name} ha comentado tu rating de #{notification.notificable.movie.title}", notification.notificable.movie
