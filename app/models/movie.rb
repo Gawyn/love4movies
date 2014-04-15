@@ -29,6 +29,7 @@ class Movie < ActiveRecord::Base
   scope :hidden, -> { where(hidden: true) }
   scope :not_hidden, -> { where(:hidden => false) }
   scope :more_total_ratings_than, lambda { |total| where(arel_table[:total_ratings].gt(total)) }
+  scope :more_ratings_than, lambda { |total| where(arel_table[:ratings_count].gt(total)) }
   scope :by_popularity, -> { order(arel_table[:popularity].desc) }
 
   before_create :set_hidden
