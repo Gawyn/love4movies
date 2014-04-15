@@ -14,6 +14,6 @@ class MoviesController < ApplicationController
   end
 
   def ranking
-    @movies = Movie.by_rating_average.not_hidden.more_total_ratings_than(3).page(params[:page])
+    @movies = Movie.by_rating_average.not_hidden.more_ratings_than(1).page(params[:page])
   end
 end
