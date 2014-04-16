@@ -8,7 +8,7 @@
       = link_to "Facebook login", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--login"
 
 
-- if @followeds_activities
+- if @followeds_activities && @followeds_activities.any?
   section.activities
 
     // Important activity

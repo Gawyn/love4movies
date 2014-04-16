@@ -8,19 +8,25 @@ class Rating < ActiveRecord::Base
   validates_presence_of :movie_id, :user_id
   validates_uniqueness_of :user_id, :scope => :movie_id
 
-  after_save :recalculate_movie_rating
-  after_destroy :recalculate_movie_rating
+  after_save :recalculate_movie_ratings
+  after_destroy :recalculate_movie_ratings
   after_commit :create_activity!, on: :create
 
   scope :by_value, -> { order(arel_table[:value].desc) }
 
   private
 
-  def recalculate_movie_rating
+  def recalculate_movie_ratings
     new_rating = movie.calculate_rating_average
 
     if movie.rating_average != new_rating
       movie.rating_average = new_rating
+    end
+
+    new_l4m_rating = movie.calculate_l4m_rating_average
+
+    if movie.l4m_rating_average != new_l4m_rating
+      movie.l4m_rating_average = new_l4m_rating
     end
 
     movie.total_ratings += 1

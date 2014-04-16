@@ -45,6 +45,10 @@ class Movie < ActiveRecord::Base
     end
   end
 
+  def calculate_l4m_rating_average
+    ratings.pluck(:value).sum.to_f/ratings.count
+  end
+
   def self.search(title)
     searched_title = "%" + title + "%"
     Movie.where(Movie.arel_table[:title_en].matches(searched_title).or(Movie.arel_table[:title_es].matches(searched_title)))
