@@ -28,7 +28,7 @@ gem 'traco'
 gem 'turbolinks'
 
 # Sidekiq
-gem 'sidekiq'
+gem 'sidekiq', '2.15.1'
 
 # Pagination
 gem 'kaminari'
