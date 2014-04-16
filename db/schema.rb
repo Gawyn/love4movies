@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140402022655) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20140415201540) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -113,6 +110,7 @@ ActiveRecord::Schema.define(version: 20140402022655) do
     t.text     "overview_en"
     t.string   "title_es"
     t.text     "overview_es"
+    t.integer  "ratings_count",     default: 0
   end
 
   create_table "notifications", force: true do |t|
@@ -190,7 +188,7 @@ ActiveRecord::Schema.define(version: 20140402022655) do
     t.integer  "experience",          default: 0
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["experience"], name: "index_users_on_experience", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["experience"], name: "index_users_on_experience"
 
 end
