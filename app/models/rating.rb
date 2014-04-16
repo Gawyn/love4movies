@@ -1,5 +1,5 @@
 class Rating < ActiveRecord::Base
-  belongs_to :movie
+  belongs_to :movie, counter_cache: true
   belongs_to :user, :counter_cache => true
 
   has_many :comments, as: :commentable
@@ -28,6 +28,6 @@ class Rating < ActiveRecord::Base
   end
 
   def create_activity!
-    Activity.create(user_id: user_id, content: self) 
+    Activity.create(user_id: user_id, content: self)
   end
 end
