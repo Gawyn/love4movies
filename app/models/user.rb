@@ -66,6 +66,7 @@ class User < ActiveRecord::Base
   end
 
   def create_friendships!
+    return unless token
     friends_fb_uid = graph.get_connections("me", "friends").map { |friend| friend["id"] }
 
     User.where(:fb_uid => friends_fb_uid).pluck(:id).each do |friend_id|

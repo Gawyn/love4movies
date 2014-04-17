@@ -1,4 +1,5 @@
 h1 Notifications
 
-- @notifications.each do |notification|
-  = render notification
+.notifications
+  - @notifications.each do |notification|
+    = render notification
