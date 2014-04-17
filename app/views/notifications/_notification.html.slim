@@ -2,9 +2,9 @@
   .media
     .media__img= link_to image_tag(notification.notificable.user.avatar("small")), notification.user
     .media__body
-      - if notification.notificable_type == "Rating"
-        = link_to "#{notification.notificable.user.name} ha comentado tu rating de #{notification.notificable.movie.title}", notification.notificable.movie
-      - elsif notification.notificable_type == "Review"
-        = link_to "#{notification.notificable.user.name} ha comentado tu review de #{notification.notificable.movie.title}", notification.notificable.movie
-      - elsif notification.notificable_type == "Comment"
+      - if notification.triggered_on_type == "Rating"
+        = link_to "#{notification.notificable.user.name} ha comentado tu rating de #{notification.triggered_on.movie.title}.", notification.triggered_on.movie
+      - elsif notification.triggered_on_type == "Review"
+        = link_to "#{notification.notificable.user.name} ha comentado tu review de #{notification.triggered_on.movie.title}.", notification.triggered_on.movie
+      - elsif notification.triggered_on_type == "Comment"
         = link_to "#{notification.notificable.user.name} ha respondido a uno de tus comentarios.", notification.notificable.commentable.movie
