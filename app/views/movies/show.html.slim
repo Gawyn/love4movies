@@ -30,7 +30,7 @@
 
       .js-rate-button.movie--rating__button
         i.fa.fa-star-o.movie--rating__icon
-        span#rating_average.movie-ratio= @movie.rating_average.round(1)
+        span#rating_average.movie-ratio = @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
         #my_rating.movie--rating__user-rating
       - if current_user
         .js-rate-button.movie--rating__my-rating
