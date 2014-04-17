@@ -4,12 +4,23 @@ class ApplicationController < ActionController::Base
   before_filter :check_pending_notifications, :set_locale
 
   def set_locale
-    http_lang = request.env["HTTP_ACCEPT_LANGUAGE"]
-
-    I18n.locale = http_lang ? process_language_from_param(http_lang) : "es"
+    I18n.locale = process_language
   end
 
   private
+
+  def process_language
+    if valid_locale?(params[:set_locale])
+      session["love4movies.locale"] = params[:set_locale]
+      params[:set_locale]
+    elsif valid_locale?(session["love4movies.locale"])
+      session["love4movies.locale"]
+    elsif request.env["HTTP_ACCEPT_LANGUAGE"]
+      process_language_from_param(request.env["HTTP_ACCEPT_LANGUAGE"])
+    else
+      "es"
+    end
+  end
 
   def check_pending_notifications
     @pending_notifications = current_user.notifications.pending if current_user
@@ -22,5 +33,9 @@ class ApplicationController < ActionController::Base
     when "es", "ca" then "es"
     else "en"
     end
+  end
+
+  def valid_locale?(locale)
+    LOCALES.include? locale
   end
 end
