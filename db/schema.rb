@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416052703) do
+ActiveRecord::Schema.define(version: 20140417063728) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -118,9 +118,11 @@ ActiveRecord::Schema.define(version: 20140416052703) do
     t.integer  "notificable_id"
     t.string   "notificable_type"
     t.integer  "user_id"
-    t.boolean  "pending",          default: true
+    t.boolean  "pending",           default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "triggered_on_type"
+    t.integer  "triggered_on_id"
   end
 
   create_table "participations", force: true do |t|
