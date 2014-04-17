@@ -148,4 +148,11 @@
         }
       );
 
+      function toggleComment() {
+        $(this).closest('.rating').find('.form-comment-wrapper').toggleClass('active').find('textarea').focus();
+      }
+
+      // Open/Close Comment Movie
+      $('.js-toggle-comment').on( "click", toggleComment );
+
     });

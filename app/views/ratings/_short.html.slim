@@ -8,16 +8,3 @@
       span.js-toggle-comment.comment-action Comment
 
   = render "comments/index", commentable: rating
-
-- content_for :custom_js do
-  javascript:
-    $(document).ready(function() {
-
-      function toggleComment() {
-        $(this).closest('.rating').find('.form-comment-wrapper').toggleClass('active').find('textarea').focus();
-      }
-
-      // Open/Close Comment Movie
-      $('.js-toggle-comment').on( "click", toggleComment );
-
-    });
