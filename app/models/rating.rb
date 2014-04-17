@@ -8,6 +8,8 @@ class Rating < ActiveRecord::Base
   validates_presence_of :movie_id, :user_id
   validates_uniqueness_of :user_id, :scope => :movie_id
 
+  scope :newest_first, -> { order(arel_table[:updated_at].desc) }
+
   after_save :recalculate_movie_ratings
   after_destroy :recalculate_movie_ratings
   after_commit :create_activity!, on: :create
