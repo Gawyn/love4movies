@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
       :movie_id => @movie.id).first if current_user
 
     @friends_ratings = Rating.where(user_id: current_user.followed_users_and_me_ids,
-                                    movie_id: @movie.id).includes(:user) if current_user
+                                    movie_id: @movie.id).newest_first.includes(:user) if current_user
   end
 
   def index
