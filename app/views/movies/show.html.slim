@@ -74,10 +74,16 @@
           = @movie.decorate.actors
 
 
-  - if @friends_ratings
+  - if @friends_ratings && @friends_ratings.any?
+    section.movie--ratings
+      h2.movie--ratings__title Friends Ratings
+      - @friends_ratings.each do |rating|
+        = render "ratings/short", rating: rating
+
+  - if @all_ratings && @all_ratings.any?
     section.movie--ratings
       h2.movie--ratings__title Ratings
-      - @friends_ratings.each do |rating|
+      - @all_ratings.each do |rating|
         = render "ratings/short", rating: rating
 
     section.movie--chat
