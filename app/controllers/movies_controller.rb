@@ -1,11 +1,17 @@
 class MoviesController < ApplicationController
   def show
     @movie = Movie.includes(:reviews).find(params[:id]).decorate
-    @my_rating = Rating.where(:user_id => current_user.id,
-      :movie_id => @movie.id).first if current_user
 
-    @friends_ratings = Rating.where(user_id: current_user.followed_users_and_me_ids,
-                                    movie_id: @movie.id).newest_first.includes(:user) if current_user
+    if current_user
+      @my_rating = Rating.where(:user_id => current_user.id,
+        :movie_id => @movie.id).first
+
+      @friends_ratings = Rating.where(user_id: current_user.followed_users_and_me_ids,
+        movie_id: @movie.id).newest_first.includes(:user)
+
+      @all_ratings = @movie.ratings.where("user_id not in (?)", 
+        current_user.followed_users_and_me_ids).newest_first.includes(:user)
+    end
   end
 
   def index
