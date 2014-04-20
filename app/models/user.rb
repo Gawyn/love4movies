@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   has_many :followeds, through: :active_follows, source: "followed"
   has_many :activities
   has_many :notifications
+  has_many :won_badges
+  has_many :badges, through: :won_badges
 
   validates_inclusion_of :role, in: ROLES
 
