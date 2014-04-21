@@ -9,5 +9,4 @@ section.movies-list
                 .movie__year= movie.decorate.movie_year
                 .movie__title= movie.title
                 .movie__director
-                  - movie.decorate.directors_list.each do |director|
-                    = director.name
+                  = movie.decorate.directors_list.map(&:name).join(", ")
