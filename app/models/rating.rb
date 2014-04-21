@@ -42,7 +42,7 @@ class Rating < ActiveRecord::Base
   end
 
   def check_badges!
-    Badge.where(id: MovieInBadge.where(movie_id: movie_id).pluck(:badge_id)).each do |badge|
+    Badge.all.each do |badge|
       WonBadge.create(winner_id: user.id, badge_id: badge.id) if badge.can_receive?(user)
     end
   end
