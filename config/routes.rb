@@ -22,6 +22,7 @@ Love4movies::Application.routes.draw do
   end
 
   resources :persons, :only => :show
+  resources :follows, only: :destroy
 
   resources :movies, :only => [:show, :index] do
     get :ranking, :on => :collection
