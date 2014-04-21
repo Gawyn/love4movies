@@ -38,7 +38,9 @@ $header-height: $base-font-size*3;
   .search-icon{
     float: left;
     font-size: 1.25em;
-    padding: 10px;
+    height: $header-height;
+    padding: 10px 12px;
     cursor: pointer;
+    background-color: transparentize($text-color, .25);
   }
 }
