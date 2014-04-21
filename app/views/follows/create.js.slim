@@ -1,4 +1,4 @@
 - if @follow
-  | $("#follow_link").html("User followed!")
+  | $("#follow_link").html('#{link_to "Unfollow", follow_path(@follow), method: :delete, remote: true, class: "user-follow"}');
 - else
   | $("#follow_link").html("Error")
