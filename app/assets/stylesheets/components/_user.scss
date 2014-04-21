@@ -1,0 +1,59 @@
+.user{
+  margin-top: - $base-font-size*3.5;
+  position: relative;
+  text-align: center;
+  .user__img img{
+    margin: 0 auto 1em auto;
+    width: $base-font-size*7;
+    height: $base-font-size*7;
+  }
+  .user__name{
+    font-size: 1.5em;
+    @include trailer(.5);
+  }
+}
+.user-bg{
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.user-follow{
+  color: $good-green;
+  background-color: $white;
+  display: inline-block;
+  border: 1px solid $good-green;
+  padding: 0.4em 2em;
+  border-radius: 50px;
+  @include trailer(.5);
+  &:hover, &:focus{ outline: 0; background-color: $good-green; color: $white; }
+}
+
+.backdrops{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  pointer-events: none;
+  .backdrop{
+    width: 20%;
+    height: 0;
+    padding-top: 33.333%;
+    float: left;
+    background-repeat: repeat;
+    background-position: center center;
+  }
+}
+
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-color: transparentize(black, .5);
+}
