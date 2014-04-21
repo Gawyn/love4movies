@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find params[:id]
     @ratings = @user.ratings.newest_first.includes(:movie).page(params[:page])
+    @follow = Follow.find_by(follower_id: current_user.id, followed_id: @user.id) if current_user
     render layout: "person"
   end
 end
