@@ -38,6 +38,7 @@ Love4movies::Application.routes.draw do
   resources :list_belongings, :only => :create do
     delete :destroy, :on => :collection
   end
+  resources :badges, only: :index
 
   get "ranking" => "movies#ranking"
   get "notifications" => "notifications#index"

@@ -1,0 +1,7 @@
+- @badges.each do |badge|
+  .badge
+    h2 
+      = badge.name
+      - if @my_badges_ids.include? badge.id
+        ' - Conseguido!
+    = badge.description
