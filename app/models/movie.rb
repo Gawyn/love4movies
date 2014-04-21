@@ -24,6 +24,8 @@ class Movie < ActiveRecord::Base
   has_many :reviews, :dependent => :destroy
   has_many :list_belongings, :dependent => :destroy
   has_many :lists, :through => :list_belongings
+  has_many :movie_in_badges
+  has_many :badges, through: :movie_in_badges
 
   scope :by_rating_average, -> { order(arel_table[:rating_average].desc) }
   scope :by_l4m_rating_average, -> { order(arel_table[:l4m_rating_average].desc) }

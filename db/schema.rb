@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417063728) do
+ActiveRecord::Schema.define(version: 20140420105122) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
     t.string   "content_type"
     t.integer  "content_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "badges", force: true do |t|
+    t.string   "name_es"
+    t.string   "name_en"
+    t.text     "description_es"
+    t.text     "description_en"
+    t.integer  "movie_quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -87,6 +97,13 @@ ActiveRecord::Schema.define(version: 20140417063728) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "list_pattern_id"
+  end
+
+  create_table "movie_in_badges", force: true do |t|
+    t.integer  "movie_id"
+    t.integer  "badge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "movies", force: true do |t|
@@ -193,5 +210,12 @@ ActiveRecord::Schema.define(version: 20140417063728) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["experience"], name: "index_users_on_experience"
+
+  create_table "won_badges", force: true do |t|
+    t.integer  "winner_id"
+    t.integer  "badge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

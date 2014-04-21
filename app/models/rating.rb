@@ -12,6 +12,8 @@ class Rating < ActiveRecord::Base
 
   after_save :recalculate_movie_ratings
   after_destroy :recalculate_movie_ratings
+
+  after_commit :check_badges!
   after_commit :create_activity!, on: :create
 
   scope :by_value, -> { order(arel_table[:value].desc) }
@@ -37,5 +39,11 @@ class Rating < ActiveRecord::Base
 
   def create_activity!
     Activity.create(user_id: user_id, content: self)
+  end
+
+  def check_badges!
+    Badge.where(id: MovieInBadge.where(movie_id: id).pluck(:badge_id)).each do |badge|
+      WonBadge.create(winner_id: user.id, badge_id: badge.id) if can_receive?(user)
+    end
   end
 end
