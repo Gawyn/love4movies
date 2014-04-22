@@ -1,0 +1,2 @@
+- @followeds_activities.each do |activity|
+  | $('.activities').append("#{escape_javascript(render('activities/show', user: activity.user, content: activity.content))}");
