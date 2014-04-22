@@ -1,0 +1,2 @@
+class GeneralBadge < Badge
+end
