@@ -1,2 +1,4 @@
 - @followeds_activities.each do |activity|
   | $('.activities').append("#{escape_javascript(render('activities/show', user: activity.user, content: activity.content))}");
+- if @followeds_activities.count < 12
+  | $('.activities').append("<div id='end-of-scrolling' class='bottom-msg'>Ya has visto todas las actividades de tu feed!</div>")
