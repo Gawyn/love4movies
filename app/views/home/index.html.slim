@@ -22,3 +22,29 @@
     - else
       - @followeds_activities.each do |activity|
         = render "activities/show", user: activity.user, content: activity.content
+
+#more-activities
+
+- content_for :custom_js do
+  javascript:
+
+    nextPage = 2;
+
+    $(document).ready(function() {
+      $(window).on("scroll", function(){
+        if($('#loading').size() == 0 && $('#end-of-scrolling').size() == 0){
+
+          if($(window).scrollTop() > ($(document).height() - ($(window).height() + 50))){
+            $("#more-activities").html("<div id='loading' class='bottom-msg'>Loading...</div>"); 
+
+            $.get("/activities?page=" + nextPage, function(d){
+              $('#loading').remove();
+            });
+
+            nextPage = nextPage + 1;
+          }
+
+        }
+      });
+    });
+    
