@@ -15,7 +15,7 @@
 
   img                      { display: block; max-width: none; width: 100%; }
 
-  .overlay {
+  .overlay-important {
     @include rposition($type: absolute, $bottom: 0, $left: 0, $right: 0, $top: 0 );
     @include background-image(linear-gradient(transparent 60%, transparentize($text-color, .55)));
     z-index: 1;

@@ -1,7 +1,7 @@
 - content_state = (content.is_a? Rating) ? "rate it with #{content.value}" : "write a review"
 .first-activity
   = link_to content.movie do
-    .overlay
+    .overlay-important
     = image_tag content.movie.backdrops.first.url("w1280")
 
   .first-activity-info
