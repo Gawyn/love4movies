@@ -3,7 +3,7 @@ header.search-keys
   h1= params[:search]
   span.search-keys__results
     ' find
-    b=' @movies.count
+    b=' @movies.total
     | movies
 
 = render "index", movies: @movies

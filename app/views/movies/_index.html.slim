@@ -1,5 +1,5 @@
 section.movies-list
-  - movies.each do |movie|
+  - movies.each_hit_with_result do |hit, movie|
       article.movie data-ratio="1.5"= link_to  movie do
         - if movie.posters.any?
           figure
