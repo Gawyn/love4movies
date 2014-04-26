@@ -64,7 +64,7 @@ class Movie < ActiveRecord::Base
     search do
       fulltext title
       with :hidden, false
-    end
+    end.results
   end
 
   private
