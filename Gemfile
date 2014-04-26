@@ -69,3 +69,8 @@ group :production do
   gem 'pg'
   gem 'unicorn'
 end
+
+# Development & Production
+group :development, :production do
+  gem 'sunspot_solr'
+end

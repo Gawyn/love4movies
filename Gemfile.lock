@@ -215,6 +215,7 @@ GEM
       nokogiri
       rails (>= 3)
       sunspot (= 2.1.0)
+    sunspot_solr (2.1.0)
     temple (0.6.7)
     thin (1.6.2)
       daemons (>= 1.0.9)
@@ -272,6 +273,7 @@ DEPENDENCIES
   slim-rails
   sqlite3
   sunspot_rails
+  sunspot_solr
   thin
   traco
   turbolinks
