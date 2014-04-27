@@ -11,30 +11,33 @@
 
 .first-activity{
   position: relative;
-  z-index: 1;
-  overflow: hidden;
   @extend %text--inverse;
 
-  .overlay-important__img { display: block; max-width: none; width: 100%; }
-
-  .overlay-important {
-    @include rposition($type: absolute, $bottom: 0, $left: 0, $right: 0, $top: 0 );
-    @include background-image(linear-gradient(transparent 60%, transparentize($text-color, .55)));
-    z-index: 1;
+  .first-activity__link{
+    &:before{
+      content: "";
+      @include rposition($type: absolute, $bottom: 0, $left: 0, $right: 0, $top: 0 );
+      @include background-image(linear-gradient(transparent 55%, transparentize($text-color, .55)));
+      z-index: 1;
+    }
   }
+
+  .first-activity__img { display: block; max-width: none; width: 100%; }
+
   .first-activity__title {
     @extend %text--inverse;
     @extend %headline;
-    @include adjust-font-size-to($h4-size);
+    @include adjust-font-size-to($h4-size, 1);
     letter-spacing: .05em;
   }
 
   .first-activity-info  {
+    display: none;
     @include rposition($type: absolute, $bottom: 0, $left: 2em, $right: 0 );
     padding-bottom: .5em;
     z-index: 2;
     @extend %grid-papa;
-    @media #{$medium-up} { left: 0; padding-bottom: 5em; }
+    @media #{$medium-up} { left: 0; padding-bottom: 5em; display: block;  }
   }
   .first-activity__more{
     font-size: $base-font-size*1.25;

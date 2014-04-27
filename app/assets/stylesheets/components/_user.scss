@@ -1,3 +1,5 @@
+.pagination       { @include padding-leader; clear: both; }
+
 .user{
   margin-top: - $base-font-size*3.5;
   position: relative;

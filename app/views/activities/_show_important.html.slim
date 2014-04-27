@@ -22,3 +22,7 @@
         | “
         = truncate(content.content, length: 100) { link_to "more",  content.movie, class: "first-activity__more" }
         | ”
+
+    .media
+      = link_to (image_tag user.avatar("medium"), class: "media__img avatar"), user
+      .media__body=' link_to user.name, user
