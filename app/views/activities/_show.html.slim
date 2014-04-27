@@ -16,5 +16,7 @@ article.activity data-ratio="1.5"
     .media__body
       - if content.is_a? Rating
         i.fa.fa-star-o
+        '
+        = content.value
       - elsif content.is_a? Review
         i.fa.fa-comment-o

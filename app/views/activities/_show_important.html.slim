@@ -19,4 +19,6 @@
 
     - elsif content.is_a? Review
       p.first_activity__content
+        | “
         = truncate(content.content, length: 100) { link_to "more",  content.movie, class: "first-activity__more" }
+        | ”
