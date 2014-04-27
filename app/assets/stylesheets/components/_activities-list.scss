@@ -51,21 +51,19 @@
   }
 
   .first_activity__content {
-    display: none;
-    @media #{$medium-up} {
-      display: block;
-      @include adjust-font-size-to($h3-size, 1.75);
-      max-width: 27em;
-      -webkit-animation: fadeTop 1s both 450ms;
-      animation: fadeTop 1s both 450ms;
-     }
+    display: block;
+    @include adjust-font-size-to($h4-size, 1.5);
+    @extend %readable;
+    font-style: italic;
+    max-width: 27em;
+    @include trailer;
+    -webkit-animation: fadeTop 1s both .55s;
+    animation: fadeTop 1s both .55s;
   }
 
   .media__body{
     padding: .5em $base-font-size;
     max-width: 40em;
-    color: #eee;
-    font-weight: 300;
   }
 }
 

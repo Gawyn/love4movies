@@ -4,6 +4,7 @@
 
 // Fonts Family
 %headline       { font-family: $headline-face; font-weight: normal; }
+%readable       { font-family: $body-face; font-weight: 300; }
 
 // Floating
 %float--right   { float:right; }
