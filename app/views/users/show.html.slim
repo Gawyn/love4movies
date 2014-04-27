@@ -2,7 +2,7 @@
   sidebar.person-sidebar
     .user-bg
       .backdrops
-        - @ratings.limit(20).each do |rating|
+        - @highest_ratings.each do |rating|
           .backdrop style="#{"background-image: url(#{rating.movie.posters.first.url("w92")})"}"
       .overlay
     .user
@@ -18,7 +18,7 @@
           .person-info__place = @user.location
 
           - if current_user
-            - if (current_user != @user) 
+            - if (current_user != @user)
               #follow_link
                 - if @follow
                   = link_to "Unfollow", follow_path(@follow), method: :delete, remote: true, class: "user-follow"
