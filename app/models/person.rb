@@ -6,4 +6,8 @@ class Person < ActiveRecord::Base
 
   has_many :images, as: :owner, :dependent => :destroy
   has_many :profiles, as: :owner
+
+  searchable do
+    text :name
+  end
 end

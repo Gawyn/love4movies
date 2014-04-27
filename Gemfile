@@ -33,6 +33,9 @@ gem 'sidekiq', '2.15.1'
 # Pagination
 gem 'kaminari'
 
+# Sunspot for search
+gem 'sunspot_rails'
+
 # Sinatra - Needed for Sidekiq web
 gem 'sinatra', require: false
 
@@ -65,4 +68,9 @@ end
 group :production do
   gem 'pg'
   gem 'unicorn'
+end
+
+# Development & Production
+group :development, :production do
+  gem 'sunspot_solr'
 end

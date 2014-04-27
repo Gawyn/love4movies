@@ -38,6 +38,14 @@ class Movie < ActiveRecord::Base
   before_create :set_hidden
   before_create :set_total_ratings
 
+  searchable do
+    text :original_title
+    text :title_en, :title_en
+    boolean :hidden
+    integer :ratings_count
+    double :l4m_rating_average, :rating_average
+  end
+
   def calculate_rating_average
     if ratings.any?
       total_ratings = ratings.count
@@ -52,9 +60,11 @@ class Movie < ActiveRecord::Base
     ratings.pluck(:value).sum.to_f/ratings.count
   end
 
-  def self.search(title)
-    searched_title = "%" + title + "%"
-    Movie.where(Movie.arel_table[:title_en].matches(searched_title).or(Movie.arel_table[:title_es].matches(searched_title)))
+  def self.standard_search(title)
+    search do
+      fulltext title
+      with :hidden, false
+    end.results
   end
 
   private

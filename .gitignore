@@ -37,3 +37,9 @@ public/assets
 
 # Ignore vim trash
 *.swp
+
+# Ignore solr files
+/solr/*
+
+# Ignore lck files
+*.lck

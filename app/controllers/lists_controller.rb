@@ -28,6 +28,6 @@ class ListsController < ApplicationController
   def movie_search
     @list = List.find params[:list_id]
     @listed_movies = @list.movies
-    @movies = Movie.search(params[:search]).decorate
+    @movies = Movie.standard_search(params[:search]).decorate
   end
 end
