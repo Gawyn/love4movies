@@ -16,7 +16,7 @@
   color: $text-color;
   @extend %text--center;
   width: 100%;
-  .movie__title     { @include adjust-font-size-to($h4-size, 1); @extend %text--black; @extend %caps; }
+  .movie__title     { @include adjust-font-size-to($h2-size, 1.5); @extend %headline; }
   .movie__year      { @include adjust-font-size-to($h6-size, 1); @extend %text--regular; }
   .movie__director  { @include adjust-font-size-to($h5-size, 1); @extend %text--regular; }
 }
@@ -44,13 +44,13 @@
 
 // Animations
 @-webkit-keyframes zoom-out {
-	from { opacity: 0; }
-	to   { opacity: 1; }
+	from { opacity: 0; @include scale(0.75); }
+	to   { opacity: 1; @include scale(1); }
 }
 
 @keyframes zoom-out {
-	from { opacity: 0; }
-	to   { opacity: 1; }
+  from { opacity: 0; @include scale(0.75); }
+  to   { opacity: 1; @include scale(1); }
 }
 
 .activities,

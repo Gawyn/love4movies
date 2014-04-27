@@ -19,31 +19,34 @@ $dark-trans: transparentize($text-color, 0.3);
   .movie__info          { @extend %grid; @extend %one-whole; @extend %medium-two-thirds; }
 
   .movie__title{
-    padding: .5em 32px;
+    padding: .5em $base-font-size*2.5;
     background-color: $text-color;
     @extend %text--inverse;
-    @extend %caps;
-    @extend %text--light;
     @extend %flush;
     display: block;
+    @extend %headline;
+    letter-spacing: 0.025em;
     @media #{$medium-up} { background-color: $dark-trans; display: inline-block; }
   }
 
   .movie__subheader{
     background-color: transparentize($white, .1);
-    padding: .5em 32px;
+    padding: .5em $base-font-size*2.5;
     @extend %text--medium;
     display: inline-block;
   }
 
   .movie__summary{
     background-color: $white;
-    padding: 1em 40px 1em 32px;
+    padding-left: $base-font-size*2.5;
+    padding-right: $base-font-size*3;
     @include padding-leader;
-    @include padding-trailer(2);
+    @include trailer(2);
   }
   .movie__sinopsis{
-    @include padding-trailer;
+    @include trailer;
+    @extend %readable;
+    @include adjust-font-size-to($base-font-size);
   }
   .movie__date{
     padding-right: 1em;

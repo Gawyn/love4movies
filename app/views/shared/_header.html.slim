@@ -1,6 +1,6 @@
 section.search-form
   = form_tag movies_path, :method => "get" do |f|
-    = text_field_tag :search,  nil, class: 'search-form__input', placeholder: 'Search a movie and write your review'
+    = text_field_tag :search,  nil, class: 'search-form__input', placeholder: 'Search your movie'
     = submit_tag "Search", :hidden => true
 
 header.main-header
@@ -25,11 +25,3 @@ header.main-header
         $(".main-header").toggleClass('search-active');
       });
     });
-
-  - if @pending_notifications && @pending_notifications.any?
-      javascript:
-        $(document).ready(function() {
-          $('.notifications-icon a').css('color', 'red');
-          $('.notifications-icon a').css('font-size', '18px');
-          $('.notifications-icon a').css('font-weight', 'bold');
-        });

@@ -1,16 +1,10 @@
-- content_state = (content.is_a? Rating) ? "rate it with #{content.value}" : "write a review"
 .first-activity
-  = link_to content.movie do
-    .overlay
-    = image_tag content.movie.backdrops.first.url("w1280")
+  = link_to content.movie, class: "first-activity__link" do
+    .overlay-important
+    = image_tag content.movie.backdrops.first.url("w1280"), class: "first-activity__img"
 
   .first-activity-info
     h3= link_to content.movie.title, content.movie, class: "first-activity__title"
-    .media
-      = link_to (image_tag user.avatar("medium"), class: "media__img avatar"), user
-      .media__body
-        =' link_to user.name, user
-        = content_state
 
     - if content.is_a? Rating
       p.first_activity__content
@@ -19,4 +13,10 @@
 
     - elsif content.is_a? Review
       p.first_activity__content
+        | “
         = truncate(content.content, length: 100) { link_to "more",  content.movie, class: "first-activity__more" }
+        | ”
+
+    .media
+      = link_to (image_tag user.avatar("medium"), class: "media__img avatar"), user
+      .media__body=' link_to user.name, user

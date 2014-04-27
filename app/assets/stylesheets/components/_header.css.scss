@@ -1,12 +1,12 @@
 // Vars
-$header-height: $base-font-size*3;
+$header-height: $base-font-size*2.7;
 
 .main-header{
-  @include rposition($type: absolute, $top: 0);
+  @include rposition($type: absolute, $top: 1em);
   width: 100%;
   z-index: 9999;
   @include transition(top cubic-bezier(.65,0,1,.95) 0.25s);
-  &.search-active   { top: $base-font-size*5; }
+  &.search-active   { top: $base-font-size*6; }
 }
 
 .header-grid{

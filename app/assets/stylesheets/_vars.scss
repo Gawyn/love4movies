@@ -47,6 +47,9 @@ $responsive-pull:   false!default;
 /**
  * Brand stuff
  */
+// Add Bebas Neue font
+@include font-face("BebasNeue", font-files("BebasNeue-webfont.eot", "BebasNeue-webfont.woff", "BebasNeue-webfont.ttf", "BebasNeue-webfont.svg"), $weight: normal, $style: normal);
+
 $text-color:        #000!default;
 $white:             #FFF!default;
 $brand-color:       #34BDD0!default;
@@ -54,6 +57,8 @@ $second-color:      #744DC5!default;
 $facebook:          #3b5998!default;
 $good-green:        #4ece8e!default;
 $brand-face:        'Lato','Helvetica', Helvetica Neue, Arial!default;
+$headline-face:     'BebasNeue','Helvetica', Helvetica Neue, Arial!default;
+$body-face:         'Merriweather', serif!default;
 
 /**
  * inuit.css will work these next ones out for you.

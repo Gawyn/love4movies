@@ -13,25 +13,31 @@
   position: relative;
   @extend %text--inverse;
 
-  img                      { display: block; max-width: none; width: 100%; }
-
-  .overlay {
-    @include rposition($type: absolute, $bottom: 0, $left: 0, $right: 0, $top: 0 );
-    @include background-image(linear-gradient(transparent 60%, transparentize($text-color, .55)));
-    z-index: 1;
+  .first-activity__link{
+    &:before{
+      content: "";
+      @include rposition($type: absolute, $bottom: 0, $left: 0, $right: 0, $top: 0 );
+      @include background-image(linear-gradient(transparent 55%, transparentize($text-color, .55)));
+      z-index: 1;
+    }
   }
+
+  .first-activity__img { display: block; max-width: none; width: 100%; }
+
   .first-activity__title {
-    @extend %caps;
-    @extend %text--light;
     @extend %text--inverse;
+    @extend %headline;
+    @include adjust-font-size-to($h4-size, 1);
+    letter-spacing: .05em;
   }
 
   .first-activity-info  {
+    display: none;
     @include rposition($type: absolute, $bottom: 0, $left: 2em, $right: 0 );
     padding-bottom: .5em;
     z-index: 2;
     @extend %grid-papa;
-    @media #{$medium-up} { left: 0; padding-bottom: 5em; }
+    @media #{$medium-up} { left: 0; padding-bottom: 5em; display: block;  }
   }
   .first-activity__more{
     font-size: $base-font-size*1.25;
@@ -48,33 +54,36 @@
   }
 
   .first_activity__content {
-    display: none;
-    @media #{$medium-up} {
-      display: block;
-      @include adjust-font-size-to($h3-size, 1.75);
-      max-width: 27em;
-      -webkit-animation: fadeTop 1s both 450ms;
-      animation: fadeTop 1s both 450ms;
-     }
+    display: block;
+    @include adjust-font-size-to($h4-size, 1.5);
+    @extend %readable;
+    font-style: italic;
+    max-width: 27em;
+    @include trailer;
+    -webkit-animation: fadeTop 1s both .55s;
+    animation: fadeTop 1s both .55s;
   }
 
   .media__body{
     padding: .5em $base-font-size;
     max-width: 40em;
-    color: #eee;
-    font-weight: 300;
   }
 }
 
 .movie__activity{
-  @include rposition($type: absolute, $bottom: $base-font-size*2, $left: $base-font-size*1 );
-  background-color: transparentize($text-color, .2);
+  @include rposition($type: absolute, $top: $base-font-size*2, $left: $base-font-size*1 );
   .media__body{
-    @include ssquare($size: $base-font-size*2.5, $fsize: 1.25em, $bgcolor: transparentize($text-color, 0.35), $bgchover: transparentize($brand-color, 0.35));
-    @include transition(all, ease, 0.6s);
+    color: $white;
+    @include adjust-font-size-to($base-font-size*1.5, 1);
+    @include transition(color ease-in .25s);
   }
   .avatar             {
-    width: $base-font-size*2.5;
-    height: $base-font-size*2.5;
-    @extend %flush--right;}
+    width: $base-font-size*2;
+    height: $base-font-size*2;
+    margin-right: .5em;
+  }
+}
+
+.activity{
+  &:hover{ .media__body {color: $text-color;} }
 }

@@ -1,3 +1,5 @@
+.pagination       { @include padding-leader; clear: both; }
+
 .user{
   margin-top: - $base-font-size*3.5;
   position: relative;
@@ -13,7 +15,7 @@
   }
 }
 .user-bg{
-  height: 300px;
+  height: 260px;
   width: 100%;
   overflow: hidden;
   position: relative;

@@ -3,17 +3,18 @@
   z-index: 99;
 
   form                    { height: 0; @include transition(height cubic-bezier(.65,0,1,.95) 0.25s); overflow: hidden; }
-  &.active form           { height: $base-font-size*5; }
+  &.active form           { height: $base-font-size*6; }
 
   input{
     border: 0;
     width: 100%;
-    @include adjust-font-size-to($h3-size);
-    height: $base-font-size*5;
-    padding-left: 3%;
-    font-weight: 300;
+    height: $base-font-size*6;
+    @include adjust-font-size-to($h2-size);
+    letter-spacing: 1px;
+    @extend %caps;
+    padding-left: 12.3333%;
     background-color: #222;
-    color: white;
+    color: $white;
     &:focus,
     &:hover {
       border: none;
