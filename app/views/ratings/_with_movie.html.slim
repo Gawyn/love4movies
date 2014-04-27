@@ -1,11 +1,22 @@
-.rating
-  .media
-    .media__img= link_to image_tag(rating.movie.posters.first.url("w185")), rating.movie
+article.activity data-ratio="1.5"
+  = link_to content.movie do
+
+    figure
+      = image_tag(content.movie.posters.first.url("w342"))
+
+      figcaption
+        .movie__description
+          .movie__year= content.movie.decorate.movie_year
+          .movie__title= content.movie.title
+          .movie__director
+            = content.movie.decorate.directors_list.map(&:name).join(" ")
+
+  .movie__activity.media
+    = image_tag user.avatar("medium"), class: "media__img avatar"
     .media__body
-      h3= link_to rating.movie.title, rating.movie
-      - 1.upto(10) do |star_number|
-        = rating.value >= star_number ? fa_icon("star", class: "fa-lg") : fa_icon("star-o", class: "fa-lg")
-      - if rating.comments.any?
-        .rating-comments.subheader
-          =' rating.comments.count
-          ' Comments
+      - if content.is_a? Rating
+        i.fa.fa-star-o
+        '
+        = content.value
+      - elsif content.is_a? Review
+        i.fa.fa-comment-o

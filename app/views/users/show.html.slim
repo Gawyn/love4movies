@@ -34,8 +34,9 @@
         b=' @user.ratings_count
         | ratings
 
-    - @ratings.each do |rating|
-      = render "ratings/with_movie", rating: rating
-    = paginate @ratings
+    section.activities
+      - @ratings.each do |rating|
+        = render "ratings/with_movie", content: rating, user: @user
+      .pagination= paginate @ratings
 
     = render "shared/footer"
