@@ -2,7 +2,7 @@
 .first-activity
   = link_to content.movie do
     .overlay-important
-    = image_tag content.movie.backdrops.first.url("w1280")
+    = image_tag content.movie.backdrops.first.url("w1280"), class: "overlay-important__img"
 
   .first-activity-info
     h3= link_to content.movie.title, content.movie, class: "first-activity__title"

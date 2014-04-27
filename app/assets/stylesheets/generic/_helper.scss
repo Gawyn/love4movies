@@ -2,6 +2,9 @@
     $HELPERS
 \*------------------------------------*/
 
+// Fonts Family
+%headline       { font-family: $headline-face; font-weight: normal; }
+
 // Floating
 %float--right   { float:right; }
 %float--left    { float:left; }

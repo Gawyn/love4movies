@@ -11,9 +11,11 @@
 
 .first-activity{
   position: relative;
+  z-index: 1;
+  overflow: hidden;
   @extend %text--inverse;
 
-  img                      { display: block; max-width: none; width: 100%; }
+  .overlay-important__img { display: block; max-width: none; width: 100%; margin-bottom: -12em; }
 
   .overlay-important {
     @include rposition($type: absolute, $bottom: 0, $left: 0, $right: 0, $top: 0 );
@@ -21,9 +23,10 @@
     z-index: 1;
   }
   .first-activity__title {
-    @extend %caps;
-    @extend %text--light;
     @extend %text--inverse;
+    @extend %headline;
+    @include adjust-font-size-to($h3-size);
+    letter-spacing: .05em;
   }
 
   .first-activity-info  {
