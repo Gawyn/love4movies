@@ -86,13 +86,13 @@
       - @all_ratings.each do |rating|
         = render "ratings/short", rating: rating
 
-    section.movie--chat
-      h2.movie--chat__title Reviews
-      .movie--chat__wrapper
-        #reviews
-          - @movie.reviews.each do |review|
-            = render :partial => "reviews/show", :locals => {:review => review}
-        .btn.js-open-review Write a Review
+  section.movie--chat
+    h2.movie--chat__title Reviews
+    .movie--chat__wrapper
+      #reviews
+        - @movie.reviews.each do |review|
+          = render :partial => "reviews/show", :locals => {:review => review}
+      .btn.js-open-review Write a Review
 
 - if current_user
   .do-review.js-review
