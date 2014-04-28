@@ -17,7 +17,7 @@ class MovieDecorator < Draper::Decorator
   end
 
   def actors
-    performances.limit(15).map do |performance|
+    performances.includes(:person).limit(15).map do |performance|
       h.link_to performance.person.name, performance.person
     end.join(", ").html_safe
   end
