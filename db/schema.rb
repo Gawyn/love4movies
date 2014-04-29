@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429193609) do
+ActiveRecord::Schema.define(version: 20140429195635) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20140429193609) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id"
 
   create_table "badges", force: true do |t|
     t.string   "name_es"
@@ -41,6 +43,8 @@ ActiveRecord::Schema.define(version: 20140429193609) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
 
   create_table "follows", force: true do |t|
     t.integer  "follower_id"
@@ -69,6 +73,9 @@ ActiveRecord::Schema.define(version: 20140429193609) do
     t.integer "genre_id"
     t.integer "movie_id"
   end
+
+  add_index "genres_movies", ["genre_id"], name: "index_genres_movies_on_genre_id"
+  add_index "genres_movies", ["movie_id"], name: "index_genres_movies_on_movie_id"
 
   create_table "images", force: true do |t|
     t.integer  "owner_id"
@@ -148,6 +155,9 @@ ActiveRecord::Schema.define(version: 20140429193609) do
     t.integer  "triggered_on_id"
   end
 
+  add_index "notifications", ["user_id", "pending"], name: "index_notifications_on_user_id_and_pending"
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id"
+
   create_table "participations", force: true do |t|
     t.integer  "movie_id"
     t.integer  "person_id"
@@ -182,6 +192,9 @@ ActiveRecord::Schema.define(version: 20140429193609) do
     t.datetime "updated_at"
   end
 
+  add_index "ratings", ["movie_id"], name: "index_ratings_on_movie_id"
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
+
   create_table "reviews", force: true do |t|
     t.integer  "user_id"
     t.integer  "movie_id"
@@ -189,6 +202,9 @@ ActiveRecord::Schema.define(version: 20140429193609) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "reviews", ["movie_id"], name: "index_reviews_on_movie_id"
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",               default: "", null: false
@@ -225,5 +241,8 @@ ActiveRecord::Schema.define(version: 20140429193609) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "won_badges", ["badge_id", "winner_id"], name: "index_won_badges_on_badge_id_and_winner_id"
+  add_index "won_badges", ["winner_id"], name: "index_won_badges_on_winner_id"
 
 end
