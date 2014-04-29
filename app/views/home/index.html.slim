@@ -32,7 +32,7 @@
 
       $(document).ready(function() {
         $(window).on("scroll", function(){
-          if($('#loading').size() == 0 && $('#end-of-scrolling').size() == 0){
+          if($('#loading').size() == 0 $('#more-activities').size() != 0 && $('#end-of-scrolling').size() == 0){
 
             if($(window).scrollTop() > ($(document).height() - ($(window).height() + 50))){
               $("#more-activities").html("<div id='loading' class='bottom-msg'>Loading...</div>");
