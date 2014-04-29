@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140421194309) do
+ActiveRecord::Schema.define(version: 20140429193609) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20140421194309) do
     t.datetime "updated_at"
   end
 
+  add_index "follows", ["follower_id"], name: "index_follows_on_follower_id"
+
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -79,6 +81,8 @@ ActiveRecord::Schema.define(version: 20140421194309) do
     t.string   "type"
     t.string   "owner_type"
   end
+
+  add_index "images", ["type", "owner_id", "owner_type"], name: "index_images_on_type_and_owner_id_and_owner_type"
 
   create_table "list_belongings", force: true do |t|
     t.integer  "movie_id"
@@ -155,6 +159,8 @@ ActiveRecord::Schema.define(version: 20140421194309) do
     t.string   "department"
     t.string   "job"
   end
+
+  add_index "participations", ["type", "movie_id", "job"], name: "index_participations_on_type_and_movie_id_and_job"
 
   create_table "people", force: true do |t|
     t.string   "name"
