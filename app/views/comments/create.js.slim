@@ -3,3 +3,5 @@
   | myFormWrapper.before('#{escape_javascript(render(:partial => 'comments/show', locals: {comment: @comment}))}');
   | myFormWrapper.find("textarea").val("");
   | myFormWrapper.find("input").blur();
+  | myFormWrapper.parents(".rating").children(".js-toggle-comment").show();
+  | myFormWrapper.toggleClass("active");
