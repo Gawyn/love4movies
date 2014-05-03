@@ -4,10 +4,11 @@ class RatingsController < ApplicationController
       params[:movie_id])
 
     if @my_rating
-      @my_rating.update_attribute(:value, params[:value])
+      @my_rating.update( value: params[:value], short_review: params[:short_review] )
     else
       @my_rating = Rating.create(:user_id => current_user.id,
-        :movie_id => params[:movie_id], :value => params[:value])
+        :movie_id => params[:movie_id], :value => params[:value],
+        short_review: params[:short_review])
     end
 
     respond_to do |format|

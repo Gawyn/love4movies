@@ -10,6 +10,11 @@
       p.first_activity__content
         - 1.upto(10) do |star_number|
           = content.value >= star_number ? fa_icon("star", class: "fa-lg") : fa_icon("star-o", class: "fa-lg")
+        - if content.short_review
+          p.first_activity__content
+            ' “
+            = content.short_review
+            | ”
 
     - elsif content.is_a? Review
       p.first_activity__content
