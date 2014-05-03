@@ -3,6 +3,8 @@
     .media__img= link_to image_tag(rating.user.avatar("small")), rating.user
     .media__body
       .author = link_to rating.user.name, rating.user
+      - if rating.short_review
+        .short_review= rating.short_review
       - 1.upto(10) do |star_number|
         = rating.value >= star_number ? fa_icon("star", class: "fa-lg") : fa_icon("star-o", class: "fa-lg")
 
