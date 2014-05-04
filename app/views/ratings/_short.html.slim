@@ -6,5 +6,12 @@
       - 1.upto(10) do |star_number|
         = rating.value >= star_number ? fa_icon("star", class: "fa-lg") : fa_icon("star-o", class: "fa-lg")
       span.js-toggle-comment.comment-action Comment
+    .media__love
+      - p @loved_ratings
+      - if active_love = @loved_ratings.detect { |love| love.lovable_type == "Rating" && love.lovable_id == rating.id }
+        = link_to "Unlove", lofe_path(active_love), method: :delete, remote: true
+      - else
+        = link_to "Love", loves_path(lovable_type: "Rating", lovable_id: rating.id), method: :post, remote: true
+
 
   = render "comments/index", commentable: rating

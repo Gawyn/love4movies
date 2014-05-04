@@ -1,7 +1,7 @@
 class LovesController < ApplicationController
   def create
-    @love = Rating.find_or_create_by_user_id_and_lovable_type_and_lovable_id(
-      current_user.id, params[:lovable_type], params[:lovable_id])
+    @love = Love.find_or_create_by(user_id: current_user.id, 
+      lovable_type: params[:lovable_type], lovable_id: params[:lovable_id])
 
     respond_to do |format|
       format.html { redirect_to :back }
