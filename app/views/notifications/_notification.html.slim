@@ -2,7 +2,13 @@
   .media
     .media__img= link_to image_tag(notification.notificable.user.avatar("small")), notification.user
     .media__body
-      - if notification.triggered_on_type == "Rating"
+      - if notification.notificable_type == "Love"
+        = link_to notification.triggered_on.movie do
+          =' "A #{notification.notificable.user.name} le encanta tu opinión sobre "
+          span.movie_title = "#{notification.triggered_on.movie.title}"
+          = "."
+
+      - elsif notification.triggered_on_type == "Rating"
         = link_to notification.triggered_on.movie do
           =' "#{notification.notificable.user.name} ha comentado tu rating de"
           span.movie_title = "#{notification.triggered_on.movie.title}"
