@@ -7,7 +7,6 @@
         .short_review= rating.short_review
       - 1.upto(10) do |star_number|
         = rating.value >= star_number ? fa_icon("star", class: "fa-lg") : fa_icon("star-o", class: "fa-lg")
-      span.js-toggle-comment.comment-action Comment
     .media__lovers
       - my_loves = @loves[rating.id]
       - if my_loves
