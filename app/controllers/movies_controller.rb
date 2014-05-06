@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
         current_user.followed_users_and_me_ids).newest_first.includes(:user)
 
       @loved_ratings = Love.where(user_id: current_user.id, lovable_type: "Rating",
-        lovable_id: @all_ratings.pluck(:id))
+        lovable_id: @movie.ratings.pluck(:id))
     end
   end
 
