@@ -6,8 +6,16 @@
       - 1.upto(10) do |star_number|
         = rating.value >= star_number ? fa_icon("star", class: "fa-lg") : fa_icon("star-o", class: "fa-lg")
       span.js-toggle-comment.comment-action Comment
+    .media__lovers
+      - my_loves = @loves[rating.id]
+      - if my_loves
+        - if my_loves.count == 1
+          - my_love = my_loves.first
+          = ("A " + link_to(my_love.user.name, my_love.user) + " le encanta esto.").html_safe
+        - else
+          = ("A " + my_love.map { |love| link_to(love.user.name, love.user) }.join(", ") + " les encanta esto.").html_safe
     .media__love
-      - if active_love = @loved_ratings.detect { |love| love.lovable_type == "Rating" && love.lovable_id == rating.id }
+      - if current_user && active_love = @loves[rating.id].detect { |love| love.user_id == current_user.id }
         = link_to "Unlove", lofe_path(active_love), method: :delete, remote: true
       - else
         = link_to "Love", loves_path(lovable_type: "Rating", lovable_id: rating.id), method: :post, remote: true
