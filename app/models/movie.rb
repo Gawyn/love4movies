@@ -40,7 +40,7 @@ class Movie < ActiveRecord::Base
 
   searchable do
     text :original_title
-    text :title_en, :title_en
+    text :title_en, :title_es
     boolean :hidden
     integer :ratings_count
     double :l4m_rating_average, :rating_average
@@ -60,9 +60,9 @@ class Movie < ActiveRecord::Base
     ratings.pluck(:value).sum.to_f/ratings.count
   end
 
-  def self.standard_search(title)
+  def self.standard_search(query)
     search do
-      fulltext title
+      fulltext query
       with :hidden, false
     end.results
   end
