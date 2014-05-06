@@ -36,6 +36,9 @@ gem 'kaminari'
 # Sunspot for search
 gem 'sunspot_rails'
 
+# Progress reporting for Sunspot
+gem 'progress_bar'
+
 # Sinatra - Needed for Sidekiq web
 gem 'sinatra', require: false
 
