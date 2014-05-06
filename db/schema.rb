@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501205909) do
+ActiveRecord::Schema.define(version: 20140502142155) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -112,6 +112,17 @@ ActiveRecord::Schema.define(version: 20140501205909) do
     t.integer  "list_pattern_id"
   end
 
+  create_table "loves", force: true do |t|
+    t.integer  "user_id"
+    t.string   "lovable_type"
+    t.integer  "lovable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "loves", ["lovable_type", "lovable_id"], name: "index_loves_on_lovable_type_and_lovable_id"
+  add_index "loves", ["user_id", "lovable_type", "lovable_id"], name: "index_loves_on_user_id_and_lovable_type_and_lovable_id"
+
   create_table "movie_in_badges", force: true do |t|
     t.integer  "movie_id"
     t.integer  "badge_id"
@@ -191,6 +202,7 @@ ActiveRecord::Schema.define(version: 20140501205909) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "short_review"
+    t.integer  "loves_count"
   end
 
   add_index "ratings", ["movie_id"], name: "index_ratings_on_movie_id"

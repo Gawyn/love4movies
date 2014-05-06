@@ -3,6 +3,7 @@ class Rating < ActiveRecord::Base
   belongs_to :user, :counter_cache => true
 
   has_many :comments, as: :commentable
+  has_many :loves, counter_cache: true
 
   validates_inclusion_of :value, :in => 1..10
   validates_presence_of :movie_id, :user_id

@@ -11,6 +11,9 @@ class MoviesController < ApplicationController
 
       @all_ratings = @movie.ratings.where("user_id not in (?)", 
         current_user.followed_users_and_me_ids).newest_first.includes(:user)
+
+      @loves = Love.where(lovable_type: "Rating", lovable_id: @movie.ratings.pluck(:id))
+        .includes(:user).group_by(&:lovable_id)
     end
   end
 

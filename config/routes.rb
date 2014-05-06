@@ -43,6 +43,8 @@ Love4movies::Application.routes.draw do
   end
   resources :badges, only: :index
 
+  resources :loves, only: [:create, :destroy]
+
   get "ranking" => "movies#ranking"
   get "notifications" => "notifications#index"
   root :to => 'home#index'
