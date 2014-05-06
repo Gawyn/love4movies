@@ -73,6 +73,14 @@
           ' Actors
           = @movie.decorate.actors
 
+  - if current_user && @my_rating.nil?
+    section.ugly-rating.josep-change-it-asap style="width: 50%; margin: 0 auto;"
+      = form_tag movie_ratings_path(movie_id: @movie.id), method: :post do
+        p = text_area_tag "short_review", "Your short review", size: "40x5"
+        br
+        p = number_field_tag "value", "Rating", in: 1...10
+        br
+        p = submit_tag "Send rating with comment"
 
   - if @friends_ratings && @friends_ratings.any?
     section.movie--ratings
@@ -156,6 +164,7 @@
 
       function toggleComment() {
         $(this).closest('.rating').find('.form-comment-wrapper').toggleClass('active').find('textarea').focus();
+        $(this).hide();
       }
 
       // Open/Close Comment Movie
