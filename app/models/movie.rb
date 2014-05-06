@@ -60,9 +60,11 @@ class Movie < ActiveRecord::Base
     ratings.pluck(:value).sum.to_f/ratings.count
   end
 
-  def self.standard_search(query)
+  def self.standard_search(query, locale = I18n.locale)
     search do
-      fulltext query
+      fulltext query do
+        fields(:original_title, ("title_" + I18n.locale.to_s).to_sym)
+      end
       with :hidden, false
     end.results
   end
