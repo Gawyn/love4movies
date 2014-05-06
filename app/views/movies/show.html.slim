@@ -78,7 +78,7 @@
       = form_tag movie_ratings_path(movie_id: @movie.id), method: :post do
         p = text_area_tag "short_review", "Your short review", size: "40x5"
         br
-        p = number_field_tag "value", "Rating", in: 1...10
+        p = number_field_tag "value", "Rating", in: 1...11
         br
         p = submit_tag "Send rating with comment"
 
