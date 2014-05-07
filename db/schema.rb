@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140502142155) do
+ActiveRecord::Schema.define(version: 20140507203751) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -202,7 +202,7 @@ ActiveRecord::Schema.define(version: 20140502142155) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "short_review"
-    t.integer  "loves_count"
+    t.integer  "loves_count",  default: 0
   end
 
   add_index "ratings", ["movie_id"], name: "index_ratings_on_movie_id"
