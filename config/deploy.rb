@@ -21,7 +21,7 @@ set :use_sudo, false
 _cset :user, "deployer"
 
 # Misc
-set :config_files, ['config/database.yml', 'config/app.yml', 'config/sidekiq.yml']
+set :config_files, ['config/database.yml', 'config/app.yml', 'config/sidekiq.yml', 'config/newrelic.yml']
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
