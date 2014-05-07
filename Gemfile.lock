@@ -117,6 +117,7 @@ GEM
     net-ssh (2.8.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
+    newrelic_rpm (3.8.0.218)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     oauth2 (0.9.3)
@@ -265,6 +266,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   koala
+  newrelic_rpm
   omniauth-facebook
   pg
   progress_bar

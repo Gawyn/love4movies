@@ -42,6 +42,9 @@ gem 'progress_bar'
 # Sinatra - Needed for Sidekiq web
 gem 'sinatra', require: false
 
+# New Relic
+gem 'newrelic_rpm'
+
 # Assets
 gem 'sass-rails',   '~> 4.0.0'
 gem "compass-rails"
