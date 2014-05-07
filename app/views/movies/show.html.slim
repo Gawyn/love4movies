@@ -82,16 +82,10 @@
         br
         p = submit_tag "Send rating with comment"
 
-  - if @friends_ratings && @friends_ratings.any?
-    section.movie--ratings
-      h2.movie--ratings__title Friends Ratings
-      - @friends_ratings.each do |rating|
-        = render "ratings/short", rating: rating
-
-  - if @all_ratings && @all_ratings.any?
+  - if @ratings && @ratings.any?
     section.movie--ratings
       h2.movie--ratings__title Ratings
-      - @all_ratings.each do |rating|
+      - @ratings.each do |rating|
         = render "ratings/short", rating: rating
 
   section.movie--chat
