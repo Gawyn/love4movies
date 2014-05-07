@@ -14,6 +14,9 @@
 # Ignore database.yml
 /config/database.yml
 
+# Ignore newrelic.yml
+/config/newrelic.yml
+
 # Ignore .rvmrc
 .rvmrc
 
