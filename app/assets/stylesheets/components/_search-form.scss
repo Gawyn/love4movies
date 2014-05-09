@@ -1,6 +1,6 @@
 .search-form{
   position: relative;
-  z-index: 99;
+  z-index: 9999;
 
   form                    { height: 0; @include transition(height cubic-bezier(.65,0,1,.95) 0.25s); overflow: hidden; }
   &.active form           { height: $base-font-size*6; }
@@ -12,8 +12,9 @@
     @include adjust-font-size-to($h2-size);
     letter-spacing: 1px;
     @extend %caps;
+    @extend %headline;
     padding-left: 12.3333%;
-    background-color: #222;
+    background-color: $text-color;
     color: $white;
     &:focus,
     &:hover {

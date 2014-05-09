@@ -1,4 +1,17 @@
-section.search-form
+nav.main-nav
+  header.nav-header
+  ul.nav-items
+    li= link_to root_path do
+      span.title Activity
+      em.subtitle Timeline of followed activities
+    li= link_to ranking_path do
+      span.title Ranking
+      em.subtitle Our 100 best rated movies
+    li= link_to badges_path do
+      span.title Badges
+      em.subtitle Unlock many badges as you can
+
+section.search-form.sss
   = form_tag movies_path, :method => "get" do |f|
     = text_field_tag :search,  nil, class: 'search-form__input', placeholder: 'Search your movie'
     = submit_tag "Search", :hidden => true
@@ -8,9 +21,15 @@ header.main-header
     .logo= link_to image_tag("love4movies.svg"), root_path
     - if current_user
       / Search icon
-      i.fa.fa-search.js-search.fa-inverse.search-icon
+      .search-toggler.js-search
+        i.fa.fa-search.fa-inverse.search-icon
       / Profile avatar
+      .menu-toggler.js-menu
+        i.fa.fa-bars.menu-icon
+
       .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
+
+
       / Notifications
       - if @pending_notifications.any?
         = link_to @pending_notifications.count, notifications_path, class: "user-notifications"
@@ -19,9 +38,22 @@ header.main-header
 - content_for :custom_js do
   javascript:
     $(document).ready(function() {
+
+      function openMenu() {
+        $('.main-nav').toggleClass('active');
+        $(this).find('.menu-icon').transition({ opacity: '0' }, 300, 'cubic-bezier(.68,.05,.59,1)', function() {
+          $(this).toggleClass('fa-bars').toggleClass('fa-times');
+          $(this).transition({ opacity: '1' }, 300, 'cubic-bezier(.68,.05,.59,1)');
+        });
+
+      }
+
+      $('.js-menu').on( "click", openMenu );
+
       $('.js-search').click(function () {
         $(".search-form").toggleClass('active');
         $(".search-form__input").focus();
         $(".main-header").toggleClass('search-active');
       });
+
     });
