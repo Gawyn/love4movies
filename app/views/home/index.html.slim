@@ -6,7 +6,7 @@
     .login-banner__wrapper
       h1.login-banner__title Search your movies, rate it, share it.
       = link_to "Facebook login", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--login"
-
+      = link_to "Twitter login", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--login"
 
 - if @followeds_activities && @followeds_activities.any?
   section.activities
