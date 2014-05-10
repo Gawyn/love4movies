@@ -1,17 +1,27 @@
 nav.main-nav
-  header.nav-header
   ul.nav-items
-    li= link_to root_path do
+    li.notifications
+      =link_to notifications_path, class: "notifications-title" do
+        | Notifications
+        - if @pending_notifications.any?
+          span.pending-notifiactions-number= @pending_notifications.count
+      - if current_user && current_user.notifications.any?
+        = render current_user.notifications.last
+      - else
+        em.subtitle You don't have any notifiactions at this moment
+
+
+    li= link_to root_path, class: "main-link" do
       span.title Activity
       em.subtitle Timeline of followed activities
-    li= link_to ranking_path do
+    li= link_to ranking_path, class: "main-link" do
       span.title Ranking
       em.subtitle Our 100 best rated movies
-    li= link_to badges_path do
+    li= link_to badges_path, class: "main-link" do
       span.title Badges
       em.subtitle Unlock many badges as you can
 
-section.search-form.sss
+section.search-form
   = form_tag movies_path, :method => "get" do |f|
     = text_field_tag :search,  nil, class: 'search-form__input', placeholder: 'Search your movie'
     = submit_tag "Search", :hidden => true
@@ -25,15 +35,9 @@ header.main-header
         i.fa.fa-search.fa-inverse.search-icon
       / Profile avatar
       .menu-toggler.js-menu
-        i.fa.fa-bars.menu-icon
+        i.fa.fa-bars.menu-icon class=("notifications-active" if @pending_notifications.any?)
 
       .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
-
-
-      / Notifications
-      - if @pending_notifications.any?
-        = link_to @pending_notifications.count, notifications_path, class: "user-notifications"
-
 
 - content_for :custom_js do
   javascript:

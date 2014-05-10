@@ -1,9 +1,9 @@
 .notifications{
     width: 40%;
+    max-width: 40em;
     margin: 0 auto;
 
     span.movie_title{
       @include adjust-font-size-to($base-font-size*1.1);
-      color: $second-color;
     }
 }
