@@ -1,6 +1,75 @@
 // Vars
 $header-height: $base-font-size*2.7;
 
+.main-nav{
+  width: 100%;
+  height: 100%;
+  @include rposition($type: fixed, $left: 0, $top: 0);
+  overflow: hidden;
+  z-index: 1000;
+  @include transform(translateY(-100%));
+  @include transition(all cubic-bezier(.68,.05,.59,1) .5s);
+  background-color: transparentize($text-color, 0.15);
+  -webkit-overflow-scrolling: touch;
+  text-align: center;
+
+  &.active            { @include transform(translateY(0)); }
+  .nav-items          { @include leader(4.5); }
+  .notifications      { @include trailer(1.5); }
+
+  .pending-notifiactions-number{
+    margin-left: 1em;
+    @extend %text--center;
+    width: $base-font-size*1.75;
+    height: $base-font-size*1.75;
+    line-height: $base-font-size*1.75;
+    border-radius: 50%;
+    background-color: transparentize($brand-color, 0);
+    color: $white;
+    display: inline-block;
+  }
+
+  .main-link{
+    @include leader;
+    @include trailer;
+    display: inline-block;
+    @extend %text--inverse;
+  }
+
+  .notifications-title{
+    @extend %caps;
+    @include trailer(.75);
+    color: $white;
+    display: inline-block;
+
+  }
+
+  .notification .media__img{
+    width: 35px;
+    height: 35px;
+    margin-right: 20px;
+  }
+  .notification a{
+    display: block;
+    text-align: left;
+    color: transparentize($white, .5);
+    @include transition(color ease-in .25s);
+    @extend %readable;
+    &:hover       { color: $white; }
+  }
+
+  .title{
+    @include adjust-font-size-to($mega-size, 1);
+    @extend %headline;
+  }
+
+  .subtitle{
+    display: block;
+    color: transparentize($white, .5);
+    @extend %readable;
+  }
+}
+
 .main-header{
   @include rposition($type: absolute, $top: 1em);
   width: 100%;
@@ -27,12 +96,16 @@ $header-height: $base-font-size*2.7;
     width: $header-height;
     height: $header-height;
   }
-
-  .user-notifications{
-    @extend %text--center;
-    background-color: transparentize($brand-color, .5);
+  .menu-icon{
+    float: right;
     color: $white;
-    line-height: $header-height;
+    font-size: 1.25em;
+    height: $header-height;
+    width: $header-height;
+    padding: 10px 12px;
+    cursor: pointer;
+    background-color: transparentize($text-color, 0);
+    &.notifications-active { background-color: transparentize($brand-color, 0); }
   }
 
   .search-icon{
@@ -41,6 +114,6 @@ $header-height: $base-font-size*2.7;
     height: $header-height;
     padding: 10px 12px;
     cursor: pointer;
-    background-color: transparentize($text-color, .25);
+    background-color: transparentize($text-color, 0);
   }
 }

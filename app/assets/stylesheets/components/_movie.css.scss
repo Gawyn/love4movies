@@ -129,7 +129,7 @@ $dark-trans: transparentize($text-color, 0.3);
   overflow: hidden;
   z-index: $comment-index;
   @include transform(translate3d(0, 100%, 0));
-  background-color: transparentize(white, 0);
+  background-color: transparentize(white, 0.15);
   .do-review-grid         { @extend %grid-papa; padding-top: $header-height*2; }
   .do-review__title       { opacity: 0; }
   .do-review__subtitle    { @extend %show; color: gray; font-weight: 300; font-style: italic; @include trailer; }
