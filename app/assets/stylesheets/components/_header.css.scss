@@ -12,22 +12,57 @@ $header-height: $base-font-size*2.7;
   background-color: transparentize($text-color, 0.15);
   -webkit-overflow-scrolling: touch;
   text-align: center;
-  &.active{
-    @include transform(translateY(0));
+
+  &.active            { @include transform(translateY(0)); }
+  .nav-items          { @include leader(4.5); }
+  .notifications      { @include trailer(1.5); }
+
+  .pending-notifiactions-number{
+    margin-left: 1em;
+    @extend %text--center;
+    width: $base-font-size*1.75;
+    height: $base-font-size*1.75;
+    line-height: $base-font-size*1.75;
+    border-radius: 50%;
+    background-color: transparentize($brand-color, 0);
+    color: $white;
+    display: inline-block;
   }
-  .nav-items{
-    @include leader(4);
-  }
-  a{
+
+  .main-link{
     @include leader;
     @include trailer;
     display: inline-block;
     @extend %text--inverse;
   }
+
+  .notifications-title{
+    @extend %caps;
+    @include trailer(.75);
+    color: $white;
+    display: inline-block;
+
+  }
+
+  .notification .media__img{
+    width: 35px;
+    height: 35px;
+    margin-right: 20px;
+  }
+  .notification a{
+    display: block;
+    text-align: left;
+    color: transparentize($white, .5);
+    @include transition(color ease-in .25s);
+    @extend %readable;
+    &:hover       { color: $white; }
+  }
+
   .title{
     @include adjust-font-size-to($mega-size, 1);
     @extend %headline;
   }
+
   .subtitle{
     display: block;
     color: transparentize($white, .5);
@@ -69,14 +104,8 @@ $header-height: $base-font-size*2.7;
     width: $header-height;
     padding: 10px 12px;
     cursor: pointer;
-    background-color: transparentize($text-color, .75);
-  }
-
-  .user-notifications{
-    @extend %text--center;
-    background-color: transparentize($brand-color, .5);
-    color: $white;
-    line-height: $header-height;
+    background-color: transparentize($text-color, 0);
+    &.notifications-active { background-color: transparentize($brand-color, 0); }
   }
 
   .search-icon{
@@ -85,6 +114,6 @@ $header-height: $base-font-size*2.7;
     height: $header-height;
     padding: 10px 12px;
     cursor: pointer;
-    background-color: transparentize($text-color, .75);
+    background-color: transparentize($text-color, 0);
   }
 }
