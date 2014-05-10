@@ -234,4 +234,5 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 
   config.omniauth :facebook, APP_CONFIG["facebook"]["id"], APP_CONFIG["facebook"]["secret"], :scope => "email"
+  config.omniauth :twitter, APP_CONFIG["twitter"]["id"], APP_CONFIG["twitter"]["secret"]
 end

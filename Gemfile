@@ -11,6 +11,7 @@ gem 'devise'
 
 # Omniauth
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 # Facebook
 gem 'koala'
