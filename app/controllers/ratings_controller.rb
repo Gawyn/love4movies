@@ -5,7 +5,7 @@ class RatingsController < ApplicationController
 
     if @my_rating
       @my_rating.update( value: params[:value], 
-        short_review: params[:short_review].nil? @my_rating.short_review : params[:short_review] )
+        short_review: params[:short_review].nil? ? @my_rating.short_review : params[:short_review] )
     else
       @my_rating = Rating.create(:user_id => current_user.id,
         :movie_id => params[:movie_id], :value => params[:value],
