@@ -1,5 +1,5 @@
 class Movie < ActiveRecord::Base
-  BASIC_ATTRIBUTES = ["title", "overview"].map do |attr|
+  BASIC_ATTRIBUTES = ["title"].map do |attr|
     LOCALES.map do |locale|
       "#{attr}_#{locale}"
     end
