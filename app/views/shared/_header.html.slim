@@ -3,7 +3,7 @@ nav.main-nav
     li.notifications
       =link_to notifications_path, class: "notifications-title" do
         | Notifications
-        - if @pending_notifications.any?
+        - if current_user && @pending_notifications.any?
           span.pending-notifiactions-number= @pending_notifications.count
       - if current_user && current_user.notifications.any?
         = render current_user.notifications.last
