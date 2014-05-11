@@ -46,11 +46,8 @@ class User < ActiveRecord::Base
   def update_data!(omniauth)
     credentials = omniauth["credentials"]
     self.token = credentials["token"]
-    self.small_avatar = graph.get_picture("me")
-    self.big_avatar = graph.get_picture("me", { :width => 200,
-      :height => 200 })
-    self.medium_avatar = graph.get_picture("me", { :width => 100,
-      :height => 100 })
+
+    set_avatar!(omniauth)
   end
 
   def self.generate_from_omniauth(omniauth)
@@ -94,5 +91,19 @@ class User < ActiveRecord::Base
 
   def define_role
     self.role ||= "user"
+  end
+
+  def set_avatar!(omniauth)
+    if omniauth["provider"] == "facebook"
+      self.small_avatar = graph.get_picture("me")
+      self.big_avatar = graph.get_picture("me", { :width => 200,
+        :height => 200 })
+      self.medium_avatar = graph.get_picture("me", { :width => 100,
+        :height => 100 })
+    elsif omniauth["provider"] = "twitter"
+      self.small_avatar = omniauth["info"]["image"]
+      self.medium_avatar = omniauth["info"]["image"]
+      self.big_avatar = omniauth["info"]["image"]
+    end
   end
 end
