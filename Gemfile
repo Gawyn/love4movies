@@ -64,6 +64,7 @@ group :development do
   gem 'capistrano-unicorn', require: false
   gem 'rvm-capistrano'
   gem 'capistrano_colors', :require => false
+  gem 'byebug'
 end
 
 # Development & Test
