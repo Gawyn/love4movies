@@ -4,7 +4,7 @@
       = image_tag @last_activity.content.movie.backdrops.first.url("w1280")
 
     .login-banner__wrapper
-      h1.login-banner__title Search your movies, rate it, share it.
+      h1.login-banner__title The movie lovers community
       = link_to "Facebook login", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--login"
       = link_to "Twitter login", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--login"
 
