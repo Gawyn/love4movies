@@ -107,4 +107,8 @@ class User < ActiveRecord::Base
       self.big_avatar = omniauth["info"]["image"]
     end
   end
+
+  def email_required?
+    false
+  end
 end
