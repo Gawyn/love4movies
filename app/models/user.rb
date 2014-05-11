@@ -59,6 +59,7 @@ class User < ActiveRecord::Base
     user.last_name = omniauth["info"]["last_name"]
     user.location = omniauth["info"]["location"]
     user.fb_uid = omniauth["uid"]
+    user.provider = omniauth["provider"]
     user.password = Devise.friendly_token[0,20]
     user.update_data!(omniauth)
     user
