@@ -1,7 +1,7 @@
-.review
+article.review
   .media
     .media__img= link_to image_tag(review.user.avatar("small")), review.user
     .media__body
-      .author = link_to review.user.name, review.user
-      small.date.subheader = review.created_at.to_s :long_ordinal
-      p= review.content
+      .media__body--author = link_to review.user.name, review.user
+      .media__body--date = review.created_at.to_s :short
+      p.media__body--content= review.content
