@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Rails
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.1'
 
 # HTTParty
 gem 'httparty'
