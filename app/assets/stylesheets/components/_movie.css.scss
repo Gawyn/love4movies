@@ -3,154 +3,191 @@ $comment-index: 999;
 $slider-index: 99;
 $dark-trans: transparentize($text-color, 0.3);
 
-.movie--review          { @include rposition($type: absolute, $right: 0, $top: 5em ); z-index: $comment-index - 1; }
-.movie--rating          { @include rposition($type: absolute, $right: 0, $top: 9em ); min-width: 125px; z-index: $comment-index - 1; }
+.movie__info-wrapper    { @extend %grid-papa; }
+.movie__heading         { @extend %headline; @include adjust-font-size-to($h1-size); }
+.movie__sub-heading     { @extend %readable; @include adjust-font-size-to($h6-size); font-style: italic; @include trailer; color: transparentize($text-color, .5); }
 
+// ------------------
+// HERO
+// ------------------
+.movie--header {
+  @include trailer(2);
+  &:before{
+    content: "";
+    @include rposition($type: absolute, $bottom: 0, $left: 0, $right: 0, $top: 0 );
+    @include background-image(linear-gradient(transparent 35%, transparentize($text-color, .25)));
+    z-index: $slider-index + 2;
+  }
+
+  .movie__info    {
+    @extend %one-whole;
+    @extend %text--center;
+    @extend %text--inverse;
+    position: absolute;
+    bottom: 7em;
+    z-index: $comment-index - 1;
+  }
+
+  .movie__title   {
+    @include adjust-font-size-to($mega-size, 3);
+    font-size: 6vw;
+    padding: 0 $base-font-size*2.5;
+    @extend %text--inverse;
+    @extend %flush;
+    display: block;
+    @extend %headline;
+    letter-spacing: -1px;
+  }
+
+  .movie__subheader{
+    @extend %caps;
+    padding: 0 $base-font-size*2;
+    & a               { color: transparentize($white, .2); @include transition(color ease-in .25s); }
+    & a:hover         { color: $white; }
+  }
+  .movie__stats   {
+    @include adjust-font-size-to($h5-size);
+    @include trailer;
+    & a               { color: transparentize($white, .2); @include transition(color ease-in .25s); }
+    & a:hover         { color: $white; }
+    .fa               { color: $brand-color; }
+  }
+}
+
+// ------------------
+// SINOPSIS
+// ------------------
 .movie--show{
   @extend %grid-papa;
   @extend %relative;
   @extend %cf;
   @include trailer(2);
-  z-index: $slider-index + 2;
 
-  @media #{$medium-up} { @include leader(-12); }
-
-  .movie__img           { @extend %grid; @extend %medium-one-third; @extend %show-medium-up; }
-  .movie__info          { @extend %grid; @extend %one-whole; @extend %medium-two-thirds; }
-
-  .movie__title{
-    padding: .5em $base-font-size*2.5;
-    background-color: $text-color;
-    @extend %text--inverse;
-    @extend %flush;
-    display: block;
-    @extend %headline;
-    letter-spacing: 0.025em;
-    @media #{$medium-up} { background-color: $dark-trans; display: inline-block; }
-  }
-
-  .movie__subheader{
-    background-color: transparentize($white, .1);
-    padding: .5em $base-font-size*2.5;
-    @extend %text--medium;
-    display: inline-block;
-  }
+  .movie__img             { @extend %grid; @extend %medium-one-quarter; @extend %show-medium-up; }
+  .movie__runtime         { padding-right: 1em; }
+  .movie__tags            { display: inline-block; }
 
   .movie__summary{
-    background-color: $white;
+    @extend %grid;
+    @extend %medium-three-quarters;
     padding-left: $base-font-size*2.5;
     padding-right: $base-font-size*3;
-    @include padding-leader;
     @include trailer(2);
   }
+
   .movie__sinopsis{
+    @include column-count(2);
+    @include column-gap(2em);
     @include trailer;
     @extend %readable;
     @include adjust-font-size-to($base-font-size);
   }
-  .movie__date{
-    padding-right: 1em;
-  }
-  .movie__tags{
-    display: inline-block;
-  }
-  .movie__year{
-    font-weight: 300;
-    font-size: .85em;
-  }
 }
 
-.movie--rating__my-rating{
-  @include adjust-font-size-to($base-font-size*1);
-  @extend %text--inverse;
-  @extend %text--regular;
-  background-color: darken(transparentize($brand-color, .25), 10%);
-  padding: .25em 1em;
-  cursor: pointer;
-}
-
-.movie--rating__button, .movie--review__button{
-  @include adjust-font-size-to($base-font-size*1.25);
-  @extend %text--inverse;
-  @extend %text--regular;
-  background-color: transparentize($brand-color, .25);
-  padding: .5em 1em;
-  cursor: pointer;
-  @include transition(background-color, ease, 0.6s);
-  &:hover, &:focus          { background-color: $brand-color; }
-}
-
-.movie--review__button{
-  @extend %show;
-  background-color: transparentize($text-color, .25);
-  &:hover, &:focus          { background-color: $text-color; }
-}
-
-.movie--rating__icon        { margin-right: .5em; }
-.movie--rating__user-rating{
-  margin-left: .5em;
-  font-size: 12px;
-  font-weight: 100;
-  > span                    { margin-left: .25em; }
-}
-
-.rating-buttons{
-  @include rposition($type: absolute, $right: 100%, $top: 0 );
-  width: 300%;
-  height: 100%;
-  background-color: transparentize($brand-color, .3);
-  font-size: 1.65em;
-  line-height: 3;
-  @extend %text--center;
-  @include transition(opacity, ease, 0.3s);
-  a                         { color: $white; padding-right: 5px; }
-}
-
-.movie--chat,
-.movie--ratings{
+// ------------------
+// ACTORS
+// ------------------
+.movie--actors{
   @extend %grid-papa;
-  z-index: 10;
-  @include trailer(2);
+  @extend %relative;
   @extend %cf;
-  .movie--chat__wrapper     { float: left; width: 66.66666%; }
+  @include trailer(2);
+  @extend %text--center;
+  .movie--actors-list   {
+    @extend %block-grid;
+    @extend %small-block-grid-3;
+    @extend %medium-block-grid-3;
+    @extend %large-block-grid-5;
+    @extend %xlarge-block-grid-6;
+    @include trailer(2);
+  }
+  .actor__description{
+    display: table;
+    width: 100%;
+    height: 100%;
+    @include rposition($type: absolute, $top: 0);
 
-  #reviews                  { @include trailer(2); }
+  }
+  .actor__name{
+    display: table-cell;
+    vertical-align: middle;
+    @include adjust-font-size-to($h3-size, 1);
+    @extend %text--inverse;
+    @extend %text--center;
+    @extend %headline;
+    letter-spacing: 1px;
+    padding: 0 $base-font-size;
+  }
 
-  .review                   { @include trailer; }
-
-  .movie--ratings__title,
-  .movie--chat__title       { @include trailer(.5); font-weight: 300; }
+  figure{
+    position: relative;
+    background-color: $text-color;
+    overflow: hidden;
+    height: 100%;
+    img                           { width: 100%; height: 100%; @include transition(all, ease, 0.6s); }
+    &:hover{
+      img                         { opacity: .25; @include scale(1.1); }
+      figcaption                  { @extend %visible; }
+    }
+  }
+  figcaption{ @include transition(opacity, ease, 0.4s); @extend %invisible; }
 }
 
-.do-review{
+// ------------------
+// DO FORMS
+// ------------------
+.do-review,
+.do-rating  {
   width: 100%;
   height: 100%;
   @include rposition($type: fixed, $left: 0, $top: 0 );
   overflow: hidden;
   z-index: $comment-index;
   @include transform(translate3d(0, 100%, 0));
-  background-color: transparentize(white, 0.15);
-  .do-review-grid         { @extend %grid-papa; padding-top: $header-height*2; }
-  .do-review__title       { opacity: 0; }
-  .do-review__subtitle    { @extend %show; color: gray; font-weight: 300; font-style: italic; @include trailer; }
-  .do-review__close       { @include rposition($type: absolute, $right: 0, $top: $header-height*2 ); cursor: pointer; font-size: 2em; font-weight: 300; }
-  .do-review__input{
+  background-color: transparentize(white, 0.05);
+  .do-review-grid,
+  .do-rating-grid         { @extend %grid-papa; padding-top: $header-height*2; }
+
+  .do__title              { opacity: 0; }
+
+  .do-review__subtitle,
+  .do-rating__subtitle    { @extend %show; color: gray; font-weight: 300; font-style: italic; @include trailer; @extend %readable; }
+
+  .do-review__close,
+  .do-rating__close       { @include rposition($type: absolute, $right: 0, $top: $header-height*2 ); cursor: pointer; font-size: 2em; font-weight: 300; }
+
+  .do-review__input,
+  .do-rating__input       {
     width: 100%;
     height: 300px;
     border: none;
+    @include trailer;
     background-color: inherit;
-    @include adjust-font-size-to($base-font-size*2);
-    font-weight: 400;
+    @include adjust-font-size-to($h3-size);
+    @extend %readable;
+    resize: none;
   }
 }
 
-//Slider
+.do-rating{
+  @extend %text--center;
+  .do-rating__input       { height: 150px; width: 66.666%; }
+  .do-rating__number      { display: none; }
+}
+
+.do-rating-with-stars{
+  @include trailer(3);
+  .do-rating-action { cursor: pointer; margin-right: 5px; }
+}
+
+// ------------------
+// SLIDER
+// ------------------
 .backdrop-slider {
   width: 100%;
-  height: 30em;
+  height: 100%;
   background: $text-color;
   position: relative;
-  @media #{$medium-up} { height: 47em; }
   & > ul{
     width: 100%;
     max-width: 100%;
@@ -172,12 +209,13 @@ $dark-trans: transparentize($text-color, 0.3);
     @include transition(opacity, ease, .5s);
   }
 
-  li img {
+  li .backdrop {
     @extend %show;
-    min-width: 100%;
-    max-width: none;
-    @include rposition($type: absolute, $left: 50% );
-    @include transform(translate(-50%, -5%));
+    width: 100%;
+    height: 100%;
+    @include rposition($type: absolute, $left: 0, $top: 0, $bottom: 0, $right: 0 );
+    background-size: cover;
+    background-position: center;
   }
 
   // Current state
@@ -190,15 +228,14 @@ $dark-trans: transparentize($text-color, 0.3);
   // Navigation
   nav a {
     @include rposition($type: absolute, $right: 0, $bottom: 0 );
-    z-index: $slider-index + 1;
+    z-index: $slider-index + 3;
     display: inline-block;
     width: $base-font-size*3;
     @extend %text--center;
     padding: .75em;
-    background-color: $dark-trans;
     color: $white;
     @include transition(background-color, ease-in, .5s);
-    &:hover           { background-color: $text-color; }
+    &:hover           { background-color: $dark-trans; }
   }
 
   nav a.prev          { right: $base-font-size*3; }

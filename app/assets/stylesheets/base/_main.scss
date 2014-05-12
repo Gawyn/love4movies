@@ -3,7 +3,7 @@
 \*------------------------------------*/
 @include establish-baseline;
 
-html        { overflow-y: scroll; min-height: 100%; }
-body        { color: $text-color; font-family:$brand-face +!important; }
+html        { overflow-y: scroll; min-height: 100%; height: 100%; }
+body        { color: $text-color; font-family:$brand-face +!important; height: 100%; }
 p           { font-weight: 300; @include adjust-font-size-to($base-font-size*1.125); }
 a           { @include unstyled-link; @include link-colors($brand-color); }
