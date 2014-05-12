@@ -1,10 +1,17 @@
 class RatingsController < ApplicationController
+  def show
+    @movie = Movie.find params[:movie_id]
+    @rating = @movie.ratings.find params[:id]
+    @loves = Love.where(lovable_type: "Rating", lovable_id: @rating)
+      .includes(:user).group_by(&:lovable_id)
+  end
+
   def create
     @my_rating = Rating.find_by_user_id_and_movie_id(current_user.id,
       params[:movie_id])
 
     if @my_rating
-      @my_rating.update( value: params[:value], 
+      @my_rating.update( value: params[:value],
         short_review: params[:short_review].nil? ? @my_rating.short_review : params[:short_review] )
     else
       @my_rating = Rating.create(:user_id => current_user.id,
