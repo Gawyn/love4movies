@@ -1,9 +1,10 @@
 .comments
-  - commentable.comments.each do |comment|
-    = render "comments/show", comment: comment
-
   - if current_user
     .form-comment-wrapper
       = form_tag eval("#{commentable.class.to_s.underscore}_comments_path(#{commentable.id})"), remote: true do |f|
         = text_area_tag :content, nil
         = submit_tag "Publish"
+
+  - commentable.comments.each do |comment|
+    = render "comments/show", comment: comment
+
