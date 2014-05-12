@@ -1,0 +1,15 @@
+h1 = @rating.short_review
+h2 = link_to "Volver a la peli", @movie
+
+.media__lovers
+  - my_loves = @loves[@rating.id]
+  - if my_loves
+    - if my_loves.count == 1
+      - my_love = my_loves.first
+      = ("A " + link_to(my_love.user.name, my_love.user) + " le encanta esto.").html_safe
+    - else
+      = ("A " + my_loves.map { |love| link_to(love.user.name, love.user) }.join(", ") + " les encanta esto.").html_safe
+
+
+
+

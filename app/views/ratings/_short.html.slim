@@ -1,25 +1,40 @@
-.rating data-id=rating.id
+- my_loves = @loves[rating.id]
+
+article.rating data-id=rating.id
+
   .media
     .media__img= link_to image_tag(rating.user.avatar("small")), rating.user
     .media__body
-      .author = link_to rating.user.name, rating.user
-      - if rating.short_review
-        .short_review= rating.short_review
-      - 1.upto(10) do |star_number|
-        = rating.value >= star_number ? fa_icon("star", class: "fa-lg") : fa_icon("star-o", class: "fa-lg")
-    .media__lovers
-      - my_loves = @loves[rating.id]
-      - if my_loves
-        - if my_loves.count == 1
-          - my_love = my_loves.first
-          = ("A " + link_to(my_love.user.name, my_love.user) + " le encanta esto.").html_safe
-        - else
-          = ("A " + my_love.map { |love| link_to(love.user.name, love.user) }.join(", ") + " les encanta esto.").html_safe
-    .media__love
-      - if current_user && @loves && @loves[rating.id] && active_love = @loves[rating.id].detect { |love| love.user_id == current_user.id }
-        = link_to "Unlove", lofe_path(active_love), method: :delete, remote: true
-      - else
-        = link_to "Love", loves_path(lovable_type: "Rating", lovable_id: rating.id), method: :post, remote: true
+      .media__body--author = link_to rating.user.name, rating.user
+      .media__body--date = rating.created_at.to_s :short
+      p.media__body--content
+        = link_to movie_rating_path(@movie, rating), class: "rating__review--link" do
+          - if rating.short_review
+            = rating.short_review
 
-  = render "comments/index", commentable: rating
-  span.js-toggle-comment.comment-action Comment
+          .rating__stars
+            - 1.upto(10) do |star_number|
+              = rating.value >= star_number ? fa_icon("star", class: "rating__star--full") : fa_icon("star-o", class: "rating__star--empty")
+
+      .rating__stats
+
+        span.media__love.js-love
+          - if current_user && @loves && @loves[rating.id] && active_love = @loves[rating.id].detect { |love| love.user_id == current_user.id }
+            = link_to "Unlove", lofe_path(active_love), method: :delete, remote: true, class: "unlove-action"
+          - else
+            = link_to "Love", loves_path(lovable_type: "Rating", lovable_id: rating.id), method: :post, remote: true, class: "love-action"
+
+        span
+          i.fa.fa-heart
+          '
+          - if my_loves.present?
+            = my_loves.count
+
+        span.js-toggle-comment.comment-action Comment
+
+        span
+          i.fa.fa-comment
+          '
+          - unless rating.comments.count.zero?
+            = rating.comments.count
+    = render "comments/index", commentable: rating

@@ -105,11 +105,11 @@ $header-height: $base-font-size*2.7;
     padding: 10px 12px;
     cursor: pointer;
     background-color: transparentize($text-color, 0);
-    &.notifications-active { background-color: transparentize($brand-color, 0); }
+    &.notifications-active  { background-color: transparentize($brand-color, 0); }
   }
 
   .search-icon{
-    float: left;
+    float: right;
     font-size: 1.25em;
     height: $header-height;
     padding: 10px 12px;

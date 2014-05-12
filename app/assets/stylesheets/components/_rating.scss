@@ -1,0 +1,38 @@
+.rating, .review        { @include trailer(2); padding: 0 2em!important; }
+.rating__review         { @extend %readable; @include trailer(.25); }
+.rating__review--link   { color: $text-color; @include transition(color ease-in .15s); &:hover{ color: $brand-color; } }
+
+.movie--ratings, .movie--reviews{
+  @extend %grid-papa;
+  @extend %relative;
+  @extend %cf;
+  @include trailer(2);
+  max-width: 50em;
+}
+
+.movie__header{
+  &.movie__header--centered{
+    @extend %text--center;
+  }
+}
+
+.ratings{
+  @include trailer(2);
+}
+
+
+.rating__stars{
+  @include trailer(.25);
+}
+
+.comment-action{
+  cursor: pointer;
+  color: $good-green;
+  margin-right: .5em;
+  margin-left: 1em;
+}
+
+.media__love a{
+  margin-right: .5em;
+  color: $second-color;
+}

@@ -1,6 +1,8 @@
+.search-form-wrapper { background-color: $text-color; }
 .search-form{
   position: relative;
   z-index: 9999;
+  @extend %grid-papa;
 
   form                    { height: 0; @include transition(height cubic-bezier(.65,0,1,.95) 0.25s); overflow: hidden; }
   &.active form           { height: $base-font-size*6; }
@@ -13,7 +15,6 @@
     letter-spacing: 1px;
     @extend %caps;
     @extend %headline;
-    padding-left: 12.3333%;
     background-color: $text-color;
     color: $white;
     &:focus,
