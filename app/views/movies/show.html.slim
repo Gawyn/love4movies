@@ -146,9 +146,31 @@ section.movie--reviews#reviews
   javascript:
     $(document).ready(function() {
 
+      var selected = false;
+
       // Slider pluguin call
       $('.backdrop-slider').slider();
 
+      $('.js-star-hover').on({
+        // Handles the mouseover
+        mouseover: function(){
+            $(this).prevAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');
+        },
+        mouseleave: function(){
+            $(this).prevAll().andSelf().children().removeClass('fa-star').addClass('fa-star-o');
+        },
+        click: function(){
+          if(!selected) { $('.js-star-hover').off('mouseleave mouseover'); selected = true; }
+          else {
+            $(this).prevAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');
+            $(this).nextAll().children().removeClass('fa-star').addClass('fa-star-o');
+          }
+          var value = $(this).data("number");
+          $(".js-rating-number").val(value);
+          $(".js-actual-rate").text(value);
+
+        }
+      });
 
       function toggleRating() { $('.rating-buttons').toggleClass("invisible"); }
 
@@ -160,8 +182,19 @@ section.movie--reviews#reviews
       function openReview() {
         $('.movie-wrapper').transition({ opacity: '0.2' });
         $('.js-review').transition({ y: '0' }, 500, 'cubic-bezier(.68,.05,.59,1)', function() {
-          $('.do-review__title').transition({ opacity: '1' });
+          $('.do__title').transition({ opacity: '1' });
           $('.do-review__input').focus();
+        });
+      }
+
+      function closeRating() {
+        $('.js-rating').transition({ y: '100%' }, function() {});
+      }
+
+      function openRating() {
+        $('.js-rating').transition({ y: '0' }, 500, 'cubic-bezier(.68,.05,.59,1)', function() {
+          $('.do__title').transition({ opacity: '1' });
+          $('.do-rating__input').focus();
         });
       }
 
@@ -169,23 +202,15 @@ section.movie--reviews#reviews
       $('.js-open-review').on( "click", openReview );
       $( '.js-close-review' ).on( "click", closeReview );
 
+      $('.js-open-rating').on( "click", openRating );
+      $( '.js-close-rating' ).on( "click", closeRating );
+
       // Rating Movie
       $('.js-rate-button, .icon-rating').on( "click", toggleRating );
 
-      $('.icon-rating').hover(
-        // Handles the mouseover
-        function() {
-          $(this).nextAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');
-        },
-        // Handles the mouseout
-        function() {
-          $(this).nextAll().andSelf().children().removeClass('fa-star').addClass('fa-star-o');
-        }
-      );
-
       function toggleComment() {
         $(this).closest('.rating').find('.form-comment-wrapper').toggleClass('active').find('textarea').focus();
-        $(this).hide();
+
       }
 
       // Open/Close Comment Movie
