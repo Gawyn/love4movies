@@ -21,7 +21,7 @@
 
   section.person-works
     - @person.participations.pluck(:job, :movie_id).group_by(&:first).each do |job, job_and_movie_id|
-      - movies = Movie.where(id: job_and_movie_id.map(&:last))
+      - movies = Movie.where(id: job_and_movie_id.map(&:last)).not_hidden
 
       header.search-keys
         h2= job
