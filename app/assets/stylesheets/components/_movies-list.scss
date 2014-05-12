@@ -1,12 +1,29 @@
+.header--title{
+  @extend %headline;
+  @extend %text--center;
+  padding: .35em;
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+
+.subheader{
+  @extend %readable;
+  @extend %text--center;
+  font-style: italic;
+  color: transparentize($text-color, .25);
+  @include trailer;
+}
+
 .search-keys{
   @extend %text--center;
   @extend %leader;
   @extend %trailer;
-  &> h1                           { @extend %caps; @extend %text--black; }
-  .search-keys__for               { @extend %text--regular; @include adjust-font-size-to($h3-size); }
+  &> h1                           { @extend %caps; @extend %headline; @extend %text--black; @extend %flush; }
+  .search-keys__for               { @extend %text--regular; @include adjust-font-size-to($h4-size); }
   .search-keys__results {
     @extend %text--regular;
-    @include adjust-font-size-to($h4-size);
+    @include adjust-font-size-to($h5-size);
+    @include trailer;
     &> b                          { color: $brand-color; }
   }
 }

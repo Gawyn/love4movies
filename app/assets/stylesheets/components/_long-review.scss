@@ -6,4 +6,4 @@
 .media__body--date      { font-size: 12px; color: transparentize($text-color, .65); }
 
 .media__body--content   { @extend %readable; @include adjust-font-size-to($h4-size, 1.5); max-width: 35em; }
-.wrapper-action         { @extend %text--center; }
+.wrapper-action         { @extend %text--center; @include trailer; }

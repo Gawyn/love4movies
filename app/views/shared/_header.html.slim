@@ -20,23 +20,23 @@ nav.main-nav
       span.title Badges
       em.subtitle Unlock many badges as you can
 
-section.search-form
-  = form_tag movies_path, :method => "get" do |f|
-    = text_field_tag :search,  nil, class: 'search-form__input', placeholder: 'Search your movie'
-    = submit_tag "Search", :hidden => true
+section.search-form-wrapper
+  .search-form
+    = form_tag movies_path, :method => "get" do |f|
+      = text_field_tag :search,  nil, class: 'search-form__input', placeholder: 'Search your movie'
+      = submit_tag "Search", :hidden => true
 
 header.main-header
   .header-grid
     .logo= link_to image_tag("love4movies.svg"), root_path
     - if current_user
-      / Search icon
-      .search-toggler.js-search
-        i.fa.fa-search.fa-inverse.search-icon
+      .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
       / Profile avatar
       .menu-toggler.js-menu
         i.fa.fa-bars.menu-icon class=("notifications-active" if @pending_notifications.any?)
-
-      .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
+      / Search icon
+      .search-toggler.js-search
+        i.fa.fa-search.fa-inverse.search-icon
 
 - content_for :custom_js do
   javascript:
