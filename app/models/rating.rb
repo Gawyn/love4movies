@@ -11,7 +11,10 @@ class Rating < ActiveRecord::Base
 
   scope :newest_first, -> { order(arel_table[:updated_at].desc) }
   scope :highest_first, -> { order(arel_table[:value].desc) }
+  scope :with_short_review, -> { where(with_short_review: true) }
+  scope :without_short_review, -> { where(with_short_review: false) }
 
+  before_save :set_with_short_review
   after_save :recalculate_movie_ratings
   after_destroy :recalculate_movie_ratings
 
@@ -44,8 +47,13 @@ class Rating < ActiveRecord::Base
   end
 
   def check_badges!
+    return unless with_short_review
     Badge.all.each do |badge|
       WonBadge.create(winner_id: user.id, badge_id: badge.id) if badge.can_receive?(user)
     end
+  end
+
+  def set_with_short_review
+    with_short_review = short_review.present?
   end
 end
