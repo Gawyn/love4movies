@@ -47,6 +47,7 @@ class Rating < ActiveRecord::Base
   end
 
   def check_badges!
+    return unless with_short_review
     Badge.all.each do |badge|
       WonBadge.create(winner_id: user.id, badge_id: badge.id) if badge.can_receive?(user)
     end
