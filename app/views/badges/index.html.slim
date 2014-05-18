@@ -1,7 +1,9 @@
-- @badges.each do |badge|
-  .badge
-    h2 
-      = badge.name
-      - if @my_badges_ids.include? badge.id
-        ' - Conseguido!
-    = badge.description
+.badges
+  - @badges.each do |badge|
+    .badge
+      .badge__image style="background-image: url('#{badge.image.url("w185")}')"
+      h2 
+        = badge.name
+        - if @my_badges_ids.include? badge.id
+          ' - Conseguido!
+      = badge.description
