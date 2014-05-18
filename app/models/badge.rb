@@ -12,4 +12,8 @@ class Badge < ActiveRecord::Base
 
     ratings_for_badge >= target_movie_quantity
   end
+
+  def image
+    images.first
+  end
 end
