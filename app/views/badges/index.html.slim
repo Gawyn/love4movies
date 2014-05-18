@@ -9,7 +9,8 @@ section.badges
         td
           h2 
             = badge.name
-            - if @my_badges_ids.include? badge.id
-              ' - Conseguido!
         td
           = badge.description
+        td
+          - if @my_badges_ids.include? badge.id
+            | √
