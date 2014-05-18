@@ -1,6 +1,8 @@
 class DirectorBadge < Badge
   validates_presence_of :person_id
-  belongs_to :director, class_name: "Person"
+
+  belongs_to :director, foreign_key: :person_id, class_name: "Person"
+  has_many :images, through: :director
 
   after_create :mark_movies_for_badge!
 

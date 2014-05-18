@@ -1,0 +1,19 @@
+.badges{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.badge__image{
+  width: 100px;
+  height: 100px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 100px;
+  background-size: 100px Auto;
+}
+
+table.badges_list{
+  td{
+    padding: 10px;
+  }
+}

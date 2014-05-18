@@ -1,7 +1,15 @@
-- @badges.each do |badge|
-  .badge
-    h2 
-      = badge.name
-      - if @my_badges_ids.include? badge.id
-        ' - Conseguido!
-    = badge.description
+section.badges
+  header
+    h2.header--title Badges
+  table.badges_list
+    - @badges.each do |badge|
+      tr.badge
+        td
+          .badge__image style="background-image: url('#{badge.image.url("w185")}')"
+        td
+          h2 
+            = badge.name
+            - if @my_badges_ids.include? badge.id
+              ' - Conseguido!
+        td
+          = badge.description
