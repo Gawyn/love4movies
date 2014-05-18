@@ -1,9 +1,8 @@
 - first_movie_backdrop = @movie.backdrops.first
 - backdrop_is_present = first_movie_backdrop.present?
 
-.movie-wrapper
 / Slider
-section.backdrop-slider.movie--header
+section.backdrop-slider.movie--header class=(backdrop_is_present ? "hero" : "hero--small")
   - if backdrop_is_present
     ul.itemwrap
       li.current
@@ -13,43 +12,45 @@ section.backdrop-slider.movie--header
         li
           .backdrop style="#{"background-image: url(#{backdrop.url("w1280")})"}"
 
-    / Slider Credits
-    .movie__info-wrapper
-      .movie__info
-        header.movie__header
-          p.movie__subheader
-            =' @movie.decorate.directors
-            span.movie__year
-              ' ·
-              = @movie.decorate.movie_year
-
-          h1.movie__title= @movie.title
-          p.movie__stats
-            i.fa.fa-star-o
-            '
-            span#rating_average.movie-ratio =' @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
-            ' ·
-            =' link_to anchor: "ratings" do
-              =' @movie.ratings.count
-              ' ratings
-            ' ·
-            =' link_to anchor: "reviews" do
-              =' @movie.reviews.count
-              | reviews
-          - if current_user
-            - if @my_rating.nil?
-              .btn.btn--light.js-open-rating
-                | Rate it
-            - else
-              .btn.btn--light.js-open-review
-                | Write a review
-
     / Slider navigation
     nav
       = link_to "#", class: "prev" do
         i.fa.fa-angle-left
       = link_to "#", class: "next" do
         i.fa.fa-angle-right
+
+
+  / Slider Credits
+  .movie__info-wrapper
+    .movie__info
+      header
+        p.movie__subheader
+          =' @movie.decorate.directors
+          span.movie__year
+            ' ·
+            = @movie.decorate.movie_year
+
+        h1.movie__title= @movie.title
+        p.movie__stats
+          i.fa.fa-star
+          '
+          span#rating_average.movie-ratio =' @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
+          ' ·
+          =' link_to anchor: "ratings" do
+            =' @movie.ratings.count
+            ' ratings
+          ' ·
+          =' link_to anchor: "reviews" do
+            =' @movie.reviews.count
+            | reviews
+        - if current_user
+          - if @my_rating.nil?
+            .btn.movie__btn.js-open-rating
+              | Rate it
+          - else
+            .btn.movie__btn.js-open-review
+              | Write a review
+
 
 section.movie--show#sinopsis
   figure.movie__img
