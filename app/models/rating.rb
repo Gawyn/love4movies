@@ -55,5 +55,6 @@ class Rating < ActiveRecord::Base
 
   def set_with_short_review
     with_short_review = short_review.present?
+    true
   end
 end
