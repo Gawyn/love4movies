@@ -87,7 +87,7 @@ class MovieFeeder
         movie.send(attr)
       end
 
-      movie.hidden = !(attrs.all?{ |value| value.present? })
+      movie.hidden = false
 
       movie.save
       movie
