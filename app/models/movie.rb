@@ -35,7 +35,6 @@ class Movie < ActiveRecord::Base
   scope :more_ratings_than, lambda { |total| where(arel_table[:ratings_count].gt(total)) }
   scope :by_popularity, -> { order(arel_table[:popularity].desc) }
 
-  before_create :set_hidden
   before_create :set_total_ratings
 
   searchable do
@@ -70,10 +69,6 @@ class Movie < ActiveRecord::Base
   end
 
   private
-
-  def set_hidden
-    self.hidden ||= true if tmdb_vote_count == 0 || genres.empty?
-  end
 
   def set_total_ratings
     self.total_ratings = tmdb_vote_count
