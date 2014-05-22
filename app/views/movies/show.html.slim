@@ -67,7 +67,7 @@ section.movie--actors#actors
   h2.movie__heading Actors
   p.movie__sub-heading Main cast
   .movie--actors-list
-    - @movie.performances.includes(:person).limit(10).map do |performance|
+    - @movie.performances.order("tmdb_order asc").includes(:person).limit(10).map do |performance|
       - if performance.person.profiles.any?
         article data-ratio="1.4"
           = link_to performance.person do
