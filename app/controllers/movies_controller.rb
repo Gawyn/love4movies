@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
 
   def index
     BackgroundSystem.enqueue(MovieSearcher, params[:search]) if params[:search]
-    @movies = Movie.standard_search(params[:search])
+    @movies = Movie.standard_search(params[:search]).results
   end
 
   def ranking
