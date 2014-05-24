@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140517103132) do
+ActiveRecord::Schema.define(version: 20140524193053) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 20140517103132) do
     t.string   "imdb_id"
     t.string   "original_title"
     t.string   "release_date"
-    t.integer  "budget"
+    t.integer  "budget",             limit: 8
     t.float    "tmdb_vote_average"
     t.integer  "tmdb_vote_count"
     t.integer  "runtime"
@@ -145,13 +145,13 @@ ActiveRecord::Schema.define(version: 20140517103132) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "rating_average"
-    t.boolean  "hidden",             default: true
-    t.integer  "total_ratings",      default: 0
+    t.boolean  "hidden",                       default: true
+    t.integer  "total_ratings",                default: 0
     t.string   "title_en"
     t.text     "overview_en"
     t.string   "title_es"
     t.text     "overview_es"
-    t.integer  "ratings_count",      default: 0
+    t.integer  "ratings_count",                default: 0
     t.float    "l4m_rating_average"
   end
 
