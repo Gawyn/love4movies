@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140524193053) do
+ActiveRecord::Schema.define(version: 20140524194113) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 20140524193053) do
     t.float    "tmdb_vote_average"
     t.integer  "tmdb_vote_count"
     t.integer  "runtime"
-    t.integer  "revenue"
+    t.integer  "revenue",            limit: 8
     t.float    "popularity"
     t.string   "tmdb_poster_path"
     t.datetime "created_at"
