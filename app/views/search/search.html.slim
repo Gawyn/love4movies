@@ -1,0 +1,9 @@
+= link_to search_path(query: params[:query]) do
+  = "Movies (#{@movies.total})"
+= link_to search_path(query: params[:query], type: "people") do
+  = "People (#{@people.total})"
+
+- if @type == "movies"
+  = render "movies/index", movies: @movies.results
+- if @type == "people"
+  = render "persons/index", people: @people.results

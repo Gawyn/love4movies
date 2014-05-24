@@ -38,7 +38,7 @@
   .movie__director  { @include adjust-font-size-to($h5-size, 1); @extend %text--regular; }
 }
 
-.activities, .movies-list{
+.activities, .movies-list, .people-list{
   @extend %block-grid;
   @extend %small-block-grid-2;
   @extend %medium-block-grid-3;

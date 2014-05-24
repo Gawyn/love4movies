@@ -47,5 +47,6 @@ Love4movies::Application.routes.draw do
 
   get "ranking" => "movies#ranking"
   get "notifications" => "notifications#index"
+  get "search" => "search#search"
   root :to => 'home#index'
 end
