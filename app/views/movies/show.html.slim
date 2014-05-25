@@ -55,7 +55,7 @@ section.movie--show#sinopsis
   figure.movie__img
     = image_tag @movie.posters.first.url("w500")
   .movie__summary
-    h2.movie__heading Sinpopsis
+    h2.movie__heading Synopsis
     p.movie__sinopsis= @movie.overview
     date.movie__runtime
       =' @movie.runtime
