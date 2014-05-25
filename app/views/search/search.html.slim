@@ -1,0 +1,6 @@
+- if @movies.total > 0
+  h1 = "#{@movies.total} movies"
+  = render "movies/index", movies: @movies.results
+- if @people.total > 0
+  h1 = "#{@people.total} people"
+  = render "persons/index", people: @people.results

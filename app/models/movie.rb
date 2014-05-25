@@ -65,7 +65,7 @@ class Movie < ActiveRecord::Base
         fields(:original_title, ("title_" + I18n.locale.to_s).to_sym)
       end
       with :hidden, false
-    end.results
+    end
   end
 
   private

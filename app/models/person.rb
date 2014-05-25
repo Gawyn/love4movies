@@ -10,4 +10,10 @@ class Person < ActiveRecord::Base
   searchable do
     text :name
   end
+
+  def self.standard_search(query)
+    search do
+      fulltext query
+    end
+  end
 end
