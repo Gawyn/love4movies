@@ -1,4 +1,4 @@
-.search-form-wrapper { background-color: $text-color; }
+.search-form-wrapper { background-color: $text-color; position: relative; z-index: 9999; }
 .search-form{
   position: relative;
   z-index: 9999;

@@ -33,7 +33,9 @@ header.main-header
       .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
       / Profile avatar
       .menu-toggler.js-menu
-        i.fa.fa-bars.menu-icon class=("notifications-active" if @pending_notifications.any?)
+        - if @pending_notifications.any?
+          span.notifiactions-number= @pending_notifications.count
+        i.fa.fa-bars.menu-icon
       / Search icon
       .search-toggler.js-search
         i.fa.fa-search.fa-inverse.search-icon

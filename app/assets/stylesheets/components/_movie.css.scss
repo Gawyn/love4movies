@@ -11,46 +11,41 @@ $dark-trans: transparentize($text-color, 0.3);
 // HERO
 // ------------------
 .movie--header {
-  @include trailer(2);
-  &:before{
-    content: "";
-    @include rposition($type: absolute, $bottom: 0, $left: 0, $right: 0, $top: 0 );
-    @include background-image(linear-gradient(transparent 35%, transparentize($text-color, .25)));
-    z-index: $slider-index + 2;
-  }
+  .movie__info      { @extend %one-whole; @extend %text--center; }
 
-  .movie__info    {
-    @extend %one-whole;
-    @extend %text--center;
-    @extend %text--inverse;
-    position: absolute;
-    bottom: 7em;
-    z-index: $comment-index - 1;
+  .movie__subheader { @extend %caps; padding: 0 $base-font-size*2; }
+  .movie__stats     {
+    @include adjust-font-size-to($h5-size);
+    @include trailer;
+    .fa             { color: $brand-color; }
   }
 
   .movie__title   {
     @include adjust-font-size-to($mega-size, 3);
     font-size: 6vw;
     padding: 0 $base-font-size*2.5;
-    @extend %text--inverse;
     @extend %flush;
     display: block;
     @extend %headline;
     letter-spacing: -1px;
   }
 
-  .movie__subheader{
-    @extend %caps;
-    padding: 0 $base-font-size*2;
-    & a               { color: transparentize($white, .2); @include transition(color ease-in .25s); }
-    & a:hover         { color: $white; }
+  // Movie with Backdrops
+
+  &.hero{
+    .movie__info        { @include rposition($type: absolute, $bottom: 6em); z-index: $comment-index - 1; @extend %text--inverse; }
+    .movie__title       { @extend %text--inverse; }
+    .movie__subheader   {
+      & a               { color: transparentize($white, .2); @include transition(color ease-in .25s); }
+      & a:hover         { color: $white; }
+    }
+    .movie__btn         { @extend .btn--light; }
   }
-  .movie__stats   {
-    @include adjust-font-size-to($h5-size);
-    @include trailer;
-    & a               { color: transparentize($white, .2); @include transition(color ease-in .25s); }
-    & a:hover         { color: $white; }
-    .fa               { color: $brand-color; }
+
+  // Movie without Backdrops
+
+  &.hero--small{
+    .movie__info        { @include leader(3); @include trailer(3); }
   }
 }
 
@@ -62,6 +57,7 @@ $dark-trans: transparentize($text-color, 0.3);
   @extend %relative;
   @extend %cf;
   @include trailer(2);
+  @include leader(2);
 
   .movie__img             { @extend %grid; @extend %medium-one-quarter; @extend %show-medium-up; }
   .movie__runtime         { padding-right: 1em; }
@@ -171,7 +167,7 @@ $dark-trans: transparentize($text-color, 0.3);
 
 .do-rating{
   @extend %text--center;
-  .do-rating__input       { height: 150px; width: 66.666%; }
+  .do-rating__input       { height: 4em; width: 66.666%; }
   .do-rating__number      { display: none; }
 }
 
@@ -184,10 +180,21 @@ $dark-trans: transparentize($text-color, 0.3);
 // SLIDER
 // ------------------
 .backdrop-slider {
-  width: 100%;
-  height: 100%;
-  background: $text-color;
-  position: relative;
+  &.hero{
+    width: 100%;
+    height: 100%;
+    background: $text-color;
+    position: relative;
+  }
+  &.hero:before{
+    content: "";
+    @include rposition($type: absolute, $bottom: 0, $left: 0, $right: 0, $top: 0 );
+    @include background-image(linear-gradient(transparent 35%, transparentize($text-color, .25)));
+    z-index: $slider-index + 2;
+  }
+  &.hero--small{
+    // background-color: none;
+  }
   & > ul{
     width: 100%;
     max-width: 100%;

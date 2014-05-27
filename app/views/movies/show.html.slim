@@ -1,9 +1,8 @@
 - first_movie_backdrop = @movie.backdrops.first
 - backdrop_is_present = first_movie_backdrop.present?
 
-.movie-wrapper
 / Slider
-section.backdrop-slider.movie--header
+section.backdrop-slider.movie--header class=(backdrop_is_present ? "hero" : "hero--small")
   - if backdrop_is_present
     ul.itemwrap
       li.current
@@ -13,43 +12,59 @@ section.backdrop-slider.movie--header
         li
           .backdrop style="#{"background-image: url(#{backdrop.url("w1280")})"}"
 
-    / Slider Credits
-    .movie__info-wrapper
-      .movie__info
-        header.movie__header
-          p.movie__subheader
-            =' @movie.decorate.directors
-            span.movie__year
-              ' ·
-              = @movie.decorate.movie_year
-
-          h1.movie__title= @movie.title
-          p.movie__stats
-            i.fa.fa-star-o
-            '
-            span#rating_average.movie-ratio =' @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
-            ' ·
-            =' link_to anchor: "ratings" do
-              =' @movie.ratings.count
-              ' ratings
-            ' ·
-            =' link_to anchor: "reviews" do
-              =' @movie.reviews.count
-              | reviews
-          - if current_user
-            - if @my_rating.nil?
-              .btn.btn--light.js-open-rating
-                | Rate it
-            - else
-              .btn.btn--light.js-open-review
-                | Write a review
-
     / Slider navigation
     nav
       = link_to "#", class: "prev" do
         i.fa.fa-angle-left
       = link_to "#", class: "next" do
         i.fa.fa-angle-right
+
+
+  / Slider Credits
+  .movie__info-wrapper
+    .movie__info
+      header
+        p.movie__subheader
+          =' @movie.decorate.directors
+          span.movie__year
+            ' ·
+            = @movie.decorate.movie_year
+
+        h1.flush= link_to @movie.title, @movie, class: "movie__title"
+        p.movie__stats
+          i.fa.fa-star
+          '
+          span#rating_average.movie-ratio =' @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
+          ' ·
+          =' link_to anchor: "ratings" do
+            =' @movie.ratings.count
+            ' ratings
+          / ' ·
+          / =' link_to anchor: "reviews" do
+          /   =' @movie.reviews.count
+          /   | reviews
+
+        - if @ratings && @ratings.any?
+          - rating = @ratings.first
+          - if rating.short_review
+            .media.media__best
+              .media__img= link_to image_tag(rating.user.avatar("small")), rating.user
+              .media__body
+                = link_to movie_rating_path(@movie, rating), class: "rating__review--link" do
+                  .content
+                    | &#8220;
+                    = rating.short_review
+                    | &#8221;
+
+        - if current_user
+          - if @my_rating.nil?
+            .btn.movie__btn.js-open-rating
+              | Rate it
+
+          / - else
+          /   .btn.movie__btn.js-open-review
+          /     | Write a review
+
 
 section.movie--show#sinopsis
   figure.movie__img
@@ -92,18 +107,17 @@ section.movie--ratings#ratings
       - @ratings.each do |rating|
         = render "ratings/short", rating: rating
 
-section.movie--reviews#reviews
-  header.movie__header.movie__header--centered
-    h2.movie__heading Reviews
-    p.movie__sub-heading The best reviews of our users
+/ section.movie--reviews#reviews
+/   header.movie__header.movie__header--centered
+/     h2.movie__heading Reviews
+/     p.movie__sub-heading The best reviews of our users
 
-  .wrapper-action
-    .btn.js-open-review Write a Review
+/   .wrapper-action
+/     .btn.js-open-review Write a Review
 
-  #reviews-wrapper
-    - @movie.reviews.each do |review|
-      = render :partial => "reviews/show", :locals => {:review => review}
-
+/   #reviews-wrapper
+/     - @movie.reviews.each do |review|
+/       = render :partial => "reviews/show", :locals => {:review => review}
 
 - if current_user && @my_rating.nil?
   .do-rating.js-rating
@@ -207,13 +221,5 @@ section.movie--reviews#reviews
 
       // Rating Movie
       $('.js-rate-button, .icon-rating').on( "click", toggleRating );
-
-      function toggleComment() {
-        $(this).closest('.rating').find('.form-comment-wrapper').toggleClass('active').find('textarea').focus();
-
-      }
-
-      // Open/Close Comment Movie
-      $('.js-toggle-comment').on( "click", toggleComment );
 
     });

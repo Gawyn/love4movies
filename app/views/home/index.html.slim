@@ -14,7 +14,6 @@
       h2.header--title Activity
       .subheader Friends rates and reviews
 
-    // Important activity
     - @followeds_activities.each do |activity|
       = render "activities/show", user: activity.user, content: activity.content
 

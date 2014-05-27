@@ -1,25 +1,31 @@
 .comments {
-  margin-left: 5em;
   @include leader;
-  @include trailer;
-  .comment   { @include trailer(.5); }
+  .comment    { @include trailer(.75); }
+  img         { width: $base-font-size*2.5; height: $base-font-size*2.5; }
 }
 
 .form-comment-wrapper{
-  display: none;
-  &.active   { display: block; @include trailer(2); }
+  @include trailer(2);
+  @include leader(2);
   textarea{
-    border: none;
+    border: 1px solid #eee;
     resize: none;
     width: 100%;
     height: 5em;
+    @include trailer;
+    border-radius: 2px;
+    &:focus{ outline: 0; border-color: #bbb; }
   }
   input{
-    color: $good-green;
-    background-color: $white;
+    color: $white;
+    background-color: $good-green;
     display: block;
-    border: 1px solid $good-green;
-    padding: 0.4em 1em;
-    &:hover, &:focus{ outline: 0; background-color: $good-green; color: $white; }
+    width: 100%;
+    border: 3px solid $good-green;
+    padding: 1em 1em;
+    text-transform: uppercase;
+    font-weight: 300;
+    @include transition(border, ease-in, .35s);
+    &:hover, &:focus{ outline: 0; border-color: darken($good-green, 10%); }
   }
 }

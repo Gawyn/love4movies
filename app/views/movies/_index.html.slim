@@ -3,7 +3,7 @@ section.movies-list
       article.movie data-ratio="1.5"= link_to movie do
         - if movie.posters.any?
           figure
-            = image_tag movie.posters.first.url("w342")
+            = image_tag movie.posters.first.url("w342"), class: "figure__img"
             figcaption
               .movie__description
                 .movie__year= movie.decorate.movie_year

@@ -10,31 +10,24 @@ article.rating data-id=rating.id
       p.media__body--content
         = link_to movie_rating_path(@movie, rating), class: "rating__review--link" do
           - if rating.short_review
-            = rating.short_review
+            span.media__body--content__short
+              = rating.short_review
 
-          .rating__stars
+
+          span.rating__stars
             - 1.upto(10) do |star_number|
               = rating.value >= star_number ? fa_icon("star", class: "rating__star--full") : fa_icon("star-o", class: "rating__star--empty")
 
       .rating__stats
-
-        span.media__love.js-love
-          - if current_user && @loves && @loves[rating.id] && active_love = @loves[rating.id].detect { |love| love.user_id == current_user.id }
-            = link_to "Unlove", lofe_path(active_love), method: :delete, remote: true, class: "unlove-action"
-          - else
-            = link_to "Love", loves_path(lovable_type: "Rating", lovable_id: rating.id), method: :post, remote: true, class: "love-action"
-
         span
           i.fa.fa-heart
           '
           - if my_loves.present?
             = my_loves.count
-
-        span.js-toggle-comment.comment-action Comment
+          - else
+            | 0
 
         span
           i.fa.fa-comment
           '
-          - unless rating.comments.count.zero?
-            = rating.comments.count
-    = render "comments/index", commentable: rating
+          = rating.comments.count
