@@ -1,15 +1,58 @@
-h1 = @rating.short_review
-h2 = link_to "Volver a la peli", @movie
+- my_loves = @loves[@rating.id]
+- first_movie_backdrop = @movie.backdrops.first
 
-.media__lovers
-  - my_loves = @loves[@rating.id]
-  - if my_loves
-    - if my_loves.count == 1
-      - my_love = my_loves.first
-      = ("A " + link_to(my_love.user.name, my_love.user) + " le encanta esto.").html_safe
-    - else
-      = ("A " + my_loves.map { |love| link_to(love.user.name, love.user) }.join(", ") + " les encanta esto.").html_safe
+.rating--wrapper
 
+  sidebar.rating--movie--side.movie--header.hero
+    .rating--backdrop style="#{"background-image: url(#{first_movie_backdrop.url("w1280")})"}"
+    .movie__info.hero
+      header
+        p.movie__subheader
+          =' @movie.decorate.directors
+          span.movie__year
+            ' ·
+            = @movie.decorate.movie_year
 
+        h1.flush= link_to @movie.title, @movie, class: "movie__title"
+        p.movie__stats
+          i.fa.fa-star
+          '
+          span#rating_average.movie-ratio =' @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
+          ' ·
+          =' link_to anchor: "ratings" do
+            =' @movie.ratings.count
+            ' ratings
 
+  section.rating--section
+    article.rating.rating-show data-id=@rating.id
+      .media
+        .media__img= link_to image_tag(@rating.user.avatar("small")), @rating.user
+        .media__body
+          .rating__stars
+            i.fa.fa-star
+            '
+            = @rating.value
 
+          .media__body--author = link_to @rating.user.name, @rating.user
+          .media__body--date = @rating.created_at.to_s :short
+
+        .media__body--content
+          - if @rating.short_review
+            = @rating.short_review
+
+        .rating__stats
+          span.media__love.js-love
+            - if current_user && @loves && @loves[@rating.id] && active_love = @loves[@rating.id].detect { |love| love.user_id == current_user.id }
+              = link_to lofe_path(active_love), method: :delete, remote: true, class: "unlove-action" do
+                i.fa.fa-heart
+            - else
+              = link_to loves_path(lovable_type: "Rating", lovable_id: @rating.id), method: :post, remote: true, class: "love-action" do
+                i.fa.fa-heart-o
+
+          .media__lovers.js-media__lovers
+            - my_loves = @loves[@rating.id]
+            - if my_loves
+              - my_loves.reverse_each do |love|
+                = link_to(image_tag(love.user.avatar("small")),love.user, class: "love-user-#{love.user.id}")
+
+        = render "comments/index", commentable: @rating

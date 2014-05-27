@@ -1,1 +1,3 @@
-| $(".#{@love.lovable_type.underscore}[data-id=#{@love.lovable_id}] .js-love").html('#{link_to "Unlove", lofe_path(@love), method: :delete, remote: true}');
+| $(".#{@love.lovable_type.underscore}[data-id=#{@love.lovable_id}] .js-love").fadeOut().html('#{link_to fa_icon("heart"), lofe_path(@love), method: :delete, remote: true}').fadeIn();
+
+| $(".#{@love.lovable_type.underscore}[data-id=#{@love.lovable_id}] .js-media__lovers").prepend('#{link_to(image_tag(@love.user.avatar("small")),@love.user, class: "love-user-#{@love.user.id}" )}');
