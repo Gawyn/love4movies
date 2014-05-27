@@ -30,7 +30,7 @@
 
 .movie__description{
   @include rposition($type: absolute, $top: 40%);
-  color: $text-color;
+  color: $white;
   @extend %text--center;
   width: 100%;
   .movie__title     { @include adjust-font-size-to($h2-size, 1.5); @extend %headline; }
@@ -46,12 +46,12 @@
   @extend %xlarge-block-grid-5;
   article                         { @include rposition($type: relative); }
   figure{
-    background-color: $white;
+    background-color: $text-color;
     overflow: hidden;
     height: 100%;
-    img                           { width: 100%; height: 100%; @include transition(all, ease, 0.6s); }
+    .figure__img                           { width: 100%; height: 100%; @include transition(all, ease, 0.6s); }
     &:hover{
-      img                         { opacity: .25; @include scale(1.1); }
+      .figure__img                         { opacity: .2; @include scale(1.1); }
       figcaption                  { @extend %visible; }
     }
   }

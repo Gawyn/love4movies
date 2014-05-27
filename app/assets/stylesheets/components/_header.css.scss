@@ -105,7 +105,6 @@ $header-height: $base-font-size*2.7;
     padding: 10px 12px;
     cursor: pointer;
     background-color: transparentize($text-color, 0);
-    &.notifications-active  { background-color: transparentize($brand-color, 0); }
   }
 
   .search-icon{
@@ -116,4 +115,27 @@ $header-height: $base-font-size*2.7;
     cursor: pointer;
     background-color: transparentize($text-color, 0);
   }
+}
+
+.menu-toggler{
+  position: relative;
+  float: right;
+}
+
+.notifiactions-number{
+  position: absolute;
+  right: 5%;
+  top: 35%;
+  z-index: 1000;
+  margin-left: - $base-font-size/2;
+  margin-top: - $base-font-size/2;
+  @extend %text--center;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  border-radius: 50%;
+  font-size: 12px;
+  background-color: transparentize($brand-color, 0);
+  color: $white;
+  display: inline-block;
 }

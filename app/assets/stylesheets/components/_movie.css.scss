@@ -11,8 +11,6 @@ $dark-trans: transparentize($text-color, 0.3);
 // HERO
 // ------------------
 .movie--header {
-  @include trailer(2);
-
   .movie__info      { @extend %one-whole; @extend %text--center; }
 
   .movie__subheader { @extend %caps; padding: 0 $base-font-size*2; }
@@ -59,6 +57,7 @@ $dark-trans: transparentize($text-color, 0.3);
   @extend %relative;
   @extend %cf;
   @include trailer(2);
+  @include leader(2);
 
   .movie__img             { @extend %grid; @extend %medium-one-quarter; @extend %show-medium-up; }
   .movie__runtime         { padding-right: 1em; }
@@ -168,7 +167,7 @@ $dark-trans: transparentize($text-color, 0.3);
 
 .do-rating{
   @extend %text--center;
-  .do-rating__input       { height: 150px; width: 66.666%; }
+  .do-rating__input       { height: 4em; width: 66.666%; }
   .do-rating__number      { display: none; }
 }
 
