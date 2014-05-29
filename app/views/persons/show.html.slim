@@ -1,11 +1,10 @@
 .person-wrapper
   sidebar.person-sidebar
     .person
-      - if @person.profiles.any?
-        figure.person__img
-          = image_tag @person.profiles.first.url("h632")
-          figcaption
-            h1.person__name= @person.name
+      figure.person__img
+        = image_tag (@person.profiles.any? ? @person.profiles.first.url("h632") : "no-person.jpg")
+        figcaption
+          h1.person__name= @person.name
 
 
       .person-data-wrapper

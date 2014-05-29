@@ -1,9 +1,8 @@
 section.movies-list
   - people.each do |person|
       article.movie data-ratio="1.5"= link_to person do
-        - if person.profiles.any?
-          figure
-            = image_tag person.profiles.first.url("h632")
-            figcaption
-              .movie__description
-                .movie__title= person.name
+        figure class=("visible" if !person.profiles.any?)
+          = image_tag (person.profiles.any? ? person.profiles.first.url("h632") : "no-person.jpg"), class: "figure__img"
+          figcaption
+            .movie__description
+              .movie__title= person.name
