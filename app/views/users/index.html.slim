@@ -1,0 +1,12 @@
+section.users
+  header
+    h2.header--title Users
+  table.users_list
+    - @users.each do |user|
+      tr.user
+        td = link_to image_tag(user.avatar("small")), user
+        td
+          h2 
+            = user.name
+        td
+          = user.experience

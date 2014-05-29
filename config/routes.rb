@@ -15,7 +15,7 @@ Love4movies::Application.routes.draw do
     root to: "home#index"
   end
 
-  resources :users, :only => :show do
+  resources :users, :only => [:show, :index] do
     get :ranking
     resources :lists, :only => [:show, :index]
     resources :follows, only: :create
