@@ -14,20 +14,6 @@
   @include trailer;
 }
 
-.search-keys{
-  @extend %text--center;
-  @extend %leader;
-  @extend %trailer;
-  &> h1                           { @extend %caps; @extend %headline; @extend %text--black; @extend %flush; }
-  .search-keys__for               { @extend %text--regular; @include adjust-font-size-to($h4-size); }
-  .search-keys__results {
-    @extend %text--regular;
-    @include adjust-font-size-to($h5-size);
-    @include trailer;
-    &> b                          { color: $brand-color; }
-  }
-}
-
 .movie__description{
   @include rposition($type: absolute, $top: 40%);
   color: $white;

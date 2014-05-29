@@ -1,0 +1,52 @@
+.search-form-wrapper { background-color: $text-color; position: relative; z-index: 9999; }
+.search-form{
+  position: relative;
+  z-index: 9999;
+  @extend %grid-papa;
+
+  form                    { height: 0; @include transition(height cubic-bezier(.65,0,1,.95) 0.25s); overflow: hidden; }
+  &.active form           { height: $base-font-size*6; }
+
+  input{
+    border: 0;
+    width: 100%;
+    height: $base-font-size*6;
+    @include adjust-font-size-to($h2-size);
+    letter-spacing: 1px;
+    @extend %caps;
+    @extend %headline;
+    background-color: $text-color;
+    color: $white;
+    &:focus,
+    &:hover {
+      border: none;
+      outline: none;
+    }
+  }
+}
+
+.search-container{
+  display: none;
+  &.active { display: block; }
+}
+
+.search-keys{
+  @extend %text--center;
+  @extend %leader;
+  @extend %trailer;
+  &> h1                           { @extend %caps; @extend %headline; @extend %text--black; }
+  .search-keys__for               { @extend %text--regular; @include adjust-font-size-to($h4-size); }
+  .search-keys__results {
+    @extend %text--regular;
+    @include adjust-font-size-to($h5-size);
+    @include trailer;
+    padding: .45em .5em;
+    margin-right: .25em;
+    margin-left: .25em;
+    border: 1px solid transparent;
+    cursor: pointer;
+    border-radius: 2px;
+    b                         { color: $brand-color; }
+    &.active                  { border-color: $brand-color; }
+  }
+}
