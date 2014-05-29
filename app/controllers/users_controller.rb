@@ -32,4 +32,8 @@ class UsersController < ApplicationController
     @follow = Follow.find_by(follower_id: current_user.id, followed_id: @user.id) if current_user
     render layout: "person"
   end
+
+  def index
+    @users = User.more_experience_first
+  end
 end

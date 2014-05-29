@@ -59,3 +59,14 @@
   pointer-events: none;
   background-color: transparentize(black, .5);
 }
+
+.users{
+  width: 80%;
+  margin: 0 auto;
+}
+
+table.users_list{
+  td{
+    padding: 10px;
+  }
+}

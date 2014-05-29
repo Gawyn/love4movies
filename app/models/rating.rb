@@ -15,6 +15,10 @@ class Rating < ActiveRecord::Base
   scope :without_short_review, -> { where(with_short_review: false) }
 
   before_save :set_with_short_review
+
+  after_create :give_rating_experience!
+  after_destroy :take_rating_experience!
+
   after_save :recalculate_movie_ratings
   after_destroy :recalculate_movie_ratings
 
@@ -56,5 +60,13 @@ class Rating < ActiveRecord::Base
   def set_with_short_review
     with_short_review = short_review.present?
     true
+  end
+
+  def give_rating_experience!
+    give_experience!(user, short_review.present? ? SHORT_REVIEW_EXPERIENCE : RATING_EXPERIENCE)
+  end
+
+  def take_rating_experience!
+    tak_experience!(user, short_review.present? ? SHORT_REVIEW_EXPERIENCE : RATING_EXPERIENCE)
   end
 end

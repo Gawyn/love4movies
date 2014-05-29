@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   has_many :won_badges, foreign_key: :winner_id
   has_many :badges, through: :won_badges
 
+  scope :more_experience_first, -> { order(arel_table[:experience].desc) }
+
   validates_inclusion_of :role, in: ROLES
 
   before_validation :define_role, on: :create
