@@ -68,7 +68,7 @@ section.backdrop-slider.movie--header class=(backdrop_is_present ? "hero" : "her
 
 section.movie--show#sinopsis
   figure.movie__img
-    = image_tag @movie.posters.first.url("w500")
+    = image_tag (@movie.posters.any? ? @movie.posters.first.url("w500") : "no-movie.jpg")
   .movie__summary
     h2.movie__heading Synopsis
     p.movie__sinopsis= @movie.overview
