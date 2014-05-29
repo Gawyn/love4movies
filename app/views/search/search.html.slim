@@ -1,6 +1,34 @@
+header.search-keys
+  span.search-keys__for Search results for
+  h1= params[:query]
+  span.search-keys__results.js-toggle-search.active data-type="movies"
+    b=' @movies.total
+    | movies
+  span.search-keys__results.js-toggle-search data-type="people"
+    b=' @people.total
+    | people
+
+
 - if @movies.total > 0
-  h1 = "#{@movies.total} movies"
-  = render "movies/index", movies: @movies.results
+  .search-container.movies-container.active
+    = render "movies/index", movies: @movies.results
 - if @people.total > 0
-  h1 = "#{@people.total} people"
-  = render "persons/index", people: @people.results
+  .search-container.people-container
+    = render "persons/index", people: @people.results
+
+
+- content_for :custom_js do
+  javascript:
+
+    $(document).ready(function() {
+      $(".js-toggle-search").on("click", function(){
+        if($(this).hasClass('active')){}
+        else{
+          var type = $(this).data("type");
+          $(this).addClass('active').siblings().removeClass('active');
+          $('.search-container').removeClass('active');
+          $('.' + type + '-container').addClass('active');
+
+        }
+      });
+    });
