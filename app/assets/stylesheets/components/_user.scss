@@ -71,3 +71,13 @@ table.users_list{
     padding: 10px;
   }
 }
+
+
+.users_list{
+  @extend %grid-papa;
+  @extend %relative;
+  @extend %cf;
+  @include trailer(2);
+  @include leader(2);
+  max-width: 40em;
+}

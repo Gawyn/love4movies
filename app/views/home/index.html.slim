@@ -44,3 +44,22 @@
         });
       });
 
+// When current user and no activity show first 10 ranking users
+- else
+  section.activities
+  header
+    h2.header--title Activity
+    .subheader It seems you have no activity yet
+    p.subheader Start following some of the most influence users on our community
+
+  table.users_list
+    - @users.each do |user|
+      tr
+        td = link_to image_tag(user.avatar("small")), user
+        td
+          h4= link_to user.name, user
+        td
+          i.fa.fa-star-o
+          '
+          =' user.ratings_count
+          | ratings
