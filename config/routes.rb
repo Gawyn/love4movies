@@ -29,7 +29,7 @@ Love4movies::Application.routes.draw do
     resources :ratings, :only => [:create, :show]
     get :ranking, :on => :collection
   end
-  resources :ratings, :only => [:create, :destroy] do
+  resources :ratings, :only => [:create, :destroy, :show] do
     resources :comments, only: :create
   end
   resources :reviews, :only => :create do

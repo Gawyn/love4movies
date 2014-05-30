@@ -1,7 +1,7 @@
 class RatingsController < ApplicationController
   def show
-    @movie = Movie.find params[:movie_id]
-    @rating = @movie.ratings.find params[:id]
+    @rating = Rating.find params[:id]
+    @movie = @rating.movie
     @loves = Love.where(lovable_type: "Rating", lovable_id: @rating)
       .includes(:user).group_by(&:lovable_id)
   end
