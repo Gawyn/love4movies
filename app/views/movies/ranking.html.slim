@@ -1,7 +1,8 @@
-- @movies.decorate.each_with_index do |movie, i|
-  .movie
-    = i + 1
-    = movie.print_poster
-    = link_to movie.title, movie
+section.ranking-movies
+  header
+    h2.header--title Movies ranking
+    .subheader Best rated movies
 
-= paginate @movies
+  = render "movies/index", movies: @movies
+
+  = paginate @movies
