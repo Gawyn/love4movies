@@ -1,4 +1,4 @@
-- unless current_user
+- if !current_user
   section.login-banner
     - if @last_activity
       = image_tag @last_activity.content.movie.backdrops.first.url("w1280")
@@ -6,9 +6,10 @@
     .login-banner__wrapper
       h1.login-banner__title The movie lovers community
       = link_to "Facebook login", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--login"
+      i.fa.fa-twitter
       = link_to "Twitter login", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--login"
 
-- if @followeds_activities && @followeds_activities.any?
+- elsif @followeds_activities && @followeds_activities.any?
   section.activities
     header
       h2.header--title Activity
@@ -44,3 +45,22 @@
         });
       });
 
+// When current user and no activity show first 10 ranking users
+- else
+  section.activities
+  header
+    h2.header--title Activity
+    .subheader It seems you have no activity yet
+    p.subheader Start following some of the most influence users on our community
+
+  table.users_list
+    - @users.each do |user|
+      tr
+        td = link_to image_tag(user.avatar("small")), user
+        td
+          h4= link_to user.name, user
+        td
+          i.fa.fa-star-o
+          '
+          =' user.ratings_count
+          | ratings

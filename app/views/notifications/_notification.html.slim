@@ -1,5 +1,5 @@
 - user  = notification.notificable.user
-- movie = notification.triggered_on.movie
+- movie = notification.triggered_on_type == "Comment" ? notification.notificable.commentable.movie : notification.triggered_on.movie
 - type  = notification.notificable_type
 
 article.notification
