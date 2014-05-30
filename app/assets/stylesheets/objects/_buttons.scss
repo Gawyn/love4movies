@@ -70,3 +70,29 @@
     padding: 1em 1.5em;
   }
 }
+
+.btn--twitter{
+  background-color: $twitter;
+  border: none;
+  color: $white;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 1.5em 3em 1.5em 5em;
+  position: relative;
+  &:hover,
+  &:focus{
+    background-color: darken($twitter, 10%);
+    color: $white;
+  }
+  &:after{
+    content: "\f099";
+    @extend .fa;
+    height: 100%;
+    line-height: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: darken($twitter, 10%);
+    padding: 1em 1.5em;
+  }
+}
