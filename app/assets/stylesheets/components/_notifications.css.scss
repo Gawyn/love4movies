@@ -1,9 +1,14 @@
 .notifications{
-    width: 40%;
-    max-width: 40em;
-    margin: 0 auto;
+  @extend %grid-papa;
+  @extend %relative;
+  @extend %cf;
+  @include trailer(2);
+  @include leader(2);
+  max-width: 40em;
+}
 
-    span.movie_title{
-      @include adjust-font-size-to($base-font-size*1.1);
-    }
+.notification{
+  @include trailer;
+  img       { width: $base-font-size*3; height: $base-font-size*3; }
+  p         { font-weight: 400; }
 }
