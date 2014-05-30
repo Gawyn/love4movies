@@ -1,14 +1,14 @@
 section.badges
   header
     h2.header--title Badges
+    .subheader List of locked/unlocked badges
   table.badges_list
     - @badges.each do |badge|
       tr.badge
         td
           .badge__image style="background-image: url('#{badge.image.url("w185")}')"
         td
-          h2 
-            = badge.name
+          h2 = badge.name
         td
           = badge.description
         td
