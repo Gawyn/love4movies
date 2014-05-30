@@ -172,7 +172,6 @@ $dark-trans: transparentize($text-color, 0.3);
 }
 
 .do-rating-with-stars{
-  @include trailer(3);
   .do-rating-action { cursor: pointer; margin-right: 5px; }
 }
 
