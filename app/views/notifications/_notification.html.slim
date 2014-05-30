@@ -1,27 +1,44 @@
-.notification
-  .media
-    .media__img= link_to image_tag(notification.notificable.user.avatar("small")), notification.user
-    .media__body
-      - if notification.notificable_type == "Love"
-        = link_to notification.triggered_on.movie do
-          =' "A #{notification.notificable.user.name} le encanta tu opinión sobre "
-          span.movie_title = "#{notification.triggered_on.movie.title}"
-          = "."
+- user  = notification.notificable.user
+- movie = notification.triggered_on.movie
+- type  = notification.notificable_type
 
-      - elsif notification.triggered_on_type == "Rating"
-        = link_to notification.triggered_on.movie do
-          =' "#{notification.notificable.user.name} ha comentado tu rating de"
-          span.movie_title = "#{notification.triggered_on.movie.title}"
-          = "."
-        end
-      - elsif notification.triggered_on_type == "Review"
-        = link_to  notification.triggered_on.movie do
-          =' "#{notification.notificable.user.name} ha comentado tu review de"
-          span.movie_title = "#{notification.triggered_on.movie.title}"
-          = "."
-        end
-      - elsif notification.triggered_on_type == "Comment"
-        = link_to notification.notificable.commentable.movie do
-          =' "#{notification.notificable.user.name} ha respondido a uno de tus comentarios en la discusión sobre"
-          span.movie_title = "#{notification.notificable.commentable.movie.title}"
-          = "."
+article.notification
+  .media
+    .media__img= link_to image_tag(user.avatar("small")), user
+
+    - if type == "Love"
+      .media__img
+        i.fa.fa-heart-o.fa-lg
+
+      .media__body
+        p
+          =' link_to user.name, user
+          ' loves your rating on
+          = link_to movie.title, movie
+
+    - elsif notification.triggered_on_type == "Rating"
+      .media__img
+        i.fa.fa-star-o.fa-lg
+      .media__body
+        p
+          =' link_to user.name, user
+          ' commented your rating on
+          = link_to movie.title, movie
+
+    - elsif notification.triggered_on_type == "Review"
+      .media__img
+        i.fa.fa-comment-o.fa-lg
+      .media__body
+        p
+          =' link_to user.name, user
+          ' commented your review on
+          = link_to movie.title, movie
+
+    - elsif notification.triggered_on_type == "Comment"
+      .media__img
+        i.fa.fa-comment-o.fa-lg
+      .media__body
+        p
+          =' link_to user.name, user
+          ' answer your comment on
+          = link_to movie.title, movie

@@ -23,7 +23,7 @@
   }
 }
 
-.movie--reviews, .movie--ratings{
+.movie--reviews, .movie--ratings {
   @extend %grid-papa;
   @extend %relative;
   @extend %cf;
