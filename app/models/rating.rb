@@ -13,6 +13,7 @@ class Rating < ActiveRecord::Base
   scope :highest_first, -> { order(arel_table[:value].desc) }
   scope :with_short_review, -> { where(with_short_review: true) }
   scope :without_short_review, -> { where(with_short_review: false) }
+  scope :most_loved_first, -> { order(arel_table[:loves_count].desc) }
 
   before_save :set_with_short_review
 

@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
       @my_rating = Rating.where(:user_id => current_user.id,
         :movie_id => @movie.id).first
 
-      @ratings = @movie.ratings.newest_first.includes(:user)
+      @ratings = @movie.ratings.most_loved_first.includes(:user)
 
       @loves = Love.where(lovable_type: "Rating", lovable_id: @ratings.map(&:id))
         .includes(:user).group_by(&:lovable_id)
