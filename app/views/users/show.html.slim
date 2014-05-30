@@ -15,7 +15,11 @@
       .person-data-wrapper
         .person-fade-bottom
         .person-info
-          .person-info__place = @user.location
+          b.person-info__place = @user.location
+          p.person-info__experience
+            =' @user.experience
+            | points
+
 
           - if current_user
             - if (current_user != @user)

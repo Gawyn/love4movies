@@ -14,7 +14,6 @@ $header-height: $base-font-size*2.7;
   text-align: center;
 
   &.active            { @include transform(translateY(0)); }
-  .nav-items          { @include leader(4.5); }
   .notifications      { @include trailer(1.5); }
 
   .pending-notifiactions-number{
@@ -44,18 +43,13 @@ $header-height: $base-font-size*2.7;
 
   }
 
-  .notification .media__img{
-    width: 35px;
-    height: 35px;
-    margin-right: 20px;
-  }
-  .notification a{
-    display: block;
+  .notification .media__body{
+    color: $white;
     text-align: left;
-    color: transparentize($white, .5);
-    @include transition(color ease-in .25s);
-    @extend %readable;
-    &:hover       { color: $white; }
+  }
+
+  .notification .fa{
+    color: $white;
   }
 
   .title{
