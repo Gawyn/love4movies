@@ -19,10 +19,10 @@ class Love < ActiveRecord::Base
   end
 
   def give_love_experience!
-    give_experience!(lovable.user, LOVE_EXPERIENCE)
+    give_experience!(lovable.user, Experience::LOVE_EXPERIENCE)
   end
 
   def take_love_experience!
-    take_experience!(lovable.user, LOVE_EXPERIENCE)
+    take_experience!(lovable.user, Experience::LOVE_EXPERIENCE)
   end
 end
