@@ -11,19 +11,15 @@ article.notification
         i.fa.fa-heart-o.fa-lg
 
       .media__body
-        p
-          =' link_to user.name, user
-          ' loves your rating on
-          = link_to movie.title, movie
+        p = link_to notification.triggered_on do
+            = "#{user.name} loves your rating on #{movie.title}"
 
     - elsif notification.triggered_on_type == "Rating"
       .media__img
         i.fa.fa-star-o.fa-lg
       .media__body
-        p
-          =' link_to user.name, user
-          ' commented your rating on
-          = link_to movie.title, movie
+        p = link_to notification.triggered_on do
+          = "#{user.name} commented your rating on #{movie.title}"
 
     - elsif notification.triggered_on_type == "Review"
       .media__img
@@ -38,7 +34,5 @@ article.notification
       .media__img
         i.fa.fa-comment-o.fa-lg
       .media__body
-        p
-          =' link_to user.name, user
-          ' answer your comment on
-          = link_to movie.title, movie
+        p = link_to notification.commentable do
+          = "#{user.name} answered your comment on #{movie.title}"
