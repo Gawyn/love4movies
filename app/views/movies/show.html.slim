@@ -223,3 +223,6 @@ section.movie--ratings#ratings
       $('.js-rate-button, .icon-rating').on( "click", toggleRating );
 
     });
+
+- content_for :title do
+  = @movie.title
