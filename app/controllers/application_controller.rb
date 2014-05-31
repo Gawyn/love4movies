@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     elsif request.env["HTTP_ACCEPT_LANGUAGE"]
       process_language_from_param(request.env["HTTP_ACCEPT_LANGUAGE"])
     else
-      "es"
+      "en"
     end
   end
 
