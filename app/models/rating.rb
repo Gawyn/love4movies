@@ -70,6 +70,6 @@ class Rating < ActiveRecord::Base
   end
 
   def take_rating_experience!
-    tak_experience!(user, short_review.present? ? SHORT_REVIEW_EXPERIENCE : RATING_EXPERIENCE)
+    take_experience!(user, short_review.present? ? SHORT_REVIEW_EXPERIENCE : RATING_EXPERIENCE)
   end
 end
