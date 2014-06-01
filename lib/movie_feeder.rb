@@ -115,8 +115,6 @@ class MovieFeeder
       end
     end
 
-    private
-
     def generate_person_with_data(data)
       person = Person.find_by_tmdb_id(data["id"])
 
