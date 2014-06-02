@@ -27,7 +27,7 @@ class MoviesController < ApplicationController
     genre = params[:genre].blank? ? nil : params[:genre]
 
     @movies = Movie.search do
-      without(:id, current_user.ratings.pluck(:id))
+      without(:id, current_user.ratings.pluck(:movie_id))
       order_by(order, :desc)
       with(:genre_ids, genre) if genre
     end.results
