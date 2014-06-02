@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
 
   def recommended
     order = params[:order] || "popularity"
-    genre = params[:genre]
+    genre = params[:genre].blank? ? nil : params[:genre]
 
     @movies = Movie.search do
       without(:id, current_user.ratings.pluck(:id))
