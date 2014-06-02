@@ -46,6 +46,7 @@ class Movie < ActiveRecord::Base
     integer :ratings_count
     integer :genre_ids, multiple: true
     double :l4m_rating_average
+    double :tmdb_vote_average
     double :rating_average
     double :popularity
   end
