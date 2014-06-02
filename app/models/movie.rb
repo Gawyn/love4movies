@@ -38,11 +38,16 @@ class Movie < ActiveRecord::Base
   before_create :set_total_ratings
 
   searchable do
+    integer :id
     text :original_title
-    text :title_en, :title_es
+    text :title_en
+    text :title_es
     boolean :hidden
     integer :ratings_count
-    double :l4m_rating_average, :rating_average
+    integer :genre_ids, multiple: true
+    double :l4m_rating_average
+    double :rating_average
+    double :popularity
   end
 
   def calculate_rating_average
