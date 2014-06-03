@@ -27,4 +27,8 @@ module Experience
   def pending_experience_for_next_level(user)
     experience_for_next_level(user) - user.experience
   end
+
+  def self.level_for_experience(experience)
+    SUM_LEVEL_EXPERIENCE.index { |xp_of_level| experience < xp_of_level } + 1
+  end
 end
