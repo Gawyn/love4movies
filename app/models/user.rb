@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   validates_inclusion_of :role, in: ROLES
 
   before_validation :define_role, on: :create
+  after_update :set_level!, if: lambda { experience_changed? }
 
   ROLES.each do |role_type|
     define_method "#{role_type}?" do
@@ -112,5 +113,13 @@ class User < ActiveRecord::Base
 
   def email_required?
     false
+  end
+
+  def set_level!
+    my_level = Experience::level_for_experience(experience) 
+
+    if my_level != level
+      update_attribute(:level, my_level)
+    end
   end
 end
