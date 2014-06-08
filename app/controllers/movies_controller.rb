@@ -23,13 +23,14 @@ class MoviesController < ApplicationController
   end
 
   def recommended
-    order = params[:order] || "popularity"
+    order = params[:order] || "l4m_rating_average"
     genre = params[:genre].blank? ? nil : params[:genre]
 
     @movies = Movie.search do
       without(:id, current_user.ratings.pluck(:movie_id))
       order_by(order, :desc)
       with(:genre_ids, genre) if genre
+      with(:total_ratings).greater_than(15) if order != "l4m_rating_average"
     end.results
   end
 end

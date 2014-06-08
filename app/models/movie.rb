@@ -44,6 +44,7 @@ class Movie < ActiveRecord::Base
     text :title_es
     boolean :hidden
     integer :ratings_count
+    integer :total_ratings
     integer :genre_ids, multiple: true
     double :l4m_rating_average
     double :tmdb_vote_average
