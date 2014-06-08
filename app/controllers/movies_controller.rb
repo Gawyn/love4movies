@@ -29,7 +29,7 @@ class MoviesController < ApplicationController
     @searched_movies = Movie.search do
       without(:id, current_user.ratings.pluck(:movie_id))
       order_by(order, :desc)
-      with(:genre_ids, genre) if @genre
+      with(:genre_ids, genre) if genre
       with(:total_ratings).greater_than(15) if order != "l4m_rating_average"
       paginate(:page => params[:page] || 1, :per_page => Movie::RECOMMENDED_MOVIES_PER_PAGE)
     end
