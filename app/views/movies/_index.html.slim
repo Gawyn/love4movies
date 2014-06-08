@@ -1,11 +1,3 @@
 section.movies-list
   - movies.each do |movie|
-      article.movie data-ratio="1.5"= link_to movie do
-        figure class=("visible" if !movie.posters.any?)
-          = image_tag (movie.posters.any? ? movie.posters.first.url("w342") : "no-movie.jpg"), class: "figure__img"
-          figcaption
-            .movie__description
-              .movie__year= movie.decorate.movie_year
-              .movie__title= movie.title
-              .movie__director
-                = movie.decorate.directors_list.map(&:name).join(", ")
+    = render "show", movie: movie
