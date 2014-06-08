@@ -29,8 +29,10 @@ class MoviesController < ApplicationController
     @movies = Movie.search do
       without(:id, current_user.ratings.pluck(:movie_id))
       order_by(order, :desc)
-      with(:genre_ids, genre) if genre
+      with(:genre_ids, genre) if @genre
       with(:total_ratings).greater_than(15) if order != "l4m_rating_average"
     end.results
+
+    @order, @genre = order, genre
   end
 end
