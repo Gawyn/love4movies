@@ -1,0 +1,2 @@
+- @movies.each do |movie|
+  | $('.movies-list').append("#{escape_javascript(render('movies/show', movie: movie))}");
