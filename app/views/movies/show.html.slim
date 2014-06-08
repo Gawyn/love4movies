@@ -39,10 +39,6 @@ section.backdrop-slider.movie--header class=(backdrop_is_present ? "hero" : "her
           =' link_to anchor: "ratings" do
             =' @movie.ratings.count
             ' ratings
-          / ' ·
-          / =' link_to anchor: "reviews" do
-          /   =' @movie.reviews.count
-          /   | reviews
 
         - if @ratings && @ratings.any?
           - rating = @ratings.first
@@ -60,11 +56,6 @@ section.backdrop-slider.movie--header class=(backdrop_is_present ? "hero" : "her
           - if @my_rating.nil?
             .btn.movie__btn.js-open-rating
               | Rate it
-
-          / - else
-          /   .btn.movie__btn.js-open-review
-          /     | Write a review
-
 
 section.movie--show#sinopsis
   figure.movie__img
@@ -96,7 +87,7 @@ section.movie--actors#actors
 section.movie--ratings#ratings
   header.movie__header.movie__header--centered
     h2.movie__heading Ratings
-    p.movie__sub-heading Best reviews and ratings
+    p.movie__sub-heading Best shorts reviews and ratings
 
   - if current_user && @my_rating.nil?
     .wrapper-action
@@ -106,18 +97,6 @@ section.movie--ratings#ratings
     .ratings
       - @ratings.each do |rating|
         = render "ratings/short", rating: rating
-
-/ section.movie--reviews#reviews
-/   header.movie__header.movie__header--centered
-/     h2.movie__heading Reviews
-/     p.movie__sub-heading The best reviews of our users
-
-/   .wrapper-action
-/     .btn.js-open-review Write a Review
-
-/   #reviews-wrapper
-/     - @movie.reviews.each do |review|
-/       = render :partial => "reviews/show", :locals => {:review => review}
 
 - if current_user && @my_rating.nil?
   .do-rating.js-rating
@@ -141,19 +120,6 @@ section.movie--ratings#ratings
                 i.fa.fa-star-o.fa-2x
 
         = submit_tag "Publish", class: "btn"
-
-- if current_user
-  .do-review.js-review
-    .do-review-grid
-      h3.movie__heading.do__title = @movie.title
-      em.do-review__subtitle Leave your review
-
-      .js-close-review.do-review__close x
-
-      = simple_form_for @movie.reviews.new, :remote => true do |f|
-        = f.input :content, :label => false, :input_html => { :class => 'do-review__input' }
-        = f.input :movie_id, :as => :hidden, :value => @movie.id
-        = f.submit :class => 'btn js-close-review', :value => "Publish"
 
 
 - content_for :custom_js do
@@ -188,18 +154,6 @@ section.movie--ratings#ratings
 
       function toggleRating() { $('.rating-buttons').toggleClass("invisible"); }
 
-      function closeReview() {
-        $('.movie-wrapper').transition({ opacity: '1' });
-        $('.js-review').transition({ y: '100%' }, function() {});
-      }
-
-      function openReview() {
-        $('.movie-wrapper').transition({ opacity: '0.2' });
-        $('.js-review').transition({ y: '0' }, 500, 'cubic-bezier(.68,.05,.59,1)', function() {
-          $('.do__title').transition({ opacity: '1' });
-          $('.do-review__input').focus();
-        });
-      }
 
       function closeRating() {
         $('.js-rating').transition({ y: '100%' }, function() {});
@@ -212,9 +166,7 @@ section.movie--ratings#ratings
         });
       }
 
-      // Open/Close Review Movie
-      $('.js-open-review').on( "click", openReview );
-      $( '.js-close-review' ).on( "click", closeReview );
+      // Open/Close Rating Movie
 
       $('.js-open-rating').on( "click", openRating );
       $( '.js-close-rating' ).on( "click", closeRating );
