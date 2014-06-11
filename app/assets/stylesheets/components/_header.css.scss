@@ -7,7 +7,7 @@ $header-index: 9;
   height: 100%;
   @include rposition($type: fixed, $left: 0, $top: 0);
   overflow: hidden;
-  z-index: $header-index + 1;
+  z-index: $header-index;
   @include transform(translateY(-100%));
   @include transition(all cubic-bezier(.68,.05,.59,1) .5s);
   background-color: transparentize($text-color, 0.15);
@@ -106,7 +106,6 @@ $header-index: 9;
     height: $header-height;
     width: $header-height;
     padding: 10px 12px;
-    cursor: pointer;
   }
 
   .search-icon{
@@ -121,6 +120,7 @@ $header-index: 9;
 .menu-toggler{
   position: relative;
   float: right;
+  margin-right: 1em;
 }
 
 .notifiactions-number{

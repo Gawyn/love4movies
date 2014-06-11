@@ -48,10 +48,9 @@ header.main-header
       function openMenu() {
         $('.main-nav').toggleClass('active');
         $(this).find('.menu-icon').transition({ opacity: '0' }, 300, 'cubic-bezier(.68,.05,.59,1)', function() {
-          $(this).toggleClass('fa-bars').toggleClass('fa-times');
+          $(this).toggleClass('fa-bars').toggleClass('fa-times fa-inverse');
           $(this).transition({ opacity: '1' }, 300, 'cubic-bezier(.68,.05,.59,1)');
         });
-
       }
 
       $('.js-menu').on( "click", openMenu );
