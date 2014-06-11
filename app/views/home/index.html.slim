@@ -6,7 +6,7 @@
     .login-banner__wrapper
       h1.login-banner__title The movie lovers community
       = link_to "Facebook login", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--login"
-      i.fa.fa-twitter
+
       = link_to "Twitter login", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--login"
 
 - elsif @followeds_activities && @followeds_activities.any?

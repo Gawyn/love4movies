@@ -1,4 +1,4 @@
-.rating                 { @include trailer(2); }
+.rating                 { @include trailer; }
 .rating__review         { @extend %readable; @include trailer(.25); }
 .rating__review--link   { color: $text-color; @include transition(color ease-in .15s); &:hover{ color: $brand-color; } }
 
@@ -50,8 +50,8 @@
 }
 
 .rating__stats{
-  float: right;
   @include trailer;
+  @include leader(.25);
   span { margin-right: .5em; }
 }
 

@@ -61,16 +61,24 @@
   section.movie--ratings#ratings.movie-section
     .movie-section-wrapper
       header.movie__header
-        h2.movie__heading Ratings
-
       - if @ratings && @ratings.any?
+        - if current_user
+          .wrapper-action
+            .btn.btn--sml.btn--rate.js-open-rating
+              i.fa.fa-pencil
+              '
+              | New review
+
+        h3.movie__heading Reviews
         .ratings
           - @ratings.each do |rating|
-            = render "ratings/short", rating: rating
+            = render "ratings/short", rating: rating, review: true
 
-      - if current_user
-        .wrapper-action
-          .btn.js-open-rating Rate it
+
+        h3.movie__heading Ratings
+        ul.list-of-ratings
+          - @ratings.each do |rating|
+            = render "ratings/short", rating: rating
 
   .info-movie-sidebar
 
@@ -119,14 +127,13 @@
         = text_area_tag "short_review", "", class: "do-rating__input", maxlength: "140"
         = number_field_tag "value", "Rating", in: 1...11, class: "do-rating__number js-rating-number"
         .do-rating-with-stars
-          em.do-rating__subtitle
-            ' Actual rate:
-            span.js-actual-rate 0
-
           .star-list
             - 1.upto(10).each do |i|
               span.do-rating-action.js-star-hover data-number="#{i}"
                 i.fa.fa-star-o.fa-2x
+          em.do-rating__subtitle
+            ' Actual rate:
+            span.js-actual-rate 0
 
         = submit_tag "Publish", class: "btn"
 

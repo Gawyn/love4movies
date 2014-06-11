@@ -1,5 +1,5 @@
 // Vars
-$header-height: $base-font-size*2.7;
+$header-height: $base-font-size*2.5;
 $header-index: 9;
 
 .main-nav{
@@ -88,7 +88,7 @@ $header-index: 9;
     width: $base-font-size*8;
     height: $header-height;
     float: left;
-    padding: 8px 10px;
+    padding: 6px 8px;
     background-color: $text-color;
     position: relative;
     z-index: $header-index;
