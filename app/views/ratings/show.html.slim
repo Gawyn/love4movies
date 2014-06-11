@@ -1,9 +1,8 @@
 - my_loves = @loves[@rating.id]
 - first_movie_backdrop = @movie.backdrops.first
 
-.rating--wrapper
-
-  sidebar.rating--movie--side.movie--header.hero
+.movie-wrapper
+  sidebar.rating--movie--side.movie-sidebar.hero
     .rating--backdrop style="#{"background-image: url(#{first_movie_backdrop.url("w1280")})"}"
     .movie__info.hero
       header
@@ -23,16 +22,11 @@
             =' @movie.ratings.count
             ' ratings
 
-  section.rating--section
-    article.rating.rating-show data-id=@rating.id
+  section.movie-section
+    article.movie-section-wrapper.rating.rating-show data-id=@rating.id
       .media
         .media__img= link_to image_tag(@rating.user.avatar("small")), @rating.user
         .media__body
-          .rating__stars
-            i.fa.fa-star
-            '
-            = @rating.value
-
           .media__body--author = link_to @rating.user.name, @rating.user
           .media__body--date = @rating.created_at.to_s :short
 
@@ -40,7 +34,11 @@
           - if @rating.short_review
             = @rating.short_review
 
-        .rating__stats
+          .rating__stars
+            - 1.upto(10) do |star_number|
+              = @rating.value >= star_number ? fa_icon("star", class: "rating__star--full") : fa_icon("star-o", class: "rating__star--empty")
+
+        .rating__loves
           span.media__love.js-love
             - if current_user && @loves && @loves[@rating.id] && active_love = @loves[@rating.id].detect { |love| love.user_id == current_user.id }
               = link_to lofe_path(active_love), method: :delete, remote: true, class: "unlove-action" do

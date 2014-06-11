@@ -30,15 +30,16 @@ header.main-header
   .header-grid
     .logo= link_to image_tag("love4movies.svg"), root_path
     - if current_user
-      .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
-      / Profile avatar
-      .menu-toggler.js-menu
-        - if @pending_notifications.any?
-          span.notifiactions-number= @pending_notifications.count
-        i.fa.fa-bars.menu-icon
-      / Search icon
-      .search-toggler.js-search
-        i.fa.fa-search.fa-inverse.search-icon
+      .user-navigation
+        .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
+        / Profile avatar
+        .menu-toggler.js-menu
+          - if @pending_notifications.any?
+            span.notifiactions-number= @pending_notifications.count
+          i.fa.fa-bars.menu-icon
+        / Search icon
+        .search-toggler.js-search
+          i.fa.fa-search.search-icon
 
 - content_for :custom_js do
   javascript:

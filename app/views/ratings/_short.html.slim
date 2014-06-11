@@ -5,29 +5,25 @@ article.rating data-id=rating.id
   .media
     .media__img= link_to image_tag(rating.user.avatar("small")), rating.user
     .media__body
-      .media__body--author = link_to rating.user.name, rating.user
-      .media__body--date = rating.created_at.to_s :short
-      p.media__body--content
-        = link_to movie_rating_path(@movie, rating), class: "rating__review--link" do
-          - if rating.short_review
-            span.media__body--content__short
-              = rating.short_review
-
-
-          span.rating__stars
-            - 1.upto(10) do |star_number|
-              = rating.value >= star_number ? fa_icon("star", class: "rating__star--full") : fa_icon("star-o", class: "rating__star--empty")
-
       .rating__stats
         span
-          i.fa.fa-heart
+          i.fa.fa-heart.heart-active
           '
-          - if my_loves.present?
-            = my_loves.count
-          - else
-            | 0
+          = my_loves.present? ? my_loves.count : '0'
 
         span
-          i.fa.fa-comment
+          i.fa.fa-comment.comment-active
           '
           = rating.comments.count
+
+      .media__body--author = link_to rating.user.name, rating.user
+      .media__body--date = rating.created_at.to_s :short
+    p.media__body--content
+      = link_to movie_rating_path(@movie, rating), class: "rating__review--link" do
+        - if rating.short_review
+          span.media__body--content__short
+            = rating.short_review
+
+        span.rating__stars
+          - 1.upto(10) do |star_number|
+            = rating.value >= star_number ? fa_icon("star", class: "rating__star--full") : fa_icon("star-o", class: "rating__star--empty")

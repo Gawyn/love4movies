@@ -2,103 +2,112 @@
 - backdrop_is_present = first_movie_backdrop.present?
 
 / Slider
-section.backdrop-slider.movie--header class=(backdrop_is_present ? "hero" : "hero--small")
-  - if backdrop_is_present
-    ul.itemwrap
-      li.current
-        .backdrop style="#{"background-image: url(#{first_movie_backdrop.url("w1280")})"}"
+.movie-wrapper
+  section.backdrop-slider.movie--header.movie-sidebar class=(backdrop_is_present ? "hero" : "hero--small")
+    - if backdrop_is_present
+      ul.itemwrap
+        li.current
+          .backdrop style="#{"background-image: url(#{first_movie_backdrop.url("w1280")})"}"
 
-      - @movie.backdrops.drop(1).first(3).each do |backdrop|
-        li
-          .backdrop style="#{"background-image: url(#{backdrop.url("w1280")})"}"
+        - @movie.backdrops.drop(1).first(3).each do |backdrop|
+          li
+            .backdrop style="#{"background-image: url(#{backdrop.url("w1280")})"}"
 
-    / Slider navigation
-    nav
-      = link_to "#", class: "prev" do
-        i.fa.fa-angle-left
-      = link_to "#", class: "next" do
-        i.fa.fa-angle-right
+      / Slider navigation
+      nav
+        = link_to "#", class: "prev" do
+          i.fa.fa-angle-left
+        = link_to "#", class: "next" do
+          i.fa.fa-angle-right
 
+    / Toggle movie info
+    .btn.btn--light.toggle-movie-info.js-toggle-info
+      i.fa.fa-long-arrow-left
+      '
+      | Movie info
 
-  / Slider Credits
-  .movie__info-wrapper
-    .movie__info
-      header
-        p.movie__subheader
-          =' @movie.decorate.directors
-          span.movie__year
+    / Slider Credits
+    .movie__info-wrapper
+      .movie__info
+        header
+          p.movie__subheader
+            =' @movie.decorate.directors
+            span.movie__year
+              ' ·
+              = @movie.decorate.movie_year
+
+          h1.flush= link_to @movie.title, @movie, class: "movie__title"
+          p.movie__stats
+            i.fa.fa-star
+            '
+            b#rating_average.movie-ratio =' @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
             ' ·
-            = @movie.decorate.movie_year
-
-        h1.flush= link_to @movie.title, @movie, class: "movie__title"
-        p.movie__stats
-          i.fa.fa-star
-          '
-          span#rating_average.movie-ratio =' @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
-          ' ·
-          =' link_to anchor: "ratings" do
-            =' @movie.ratings.count
-            ' ratings
-
-        - if @ratings && @ratings.any?
-          - rating = @ratings.first
-          - if rating.short_review
-            .media.media__best
-              .media__img= link_to image_tag(rating.user.avatar("small")), rating.user
-              .media__body
-                = link_to movie_rating_path(@movie, rating), class: "rating__review--link" do
-                  .content
-                    | &#8220;
-                    = rating.short_review
-                    | &#8221;
-
-        - if current_user
-          - if @my_rating.nil?
-            .btn.movie__btn.js-open-rating
-              | Rate it
-
-section.movie--show#sinopsis
-  figure.movie__img
-    = image_tag (@movie.posters.any? ? @movie.posters.first.url("w500") : "no-movie.jpg")
-  .movie__summary
-    h2.movie__heading Synopsis
-    p.movie__sinopsis= @movie.overview
-    date.movie__runtime
-      =' @movie.runtime
-      | min
-    .movie__tags
-      span = @movie.full_genres
-
-section.movie--actors#actors
-  h2.movie__heading Actors
-  p.movie__sub-heading Main cast
-  .movie--actors-list
-    - @movie.performances.order("tmdb_order asc").includes(:person).limit(10).map do |performance|
-      - if performance.person.profiles.any?
-        article data-ratio="1.4"
-          = link_to performance.person do
-            figure
-              = image_tag performance.person.profiles.first.url("w185")
-              figcaption
-                .actor__description
-                  .actor__name = performance.person.name
+            b
+              =' @movie.ratings.count
+              ' ratings
 
 
-section.movie--ratings#ratings
-  header.movie__header.movie__header--centered
-    h2.movie__heading Ratings
-    p.movie__sub-heading Best shorts reviews and ratings
+          / Rating movie
+          .movie--rating
+            #my_rating
+            - if current_user
+              - my_rating = @my_rating ? @my_rating.value : 0
+              #rating_form
+                = render "ratings/form", :movie => @movie, :my_rating => my_rating
+              .js-rate-button.do-rating__subtitle
+                ' Actual Rate
+                span.js-my-rating= my_rating
 
-  - if current_user && @my_rating.nil?
-    .wrapper-action
-      .btn.js-open-rating Rate it
+  section.movie--ratings#ratings.movie-section
+    .movie-section-wrapper
+      header.movie__header
+        h2.movie__heading Ratings
 
-  - if @ratings && @ratings.any?
-    .ratings
-      - @ratings.each do |rating|
-        = render "ratings/short", rating: rating
+      - if @ratings && @ratings.any?
+        .ratings
+          - @ratings.each do |rating|
+            = render "ratings/short", rating: rating
 
-- if current_user && @my_rating.nil?
+      - if current_user
+        .wrapper-action
+          .btn.js-open-rating Rate it
+
+  .info-movie-sidebar
+
+    / Toggle movie info
+    .btn.toggle-movie-info.js-toggle-info
+      i.fa.fa-long-arrow-right
+      '
+      | Close
+
+    .movie-section-wrapper
+      section.movie--show#sinopsis
+        figure.movie__img
+          = image_tag (@movie.posters.any? ? @movie.posters.first.url("w500") : "no-movie.jpg")
+        .movie__summary
+          h2.movie__heading Synopsis
+          p.movie__sinopsis= @movie.overview
+          date.movie__runtime
+            =' @movie.runtime
+            | min
+          .movie__tags
+            span = @movie.full_genres
+
+    section.movie--actors#actors
+      h2.movie__heading Actors
+      p.movie__sub-heading Main cast
+      .movie--actors-list
+        - @movie.performances.order("tmdb_order asc").includes(:person).limit(20).map do |performance|
+          - if performance.person.profiles.any?
+            article data-ratio="1.4"
+              = link_to performance.person do
+                figure
+                  = image_tag performance.person.profiles.first.url("w185")
+                  figcaption
+                    .actor__description
+                      .actor__name = performance.person.name
+
+- if current_user
   .do-rating.js-rating
     .do-rating-grid
       h3.movie__heading.do__title = @movie.title
@@ -126,7 +135,7 @@ section.movie--ratings#ratings
   javascript:
     $(document).ready(function() {
 
-      var selected = false;
+      var selected = #{@my_rating.present?};
 
       // Slider pluguin call
       $('.backdrop-slider').slider();
@@ -134,10 +143,10 @@ section.movie--ratings#ratings
       $('.js-star-hover').on({
         // Handles the mouseover
         mouseover: function(){
-            $(this).prevAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');
+            if(!selected) {$(this).prevAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');}
         },
         mouseleave: function(){
-            $(this).prevAll().andSelf().children().removeClass('fa-star').addClass('fa-star-o');
+            if(!selected) {$(this).prevAll().andSelf().children().removeClass('fa-star').addClass('fa-star-o');}
         },
         click: function(){
           if(!selected) { $('.js-star-hover').off('mouseleave mouseover'); selected = true; }
@@ -148,11 +157,8 @@ section.movie--ratings#ratings
           var value = $(this).data("number");
           $(".js-rating-number").val(value);
           $(".js-actual-rate").text(value);
-
         }
       });
-
-      function toggleRating() { $('.rating-buttons').toggleClass("invisible"); }
 
 
       function closeRating() {
@@ -171,8 +177,8 @@ section.movie--ratings#ratings
       $('.js-open-rating').on( "click", openRating );
       $( '.js-close-rating' ).on( "click", closeRating );
 
-      // Rating Movie
-      $('.js-rate-button, .icon-rating').on( "click", toggleRating );
+      // Toggle movie info
+      $('.js-toggle-info').on( 'click', function( ev ) { ev.preventDefault(); $('.info-movie-sidebar').toggleClass('active'); } );
 
     });
 

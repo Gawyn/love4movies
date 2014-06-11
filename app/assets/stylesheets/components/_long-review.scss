@@ -1,9 +1,9 @@
 #reviews-wrapper,
 .review                 { @include trailer(1.5);}
 
-.media__body--author    { @extend %caps; }
+.media__body--author a  { @extend %text--bold; color: $text-color; }
 
 .media__body--date      { font-size: 12px; color: transparentize($text-color, .65); }
 
-.media__body--content   { @extend %readable; @include adjust-font-size-to($h4-size, 1.5); max-width: 35em; }
+.media__body--content   { @extend %readable; @include adjust-font-size-to($h4-size, 1.5); max-width: 35em; margin-top: $base-font-size; }
 .wrapper-action         { @extend %text--center; @include trailer; }
