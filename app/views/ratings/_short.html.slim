@@ -1,40 +1,32 @@
 - my_loves = @loves[rating.id]
-- review ||= false
 
-- if review
-  - if rating.short_review
-    article.rating data-id=rating.id
-      .media
-        .media__img= link_to image_tag(rating.user.avatar("small")), rating.user
-        .media__body
-          .media__body--date = rating.created_at.to_s :short
-          .media__body--author = link_to rating.user.name, rating.user
+article.rating data-id=rating.id
+  .media
+    .media__img= link_to image_tag(rating.user.avatar("small")), rating.user
+    .media__body
+      = link_to movie_rating_path(@movie, rating), class: "media__body--date" do
+        = rating.created_at.to_s :short
+      .media__body--author = link_to rating.user.name, rating.user
 
-        p.media__body--content
-          = link_to movie_rating_path(@movie, rating), class: "rating__review--link trailer" do
-            - if rating.short_review
-              span.media__body--content__short
-                = rating.short_review
+    p.media__body--content
+      = link_to movie_rating_path(@movie, rating), class: "rating__review--link trailer" do
+        - if rating.short_review
+          span.media__body--content__short
+            = rating.short_review
 
-            .rating__stats
-              span
-                i.fa.fa-star-o.star-active
-                '
-                = rating.value
+        .rating__stars
+          - 1.upto(10) do |star_number|
+            = rating.value >= star_number ? fa_icon("star", class: "rating__star--full") : fa_icon("star-o", class: "rating__star--empty")
+          '
+          = rating.value
 
-              span
-                i.fa.fa-heart-o.star-active
-                '
-                = my_loves.present? ? my_loves.count : '0'
+        .rating__stats
+          span
+            i.fa.fa-heart-o.heart-active
+            '
+            = my_loves.present? ? my_loves.count : '0'
 
-              span
-                i.fa.fa-comment-o.star-active
-                '
-                = rating.comments.count
-
-
-
-- else
-  li
-    .media
-      .media__img= link_to image_tag(rating.user.avatar("small")), rating.user
+          span
+            i.fa.fa-comment-o.star-active
+            '
+            = rating.comments.count

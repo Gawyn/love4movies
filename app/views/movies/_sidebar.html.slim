@@ -1,0 +1,86 @@
+- first_movie_backdrop = @movie.backdrops.first
+- backdrop_is_present = first_movie_backdrop.present?
+
+section.backdrop-slider.movie--header.movie-sidebar class=(backdrop_is_present ? "hero" : "hero--small")
+  - if backdrop_is_present
+    ul.itemwrap
+      li.current
+        .backdrop style="#{"background-image: url(#{first_movie_backdrop.url("w1280")})"}"
+
+      - @movie.backdrops.drop(1).first(3).each do |backdrop|
+        li
+          .backdrop style="#{"background-image: url(#{backdrop.url("w1280")})"}"
+
+    / Slider navigation
+    nav
+      = link_to "#", class: "prev" do
+        i.fa.fa-angle-left
+      = link_to "#", class: "next" do
+        i.fa.fa-angle-right
+
+  / Toggle movie info
+  .btn.btn--light.toggle-movie-info.js-toggle-info
+    | Movie info
+
+  / Slider Credits
+  .movie__info-wrapper
+    .movie__info
+      header
+        p.movie__subheader
+          =' @movie.decorate.directors
+          span.movie__year
+            ' ·
+            = @movie.decorate.movie_year
+
+        h1.flush= link_to @movie.title, @movie, class: "movie__title"
+        p.movie__stats
+          i.fa.fa-star
+          '
+          b#rating_average.movie-ratio =' @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
+          ' ·
+          b
+            =' @movie.ratings.count
+            ' ratings
+
+
+        / Rating movie
+        .movie--rating
+          #my_rating
+          - if current_user
+            - my_rating = @my_rating ? @my_rating.value : 0
+            #rating_form
+              = render "ratings/form", :movie => @movie, :my_rating => my_rating
+            .js-rate-button.do-rating__subtitle
+              ' Actual Rate
+              span.js-my-rating= my_rating
+
+- content_for :custom_js do
+  javascript:
+    $(document).ready(function() {
+
+      var selected = #{@my_rating.present?};
+
+      // Slider pluguin call
+      $('.backdrop-slider').slider();
+
+      $('.js-star-hover').on({
+        // Handles the mouseover
+        mouseover: function(){
+            if(!selected) {$(this).prevAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');}
+        },
+        mouseleave: function(){
+            if(!selected) {$(this).prevAll().andSelf().children().removeClass('fa-star').addClass('fa-star-o');}
+        },
+        click: function(){
+          if(!selected) { $('.js-star-hover').off('mouseleave mouseover'); selected = true; }
+          else {
+            $(this).prevAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');
+            $(this).nextAll().children().removeClass('fa-star').addClass('fa-star-o');
+          }
+          var value = $(this).data("number");
+          $(".js-rating-number").val(value);
+          $(".js-actual-rate").text(value);
+        }
+      });
+
+    });

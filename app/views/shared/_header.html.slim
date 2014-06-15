@@ -1,24 +1,17 @@
-nav.main-nav
-  ul.nav-items
-    li.notifications
-      =link_to notifications_path, class: "notifications-title" do
-        | Notifications
-        - if current_user && @pending_notifications.any?
-          span.pending-notifiactions-number= @pending_notifications.count
-      - if current_user && current_user.notifications.any?
-        = render current_user.notifications.last
-      - else
-        em.subtitle You don't have any notifiactions at this moment
+nav.display-nav
+  ul.display-nav__list
 
-    li= link_to ranking_path, class: "main-link" do
-      span.title Movies
-      em.subtitle Best rated movies
-    li= link_to users_path, class: "main-link" do
-      span.title Users
-      em.subtitle Users ordered by experience
-    li= link_to badges_path, class: "main-link" do
-      span.title Badges
-      em.subtitle List of locked/unlocked badges
+    li.display-nav__elem = link_to ranking_path, class: "display-nav__link" do
+      span.display-nav__title Movies
+      / em.display-nav__subtitle Best rated movies
+
+    li.display-nav__elem = link_to users_path, class: "display-nav__link" do
+      span.display-nav__title Users
+      / em.display-nav__subtitle Users ordered by experience
+
+    li.display-nav__elem = link_to badges_path, class: "display-nav__link" do
+      span.display-nav__title Badges
+      / em.display-nav__subtitle List of locked/unlocked badges
 
 section.search-form-wrapper
   .search-form
@@ -30,24 +23,32 @@ header.main-header
   .header-grid
     .logo= link_to image_tag("love4movies.svg"), root_path
     - if current_user
-      .user-navigation
-        .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
-        / Profile avatar
-        .menu-toggler.js-menu
-          - if @pending_notifications.any?
-            span.notifiactions-number= @pending_notifications.count
-          i.fa.fa-bars.menu-icon
-        / Search icon
-        .search-toggler.js-search
-          i.fa.fa-search.search-icon
+      nav
+        ul.icon-nav
+          // Search
+          li.icon-nav__search.js-search
+            i.fa.fa-lg.fa-search
+          // Notifications
+          li.icon-nav__notification
+            = link_to notifications_path do
+              - if @pending_notifications.any?
+                span.notifiactions-number= @pending_notifications.count
+              i.fa.fa-lg.fa-bell-o
+          // Menu
+          li.icon-nav__menu.js-menu
+            i.fa.fa-lg.fa-bars
+          // Profile
+          li.icon-nav__profile
+            .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
 
 - content_for :custom_js do
   javascript:
     $(document).ready(function() {
 
       function openMenu() {
-        $('.main-nav').toggleClass('active');
-        $(this).find('.menu-icon').transition({ opacity: '0' }, 300, 'cubic-bezier(.68,.05,.59,1)', function() {
+        $('.display-nav').toggleClass('active');
+        $(".main-header").toggleClass('menu-active');
+        $(this).find('.fa').transition({ opacity: '0' }, 300, 'cubic-bezier(.68,.05,.59,1)', function() {
           $(this).toggleClass('fa-bars').toggleClass('fa-times fa-inverse');
           $(this).transition({ opacity: '1' }, 300, 'cubic-bezier(.68,.05,.59,1)');
         });

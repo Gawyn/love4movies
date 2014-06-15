@@ -18,14 +18,15 @@
   }
   input{
     color: $white;
-    background-color: $good-green;
+    background-color: $brand-color;
     display: block;
     width: 100%;
-    border: 3px solid $good-green;
+    border: 2px solid $brand-color;
     padding: 1em 1em;
+    letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 300;
     @include transition(border, ease-in, .35s);
-    &:hover, &:focus{ outline: 0; border-color: darken($good-green, 10%); }
+    &:hover, &:focus{ outline: 0; border-color: darken($brand-color, 10%); }
   }
 }

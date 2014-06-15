@@ -1,119 +1,41 @@
-- first_movie_backdrop = @movie.backdrops.first
-- backdrop_is_present = first_movie_backdrop.present?
+- content_for :title do
+  = @movie.title
 
-/ Slider
 .movie-wrapper
-  section.backdrop-slider.movie--header.movie-sidebar class=(backdrop_is_present ? "hero" : "hero--small")
-    - if backdrop_is_present
-      ul.itemwrap
-        li.current
-          .backdrop style="#{"background-image: url(#{first_movie_backdrop.url("w1280")})"}"
-
-        - @movie.backdrops.drop(1).first(3).each do |backdrop|
-          li
-            .backdrop style="#{"background-image: url(#{backdrop.url("w1280")})"}"
-
-      / Slider navigation
-      nav
-        = link_to "#", class: "prev" do
-          i.fa.fa-angle-left
-        = link_to "#", class: "next" do
-          i.fa.fa-angle-right
-
-    / Toggle movie info
-    .btn.btn--light.toggle-movie-info.js-toggle-info
-      i.fa.fa-long-arrow-left
-      '
-      | Movie info
-
-    / Slider Credits
-    .movie__info-wrapper
-      .movie__info
-        header
-          p.movie__subheader
-            =' @movie.decorate.directors
-            span.movie__year
-              ' ·
-              = @movie.decorate.movie_year
-
-          h1.flush= link_to @movie.title, @movie, class: "movie__title"
-          p.movie__stats
-            i.fa.fa-star
-            '
-            b#rating_average.movie-ratio =' @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
-            ' ·
-            b
-              =' @movie.ratings.count
-              ' ratings
-
-
-          / Rating movie
-          .movie--rating
-            #my_rating
-            - if current_user
-              - my_rating = @my_rating ? @my_rating.value : 0
-              #rating_form
-                = render "ratings/form", :movie => @movie, :my_rating => my_rating
-              .js-rate-button.do-rating__subtitle
-                ' Actual Rate
-                span.js-my-rating= my_rating
+  = render "sidebar"
+  = render "info"
 
   section.movie--ratings#ratings.movie-section
     .movie-section-wrapper
-      header.movie__header
-      - if @ratings && @ratings.any?
-        - if current_user
-          .wrapper-action
-            .btn.btn--sml.btn--rate.js-open-rating
-              i.fa.fa-pencil
-              '
-              | New review
+      .do-rating-form
+        em.do-rating__subtitle No more than 140 character
 
-        h3.movie__heading Reviews
+        = form_tag movie_ratings_path(movie_id: @movie.id), method: :post do
+          = text_area_tag "short_review", "", class: "do-rating__input", maxlength: "140"
+          = number_field_tag "value", "Rating", in: 1...11, class: "do-rating__number js-rating-number"
+          .do-rating-with-stars
+            span.star-list
+              - 1.upto(10).each do |i|
+                span.do-rating-action.js-star-hover data-number="#{i}"
+                  i.fa.fa-star-o.fa-lg
+            em.do-rating__subtitle
+              ' Actual rate:
+              span.js-actual-rate 0
+
+          = submit_tag "Publish", class: "btn btn--sml do-rating__btn"
+
+      - if @ratings && @ratings.any?
+        / - if current_user
+        /   .wrapper-action
+        /     .btn.btn--sml.btn--rate.js-open-rating
+        /       i.fa.fa-pencil
+        /       '
+        /       | New review
+
+        h3 Reviews
         .ratings
           - @ratings.each do |rating|
             = render "ratings/short", rating: rating, review: true
-
-
-        h3.movie__heading Ratings
-        ul.list-of-ratings
-          - @ratings.each do |rating|
-            = render "ratings/short", rating: rating
-
-  .info-movie-sidebar
-
-    / Toggle movie info
-    .btn.toggle-movie-info.js-toggle-info
-      i.fa.fa-long-arrow-right
-      '
-      | Close
-
-    .movie-section-wrapper
-      section.movie--show#sinopsis
-        figure.movie__img
-          = image_tag (@movie.posters.any? ? @movie.posters.first.url("w500") : "no-movie.jpg")
-        .movie__summary
-          h2.movie__heading Synopsis
-          p.movie__sinopsis= @movie.overview
-          date.movie__runtime
-            =' @movie.runtime
-            | min
-          .movie__tags
-            span = @movie.full_genres
-
-    section.movie--actors#actors
-      h2.movie__heading Actors
-      p.movie__sub-heading Main cast
-      .movie--actors-list
-        - @movie.performances.order("tmdb_order asc").includes(:person).limit(20).map do |performance|
-          - if performance.person.profiles.any?
-            article data-ratio="1.4"
-              = link_to performance.person do
-                figure
-                  = image_tag performance.person.profiles.first.url("w185")
-                  figcaption
-                    .actor__description
-                      .actor__name = performance.person.name
 
 - if current_user
   .do-rating.js-rating
@@ -142,32 +64,6 @@
   javascript:
     $(document).ready(function() {
 
-      var selected = #{@my_rating.present?};
-
-      // Slider pluguin call
-      $('.backdrop-slider').slider();
-
-      $('.js-star-hover').on({
-        // Handles the mouseover
-        mouseover: function(){
-            if(!selected) {$(this).prevAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');}
-        },
-        mouseleave: function(){
-            if(!selected) {$(this).prevAll().andSelf().children().removeClass('fa-star').addClass('fa-star-o');}
-        },
-        click: function(){
-          if(!selected) { $('.js-star-hover').off('mouseleave mouseover'); selected = true; }
-          else {
-            $(this).prevAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');
-            $(this).nextAll().children().removeClass('fa-star').addClass('fa-star-o');
-          }
-          var value = $(this).data("number");
-          $(".js-rating-number").val(value);
-          $(".js-actual-rate").text(value);
-        }
-      });
-
-
       function closeRating() {
         $('.js-rating').transition({ y: '100%' }, function() {});
       }
@@ -180,14 +76,7 @@
       }
 
       // Open/Close Rating Movie
-
       $('.js-open-rating').on( "click", openRating );
       $( '.js-close-rating' ).on( "click", closeRating );
 
-      // Toggle movie info
-      $('.js-toggle-info').on( 'click', function( ev ) { ev.preventDefault(); $('.info-movie-sidebar').toggleClass('active'); } );
-
     });
-
-- content_for :title do
-  = @movie.title

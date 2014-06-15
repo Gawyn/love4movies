@@ -26,12 +26,6 @@
   max-width: 50em;
 }
 
-.movie__header{
-  &.movie__header--centered{
-    @extend %text--center;
-  }
-}
-
 .ratings{
   @include trailer(2);
 }
