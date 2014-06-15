@@ -1,4 +1,4 @@
-- 10.downto(1).each do |i|
-  = link_to ratings_path(:movie_id => movie.id, :value => i), :method => :post, :remote => true, :class => "icon-rating"  do
-    = fa_icon "star-o", class: "fa-lg"
-
+.do-rating-with-stars
+  - 1.upto(10).each do |i|
+    = link_to ratings_path(:movie_id => movie.id, :value => i), :method => :post, :remote => true, :class => "js-star-hover", :"data-number" => "#{i}"   do
+      = my_rating >= i ? fa_icon("star", class: "fa-lg do-rating-action rating__star--full") : fa_icon("star-o", class: "fa-lg do-rating-action rating__star--empty")

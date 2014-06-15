@@ -30,6 +30,7 @@
   @extend %medium-block-grid-3;
   @extend %large-block-grid-4;
   @extend %xlarge-block-grid-5;
+  figcaption                      { @include transition(opacity, ease, 0.4s); @extend %invisible; }
   article                         { @include rposition($type: relative); }
   figure{
     background-color: $text-color;
@@ -39,9 +40,9 @@
     &:hover, &.visible{
       .figure__img            { opacity: .2; @include scale(1.1); }
       figcaption              { @extend %visible; }
+      .movie__activity        { @include transform(translate3d(0, -10%, 0)); background-image: none; }
     }
   }
-  figcaption{ @include transition(opacity, ease, 0.4s); @extend %invisible; }
 }
 
 

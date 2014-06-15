@@ -4,8 +4,26 @@ $slider-index: 99;
 $dark-trans: transparentize($text-color, 0.3);
 
 .movie__info-wrapper    { @extend %grid-papa; }
-.movie__heading         { @extend %headline; @include adjust-font-size-to($h1-size); }
+.movie__heading         { @extend %headline; @include adjust-font-size-to($h1-size); @include trailer(.25); }
 .movie__sub-heading     { @extend %readable; @include adjust-font-size-to($h6-size); font-style: italic; @include trailer; color: transparentize($text-color, .5); }
+
+.movie-wrapper            { @include rposition($type: absolute, $top: 0, $right: 0, $bottom: 0, $left: 0); }
+.movie-sidebar            { @include rposition($type: absolute, $top: 0, $bottom: 0, $left: 0); height: 100%; width: 62.666%; z-index: 3; }
+.movie-section            { position: relative; height: 100%; overflow: hidden; overflow-y: scroll; margin-left: 62.666%; z-index: 2; -webkit-overflow-scrolling: touch; }
+.movie-section-wrapper    { padding: $base-font-size*5 10% 1em 10%; position: relative; }
+.wrapper-action           { position: absolute; top: 1em; }
+
+.info-movie-sidebar{
+  @extend .movie-sidebar;
+  overflow: auto;
+
+  background-color: $white;
+  @include translateX(-100%);
+  @include transition(transform 300ms $cubic-2);
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar      { display: none; }
+  &.active                  { @include translateX(0); }
+}
 
 // ------------------
 // HERO
@@ -21,8 +39,8 @@ $dark-trans: transparentize($text-color, 0.3);
   }
 
   .movie__title   {
-    @include adjust-font-size-to($mega-size, 3);
-    font-size: 6vw;
+    @include adjust-font-size-to($h1-size, 1.5);
+    font-size: calc(#{$base-font-size*2} + 3vw + 2vh);
     padding: 0 $base-font-size*2.5;
     @extend %flush;
     display: block;
@@ -53,12 +71,8 @@ $dark-trans: transparentize($text-color, 0.3);
 // SINOPSIS
 // ------------------
 .movie--show{
-  @extend %grid-papa;
   @extend %relative;
   @extend %cf;
-  @include trailer(2);
-  @include leader(2);
-
   .movie__img             { @extend %grid; @extend %medium-one-quarter; @extend %show-medium-up; }
   .movie__runtime         { padding-right: 1em; }
   .movie__tags            { display: inline-block; }
@@ -72,8 +86,6 @@ $dark-trans: transparentize($text-color, 0.3);
   }
 
   .movie__sinopsis{
-    @include column-count(2);
-    @include column-gap(2em);
     @include trailer;
     @extend %readable;
     @include adjust-font-size-to($base-font-size);
@@ -84,10 +96,8 @@ $dark-trans: transparentize($text-color, 0.3);
 // ACTORS
 // ------------------
 .movie--actors{
-  @extend %grid-papa;
   @extend %relative;
   @extend %cf;
-  @include trailer(2);
   @extend %text--center;
   .movie--actors-list   {
     @extend %block-grid;
@@ -95,7 +105,6 @@ $dark-trans: transparentize($text-color, 0.3);
     @extend %medium-block-grid-3;
     @extend %large-block-grid-5;
     @extend %xlarge-block-grid-6;
-    @include trailer(2);
   }
   .actor__description{
     display: table;
@@ -120,7 +129,7 @@ $dark-trans: transparentize($text-color, 0.3);
     background-color: $text-color;
     overflow: hidden;
     height: 100%;
-    img                           { width: 100%; height: 100%; @include transition(all, ease, 0.6s); }
+    img                           { width: 100%; height: 100%; @include transition(all, ease, 0.5s); }
     &:hover{
       img                         { opacity: .25; @include scale(1.1); }
       figcaption                  { @extend %visible; }
@@ -147,7 +156,6 @@ $dark-trans: transparentize($text-color, 0.3);
   .do__title              { opacity: 0; }
 
   .do-review__subtitle,
-  .do-rating__subtitle    { @extend %show; color: gray; font-weight: 300; font-style: italic; @include trailer; @extend %readable; }
 
   .do-review__close,
   .do-rating__close       { @include rposition($type: absolute, $right: 0, $top: $header-height*2 ); cursor: pointer; font-size: 2em; font-weight: 300; }
@@ -165,15 +173,40 @@ $dark-trans: transparentize($text-color, 0.3);
   }
 }
 
-.do-rating{
-  @extend %text--center;
-  .do-rating__input       { height: 4em; width: 66.666%; }
+.do-rating__subtitle    { color: gray; font-weight: 300; font-style: italic; @include trailer; @extend %readable; }
+
+.do-rating-form{
+  background-color: #F0F0F0;
+  padding: 1em;
+  @include trailer;
+  .do-rating__input       { height: 4em; width: 100%; }
   .do-rating__number      { display: none; }
+  .do-rating__btn         {
+    @include leader;
+    color: $white;
+    background-color: $brand-color;
+    border: 2px solid $brand-color;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 300;
+    @include transition(border, ease-in, .35s);
+    &:hover, &:focus{ outline: 0; border-color: darken($brand-color, 10%); }
+  }
+
+  textarea{
+    border: 1px solid #eee;
+    resize: none;
+    width: 100%;
+    height: 5em;
+    @include trailer(.5);
+    border-radius: 2px;
+    &:focus{ outline: 0; border-color: #bbb; }
+  }
+
 }
 
 .do-rating-with-stars{
-  @include trailer(3);
-  .do-rating-action { cursor: pointer; margin-right: 5px; }
+  .do-rating-action { cursor: pointer; margin-right: 2px; color: $brand-color; }
 }
 
 // ------------------
@@ -181,10 +214,7 @@ $dark-trans: transparentize($text-color, 0.3);
 // ------------------
 .backdrop-slider {
   &.hero{
-    width: 100%;
-    height: 100%;
     background: $text-color;
-    position: relative;
   }
   &.hero:before{
     content: "";
@@ -247,4 +277,23 @@ $dark-trans: transparentize($text-color, 0.3);
 
   nav a.prev          { right: $base-font-size*3; }
 
+}
+
+.toggle-movie-info {
+  @include rposition($type: absolute, $top: 1em, $right: 2em);
+  z-index: $comment-index;
+  @extend .btn--sml;
+  border-width: 2px;
+  font-weight: 800;
+}
+
+.list-of-ratings{
+  list-style: none;
+  @include inline-block-list;
+}
+
+.back-link{
+  @include trailer(.5);
+  display: block;
+  .fa { margin-right: 1em; }
 }

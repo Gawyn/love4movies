@@ -1,11 +1,6 @@
-.rating, .review        { @include trailer(2); padding: 0 2em!important; }
-.rating                 { @include leader(4); }
+.rating                 { @include trailer; }
 .rating__review         { @extend %readable; @include trailer(.25); }
 .rating__review--link   { color: $text-color; @include transition(color ease-in .15s); &:hover{ color: $brand-color; } }
-
-.rating--wrapper          { @include rposition($type: absolute, $top: 0, $right: 0, $bottom: 0, $left: 0); }
-.rating--movie--side      { @include rposition($type: absolute, $top: 0, $bottom: 0, $left: 0); height: 100%; width: 62.666%; z-index: 3; }
-.rating--section          { position: relative; height: 100%; overflow: hidden; overflow-y: scroll; margin-left: 62.666%; z-index: 2; }
 
 
 .rating--backdrop {
@@ -23,18 +18,12 @@
   }
 }
 
-.movie--reviews, .movie--ratings {
+.movie--reviews{
   @extend %grid-papa;
   @extend %relative;
   @extend %cf;
   @include trailer(2);
   max-width: 50em;
-}
-
-.movie__header{
-  &.movie__header--centered{
-    @extend %text--center;
-  }
 }
 
 .ratings{
@@ -44,6 +33,7 @@
 
 .rating__stars{
   @include trailer(.25);
+  font-size: 14px;
 }
 
 .comment-action{
@@ -55,6 +45,7 @@
 
 .rating__stats{
   @include trailer;
+  @include leader(.25);
   span { margin-right: .5em; }
 }
 
@@ -68,7 +59,6 @@
 
 .rating-show{
   .media__body--content   { @include adjust-font-size-to($h4-size, 1.5); @include trailer; @include leader(.5); }
-  .rating__stars          { float: right; font-size: 1.25em; }
 }
 
 .media__lovers{
@@ -86,4 +76,10 @@
   @include trailer;
   .content    { @extend %readable; text-align: left; color: transparentize($white, .4); @include transition; &:hover {color: $white;} }
   .media__img { width: 30px; height: 30px; margin-left: 10px; }
+}
+
+.review__title{
+  @extend %caps;
+  font-size: 1.125em;
+  font-weight: 300;
 }

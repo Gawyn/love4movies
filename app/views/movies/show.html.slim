@@ -1,228 +1,46 @@
-- first_movie_backdrop = @movie.backdrops.first
-- backdrop_is_present = first_movie_backdrop.present?
+- content_for :title do
+  = @movie.title
 
-/ Slider
-section.backdrop-slider.movie--header class=(backdrop_is_present ? "hero" : "hero--small")
-  - if backdrop_is_present
-    ul.itemwrap
-      li.current
-        .backdrop style="#{"background-image: url(#{first_movie_backdrop.url("w1280")})"}"
+.movie-wrapper
+  = render "sidebar"
+  = render "info"
 
-      - @movie.backdrops.drop(1).first(3).each do |backdrop|
-        li
-          .backdrop style="#{"background-image: url(#{backdrop.url("w1280")})"}"
+  section.movie--ratings#ratings.movie-section
+    .movie-section-wrapper
 
-    / Slider navigation
-    nav
-      = link_to "#", class: "prev" do
-        i.fa.fa-angle-left
-      = link_to "#", class: "next" do
-        i.fa.fa-angle-right
+      - if current_user && @my_rating.nil?
+        h3.review__title Write a review
+        .do-rating-form
+          em.do-rating__subtitle No more than 140 character
 
+          = form_tag movie_ratings_path(movie_id: @movie.id), method: :post do
+            = text_area_tag "short_review", "", class: "do-rating__input", maxlength: "140"
+            = number_field_tag "value", "Rating", in: 1...11, class: "do-rating__number js-rating-number"
+            .do-rating-with-stars
+              span.star-list
+                - 1.upto(10).each do |i|
+                  span.do-rating-action.js-star-hover data-number="#{i}"
+                    i.fa.fa-star-o.fa-lg
+              em.do-rating__subtitle
+                ' Actual rate:
+                span.js-actual-rate 0
 
-  / Slider Credits
-  .movie__info-wrapper
-    .movie__info
-      header
-        p.movie__subheader
-          =' @movie.decorate.directors
-          span.movie__year
-            ' ·
-            = @movie.decorate.movie_year
+            = submit_tag "Publish", class: "btn btn--sml do-rating__btn"
 
-        h1.flush= link_to @movie.title, @movie, class: "movie__title"
-        p.movie__stats
-          i.fa.fa-star
-          '
-          span#rating_average.movie-ratio =' @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
-          ' ·
-          =' link_to anchor: "ratings" do
-            =' @movie.ratings.count
-            ' ratings
-          / ' ·
-          / =' link_to anchor: "reviews" do
-          /   =' @movie.reviews.count
-          /   | reviews
+      - elsif !current_user
+        h3.review__title Join the community of cinema lovers
+        = link_to "Facebook login", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--full"
 
-        - if @ratings && @ratings.any?
-          - rating = @ratings.first
-          - if rating.short_review
-            .media.media__best
-              .media__img= link_to image_tag(rating.user.avatar("small")), rating.user
-              .media__body
-                = link_to movie_rating_path(@movie, rating), class: "rating__review--link" do
-                  .content
-                    | &#8220;
-                    = rating.short_review
-                    | &#8221;
+        = link_to "Twitter login", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--full"
 
-        - if current_user
-          - if @my_rating.nil?
-            .btn.movie__btn.js-open-rating
-              | Rate it
-
-          / - else
-          /   .btn.movie__btn.js-open-review
-          /     | Write a review
-
-
-section.movie--show#sinopsis
-  figure.movie__img
-    = image_tag (@movie.posters.any? ? @movie.posters.first.url("w500") : "no-movie.jpg")
-  .movie__summary
-    h2.movie__heading Synopsis
-    p.movie__sinopsis= @movie.overview
-    date.movie__runtime
-      =' @movie.runtime
-      | min
-    .movie__tags
-      span = @movie.full_genres
-
-section.movie--actors#actors
-  h2.movie__heading Actors
-  p.movie__sub-heading Main cast
-  .movie--actors-list
-    - @movie.performances.order("tmdb_order asc").includes(:person).limit(10).map do |performance|
-      - if performance.person.profiles.any?
-        article data-ratio="1.4"
-          = link_to performance.person do
-            figure
-              = image_tag performance.person.profiles.first.url("w185")
-              figcaption
-                .actor__description
-                  .actor__name = performance.person.name
-
-
-section.movie--ratings#ratings
-  header.movie__header.movie__header--centered
-    h2.movie__heading Ratings
-    p.movie__sub-heading Best reviews and ratings
-
-  - if current_user && @my_rating.nil?
-    .wrapper-action
-      .btn.js-open-rating Rate it
-
-  - if @ratings && @ratings.any?
-    .ratings
-      - @ratings.each do |rating|
-        = render "ratings/short", rating: rating
-
-/ section.movie--reviews#reviews
-/   header.movie__header.movie__header--centered
-/     h2.movie__heading Reviews
-/     p.movie__sub-heading The best reviews of our users
-
-/   .wrapper-action
-/     .btn.js-open-review Write a Review
-
-/   #reviews-wrapper
-/     - @movie.reviews.each do |review|
-/       = render :partial => "reviews/show", :locals => {:review => review}
-
-- if current_user && @my_rating.nil?
-  .do-rating.js-rating
-    .do-rating-grid
-      h3.movie__heading.do__title = @movie.title
-      em.do-rating__subtitle No more than 140 character
-
-      .js-close-rating.do-rating__close x
-
-      = form_tag movie_ratings_path(movie_id: @movie.id), method: :post do
-        = text_area_tag "short_review", "", class: "do-rating__input", maxlength: "140"
-        = number_field_tag "value", "Rating", in: 1...11, class: "do-rating__number js-rating-number"
-        .do-rating-with-stars
-          em.do-rating__subtitle
-            ' Actual rate:
-            span.js-actual-rate 0
-
-          .star-list
-            - 1.upto(10).each do |i|
-              span.do-rating-action.js-star-hover data-number="#{i}"
-                i.fa.fa-star-o.fa-2x
-
-        = submit_tag "Publish", class: "btn"
-
-- if current_user
-  .do-review.js-review
-    .do-review-grid
-      h3.movie__heading.do__title = @movie.title
-      em.do-review__subtitle Leave your review
-
-      .js-close-review.do-review__close x
-
-      = simple_form_for @movie.reviews.new, :remote => true do |f|
-        = f.input :content, :label => false, :input_html => { :class => 'do-review__input' }
-        = f.input :movie_id, :as => :hidden, :value => @movie.id
-        = f.submit :class => 'btn js-close-review', :value => "Publish"
-
+      - if @ratings && @ratings.any?
+        h3.review__title Reviews
+        .ratings
+          - @ratings.each do |rating|
+            = render "ratings/short", rating: rating, review: true
 
 - content_for :custom_js do
   javascript:
     $(document).ready(function() {
 
-      var selected = false;
-
-      // Slider pluguin call
-      $('.backdrop-slider').slider();
-
-      $('.js-star-hover').on({
-        // Handles the mouseover
-        mouseover: function(){
-            $(this).prevAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');
-        },
-        mouseleave: function(){
-            $(this).prevAll().andSelf().children().removeClass('fa-star').addClass('fa-star-o');
-        },
-        click: function(){
-          if(!selected) { $('.js-star-hover').off('mouseleave mouseover'); selected = true; }
-          else {
-            $(this).prevAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');
-            $(this).nextAll().children().removeClass('fa-star').addClass('fa-star-o');
-          }
-          var value = $(this).data("number");
-          $(".js-rating-number").val(value);
-          $(".js-actual-rate").text(value);
-
-        }
-      });
-
-      function toggleRating() { $('.rating-buttons').toggleClass("invisible"); }
-
-      function closeReview() {
-        $('.movie-wrapper').transition({ opacity: '1' });
-        $('.js-review').transition({ y: '100%' }, function() {});
-      }
-
-      function openReview() {
-        $('.movie-wrapper').transition({ opacity: '0.2' });
-        $('.js-review').transition({ y: '0' }, 500, 'cubic-bezier(.68,.05,.59,1)', function() {
-          $('.do__title').transition({ opacity: '1' });
-          $('.do-review__input').focus();
-        });
-      }
-
-      function closeRating() {
-        $('.js-rating').transition({ y: '100%' }, function() {});
-      }
-
-      function openRating() {
-        $('.js-rating').transition({ y: '0' }, 500, 'cubic-bezier(.68,.05,.59,1)', function() {
-          $('.do__title').transition({ opacity: '1' });
-          $('.do-rating__input').focus();
-        });
-      }
-
-      // Open/Close Review Movie
-      $('.js-open-review').on( "click", openReview );
-      $( '.js-close-review' ).on( "click", closeReview );
-
-      $('.js-open-rating').on( "click", openRating );
-      $( '.js-close-rating' ).on( "click", closeRating );
-
-      // Rating Movie
-      $('.js-rate-button, .icon-rating').on( "click", toggleRating );
-
     });
-
-- content_for :title do
-  = @movie.title

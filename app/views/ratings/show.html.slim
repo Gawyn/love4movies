@@ -1,46 +1,36 @@
 - my_loves = @loves[@rating.id]
-- first_movie_backdrop = @movie.backdrops.first
 
-.rating--wrapper
+.movie-wrapper
+  = render "movies/sidebar"
+  = render "movies/info"
 
-  sidebar.rating--movie--side.movie--header.hero
-    .rating--backdrop style="#{"background-image: url(#{first_movie_backdrop.url("w1280")})"}"
-    .movie__info.hero
-      header
-        p.movie__subheader
-          =' @movie.decorate.directors
-          span.movie__year
-            ' ·
-            = @movie.decorate.movie_year
+  section.movie-section
+    article.movie-section-wrapper.rating.rating-show data-id=@rating.id
+      - if !current_user
+        h3.review__title Join the community of cinema lovers
+        = link_to "Facebook login", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--full"
 
-        h1.flush= link_to @movie.title, @movie, class: "movie__title"
-        p.movie__stats
-          i.fa.fa-star
-          '
-          span#rating_average.movie-ratio =' @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
-          ' ·
-          =' link_to anchor: "ratings" do
-            =' @movie.ratings.count
-            ' ratings
+        = link_to "Twitter login", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--full"
 
-  section.rating--section
-    article.rating.rating-show data-id=@rating.id
+      = link_to @movie, class: "back-link" do
+        i.fa.fa-long-arrow-left
+        | Go back to reviews
       .media
         .media__img= link_to image_tag(@rating.user.avatar("small")), @rating.user
         .media__body
-          .rating__stars
-            i.fa.fa-star
-            '
-            = @rating.value
-
-          .media__body--author = link_to @rating.user.name, @rating.user
           .media__body--date = @rating.created_at.to_s :short
+          .media__body--author = link_to @rating.user.name, @rating.user
+
 
         .media__body--content
           - if @rating.short_review
             = @rating.short_review
 
-        .rating__stats
+          .rating__stars
+            - 1.upto(10) do |star_number|
+              = @rating.value >= star_number ? fa_icon("star", class: "rating__star--full") : fa_icon("star-o", class: "rating__star--empty")
+
+        .rating__loves
           span.media__love.js-love
             - if current_user && @loves && @loves[@rating.id] && active_love = @loves[@rating.id].detect { |love| love.user_id == current_user.id }
               = link_to lofe_path(active_love), method: :delete, remote: true, class: "unlove-action" do
