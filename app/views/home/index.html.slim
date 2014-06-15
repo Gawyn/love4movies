@@ -1,12 +1,15 @@
 - if !current_user
+
+  - first_movie_backdrop = @last_activity.content.movie.backdrops.first
+  - backdrop_is_present = first_movie_backdrop.present?
+
   section.login-banner
-    - if @last_activity
-      = image_tag @last_activity.content.movie.backdrops.first.url("w1280")
+    = image_tag ( backdrop_is_present ? first_movie_backdrop.url("w1280") : "nav-test.jpg" )
 
     .login-banner__wrapper
       h1.login-banner__title The movie lovers community
       = link_to "Facebook login", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--login"
-
+      span or
       = link_to "Twitter login", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--login"
 
 - elsif @followeds_activities && @followeds_activities.any?
