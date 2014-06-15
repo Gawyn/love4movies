@@ -88,11 +88,18 @@ $header-index: 9;
     display: block;
     position: relative;
     z-index: 9999;
-    background-image: url("nav-test.jpg");
+    // background-image: url("nav-test.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     color: $white;
+    @include padding-leader(3);
+    @include transition;
+    background-color: transparentize(black, .25);
+    &:hover{
+      background-color: $white;
+      color: $text-color;
+    }
     &:after {
       content: '';
       position: absolute;
@@ -101,7 +108,7 @@ $header-index: 9;
       width: 100%;
       height: 100%;
       pointer-events: none;
-      background-color: transparentize(black, .3);
+      // background-color: transparentize(black, .25);
     }
   }
 
@@ -110,8 +117,15 @@ $header-index: 9;
     z-index: 999;
     @extend %headline;
     @include adjust-font-size-to($kilo-size);
-    padding-top: 1.8em;
     display: block;
+  }
+
+  .display-nav__subtitle{
+    position: relative;
+    z-index: 9999;
+    display: block;
+    color: transparentize($white, .5);
+    @extend %readable;
   }
 
   &.active            { height: $base-font-size*18; }

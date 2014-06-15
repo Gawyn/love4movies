@@ -7,76 +7,40 @@
 
   section.movie--ratings#ratings.movie-section
     .movie-section-wrapper
-      .do-rating-form
-        em.do-rating__subtitle No more than 140 character
 
-        = form_tag movie_ratings_path(movie_id: @movie.id), method: :post do
-          = text_area_tag "short_review", "", class: "do-rating__input", maxlength: "140"
-          = number_field_tag "value", "Rating", in: 1...11, class: "do-rating__number js-rating-number"
-          .do-rating-with-stars
-            span.star-list
-              - 1.upto(10).each do |i|
-                span.do-rating-action.js-star-hover data-number="#{i}"
-                  i.fa.fa-star-o.fa-lg
-            em.do-rating__subtitle
-              ' Actual rate:
-              span.js-actual-rate 0
+      - if current_user && @my_rating.nil?
+        h3.review__title Write a review
+        .do-rating-form
+          em.do-rating__subtitle No more than 140 character
 
-          = submit_tag "Publish", class: "btn btn--sml do-rating__btn"
+          = form_tag movie_ratings_path(movie_id: @movie.id), method: :post do
+            = text_area_tag "short_review", "", class: "do-rating__input", maxlength: "140"
+            = number_field_tag "value", "Rating", in: 1...11, class: "do-rating__number js-rating-number"
+            .do-rating-with-stars
+              span.star-list
+                - 1.upto(10).each do |i|
+                  span.do-rating-action.js-star-hover data-number="#{i}"
+                    i.fa.fa-star-o.fa-lg
+              em.do-rating__subtitle
+                ' Actual rate:
+                span.js-actual-rate 0
+
+            = submit_tag "Publish", class: "btn btn--sml do-rating__btn"
+
+      - elsif !current_user
+        h3.review__title Join the community of cinema lovers
+        = link_to "Facebook login", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--full"
+
+        = link_to "Twitter login", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--full"
 
       - if @ratings && @ratings.any?
-        / - if current_user
-        /   .wrapper-action
-        /     .btn.btn--sml.btn--rate.js-open-rating
-        /       i.fa.fa-pencil
-        /       '
-        /       | New review
-
-        h3 Reviews
+        h3.review__title Reviews
         .ratings
           - @ratings.each do |rating|
             = render "ratings/short", rating: rating, review: true
 
-- if current_user
-  .do-rating.js-rating
-    .do-rating-grid
-      h3.movie__heading.do__title = @movie.title
-      em.do-rating__subtitle No more than 140 character
-
-      .js-close-rating.do-rating__close x
-
-      = form_tag movie_ratings_path(movie_id: @movie.id), method: :post do
-        = text_area_tag "short_review", "", class: "do-rating__input", maxlength: "140"
-        = number_field_tag "value", "Rating", in: 1...11, class: "do-rating__number js-rating-number"
-        .do-rating-with-stars
-          .star-list
-            - 1.upto(10).each do |i|
-              span.do-rating-action.js-star-hover data-number="#{i}"
-                i.fa.fa-star-o.fa-2x
-          em.do-rating__subtitle
-            ' Actual rate:
-            span.js-actual-rate 0
-
-        = submit_tag "Publish", class: "btn"
-
-
 - content_for :custom_js do
   javascript:
     $(document).ready(function() {
-
-      function closeRating() {
-        $('.js-rating').transition({ y: '100%' }, function() {});
-      }
-
-      function openRating() {
-        $('.js-rating').transition({ y: '0' }, 500, 'cubic-bezier(.68,.05,.59,1)', function() {
-          $('.do__title').transition({ opacity: '1' });
-          $('.do-rating__input').focus();
-        });
-      }
-
-      // Open/Close Rating Movie
-      $('.js-open-rating').on( "click", openRating );
-      $( '.js-close-rating' ).on( "click", closeRating );
 
     });

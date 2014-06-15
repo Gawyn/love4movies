@@ -77,3 +77,9 @@
   .content    { @extend %readable; text-align: left; color: transparentize($white, .4); @include transition; &:hover {color: $white;} }
   .media__img { width: 30px; height: 30px; margin-left: 10px; }
 }
+
+.review__title{
+  @extend %caps;
+  font-size: 1.125em;
+  font-weight: 300;
+}

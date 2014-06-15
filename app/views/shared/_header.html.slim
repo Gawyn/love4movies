@@ -2,16 +2,19 @@ nav.display-nav
   ul.display-nav__list
 
     li.display-nav__elem = link_to ranking_path, class: "display-nav__link" do
+      i.fa.fa-film.fa-inverse.fa-lg
       span.display-nav__title Movies
-      / em.display-nav__subtitle Best rated movies
+      em.display-nav__subtitle Best rated movies
 
     li.display-nav__elem = link_to users_path, class: "display-nav__link" do
+      i.fa.fa-group.fa-inverse.fa-lg
       span.display-nav__title Users
-      / em.display-nav__subtitle Users ordered by experience
+      em.display-nav__subtitle Users ordered by experience
 
     li.display-nav__elem = link_to badges_path, class: "display-nav__link" do
+      i.fa.fa-trophy.fa-inverse.fa-lg
       span.display-nav__title Badges
-      / em.display-nav__subtitle List of locked/unlocked badges
+      em.display-nav__subtitle List of locked/unlocked badges
 
 section.search-form-wrapper
   .search-form

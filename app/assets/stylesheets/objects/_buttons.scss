@@ -45,6 +45,7 @@
   padding-right:0;
   padding-left: 0;
   width: 100%;
+  @include trailer(.5);
 }
 
 .btn--facebook{
@@ -64,6 +65,7 @@
     content: "\f09a";
     @extend .fa;
     height: 100%;
+    width: 5em;
     line-height: 2;
     position: absolute;
     left: 0;
@@ -90,6 +92,7 @@
     content: "\f099";
     @extend .fa;
     height: 100%;
+    width: 5em;
     line-height: 2;
     position: absolute;
     left: 0;
