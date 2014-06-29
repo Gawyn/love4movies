@@ -37,7 +37,7 @@ class MoviesController < ApplicationController
   def get_recommended_movies
     @movies = Movie.where("movies.id not in (?)", current_user.ratings.pluck(:movie_id))
     @movies = @movies.joins(:genres).where("genres.id = ?", @genre) if @genre
-    @movies = @movies.more_total_ratings_than(15) if @order == "l4m_rating_average"
+    @movies = @movies.more_total_ratings_than(15) if @order != "l4m_rating_average"
 
     if @order == "rating_average"
       @movies.by_rating_average
