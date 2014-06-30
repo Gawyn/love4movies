@@ -40,9 +40,9 @@ class MoviesController < ApplicationController
     @movies = @movies.more_total_ratings_than(15) if @order != "l4m_rating_average"
 
     if @order == "rating_average"
-      @movies.by_rating_average.where("rating_average is not null")
+      @movies.order("rating_average desc", "id").where("rating_average is not null")
     else
-      @movies.by_l4m_rating_average.where("l4m_rating_average is not null")
+      @movies.order("l4m_rating_average desc", "id").where("l4m_rating_average is not null")
     end
   end
 end
