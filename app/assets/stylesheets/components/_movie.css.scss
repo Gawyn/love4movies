@@ -8,8 +8,8 @@ $dark-trans: transparentize($text-color, 0.3);
 .movie__sub-heading     { @extend %readable; @include adjust-font-size-to($h6-size); font-style: italic; @include trailer; color: transparentize($text-color, .5); }
 
 .movie-wrapper            { @include rposition($type: absolute, $top: 0, $right: 0, $bottom: 0, $left: 0); }
-.movie-sidebar            { @include rposition($type: absolute, $top: 0, $bottom: 0, $left: 0); height: 100%; width: 62.666%; z-index: 3; }
-.movie-section            { position: relative; height: 100%; overflow: hidden; overflow-y: scroll; margin-left: 62.666%; z-index: 2; -webkit-overflow-scrolling: touch; }
+.movie-sidebar            { @include rposition($type: absolute, $top: 0, $bottom: 0, $left: 0); height: 100%; width: 72.5%; z-index: 3; }
+.movie-section            { position: relative; height: 100%; overflow: hidden; overflow-y: scroll; margin-left: 72.5%; z-index: 2; -webkit-overflow-scrolling: touch; }
 .movie-section-wrapper    { padding: $base-font-size*5 10% 1em 10%; position: relative; }
 .wrapper-action           { position: absolute; top: 1em; }
 

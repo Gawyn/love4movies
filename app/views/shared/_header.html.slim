@@ -1,68 +1,98 @@
-nav.display-nav
+nav.menu.display-nav
+
+  .logo= link_to image_tag("love4movies.svg"), root_path
+
+  - if current_user
+    .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
+
   ul.display-nav__list
+
+    li.display-nav__elem = link_to root_path, class: "display-nav__link" do
+      i.fa.fa-clock-o.fa-inverse.fa-lg
+      span.display-nav__title Activity
 
     li.display-nav__elem = link_to ranking_path, class: "display-nav__link" do
       i.fa.fa-film.fa-inverse.fa-lg
       span.display-nav__title Movies
-      em.display-nav__subtitle Best rated movies
 
     li.display-nav__elem = link_to users_path, class: "display-nav__link" do
       i.fa.fa-group.fa-inverse.fa-lg
       span.display-nav__title Users
-      em.display-nav__subtitle Users ordered by experience
 
-    li.display-nav__elem = link_to badges_path, class: "display-nav__link" do
-      i.fa.fa-trophy.fa-inverse.fa-lg
-      span.display-nav__title Badges
-      em.display-nav__subtitle List of locked/unlocked badges
+    li.display-nav__elem = link_to notifications_path, class: "display-nav__link" do
+      i.fa.fa-bell-o.fa-inverse.fa-lg
+      span.display-nav__title News
 
-section.search-form-wrapper
-  .search-form
-    = form_tag search_path, :method => "get" do |f|
-      = text_field_tag :query,  nil, class: 'search-form__input', placeholder: 'Search your movie'
-      = submit_tag "Search", :hidden => true
+    / li.display-nav__elem = link_to badges_path, class: "display-nav__link" do
+    /   i.fa.fa-trophy.fa-inverse.fa-lg
+    /   span.display-nav__title Badges
 
-header.main-header
-  .header-grid
-    .logo= link_to image_tag("love4movies.svg"), root_path
-    - if current_user
-      nav
-        ul.icon-nav
-          // Search
-          li.icon-nav__search.js-search
-            i.fa.fa-lg.fa-search
-          // Notifications
-          li.icon-nav__notification
-            = link_to notifications_path do
-              - if @pending_notifications.any?
-                span.notifiactions-number= @pending_notifications.count
-              i.fa.fa-lg.fa-bell-o
-          // Menu
-          li.icon-nav__menu.js-menu
-            i.fa.fa-lg.fa-bars
-          // Profile
-          li.icon-nav__profile
-            .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
 
-- content_for :custom_js do
-  javascript:
-    $(document).ready(function() {
+/ nav.display-nav
+/   ul.display-nav__list
 
-      function openMenu() {
-        $('.display-nav').toggleClass('active');
-        $(".main-header").toggleClass('menu-active');
-        $(this).find('.fa').transition({ opacity: '0' }, 300, 'cubic-bezier(.68,.05,.59,1)', function() {
-          $(this).toggleClass('fa-bars').toggleClass('fa-times fa-inverse');
-          $(this).transition({ opacity: '1' }, 300, 'cubic-bezier(.68,.05,.59,1)');
-        });
-      }
+/     li.display-nav__elem = link_to ranking_path, class: "display-nav__link" do
+/       i.fa.fa-film.fa-inverse.fa-lg
+/       span.display-nav__title Movies
+/       em.display-nav__subtitle Best rated movies
 
-      $('.js-menu').on( "click", openMenu );
+/     li.display-nav__elem = link_to users_path, class: "display-nav__link" do
+/       i.fa.fa-group.fa-inverse.fa-lg
+/       span.display-nav__title Users
+/       em.display-nav__subtitle Users ordered by experience
 
-      $('.js-search').click(function () {
-        $(".search-form").toggleClass('active');
-        $(".search-form__input").focus();
-        $(".main-header").toggleClass('search-active');
-      });
+/     li.display-nav__elem = link_to badges_path, class: "display-nav__link" do
+/       i.fa.fa-trophy.fa-inverse.fa-lg
+/       span.display-nav__title Badges
+/       em.display-nav__subtitle List of locked/unlocked badges
 
-    });
+/ section.search-form-wrapper
+/   .search-form
+/     = form_tag search_path, :method => "get" do |f|
+/       = text_field_tag :query,  nil, class: 'search-form__input', placeholder: 'Search your movie'
+/       = submit_tag "Search", :hidden => true
+
+/ header.main-header
+/   .header-grid
+/     .logo= link_to image_tag("love4movies.svg"), root_path
+/     - if current_user
+/       nav
+/         ul.icon-nav
+/           // Search
+/           li.icon-nav__search.js-search
+/             i.fa.fa-lg.fa-search
+/           // Notifications
+/           li.icon-nav__notification
+/             = link_to notifications_path do
+/               - if @pending_notifications.any?
+/                 span.notifiactions-number= @pending_notifications.count
+/               i.fa.fa-lg.fa-bell-o
+/           // Menu
+/           li.icon-nav__menu.js-menu
+/             i.fa.fa-lg.fa-bars
+/           // Profile
+/           li.icon-nav__profile
+/             .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
+
+/ - content_for :custom_js do
+/   javascript:
+/     $(document).ready(function() {
+
+/       function openMenu() {
+/         $('.display-nav').toggleClass('active');
+/         $(".main-header").toggleClass('menu-active');
+/         $(this).find('.fa').transition({ opacity: '0' }, 300, 'cubic-bezier(.68,.05,.59,1)', function() {
+/           $(this).toggleClass('fa-bars').toggleClass('fa-times fa-inverse');
+/           $(this).transition({ opacity: '1' }, 300, 'cubic-bezier(.68,.05,.59,1)');
+/         });
+/       }
+
+/       $('.js-menu').on( "click", openMenu );
+
+/       $('.js-search').click(function () {
+/         $(".search-form").toggleClass('active');
+/         $(".search-form__input").focus();
+/         $(".main-header").toggleClass('search-active');
+/       });
+
+/     });
