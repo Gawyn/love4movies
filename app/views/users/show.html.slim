@@ -7,10 +7,9 @@
       .overlay
     .user
       figure.user__img
-        = image_tag @user.avatar("big")
+        = image_tag @user.medium_avatar
         figcaption
           h1.user__name= @user.name
-
 
       .person-data-wrapper
         .person-fade-bottom
