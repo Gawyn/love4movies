@@ -28,9 +28,6 @@
                 - else
                   = link_to "Follow", user_follows_path(@user), method: :post, remote: true, class: "user-follow"
 
-            - else
-              = link_to('Logout', destroy_user_session_path, :method => :delete)
-
   section.person-works
     header.search-keys
       span.search-keys__results
