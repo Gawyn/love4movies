@@ -172,7 +172,7 @@ label,
 }
 
 // Placeholders
-::-webkit-input-placeholder   { color: lighten($text-color, 30%); }
-::-moz-placeholder            { color: lighten($text-color, 30%); } /* firefox 19+ */
-:-ms-input-placeholder        { color: lighten($text-color, 30%); } /* ie */
-input:-moz-placeholder        { color: lighten($text-color, 30%); }
+// ::-webkit-input-placeholder   { color: lighten($text-color, 30%); }
+// ::-moz-placeholder            { color: lighten($text-color, 30%); } /* firefox 19+ */
+// :-ms-input-placeholder        { color: lighten($text-color, 30%); } /* ie */
+// input:-moz-placeholder        { color: lighten($text-color, 30%); }

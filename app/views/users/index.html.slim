@@ -1,14 +1,15 @@
-section.users
-  header
-    h2.header--title Users
-    .subheader Users ordered by experience
+.main-container
+  section.users
+    header
+      h2.header--title Users
+      .subheader Users ordered by experience
 
-  table.users_list
-    - @users.each do |user|
-      tr
-        td = link_to image_tag(user.avatar("small")), user
-        td
-          h4= link_to user.name, user
-        td
-          =' user.experience
-          | points
+    table.users_list
+      - @users.each do |user|
+        tr
+          td = link_to image_tag(user.small_avatar), user
+          td
+            h4= link_to user.name, user
+          td
+            =' user.experience
+            | points

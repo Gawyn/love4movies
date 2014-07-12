@@ -1,4 +1,4 @@
-.person-wrapper             { @include rposition($type: absolute, $top: 0, $right: 0, $bottom: 0, $left: 0); }
+.person-wrapper             { @include rposition($type: absolute, $top: 0, $right: 0,$bottom: 0, $left: $header-width); }
 
 .person-sidebar             { @include rposition($type: absolute, $top: 0, $bottom: 0, $left: 0); height: 100%; width: 266px; z-index: 3; }
 

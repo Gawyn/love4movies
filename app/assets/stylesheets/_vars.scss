@@ -16,6 +16,12 @@ $base-font-size:    14px;
 $base-line-height:  $base-font-size*1.6666;
 
 /**
+ * Z-index elements order
+ */
+
+$index-elements: sidebar, menu, search, search-form, modals;
+
+/**
  * Font-sizes (in pixels). Refer to relevant sections for their implementations.
  */
 $giga-size:         96px!default;
@@ -50,7 +56,7 @@ $responsive-pull:   false!default;
 // Add Bebas Neue font
 @include font-face("BebasNeue", font-files("BebasNeue-webfont.eot", "BebasNeue-webfont.woff", "BebasNeue-webfont.ttf", "BebasNeue-webfont.svg"), $weight: normal, $style: normal);
 
-$text-color:        #000!default;
+$text-color:        #1B181F!default;
 $white:             #FFF!default;
 $brand-color:       #34BDD0!default;
 $second-color:      #744DC5!default;

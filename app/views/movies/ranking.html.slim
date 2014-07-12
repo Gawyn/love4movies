@@ -1,8 +1,9 @@
-section.ranking-movies
-  header
-    h2.header--title Movies ranking
-    .subheader Best rated movies
+.main-container
+  section.ranking-movies
+    header
+      h2.header--title Movies ranking
+      .subheader Best rated movies
 
-  = render "movies/index", movies: @movies
+    = render "movies/index", movies: @movies
 
-  = paginate @movies
+    = paginate @movies

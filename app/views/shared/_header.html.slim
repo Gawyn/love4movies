@@ -1,48 +1,57 @@
-nav.display-nav
-  ul.display-nav__list
+section.main-navigation
+  nav.display-nav
 
-    li.display-nav__elem = link_to ranking_path, class: "display-nav__link" do
-      i.fa.fa-film.fa-inverse.fa-lg
-      span.display-nav__title Movies
-      em.display-nav__subtitle Best rated movies
+    / Logo
+    .logo= link_to image_tag("love4movies.svg"), root_path
 
-    li.display-nav__elem = link_to users_path, class: "display-nav__link" do
-      i.fa.fa-group.fa-inverse.fa-lg
-      span.display-nav__title Users
-      em.display-nav__subtitle Users ordered by experience
+    / User profile
+    - if current_user
+      .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
+      .lvl
+        span.lvl__bar--wrapper
+          .lvl__bar style="width:20%"
+        span.lvl__txt
+          ' lvl
+          = current_user.level
 
-    li.display-nav__elem = link_to badges_path, class: "display-nav__link" do
-      i.fa.fa-trophy.fa-inverse.fa-lg
-      span.display-nav__title Badges
-      em.display-nav__subtitle List of locked/unlocked badges
+    ul.display-nav__list
+
+      li.display-nav__elem = link_to root_path, class: "display-nav__link #{cp(root_path)}" do
+        i.fa.fa-clock-o.fa-inverse.fa-lg
+        span.display-nav__title Activity
+
+      li.display-nav__elem = link_to ranking_path, class: "display-nav__link #{cp(ranking_path)}" do
+        i.fa.fa-film.fa-inverse.fa-lg
+        span.display-nav__title Movies
+
+      li.display-nav__elem = link_to users_path, class: "display-nav__link #{cp(users_path)}" do
+        i.fa.fa-group.fa-inverse.fa-lg
+        span.display-nav__title Users
+
+      - if current_user
+        li.display-nav__elem = link_to notifications_path, class: "display-nav__link #{cp(notifications_path)}"do
+
+          i.fa.fa-bell-o.fa-inverse.fa-lg
+          span.display-nav__title News
+
+          - if @pending_notifications.any?
+            span.display-nav__notification= @pending_notifications.count
+
+    - if current_user
+      = link_to destroy_user_session_path, :method => :delete, class: "session-action" do
+        i.fa.fa-sign-out.fa-lg
+
+
+.js-search.search-input
+  i.fa.fa-lg.fa-search
 
 section.search-form-wrapper
   .search-form
     = form_tag search_path, :method => "get" do |f|
       = text_field_tag :query,  nil, class: 'search-form__input', placeholder: 'Search your movie'
       = submit_tag "Search", :hidden => true
+  i.fa.fa-times.fa-lg.js-search.close-frm
 
-header.main-header
-  .header-grid
-    .logo= link_to image_tag("love4movies.svg"), root_path
-    - if current_user
-      nav
-        ul.icon-nav
-          // Search
-          li.icon-nav__search.js-search
-            i.fa.fa-lg.fa-search
-          // Notifications
-          li.icon-nav__notification
-            = link_to notifications_path do
-              - if @pending_notifications.any?
-                span.notifiactions-number= @pending_notifications.count
-              i.fa.fa-lg.fa-bell-o
-          // Menu
-          li.icon-nav__menu.js-menu
-            i.fa.fa-lg.fa-bars
-          // Profile
-          li.icon-nav__profile
-            .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
 
 - content_for :custom_js do
   javascript:

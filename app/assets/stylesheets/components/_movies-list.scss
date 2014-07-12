@@ -1,9 +1,18 @@
 .header--title{
   @extend %headline;
   @extend %text--center;
-  padding: .35em;
-  margin-top: 1em;
-  margin-bottom: 0;
+  @include padding-leader(.5);
+  position: relative;
+  &:after{
+    content: '';
+    width: $base-font-size*10;
+    height: $base-font-size/4;
+    background-color: $second-color;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -$base-font-size*5;
+  }
 }
 
 .subheader{

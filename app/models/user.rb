@@ -106,7 +106,7 @@ class User < ActiveRecord::Base
         :height => 100 })
     elsif omniauth["provider"] = "twitter"
       self.small_avatar = omniauth["info"]["image"]
-      self.medium_avatar = omniauth["info"]["image"]
+      self.medium_avatar = omniauth["info"]["image"].sub("_normal", "")
       self.big_avatar = omniauth["info"]["image"]
     end
   end
@@ -116,7 +116,7 @@ class User < ActiveRecord::Base
   end
 
   def set_level!
-    my_level = Experience::level_for_experience(experience) 
+    my_level = Experience::level_for_experience(experience)
 
     if my_level != level
       update_attribute(:level, my_level)
