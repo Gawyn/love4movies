@@ -1,8 +1,9 @@
-section.notifiactions-wrapper
-  header
-    h2.header--title Notifications
-    .subheader Last notifications of people you follow
+.main-container
+  section.notifiactions-wrapper
+    header
+      h2.header--title Notifications
+      .subheader Last notifications of people you follow
 
-.notifications
-  - @notifications.each do |notification|
-    = render notification
+  .notifications
+    - @notifications.each do |notification|
+      = render notification

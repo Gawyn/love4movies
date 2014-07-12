@@ -13,15 +13,15 @@
       = link_to "Twitter login", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--login"
 
 - elsif @followeds_activities && @followeds_activities.any?
-  section.activities
+  .main-container
     header
       h2.header--title Activity
       .subheader Friends rates and reviews
+    section.activities
+      - @followeds_activities.each do |activity|
+        = render "activities/show", user: activity.user, content: activity.content
 
-    - @followeds_activities.each do |activity|
-      = render "activities/show", user: activity.user, content: activity.content
-
-  #more-activities
+    #more-activities
 
   - content_for :custom_js do
     javascript:

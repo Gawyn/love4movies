@@ -1,7 +1,23 @@
-.search-form-wrapper { background-color: $text-color; position: relative; z-index: 9999; }
+.search-input {
+  position: absolute;
+  right: 2em;
+  top: 1em;
+  z-index: index($index-elements, search);
+  cursor: pointer;
+}
+
+.close-frm{
+  color: #666;
+  position: absolute;
+  right: .5em;
+  top: .5em;
+  padding: 1em;
+  cursor: pointer;
+}
+
+.search-form-wrapper { margin-left: $header-width; background-color: $text-color; position: relative; z-index: index($index-elements, search-form); overflow: hidden;}
 .search-form{
   position: relative;
-  z-index: 9999;
   @extend %grid-papa;
 
   form                    { height: 0; @include transition(height ease-in-out .4s); overflow: hidden; }

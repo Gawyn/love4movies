@@ -1,19 +1,20 @@
 // Vars
-$header-height: $base-font-size*2.5;
-$header-index: 9;
+$header-width: $base-font-size*5;
+
+.main-container       { margin-left: $header-width; }
+.user-profile img     { width: 80%; margin: .5em auto; display: block; }
 
 .logo{
-  width: 80px;
+  display: none;
+  width: $header-width;
   padding: 6px 8px;
   position: relative;
-  z-index: $header-index;
 }
-.user-profile img     { width: 100%; display: block; }
 
-.menu{
+.main-navigation{
   position: fixed;
-  z-index: 99;
-  width: 80px;
+  z-index: index($index-elements, menu);
+  width: $header-width;
   min-height: 100%;
   background-color: $text-color;
   color: $white;
@@ -30,7 +31,9 @@ $header-index: 9;
     @include padding-trailer;
     @include transition;
     color: $white;
-    &:hover             { background-color: $second-color; }
+    position: relative;
+    &:hover,
+    &.current             { background-color: $second-color; }
   }
 
   .display-nav__title{
@@ -40,58 +43,50 @@ $header-index: 9;
     @include adjust-font-size-to($h5-size);
     display: block;
   }
-}
 
-
-.main-header{
-  @include rposition($type: absolute, $top: 1em);
-  width: 100%;
-  @include transition(top ease-in-out .4s);
-  &.search-active   { top: $base-font-size*6; }
-  &.menu-active     { top: $base-font-size*18; }
-}
-
-.header-grid{
-  max-width: 120em;
-  @extend %one-whole;
-  @extend %medium-eleven-twelfths;
-  @extend %center-col;
-  @extend %relative;
-  line-height: 1;
-
-}
-
-.icon-nav{
-  float: right;
-  list-style: none;
-  @include inline-block-list;
-  position: relative;
-  z-index: 999;
-
-  .fa{
-    width: $header-height;
-    height: $header-height;
-    padding: .75em;
-    cursor: pointer;
-    color: #444;
+  .display-nav__notification{
+    @include rposition($type: absolute, $right: 18px, $top: 14px);
+    @extend %text--center;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 50%;
+    font-size: .75em;
+    font-weight: bold;
+    background-color: $brand-color;
+    color: $white;
+    display: inline-block;
   }
 
-  .icon-nav__notification     { position: relative; }
-
-
 }
-
-.notifiactions-number{
-  @include rposition($type: absolute, $right: 0, $top: 5%);
-  z-index: $header-index + 1;
-  @extend %text--center;
-  width: $base-font-size;
-  height: $base-font-size;
-  line-height: $base-font-size;
-  border-radius: 50%;
-  font-size: .75em;
-  background-color: transparentize($brand-color, 0);
-  color: $white;
-  display: inline-block;
+.lvl {
+  .lvl__txt{
+    font-size: 11px;
+    font-weight: bold;
+    color: #858585;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 5px;
+  }
+  .lvl__bar{
+    height: 100%;
+    width: auto;
+    background-color: $brand-color;
+  }
+  .lvl__bar--wrapper{
+    height: $base-font-size/3;
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    background-color: #333;
+    border-radius: 2px;
+    overflow: hidden;
+  }
 }
-
+.session-action{
+  color: #5d5d5d;
+  position: absolute;
+  bottom: 2em;
+  left: 50%;
+  margin-left: -$base-font-size/2;
+}

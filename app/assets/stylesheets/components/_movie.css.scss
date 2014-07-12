@@ -7,9 +7,9 @@ $dark-trans: transparentize($text-color, 0.3);
 .movie__heading         { @extend %headline; @include adjust-font-size-to($h1-size); @include trailer(.25); }
 .movie__sub-heading     { @extend %readable; @include adjust-font-size-to($h6-size); font-style: italic; @include trailer; color: transparentize($text-color, .5); }
 
-.movie-wrapper            { @include rposition($type: absolute, $top: 0, $right: 0, $bottom: 0, $left: 0); }
-.movie-sidebar            { @include rposition($type: absolute, $top: 0, $bottom: 0, $left: 0); height: 100%; width: 72.5%; z-index: 3; }
-.movie-section            { position: relative; height: 100%; overflow: hidden; overflow-y: scroll; margin-left: 72.5%; z-index: 2; -webkit-overflow-scrolling: touch; }
+.movie-wrapper            { @include rposition($type: absolute, $top: 0, $right: 0, $bottom: 0, $left: $header-width); }
+.movie-sidebar            { @include rposition($type: absolute, $top: 0, $bottom: 0, $left: 0); height: 100%; width: 70%; z-index: index($index-elements, sidebar); }
+.movie-section            { position: relative; height: 100%; overflow: hidden; overflow-y: scroll; margin-left: 70%; -webkit-overflow-scrolling: touch; }
 .movie-section-wrapper    { padding: $base-font-size*5 10% 1em 10%; position: relative; }
 .wrapper-action           { position: absolute; top: 1em; }
 
@@ -150,15 +150,9 @@ $dark-trans: transparentize($text-color, 0.3);
   z-index: $comment-index;
   @include transform(translate3d(0, 100%, 0));
   background-color: transparentize(white, 0.05);
-  .do-review-grid,
-  .do-rating-grid         { @extend %grid-papa; padding-top: $header-height*2; }
 
   .do__title              { opacity: 0; }
 
-  .do-review__subtitle,
-
-  .do-review__close,
-  .do-rating__close       { @include rposition($type: absolute, $right: 0, $top: $header-height*2 ); cursor: pointer; font-size: 2em; font-weight: 300; }
 
   .do-review__input,
   .do-rating__input       {
