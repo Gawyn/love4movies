@@ -1,19 +1,93 @@
 .login-banner{
   position: relative;
-  img { max-width: none; width: 100%;  display: block; }
+  height: 100%;
+  width: 100%;
+  background-color: $text-color;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 
+  .login__overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparentize($text-color, .85);
+  }
+  .login-banner__logo{
+    width: $base-font-size*18;
+    height: 60px;
+    margin: 0 auto;
+  }
+
+  .login-banner__list{
+    & span {
+      display: inline-block;
+      padding: 0 1em;
+      @include trailer;
+      @include leader;
+    }
+  }
   .login-banner__wrapper{
     position: absolute;
     width: 100%;
-    top: 25%;
+    top: 20%;
+    color: white;
     padding: 0 5%;
     @extend %text--center;
   }
+
   .login-banner__title {
     @extend %text--inverse;
-    text-shadow: 2px 2px transparentize($text-color, .75);
-    @include trailer(.5);
-    @extend %headline;
-    @include adjust-font-size-to($mega-size);
+    text-shadow: 1px 1px transparentize($text-color, .85);
+    margin-bottom: 5px;
+    @extend %readable;
+    @include adjust-font-size-to($h5-size);
+    font-weight: bold;
+  }
+
+  .login__footer__avatar{
+    width: $base-font-size*2;
+    height: $base-font-size*2;
+    display: inline-block;
+    border-radius: 3px;
+    overflow: hidden;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  .login__footer{
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+    color: transparentize($white, .5);
+    a { color: $white; }
+  }
+
+  .login__search{
+    position: absolute;
+    top: 2em;
+    right: 4em;
+    .fa-search{
+      position: absolute;
+      left: 1em;
+      top: .5em;
+      color: #bbb;
+    }
+
+    input{
+      padding: .3em 2.5em;
+      border: none;
+      line-height: 1.5;
+      background-color: transparentize($white, .75);
+      border-radius: 50px;
+      outline: none;
+      &:focus{
+        background-color: transparentize($white, .2);
+      }
+    }
   }
 }

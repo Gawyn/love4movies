@@ -2,12 +2,11 @@
 $header-width: $base-font-size*5;
 
 .main-container       { margin-left: $header-width; }
-.user-profile img     { width: 80%; margin: .5em auto; display: block; }
+.user-profile img     { width: 100%; margin: 0 auto; display: block; }
 
 .logo{
-  display: none;
   width: $header-width;
-  padding: 6px 8px;
+  padding: 1em 6px 3px;
   position: relative;
 }
 
@@ -60,14 +59,6 @@ $header-width: $base-font-size*5;
 
 }
 .lvl {
-  .lvl__txt{
-    font-size: 11px;
-    font-weight: bold;
-    color: #858585;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 5px;
-  }
   .lvl__bar{
     height: 100%;
     width: auto;
@@ -76,11 +67,7 @@ $header-width: $base-font-size*5;
   .lvl__bar--wrapper{
     height: $base-font-size/3;
     display: block;
-    width: 80%;
-    margin: 0 auto;
     background-color: #333;
-    border-radius: 2px;
-    overflow: hidden;
   }
 }
 .session-action{

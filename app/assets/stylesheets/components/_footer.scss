@@ -2,5 +2,5 @@ footer{
   @extend %text--center;
   @include trailer(2);
   @include leader(5);
-  .handcradted        { color: gray; font-weight: 300; }
+  .handcradted        { color: white; font-weight: 500; }
 }
