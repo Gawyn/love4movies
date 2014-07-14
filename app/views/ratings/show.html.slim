@@ -7,7 +7,7 @@
   section.movie-section
     article.movie-section-wrapper.rating.rating-show data-id=@rating.id
       - if !current_user
-        h3.review__title Join the community of cinema lovers
+        p.subheader Join the community of cinema lovers
         = link_to "Facebook login", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--full"
 
         = link_to "Twitter login", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--full"

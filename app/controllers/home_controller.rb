@@ -5,6 +5,7 @@ class HomeController < ApplicationController
       @users = User.more_experience_first.first(10)
     else
       @last_activity = Activity.last
+      render layout: "landing"
     end
   end
 end
