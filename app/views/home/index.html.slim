@@ -1,7 +1,7 @@
 - if !current_user
 
-  - first_movie_backdrop = @last_activity.content.movie.backdrops.first
-  - backdrop = first_movie_backdrop.present? ? first_movie_backdrop.url("w1280") : "nav-test.jpg"
+  - first_movie_backdrop = @last_activity.present? ? content.movie.backdrops.first : false
+  - backdrop = first_movie_backdrop ? first_movie_backdrop.url("w1280") : "nav-test.jpg"
   section.login-banner style="background-image: url(#{backdrop}) "
 
     .login__overlay
@@ -22,11 +22,12 @@
         span= link_to "Facebook", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--login"
         span= link_to "Twitter", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--login"
 
-    .login__footer
-      =' link_to (image_tag @last_activity.user.small_avatar), @last_activity.user, class: "login__footer__avatar"
-      =' link_to  @last_activity.user.name, @last_activity.user
-      ' commented the movie
-      =' link_to  @last_activity.content.movie.title, @last_activity.content.movie
+    - if @last_activity
+      .login__footer
+        =' link_to (image_tag @last_activity.user.small_avatar), @last_activity.user, class: "login__footer__avatar"
+        =' link_to  @last_activity.user.name, @last_activity.user
+        ' commented the movie
+        =' link_to  @last_activity.content.movie.title, @last_activity.content.movie
 
 
 - elsif @followeds_activities && @followeds_activities.any?
