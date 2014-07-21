@@ -125,9 +125,9 @@ class MovieFeeder
           biography: data["biography"],
           place_of_birth: data["place_of_birth"],
           birthday: data["birthday"] ?
-            data["birthday"].to_date : nil,
+            data["birthday"].try(:to_date) : nil,
           deathday: data["deathday"] ?
-            data["deathday"].to_date : nil,
+            data["deathday"].try(:to_date) : nil,
           :tmdb_profile_path => data["profile_path"])
 
         generate_images(person)

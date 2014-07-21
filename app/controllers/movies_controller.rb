@@ -18,7 +18,11 @@ class MoviesController < ApplicationController
   end
 
   def ranking
-    @movies = Movie.by_l4m_rating_average.not_hidden.more_ratings_than(2).page(params[:page])
+    @movies = if Rails.env.production?
+      Movie.by_l4m_rating_average.not_hidden.more_ratings_than(2).page(params[:page])
+    else
+      Movie.by_l4m_rating_average.not_hidden.page(params[:page])
+    end
   end
 
   def recommended

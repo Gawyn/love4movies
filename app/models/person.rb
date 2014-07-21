@@ -7,8 +7,10 @@ class Person < ActiveRecord::Base
   has_many :images, as: :owner, :dependent => :destroy
   has_many :profiles, as: :owner
 
-  searchable do
-    text :name
+  if Rails.env.production?
+    searchable do
+      text :name
+    end
   end
 
   def self.standard_search(query)

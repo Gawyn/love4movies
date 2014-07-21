@@ -2,22 +2,22 @@
   header.search-keys
     span.search-keys__for Search results for
     h1= params[:query]
-    - if @movies.total > 0
+    - if @movies.send(Rails.env.production? ? :total : :count) > 0
       span.search-keys__results.js-toggle-search.active data-type="movies"
-        b=' @movies.total
+        b=' @movies.send(Rails.env.production? ? :total : :count)
         | movies
-    - if @people.total > 0
+    - if @people.send(Rails.env.production? ? :total : :count) > 0
       span.search-keys__results.js-toggle-search data-type="people"
-        b=' @people.total
+        b=' @people.send(Rails.env.production? ? :total : :count)
         | people
 
 
-  - if @movies.total > 0
+  - if @movies.send(Rails.env.production? ? :total : :count) > 0
     .search-container.movies-container.active
-      = render "movies/index", movies: @movies.results
-  - if @people.total > 0
+      = render "movies/index", movies: Rails.env.production? ? @movies.results : @movies
+  - if @people.send(Rails.env.production? ? :total : :count) > 0
     .search-container.people-container
-      = render "persons/index", people: @people.results
+      = render "persons/index", people: Rails.env.production? ? @people.results : @people
 
 
 - content_for :custom_js do
