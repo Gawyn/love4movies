@@ -28,7 +28,7 @@ article.notification
         p
           =' link_to user.name, user
           ' commented your review on
-          = link_to movie.title, movie
+          = link_to movie.title, notification.triggered_on
 
     - elsif notification.triggered_on_type == "Comment"
       .media__img
@@ -37,4 +37,4 @@ article.notification
         p
           =' link_to user.name, user
           ' answer your comment on
-          = link_to movie.title, movie
+          = link_to movie.title, notification.triggered_on.commentable
