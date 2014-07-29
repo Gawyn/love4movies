@@ -1,4 +1,5 @@
-- if current_user
-  = link_to "Activities", root_path(type: "activities")
-  = link_to "Popular movies", root_path(type: "popularity")
-= render "#{@type}_timeline"
+.main-container
+  - if current_user
+    = link_to "Activities", root_path(type: "activities")
+    = link_to "Popular movies", root_path(type: "popularity")
+  = render "#{@type}_timeline"
