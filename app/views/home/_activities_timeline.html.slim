@@ -1,0 +1,54 @@
+- if @followeds_activities && @followeds_activities.any?
+  header
+    h2.header--title Activity
+    .subheader Friends rates and reviews
+  section.activities
+    - @followeds_activities.each do |activity|
+      = render "activities/show", user: activity.user, content: activity.content
+
+  #more-activities
+
+  - content_for :custom_js do
+    javascript:
+
+      nextPage = 2;
+
+      $(document).ready(function() {
+        $(window).on("scroll", function(){
+          if($('#loading').size() == 0 && $('#more-activities').size() != 0 && $('#end-of-scrolling').size() == 0){
+
+            if($(window).scrollTop() > ($(document).height() - ($(window).height() + 50))){
+              $("#more-activities").html("<div id='loading' class='bottom-msg'>Loading...</div>");
+
+              $.get("/activities?page=" + nextPage, function(d){
+                $('#loading').remove();
+                //New ratios for new posters
+                posterRatios();
+              });
+
+              nextPage = nextPage + 1;
+            }
+
+          }
+        });
+      });
+
+// When current user and no activity show first 10 ranking users
+- else
+  section.activities
+  header
+    h2.header--title Activity
+    .subheader It seems you have no activity yet
+    p.subheader Start following some of the most influence users on our community
+
+  table.users_list
+    - @users.each do |user|
+      tr
+        td = link_to image_tag(user.avatar("small")), user
+        td
+          h4= link_to user.name, user
+        td
+          i.fa.fa-star-o
+          '
+          =' user.ratings_count
+          | ratings
