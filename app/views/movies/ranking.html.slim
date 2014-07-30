@@ -1,12 +1,12 @@
-.main-container
-  section.ranking-movies
-    header
-      h2.header--title Movies ranking
-      .subheader Best rated movies
+section.ranking-movies
+section.ranking-movies
+  header
+    h2.header--title Movies ranking
+    .subheader Best rated movies
 
-    = render "movies/index", movies: @movies
+  = render "movies/index", movies: @movies
 
-    #more-movies
+  #more-movies
 
 - content_for :custom_js do
   javascript:

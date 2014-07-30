@@ -1,14 +1,13 @@
-.main-container
-  h1 Recommended Movies
+h1 Recommended Movies
 
-  = form_tag recommended_movies_path, method: :get do |f|
-    = select_tag :genre, ("<option></option>" + options_from_collection_for_select(Genre.all, "id", "name", @genre)).html_safe
-    = select_tag :order, options_for_select(["l4m_rating_average", "rating_average"], @order)
-    = submit_tag "Enviar"
+= form_tag recommended_movies_path, method: :get do |f|
+  = select_tag :genre, ("<option></option>" + options_from_collection_for_select(Genre.all, "id", "name", @genre)).html_safe
+  = select_tag :order, options_for_select(["l4m_rating_average", "rating_average"], @order)
+  = submit_tag "Enviar"
 
-  = render "index", movies: @movies
+= render "index", movies: @movies
 
-  #more-movies
+#more-movies
 
 - content_for :custom_js do
   javascript:
