@@ -1,7 +1,9 @@
 // ------------------
 // MAIN GRID
 // ------------------
-.main-wrapper         { margin-left: $sidebar-width; }
+.main-wrapper {
+  margin-left: $sidebar-width;
+}
 
 // ------------------
 // PERSON GRID
@@ -24,4 +26,42 @@
   position: relative;
   margin-left: $person-sidebar-width;
   @extend %cf;
+}
+
+// ------------------
+// MOVIE GRID
+// ------------------
+// Main movie container
+.movie-wrapper {
+  @include rposition($type: absolute, $top: 0, $right: 0, $bottom: 0, $left: $sidebar-width);
+}
+
+// Backdrop sidebar
+.movie-sidebar {
+  @include rposition($type: absolute, $top: 0, $bottom: 0, $left: 0);
+  width: $backdrop-movie;
+  z-index: index($index-elements, sidebar);
+}
+
+// Info movie
+.info-movie-sidebar{
+  @extend .movie-sidebar;
+  background-color: $white;
+  z-index: index($index-elements, sidebar);
+  overflow: auto;
+  @include translateX(-100%);
+  @include transition(transform 300ms $cubic-2);
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar      { display: none; }
+  &.active                  { @include translateX(0); }
+}
+
+// Comments-Reviews section
+.movie-section {
+  position: relative;
+  margin-left: $backdrop-movie;
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }

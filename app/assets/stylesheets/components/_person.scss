@@ -32,6 +32,5 @@
   @extend %flush;
   background-color: transparentize($text-color, 0.3);
   @extend %caps;
-  @extend %text--light;
   @extend %text--inverse;
 }
