@@ -1,6 +1,11 @@
-// Main grid
+// ------------------
+// MAIN GRID
+// ------------------
 .main-wrapper         { margin-left: $sidebar-width; }
 
+// ------------------
+// PERSON GRID
+// ------------------
 .sidebar{
   position: fixed;
   z-index: index($index-elements, menu);
@@ -8,4 +13,15 @@
   min-height: 100%;
   background-color: $text-color;
   color: $white;
+}
+
+.person-sidebar {
+  @include rposition($type: fixed, $top: 0, $bottom: 0, $left: $sidebar-width);
+  width: $person-sidebar-width;
+}
+
+.person-works {
+  position: relative;
+  margin-left: $person-sidebar-width;
+  @extend %cf;
 }

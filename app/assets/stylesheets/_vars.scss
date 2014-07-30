@@ -79,7 +79,8 @@ $half-spacing-unit: $base-spacing-unit / 2!default;
 $line-height-ratio: $base-line-height / $base-font-size;
 
 // Layout
-$sidebar-width: $base-font-size*5;
+$sidebar-width:         $base-font-size*5;
+$person-sidebar-width:  $base-font-size*19;
 
 // Here we define the lower and upper bounds for each media size
 $small-range: (0em, 40em); /* 0, 640px */

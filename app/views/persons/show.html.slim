@@ -1,32 +1,31 @@
-.person-wrapper
-  sidebar.person-sidebar
-    .person
-      figure.person__img
-        = image_tag (@person.profiles.any? ? @person.profiles.first.url("h632") : "no-person.jpg")
-        figcaption
-          h1.person__name= @person.name
+sidebar.person-sidebar
+  .person
+    figure.person__img
+      = image_tag (@person.profiles.any? ? @person.profiles.first.url("h632") : "no-person.jpg")
+      figcaption
+        h1.person__name= @person.name
 
 
-      .person-data-wrapper
-        .person-fade-bottom
-        .person-info
-          .person-info__place
-            = @person.place_of_birth
+    .person-data-wrapper
+      .person-fade-bottom
+      .person-info
+        .person-info__place
+          = @person.place_of_birth
 
-          date.person-info__birthday
-            = @person.birthday
+        date.person-info__birthday
+          = @person.birthday
 
-          p.person-info__bio = @person.biography
+        p.person-info__bio = @person.biography
 
-  section.person-works
-    - @person.participations.pluck(:job, :movie_id).group_by(&:first).each do |job, job_and_movie_id|
-      - movies = Movie.where(id: job_and_movie_id.map(&:last)).not_hidden
+section.person-works
+  - @person.participations.pluck(:job, :movie_id).group_by(&:first).each do |job, job_and_movie_id|
+    - movies = Movie.where(id: job_and_movie_id.map(&:last)).not_hidden
 
-      header.search-keys
-        h2= job
-        span.search-keys__results
-          ' find
-          b=' movies.count
-          | movies
+    header.search-keys
+      h2= job
+      span.search-keys__results
+        ' find
+        b=' movies.count
+        | movies
 
-      = render "movies/index", movies: movies
+    = render "movies/index", movies: movies
