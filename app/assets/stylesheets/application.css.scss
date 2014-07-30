@@ -4,7 +4,6 @@
 
 // ------------------------------------------------------------------
 // Application
-
 @import "font-awesome";
 @import "functions";
 @import "vars";
@@ -15,52 +14,50 @@
 /**
  * Generic utility styles etc.
  */
-   @import "generic/mixins";
-   @import "generic/normalize";
-   @import "generic/reset";
-   @import "generic/clearfix";
-
+@import  "generic/mixins",
+         "generic/normalize",
+         "generic/reset",
+         "generic/clearfix";
 
 /**
  * Base styles; unclassed HTML elements etc.
  */
-   @import "base/main";
-   @import "base/headings";
-   @import "base/images";
-   @import "base/forms";
+@import  "base/main",
+         "base/headings",
+         "base/images";
 
 /**
  * Objects and abstractions
  */
-   @import "objects/grids";
-   @import "objects/media";
-   @import "objects/buttons";
+@import  "objects/grids",
+         "objects/media",
+         "objects/buttons";
 
 /**
  * Style trumps; helper and brand classes
  */
-   @import "generic/widths";
-   @import "generic/blocks";
-   @import "generic/push";
-   @import "generic/pull";
-   @import "generic/brand";
-   @import "generic/helper";
+@import "generic/widths",
+         "generic/blocks",
+         "generic/push",
+         "generic/pull",
+         "generic/brand",
+         "generic/helper";
 
 /**
  * Main web components
  */
-@import "components/general";
-@import "components/header";
-@import "components/movie";
-@import "components/footer";
-@import "components/login";
-@import "components/movies-list";
-@import "components/activities-list";
-@import "components/person";
-@import "components/rating";
-@import "components/long-review";
-@import "components/user";
-@import "components/comments";
-@import "components/search";
-@import "components/notifications";
-@import "components/badges";
+@import  "components/general",
+         "components/header",
+         "components/movie",
+         "components/footer",
+         "components/login",
+         "components/movies-list",
+         "components/activities-list",
+         "components/person",
+         "components/rating",
+         "components/long-review",
+         "components/user",
+         "components/comments",
+         "components/search",
+         "components/notifications",
+         "components/badges";
