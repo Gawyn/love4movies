@@ -6,4 +6,28 @@
 
     = render "movies/index", movies: @movies
 
-    = paginate @movies
+    #more-movies
+
+- content_for :custom_js do
+  javascript:
+
+    total_pages = #{@total_pages}
+    nextPage = 2;
+
+    $(document).ready(function() {
+      $(window).on("scroll", function(){
+        if($('#loading').size() == 0 && $('#more-movies').size() != 0 && $('#end-of-scrolling').size() == 0 && nextPage <= total_pages){
+
+          if($(window).scrollTop() > ($(document).height() - ($(window).height() + 50))){
+            $("#more-movies").html("<div id='loading' class='bottom-msg'>Loading...</div>");
+
+            $.ajax({ url: "/movies/ranking?page=" + nextPage, dataType: "script" }).done(function(d){
+              $('#loading').remove();
+              //New ratios for new posters
+              posterRatios();
+              nextPage = nextPage + 1;
+            });
+          }
+        }
+      })
+    });

@@ -1,5 +1,5 @@
 class Movie < ActiveRecord::Base
-  RECOMMENDED_MOVIES_PER_PAGE = 24
+  MOVIES_PER_PAGE = 24
   BASIC_ATTRIBUTES = ["title"].map do |attr|
     LOCALES.map do |locale|
       "#{attr}_#{locale}"
