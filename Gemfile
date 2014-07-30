@@ -47,8 +47,10 @@ gem 'sinatra', require: false
 gem 'newrelic_rpm'
 
 # Assets
-gem 'sass-rails',   '~> 4.0.0'
-gem "compass-rails"
+gem 'sass-rails', github: "rails/sass-rails"
+gem 'sass', '~> 3.3.12'
+gem 'compass-rails', '~> 2.0.0'
+gem 'compass', '~> 1.0.0.alpha.21'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
