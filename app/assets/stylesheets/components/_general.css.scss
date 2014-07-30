@@ -1,5 +1,11 @@
-.bottom-msg{
-  clear: both;
-  text-align: center;
-  padding-top: 40px;
+// Main grid
+.main-wrapper         { margin-left: $sidebar-width; }
+
+.sidebar{
+  position: fixed;
+  z-index: index($index-elements, menu);
+  width: $sidebar-width;
+  min-height: 100%;
+  background-color: $text-color;
+  color: $white;
 }

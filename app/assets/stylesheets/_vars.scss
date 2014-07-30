@@ -78,6 +78,9 @@ $base-spacing-unit: $base-line-height!default;
 $half-spacing-unit: $base-spacing-unit / 2!default;
 $line-height-ratio: $base-line-height / $base-font-size;
 
+// Layout
+$sidebar-width: $base-font-size*5;
+
 // Here we define the lower and upper bounds for each media size
 $small-range: (0em, 40em); /* 0, 640px */
 $medium-range: (40.063em, 64em); /* 641px, 1024px */

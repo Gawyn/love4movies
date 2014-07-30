@@ -1,20 +1,5 @@
-// Vars
-$header-width: $base-font-size*5;
-
-// Main grid
-.main-wrapper         { margin-left: $header-width; }
-
-.sidebar{
-  position: fixed;
-  z-index: index($index-elements, menu);
-  width: $header-width;
-  min-height: 100%;
-  background-color: $text-color;
-  color: $white;
-}
-
 .logo{
-  width: $header-width;
+  width: $sidebar-width;
   padding: 1em 6px 3px;
   position: relative;
 }

@@ -15,7 +15,7 @@
   cursor: pointer;
 }
 
-.search-form-wrapper { margin-left: $header-width; background-color: $text-color; position: relative; z-index: index($index-elements, search-form); overflow: hidden;}
+.search-form-wrapper { margin-left: $sidebar-width; background-color: $text-color; position: relative; z-index: index($index-elements, search-form); overflow: hidden;}
 .search-form{
   position: relative;
   @extend %grid-papa;
