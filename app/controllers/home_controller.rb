@@ -4,6 +4,7 @@ class HomeController < ApplicationController
       @type = calculate_type
       show_home
     else
+      @last_activity = Activity.last
       render "no_current_user", layout: "landing"
     end
   end

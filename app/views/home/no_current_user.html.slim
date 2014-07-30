@@ -1,4 +1,4 @@
-- first_movie_backdrop = @last_activity.present? ? content.movie.backdrops.first : false
+- first_movie_backdrop = @last_activity.present? ? @last_activity.content.movie.backdrops.first : false
 - backdrop = first_movie_backdrop ? first_movie_backdrop.url("w1280") : "nav-test.jpg"
 section.login-banner style="background-image: url(#{backdrop}) "
 
