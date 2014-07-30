@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
   end
 
   def ranking
-    @movies = Movie.by_l4m_rating_average.not_hidden.more_ratings_than(2).page(params[:page]).per(Movie::MOVIES_PER_PAGE)
+    @movies = Movie.order("l4m_rating_average desc, id").not_hidden.more_ratings_than(2).page(params[:page]).per(Movie::MOVIES_PER_PAGE)
   end
 
   def recommended
