@@ -38,5 +38,3 @@
       - @ratings.each do |rating|
         = render "ratings/with_movie", content: rating, user: @user
       .pagination= paginate @ratings
-
-    = render "shared/footer"

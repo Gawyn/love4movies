@@ -30,7 +30,6 @@ class UsersController < ApplicationController
     @ratings = @user.ratings.newest_first.includes(:movie).page(params[:page])
     @highest_ratings = @user.ratings.highest_first.includes(:movie).limit(15)
     @follow = Follow.find_by(follower_id: current_user.id, followed_id: @user.id) if current_user
-    render layout: "person"
   end
 
   def index

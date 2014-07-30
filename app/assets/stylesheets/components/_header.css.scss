@@ -1,16 +1,10 @@
 // Vars
 $header-width: $base-font-size*5;
 
-.main-container       { margin-left: $header-width; }
-.user-profile img     { width: 100%; margin: 0 auto; display: block; }
+// Main grid
+.main-wrapper         { margin-left: $header-width; }
 
-.logo{
-  width: $header-width;
-  padding: 1em 6px 3px;
-  position: relative;
-}
-
-.main-navigation{
+.sidebar{
   position: fixed;
   z-index: index($index-elements, menu);
   width: $header-width;
@@ -18,6 +12,14 @@ $header-width: $base-font-size*5;
   background-color: $text-color;
   color: $white;
 }
+
+.logo{
+  width: $header-width;
+  padding: 1em 6px 3px;
+  position: relative;
+}
+
+.user-profile img     { width: 100%; margin: 0 auto; display: block; }
 
 .display-nav{
   text-align: center;
