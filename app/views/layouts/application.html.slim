@@ -5,5 +5,9 @@ html
 
   body
     .sidebar = render "shared/header"
-    .main-wrapper = yield
+    .main-wrapper
+      = render "shared/search"
+      = yield
+
+
     = yield :custom_js
