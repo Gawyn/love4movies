@@ -135,13 +135,13 @@ class MovieFeeder
 
       person
     end
-  end
 
-  def transform_to_date_with_rescue(string_date)
-    begin
-      string_date.to_date
-    rescue
-      nil
+    def transform_to_date_with_rescue(string_date)
+      begin
+        string_date.to_date
+      rescue
+        nil
+      end
     end
   end
 end
