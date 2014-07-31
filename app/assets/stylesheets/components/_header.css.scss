@@ -1,23 +1,10 @@
-// Vars
-$header-width: $base-font-size*5;
-
-.main-container       { margin-left: $header-width; }
-.user-profile img     { width: 100%; margin: 0 auto; display: block; }
-
 .logo{
-  width: $header-width;
+  width: $sidebar-width;
   padding: 1em 6px 3px;
   position: relative;
 }
 
-.main-navigation{
-  position: fixed;
-  z-index: index($index-elements, menu);
-  width: $header-width;
-  min-height: 100%;
-  background-color: $text-color;
-  color: $white;
-}
+.user-profile img     { width: 100%; margin: 0 auto; display: block; }
 
 .display-nav{
   text-align: center;
@@ -70,6 +57,7 @@ $header-width: $base-font-size*5;
     background-color: #333;
   }
 }
+
 .session-action{
   color: #5d5d5d;
   position: absolute;

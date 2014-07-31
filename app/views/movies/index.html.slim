@@ -1,10 +1,9 @@
-.main-container
-  header.search-keys
-    span.search-keys__for Search results for
-    h1= params[:search]
-    span.search-keys__results
-      ' find
-      b=' @movies.count
-      | movies
+header.search-keys
+  span.search-keys__for Search results for
+  h1= params[:search]
+  span.search-keys__results
+    ' find
+    b=' @movies.count
+    | movies
 
-  = render "index", movies: @movies
+= render "index", movies: @movies

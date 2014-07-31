@@ -1,14 +1,13 @@
-.main-container
-  - if current_user
-    = link_to "Recommended", recommended_movies_path
-  section.ranking-movies
-    header
-      h2.header--title Movies ranking
-      .subheader Best rated movies
+header
+  nav
+    ul.tab-list.tab-list-2
+      li= link_to "Ranking", ranking_path, class: "tab-list__link #{cp(ranking_path)}"
+      li= link_to "Recommended", recommended_movies_path, class: "tab-list__link #{cp(recommended_movies_path)}"
 
-    = render "movies/index", movies: @movies
+section.ranking-movies
+  = render "movies/index", movies: @movies
 
-    #more-movies
+  #more-movies
 
 - content_for :custom_js do
   javascript:

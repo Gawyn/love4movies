@@ -1,5 +1,8 @@
-.main-container
-  - if current_user
-    = link_to "Activities", root_path(type: "activities")
-    = link_to "Popular movies", root_path(type: "popularity")
-  = render "#{@type}_timeline"
+header
+  nav
+    ul.tab-list.tab-list-2
+      - if current_user
+        li= link_to "Activity", root_path(type: "activities"), class: "tab-list__link #{cp(root_path(type: "activities"))}"
+        li= link_to "Popular", root_path(type: "popularity"), class: "tab-list__link #{cp(root_path(type: "popularity"))}"
+
+= render "#{@type}_timeline"

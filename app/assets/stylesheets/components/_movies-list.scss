@@ -17,10 +17,11 @@
 
 .subheader{
   @extend %readable;
-  @extend %text--center;
+  text-align: center;
   font-style: italic;
   color: transparentize($text-color, .25);
   @include trailer;
+  &--inverse { color: transparentize($white, .25); text-align: left; }
 }
 
 .movie__description{

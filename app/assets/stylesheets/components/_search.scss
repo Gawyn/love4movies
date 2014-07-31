@@ -1,11 +1,3 @@
-.search-input {
-  position: absolute;
-  right: 2em;
-  top: 1em;
-  z-index: index($index-elements, search);
-  cursor: pointer;
-}
-
 .close-frm{
   color: #666;
   position: absolute;
@@ -15,24 +7,34 @@
   cursor: pointer;
 }
 
-.search-form-wrapper { margin-left: $header-width; background-color: $text-color; position: relative; z-index: index($index-elements, search-form); overflow: hidden;}
-.search-form{
-  position: relative;
-  @extend %grid-papa;
+.search-form-wrapper {
+  @include rposition($type: fixed, $top: 0, $bottom: 0, $left: $sidebar-width);
+  width: 100%;
+  width: calc(100% - #{$sidebar-width});
+  z-index: index($index-elements, search-form);
+  background-color: transparentize($text-color, .1);
+  @include translateY(-100%);
+  @include transition(transform 300ms $cubic-2);
 
-  form                    { height: 0; @include transition(height ease-in-out .4s); overflow: hidden; }
-  &.active form           { height: $base-font-size*6; }
+  &.active                  { @include translateY(0); }
+
+}
+
+.search-form{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60%;
+  @include translate(-50%, -100%);
 
   input{
     border: 0;
     width: 100%;
-    height: $base-font-size*6;
-    @include adjust-font-size-to($h2-size);
+    @include adjust-font-size-to($mega-size);
     letter-spacing: 1px;
-    @extend %caps;
     @extend %headline;
-    background-color: $text-color;
-    color: $white;
+    @extend %text--inverse;
+    background-color: transparent;
     &:focus,
     &:hover {
       border: none;
