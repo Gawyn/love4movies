@@ -125,15 +125,23 @@ class MovieFeeder
           biography: data["biography"],
           place_of_birth: data["place_of_birth"],
           birthday: data["birthday"] ?
-            data["birthday"].to_date : nil,
+            transform_to_date_with_rescue(data["birthday"]) : nil,
           deathday: data["deathday"] ?
-            data["deathday"].to_date : nil,
+            transform_to_date_with_rescue(data["deathday"]) : nil,
           :tmdb_profile_path => data["profile_path"])
 
         generate_images(person)
       end
 
       person
+    end
+  end
+
+  def transform_to_date_with_rescue(string_date)
+    begin
+      string_date.to_date
+    rescue
+      nil
     end
   end
 end

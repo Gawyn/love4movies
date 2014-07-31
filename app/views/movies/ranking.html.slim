@@ -1,4 +1,5 @@
-section.ranking-movies
+- if current_user
+  = link_to "Recommended", recommended_movies_path
 section.ranking-movies
   header
     h2.header--title Movies ranking
