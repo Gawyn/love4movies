@@ -33,3 +33,44 @@
     vertical-align: middle;
   }
 }
+
+.tab-list{
+  @extend %cf;
+  list-style: none;
+  li          { float: left; width: 100%; }
+  &-2         { li { width: 50%;} }
+  &-3         { li { width: 33.3333%;} }
+  &__link     {
+    color: $white;
+    background-color: $text-color;
+    padding: .5em;
+    display: block;
+    @extend %text--center;
+    @extend %headline;
+    @include adjust-font-size-to($kilo-size);
+    font-size: calc(#{$base-font-size} + .25vw + 2vh);
+    @include transition(all ease .25s);
+
+    &.current { color: $text-color; background-color: $white; pointer-events: none; }
+    &:hover   { color: $text-color; background-color: $white; }
+
+  }
+}
+
+.recommended-form{
+  @extend %cf;
+  .btn{
+    float: left;
+    width: 20%;
+    padding: 0;
+    min-height: 3.8em;
+    line-height: 3em;
+    background-color: $brand-color;
+    color: $white;
+    border: none;
+  }
+  .dropdown{
+    float: left;
+    width: 40%;
+  }
+}
