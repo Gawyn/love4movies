@@ -15,7 +15,7 @@ section.recommended-form
 
 = render "index", movies: @movies
 
-#more-movies
+#more-recommended-movies
 
 - content_for :custom_js do
   javascript:
@@ -25,10 +25,10 @@ section.recommended-form
 
     $(document).ready(function() {
       $(window).on("scroll", function(){
-        if($('#loading').size() == 0 && $('#more-movies').size() != 0 && $('#end-of-scrolling').size() == 0 && nextPage <= total_pages){
+        if($('#loading').size() == 0 && $('#more-recommended-movies').size() != 0 && $('#end-of-scrolling').size() == 0 && nextPage <= total_pages){
 
           if($(window).scrollTop() > ($(document).height() - ($(window).height() + 50))){
-            $("#more-movies").html("<div id='loading' class='bottom-msg'>Loading...</div>");
+            $("#more-recommended-movies").html("<div id='loading' class='bottom-msg'>Loading...</div>");
 
             $.ajax({ url: getRecommendationUrl(), dataType: "script" }).done(function(d){
               $('#loading').remove();
