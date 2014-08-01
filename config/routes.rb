@@ -29,6 +29,7 @@ Love4movies::Application.routes.draw do
     resources :ratings, :only => [:create, :show]
     get :ranking, :on => :collection
     get :recommended, :on => :collection
+    get :trending, :on => :collection
   end
   resources :ratings, :only => [:create, :destroy, :show] do
     resources :comments, only: :create
@@ -49,5 +50,8 @@ Love4movies::Application.routes.draw do
   get "ranking" => "movies#ranking"
   get "notifications" => "notifications#index"
   get "search" => "search#search"
+
+  get "timeline" => "home#timeline"
+  get "trending" => "movies#trending"
   root :to => 'home#index'
 end
