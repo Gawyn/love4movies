@@ -1,3 +1,10 @@
+header
+  nav
+    ul.tab-list.tab-list-2
+      li= link_to "Timeline", timeline_path, class: "tab-list__link #{cp(timeline_path)}"
+      li= link_to "Trending", trending_path, class: "tab-list__link #{cp(trending_path)}"
+
+
 - if @followeds_activities && @followeds_activities.any?
   section.activities
     - @followeds_activities.each do |activity|
