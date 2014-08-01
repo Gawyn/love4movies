@@ -1,0 +1,7 @@
+header
+  nav
+    ul.tab-list.tab-list-2
+      li= link_to "Timeline", timeline_path, class: "tab-list__link #{cp(timeline_path)}"
+      li= link_to "Trending", trending_path, class: "tab-list__link #{cp(trending_path)}"
+
+= render "movies/index", movies: @popular_movies

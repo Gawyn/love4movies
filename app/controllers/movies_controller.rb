@@ -33,6 +33,15 @@ class MoviesController < ApplicationController
     @movies = @searched_movies.page(@page).per(Movie::MOVIES_PER_PAGE)
   end
 
+  def trending
+    popular_movies_ids = Rating.where("created_at > ?", Time.now - 1.month).pluck(:movie_id).inject(Hash.new(0)) do |r, v|
+      r[v] += 1
+      r
+    end.sort_by(&:last).reverse[0..19].map(&:first)
+
+    @popular_movies = Movie.find(popular_movies_ids).index_by(&:id).values_at(*popular_movies_ids)
+  end
+
   private
 
   def get_recommended_movies
