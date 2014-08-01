@@ -2,7 +2,7 @@ article.activity data-ratio="1.5"
   = link_to content.movie do
 
     figure
-      = image_tag content.movie.posters.first.url("w342"), class: "figure__img"
+      = image_tag content.movie.posters.any? ? content.movie.posters.first.url("w342") : "no-movie.jpg", class: "figure__img"
 
       figcaption
         .movie__description
