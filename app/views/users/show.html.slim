@@ -2,7 +2,7 @@ sidebar.person-sidebar
   .user-bg
     .backdrops
       - @highest_ratings.each do |rating|
-        .backdrop style="#{"background-image: url(#{rating.movie.posters.first.url("w92")})"}"
+        .backdrop style="#{"background-image: url(#{rating.movie.posters.any? ? rating.movie.posters.first.url("w92") : "no-movie.jpg"})"}"
     .overlay
   .user
     figure.user__img
