@@ -10,9 +10,9 @@ section.main-navigation
 
     ul.display-nav__list
       - if current_user
-        li.display-nav__elem = link_to root_path, class: "display-nav__link #{cp(root_path)}" do
+        li.display-nav__elem = link_to timeline_path, class: "display-nav__link #{cp(timeline_path)}" do
           i.fa.fa-clock-o.fa-inverse.fa-lg
-          span.display-nav__title Activity
+          span.display-nav__title Timeline
 
       li.display-nav__elem = link_to "#", class: "display-nav__link js-search" do
         i.fa.fa-search.fa-inverse.fa-lg
