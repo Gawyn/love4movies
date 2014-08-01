@@ -9,6 +9,7 @@ section.users
         td = link_to image_tag(user.small_avatar), user
         td
           h4= link_to user.name, user
+        td = user.level
         td
           =' user.experience
           | points
