@@ -9,7 +9,6 @@ class Movie < ActiveRecord::Base
   translates :title, :overview
 
   validates_uniqueness_of :tmdb_id
-  validate :not_hidden_needs_poster
 
   has_many :participations, :dependent => :destroy
   has_many :performances
@@ -105,9 +104,5 @@ class Movie < ActiveRecord::Base
 
   def set_total_ratings
     self.total_ratings = tmdb_vote_count
-  end
-
-  def not_hidden_needs_poster
-    errors.add(:not_hidden_needs_poster, "A public movie needs a poster") if !hidden && !tmdb_poster_path
   end
 end
