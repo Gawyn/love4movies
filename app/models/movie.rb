@@ -85,6 +85,7 @@ class Movie < ActiveRecord::Base
       if Movie.find_by_slug(slug)
         i = 2
         self.slug = slug + "-#{i}"
+        p id
 
         while Movie.find_by_slug(slug)
           i++
