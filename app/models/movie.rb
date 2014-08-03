@@ -37,6 +37,7 @@ class Movie < ActiveRecord::Base
   scope :by_popularity, -> { order(arel_table[:popularity].desc) }
 
   before_create :set_total_ratings
+  before_create :set_slug
 
   searchable do
     integer :id
@@ -74,6 +75,30 @@ class Movie < ActiveRecord::Base
       end
       with :hidden, false
     end
+  end
+
+  def set_slug
+    self.slug = self.original_title.parameterize
+
+    if Movie.find_by_slug(slug)
+      self.slug = slug + "-#{release_date.to_date.year}"
+
+      if Movie.find_by_slug(slug)
+        i = 2
+        self.slug = slug + "-#{i}"
+
+        while Movie.find_by_slug(slug)
+          i++
+          splitted_slug = slug.split("-")
+          splitted_slug[-1] = i.to_s
+          self.slug = splitted_slug.join("-")
+        end
+      end
+    end
+  end
+
+  def to_param
+    slug
   end
 
   private
