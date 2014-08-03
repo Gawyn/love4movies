@@ -16,7 +16,11 @@ class MovieFeeder
 
     def generate_movies_of_person(tmdb_person_id)
       credits = TMDBClient.get_person_credits(tmdb_person_id)
-      movie_ids = credits["crew"].map { |movie| movie["id"] } + credits["cast"].map { |movie| movie["id"] }
+
+      crew_movies = credits["crew"] ? credits["crew"].map { |movie| movie["id"] } : []
+      cast_movies = credits["cast"] ? credits["cast"].map { |movie| movie["id"] } : []
+
+      movie_ids = crew_movies + cast_movies
 
       movie_ids.each do |movie_id|
         BackgroundSystem.enqueue(MovieGenerator, movie_id)
