@@ -6,7 +6,7 @@ section.main-navigation
       .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
       .lvl
         span.lvl__bar--wrapper
-          .lvl__bar style="width:20%"
+          .lvl__bar style="width:#{current_user.decorate.percentage_of_experience_achieved}%"
 
     ul.display-nav__list
       - if current_user

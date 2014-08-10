@@ -2,7 +2,7 @@ class UserDecorator < Draper::Decorator
   delegate_all
 
   def percentage_of_experience_achieved
-    (achieved_experience_for_next_level.to_f/Experience::EACH_LEVEL_EXPERIENCE[level - 1]).round(3)
+    (achieved_experience_for_next_level.to_f/Experience::EACH_LEVEL_EXPERIENCE[level - 1]).round(3).to_f * 100
   end
 
   def achieved_experience_for_next_level
