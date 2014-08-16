@@ -4,22 +4,43 @@
   position: relative;
 }
 
-.user-profile img     { width: 100%; margin: 0 auto; display: block; }
+.user-profile{
+  display: inline-block;
+  vertical-align: middle;
+
+  img     {
+    width: $base-font-size*3;
+    display: block;
+    @media #{$medium-up}    { display: block; width: 100%; }
+  }
+
+}
 
 .display-nav{
-  text-align: center;
+  @media #{$medium-up}      { text-align: center; }
 
-  .display-nav__list    { list-style: none; }
+  .display-nav__elem {
+    display: inline-block;
+    @media #{$medium-up}    { display: block; }
+  }
+
+  .display-nav__list        { list-style: none; display: inline-block; vertical-align: middle; }
 
   .display-nav__link {
-    display: block;
-    @include padding-leader;
-    @include padding-trailer;
-    @include transition;
-    color: $white;
+    display: inline-block;
+    color: rgba($white, .5);
     position: relative;
+
+    .fa                     { color: inherit; @include transition; padding: .75em; @media #{$medium-up}{ padding: 0} }
+
+    @media #{$medium-up}    {
+      display: block;
+      @include padding-leader(.75);
+      @include padding-trailer(.75);
+    }
+
     &:hover,
-    &.current             { background-color: $second-color; }
+    &.current               { color: $white; .fa{ color: $second-color; }}
   }
 
   .display-nav__title{
@@ -27,7 +48,7 @@
     z-index: 999;
     @extend %headline;
     @include adjust-font-size-to($h5-size);
-    display: block;
+    @extend %show-medium-up;
   }
 
   .display-nav__notification{
@@ -56,6 +77,7 @@
     display: block;
     background-color: #333;
   }
+  @extend %show-medium-up;
 }
 
 .session-action{
@@ -64,4 +86,5 @@
   bottom: 2em;
   left: 50%;
   margin-left: -$base-font-size/2;
+  @extend %show-medium-up;
 }

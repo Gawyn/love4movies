@@ -8,15 +8,16 @@
 }
 
 .search-form-wrapper {
-  @include rposition($type: fixed, $top: 0, $bottom: 0, $left: $sidebar-width);
+  @include rposition($type: fixed, $top: 0, $bottom: 0, $left: 0);
   width: 100%;
-  width: calc(100% - #{$sidebar-width});
   z-index: index($index-elements, search-form);
   background-color: transparentize($text-color, .1);
   @include translateY(-100%);
   @include transition(transform 300ms $cubic-2);
 
   &.active                  { @include translateY(0); }
+
+  @media #{$medium-up}      { left: $sidebar-width; width: calc(100% - #{$sidebar-width}); }
 
 }
 
