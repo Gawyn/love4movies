@@ -10,12 +10,11 @@ sidebar.person-sidebar
       figcaption
         h1.user__name= @user.name
 
-    .person-data-wrapper
-      .person-info
-        b.person-info__place = @user.location
-        p.person-info__experience
-          =' @user.experience
-          | points
+    .person-info
+      b.person-info__place = @user.location
+      p.person-info__experience
+        =' @user.experience
+        | points
 
 
         - if current_user

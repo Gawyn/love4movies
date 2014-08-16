@@ -47,7 +47,7 @@
 %invisible      { opacity: 0; }
 
 // Adaptative visibility
-%show-medium-up { @extend %hide; @media #{$medium-up}      { display: block; }}
+%show-medium-up { @extend %hide; @media #{$medium-up}       { display: block; }}
 
 // Leading
 %leader         { @include margin-leader(1); }

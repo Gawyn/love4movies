@@ -11,25 +11,25 @@ section.main-navigation
     ul.display-nav__list
       - if current_user
         li.display-nav__elem = link_to timeline_path, class: "display-nav__link #{cp(timeline_path)}" do
-          i.fa.fa-clock-o.fa-inverse.fa-lg
+          i.fa.fa-clock-o.fa-lg
           span.display-nav__title Timeline
 
       li.display-nav__elem = link_to "#", class: "display-nav__link js-search" do
-        i.fa.fa-search.fa-inverse.fa-lg
+        i.fa.fa-search.fa-lg
         span.display-nav__title Search
 
       li.display-nav__elem = link_to ranking_path, class: "display-nav__link #{cp(ranking_path)}" do
-        i.fa.fa-film.fa-inverse.fa-lg
+        i.fa.fa-film.fa-lg
         span.display-nav__title Movies
 
       li.display-nav__elem = link_to users_path, class: "display-nav__link #{cp(users_path)}" do
-        i.fa.fa-group.fa-inverse.fa-lg
+        i.fa.fa-group.fa-lg
         span.display-nav__title Users
 
       - if current_user
         li.display-nav__elem = link_to notifications_path, class: "display-nav__link #{cp(notifications_path)}"do
 
-          i.fa.fa-bell-o.fa-inverse.fa-lg
+          i.fa.fa-bell-o.fa-lg
           span.display-nav__title News
 
           - if @pending_notifications.any?
