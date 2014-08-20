@@ -9,7 +9,6 @@ class Movie < ActiveRecord::Base
   translates :title, :overview
 
   validates_uniqueness_of :tmdb_id
-  validate :not_hidden_needs_poster
 
   has_many :participations, :dependent => :destroy
   has_many :performances
@@ -37,6 +36,7 @@ class Movie < ActiveRecord::Base
   scope :by_popularity, -> { order(arel_table[:popularity].desc) }
 
   before_create :set_total_ratings
+  before_create :set_slug
 
   searchable do
     integer :id
@@ -76,13 +76,34 @@ class Movie < ActiveRecord::Base
     end
   end
 
+  def set_slug
+    self.slug = self.original_title.to_ascii.parameterize
+
+    if Movie.find_by_slug(slug)
+      self.slug = slug + "-#{release_date.to_date.year}" unless release_date.blank?
+
+      if Movie.find_by_slug(slug)
+        i = 2
+        self.slug = slug + "-#{i}"
+        p id
+
+        while Movie.find_by_slug(slug)
+          i++
+          splitted_slug = slug.split("-")
+          splitted_slug[-1] = i.to_s
+          self.slug = splitted_slug.join("-")
+        end
+      end
+    end
+  end
+
+  def to_param
+    slug
+  end
+
   private
 
   def set_total_ratings
     self.total_ratings = tmdb_vote_count
-  end
-
-  def not_hidden_needs_poster
-    errors.add(:not_hidden_needs_poster, "A public movie needs a poster") if !hidden && !tmdb_poster_path
   end
 end

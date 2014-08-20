@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603182046) do
+ActiveRecord::Schema.define(version: 20140802201143) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -153,6 +153,7 @@ ActiveRecord::Schema.define(version: 20140603182046) do
     t.text     "overview_es"
     t.integer  "ratings_count",                default: 0
     t.float    "l4m_rating_average"
+    t.string   "slug"
   end
 
   create_table "notifications", force: true do |t|

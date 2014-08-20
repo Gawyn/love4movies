@@ -46,6 +46,9 @@ gem 'sinatra', require: false
 # New Relic
 gem 'newrelic_rpm'
 
+# Decoder
+gem 'unidecoder'
+
 # Assets
 gem 'sass-rails', github: "rails/sass-rails"
 gem 'sass', '~> 3.3.12'

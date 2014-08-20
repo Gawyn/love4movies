@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def show
-    @movie = Movie.includes(:reviews).find(params[:id]).decorate
+    @movie = Movie.includes(:reviews).find_by_slug(params[:id]).decorate
     @ratings = @movie.ratings.most_loved_first.includes(:user)
 
     @loves = Love.where(lovable_type: "Rating", lovable_id: @ratings.map(&:id))
