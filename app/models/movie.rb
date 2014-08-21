@@ -85,10 +85,9 @@ class Movie < ActiveRecord::Base
       if Movie.find_by_slug(slug)
         i = 2
         self.slug = slug + "-#{i}"
-        p id
 
         while Movie.find_by_slug(slug)
-          i++
+          i = i + 1
           splitted_slug = slug.split("-")
           splitted_slug[-1] = i.to_s
           self.slug = splitted_slug.join("-")
