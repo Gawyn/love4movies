@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   def show
     @movie = Movie.includes(:reviews).find_by_slug(params[:id])
-    redirect_to :back unless @movie
+    redirect_to root_path unless @movie
 
     @movie = @movie.decorate
     @ratings = @movie.ratings.most_loved_first.includes(:user)
