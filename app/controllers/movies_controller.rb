@@ -1,8 +1,7 @@
 class MoviesController < ApplicationController
-  def show
-    @movie = Movie.includes(:reviews).find_by_slug(params[:id])
-    redirect_to root_path unless @movie
+  before_filter :get_movie, on: :show
 
+  def show
     @movie = @movie.decorate
     @ratings = @movie.ratings.most_loved_first.includes(:user)
 
@@ -57,5 +56,10 @@ class MoviesController < ApplicationController
     else
       @movies.order("l4m_rating_average desc", "id").where("l4m_rating_average is not null")
     end
+  end
+
+  def get_movie
+    @movie = Movie.includes(:reviews).find_by_slug(params[:id])
+    redirect_to root_path unless @movie
   end
 end
