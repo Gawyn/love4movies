@@ -59,7 +59,7 @@ class MovieFeeder
       movie = Movie.new
       [ "original_title", "release_date",
         "popularity", "revenue", "runtime", "budget",
-        "imdb_id", "adult" ].each do |attribute|
+        "imdb_id", "adult", "tagline" ].each do |attribute|
           movie.send("#{attribute}=", movie_data["#{attribute}"])
         end
 
