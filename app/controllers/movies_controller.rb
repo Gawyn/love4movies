@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_filter :get_movie, on: :show
+  before_filter :get_movie, only: :show
 
   def show
     @movie = @movie.decorate
