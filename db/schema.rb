@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140802201143) do
+ActiveRecord::Schema.define(version: 20140828212153) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -45,6 +45,20 @@ ActiveRecord::Schema.define(version: 20140802201143) do
   end
 
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+
+  create_table "countries", force: true do |t|
+    t.string   "name"
+    t.string   "iso_3166_1"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "country_movies", force: true do |t|
+    t.integer  "country_id"
+    t.integer  "movie_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "follows", force: true do |t|
     t.integer  "follower_id"
@@ -154,6 +168,8 @@ ActiveRecord::Schema.define(version: 20140802201143) do
     t.integer  "ratings_count",                default: 0
     t.float    "l4m_rating_average"
     t.string   "slug"
+    t.boolean  "adult",                        default: false
+    t.string   "tagline"
   end
 
   create_table "notifications", force: true do |t|

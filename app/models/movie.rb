@@ -26,6 +26,8 @@ class Movie < ActiveRecord::Base
   has_many :lists, :through => :list_belongings
   has_many :movie_in_badges
   has_many :badges, through: :movie_in_badges
+  has_many :country_movies
+  has_many :countries, through: :country_movies
 
   scope :by_rating_average, -> { order(arel_table[:rating_average].desc) }
   scope :by_l4m_rating_average, -> { order(arel_table[:l4m_rating_average].desc) }

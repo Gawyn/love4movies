@@ -59,7 +59,7 @@ class MovieFeeder
       movie = Movie.new
       [ "original_title", "release_date",
         "popularity", "revenue", "runtime", "budget",
-        "imdb_id" ].each do |attribute|
+        "imdb_id", "adult", "tagline" ].each do |attribute|
           movie.send("#{attribute}=", movie_data["#{attribute}"])
         end
 
@@ -78,6 +78,18 @@ class MovieFeeder
         genre = Genre.find_or_create(:tmdb_id => genre_data["id"],
           :name => genre_data["name"])
         movie.genres << genre
+      end
+
+      movie_data["production_countries"].each do |country_data|
+        iso = country_data["iso_3166_1"]
+        name = country_data["name"]
+        country = Country.find_by_iso_3166_1_and_name(iso, name)
+
+        if country.nil?
+          country = Country.create(iso_3166_1: iso, name: name)
+        end
+
+        movie.countries << country
       end
 
       (LOCALES - [LOCALES.first]).each do |locale|
