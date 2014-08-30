@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828212153) do
+ActiveRecord::Schema.define(version: 20140830065038) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -159,17 +159,17 @@ ActiveRecord::Schema.define(version: 20140828212153) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "rating_average"
-    t.boolean  "hidden",                       default: true
-    t.integer  "total_ratings",                default: 0
+    t.boolean  "hidden",                         default: true
+    t.integer  "total_ratings",                  default: 0
     t.string   "title_en"
     t.text     "overview_en"
     t.string   "title_es"
     t.text     "overview_es"
-    t.integer  "ratings_count",                default: 0
+    t.integer  "ratings_count",                  default: 0
     t.float    "l4m_rating_average"
     t.string   "slug"
-    t.boolean  "adult",                        default: false
-    t.string   "tagline"
+    t.boolean  "adult",                          default: false
+    t.text     "tagline",            limit: 255
   end
 
   create_table "notifications", force: true do |t|
