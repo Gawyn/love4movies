@@ -1,67 +1,199 @@
-.pagination       { @include padding-leader; clear: both; }
+// SHOW
+.user-info-wrapper{ @extend %cf; }
 
-.user{
-  margin-top: - $base-font-size*3.5;
-  position: relative;
+.user-info{
   text-align: center;
-  .user__img img{
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 80%;
+  @include translate(-50%, 0);
+
+  .user__img{
     margin: 0 auto 1em auto;
-    width: $base-font-size*7;
-    height: $base-font-size*7;
-    border: 4px solid $white;
+    width: $base-font-size*5.5;
+    height: $base-font-size*5.5;
+    box-shadow: 0 0 0px 3px rgba($white, 1);
   }
+
+  .user-info__place{
+    color: rgba($text-color, .4);
+    font-size: 12px;
+    font-weight: 400;
+    i{margin-right: .25em;}
+  }
+
   .user__name{
-    font-size: 1.5em;
-    @include trailer(.5);
+    font-size: 2em;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    margin-bottom: .2em;
+    display: inline-block;
   }
+
 }
 
-.user-bg{
-  height: 260px;
-  width: 100%;
-  overflow: hidden;
+.best-rate-wrapper{
+  float: left;
+  width: ((100% - 30%)/2);
   position: relative;
 }
 
-.user-follow{
-  color: $good-green;
-  background-color: $white;
-  display: inline-block;
-  border: 1px solid $good-green;
-  padding: 0.4em 2em;
-  border-radius: 1px;
-  @include trailer(.5);
-  &:hover, &:focus{ outline: 0; background-color: $good-green; color: $white; }
+.user-wrapper{
+  float: left;
+  width: 30%;
+  position: relative;
+  z-index: 1000;
 }
 
-.backdrops{
-  position: absolute;
-  top: 0;
-  left: 0;
+.best-rate-gr{
+  float: left;
   width: 100%;
-  overflow: hidden;
-  height: 100%;
-  pointer-events: none;
-  .backdrop{
-    width: 20%;
-    height: 0;
-    padding-top: 33.333%;
-    float: left;
-    background-repeat: repeat;
-    background-position: center center;
+  background-color: $text-color;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 0;
+  @include transition;
+  -webkit-filter: grayscale(50%) brightness(0.8);
+
+  &:hover{-webkit-filter: grayscale(0) brightness(1);}
+}
+
+
+.best-rate-gr-1{
+  width: 60%;
+  padding-top: 60%;
+}
+
+.best-rate-gr-2{
+  width: 40%;
+  padding-top: 20%;
+}
+
+.best-rate-gr-3{
+  width: 40%;
+  padding-top: 40%;
+}
+
+.best-rate-grlf-1{
+  width: 60%;
+  padding-top: 60%;
+}
+
+.best-rate-grlf-2{
+  width: 40%;
+  padding-top: 60%;
+}
+
+.best-rate-gruser{
+  width: 100%;
+  padding-top: 70%;
+}
+
+.user-nav-wrapper{
+  padding: 4em 1em;
+}
+
+.user-nav{
+  @include inline-block-list(1.25em);
+  span{display: block;}
+  .user-nav__title{ color: #aaa; }
+}
+
+.follow-button{
+  float: right;
+}
+
+.user__lvl{
+  background-color: #25B4CF;
+  border-radius: 50%;
+  text-align: center;
+  display: inline-block;
+  width: $base-font-size*2;
+  height: $base-font-size*2;
+  line-height: 32px;
+  margin-left: .5em;
+  img {
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
   }
 }
 
-.overlay{
+.lvl-popup{
+  background-color: $text-color;
+  color: $white;
+  width: $base-font-size*12;
+  display: inline-block;
+  text-transform: none;
+  font-variant: initial;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.5;
+  opacity: 0;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background-color: transparentize(black, .75);
+  bottom: 150%;
+  z-index: 1000;
+  right: -($base-font-size*12/2 - $base-font-size - 2px);
+
+  &:after{
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -3px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid $text-color;
+  }
+
+  header{
+    background-color: #25B4CF;
+    padding-top: 1em;
+    img{
+      width: $base-font-size*2.5;
+      height: $base-font-size*2.5;
+    }
+  }
+
+  .lvl-popup__title{
+    font-weight: 900;
+    text-transform: uppercase;
+    padding-bottom: 1em;
+    line-height: 2;
+  }
+
+  .lvl-popup__body{
+    color: rgba($white, .5);
+    padding: 1em;
+    line-height: 1.5;
+  }
+
+  .lvl__bar{
+    @include leader(.5);
+    height: 100%;
+    width: auto;
+    background-color: $brand-color;
+  }
+
+  .lvl__bar--wrapper{
+    height: $base-font-size/3;
+    display: block;
+    background-color: #333;
+  }
+
 }
 
+.user-lvl-wrapper{
+  position: relative;
+  display: inline-block;
+  &:hover { .lvl-popup {opacity: 1;}}
+}
+
+// Users INDEX
 .users{
   width: 80%;
   margin: 0 auto;
@@ -81,3 +213,6 @@ table.users_list{
   @include leader(2);
   max-width: 40em;
 }
+
+// Pagination
+.pagination       { @include padding-leader; @include padding-trailer(2); clear: both; }

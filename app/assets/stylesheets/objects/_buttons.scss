@@ -48,22 +48,80 @@
   @include trailer(.5);
 }
 
+.btn--follow{
+  color: $white;
+  background-color: $brand-color;
+  display: inline-block;
+  padding: 1.25em 1.5em 1.25em 6em;
+  margin-right: 2.5em;
+  font-size: 12px;
+  @include transition;
+  text-transform: uppercase;
+  vertical-align: middle;
+  position: relative;
+  letter-spacing: 0.05em;
+  @extend .ion-plus;
+
+  &:before{
+    height: 100%;
+    width: 4em;
+    line-height: 3.5em;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+    background-color: darken($brand-color, 10%);
+  }
+
+  &:hover, &:focus{ outline: 0; background-color: darken($brand-color, 10%); color: $white; }
+}
+
+.btn--unfollow{
+  color: $white;
+  background-color: #3CC28C;
+  display: inline-block;
+  padding: 1.25em 1.5em 1.25em 6em;
+  margin-right: 2.5em;
+  font-size: 12px;
+  @include transition;
+  text-transform: uppercase;
+  vertical-align: middle;
+  letter-spacing: 0.05em;
+  position: relative;
+  @extend .ion-checkmark;
+
+  &:before{
+    height: 100%;
+    width: 4em;
+    line-height: 3.5em;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+    background-color: darken(#3CC28C, 10%);
+  }
+
+  &:hover, &:focus{ outline: 0; background-color: darken(#3CC28C, 10%); color: $white; }
+}
+
 .btn--facebook{
   background-color: $facebook;
+  text-transform: uppercase;
   border: none;
   color: $white;
   font-weight: 400;
   letter-spacing: 1px;
   padding: 1.5em 3em 1.5em 7em;
   position: relative;
+  @extend .ion-social-facebook;
+
   &:hover,
   &:focus{
     background-color: darken($facebook, 10%);
     color: $white;
   }
-  &:after{
-    content: "\f09a";
-    @extend .fa;
+
+  &:before{
     height: 100%;
     width: 5em;
     line-height: 2;
@@ -77,20 +135,22 @@
 
 .btn--twitter{
   background-color: $twitter;
+  text-transform: uppercase;
   border: none;
   color: $white;
   font-weight: 400;
   letter-spacing: 1px;
   padding: 1.5em 3em 1.5em 7em;
   position: relative;
+  @extend .ion-social-twitter;
+
   &:hover,
   &:focus{
     background-color: darken($twitter, 10%);
     color: $white;
   }
-  &:after{
-    content: "\f099";
-    @extend .fa;
+
+  &:before{
     height: 100%;
     width: 5em;
     line-height: 2;

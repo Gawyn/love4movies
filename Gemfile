@@ -59,6 +59,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'slim-rails'
 gem 'font-awesome-rails'
+gem 'ionicons-rails'
 
 # Development
 group :development do
