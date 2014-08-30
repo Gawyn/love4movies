@@ -102,6 +102,23 @@
   float: right;
 }
 
+.user__lvl{
+  background-color: #23BDCA;
+  border-radius: 50%;
+  text-align: center;
+  display: inline-block;
+  width: $base-font-size*2;
+  height: $base-font-size*2;
+  line-height: 20px;
+  margin-left: .25em;
+  vertical-align: middle;
+  img {
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+  }
+}
+
 // Users INDEX
 .users{
   width: 80%;

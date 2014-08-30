@@ -13,7 +13,9 @@
       figure
         = image_tag @user.medium_avatar, class: "user__img"
         figcaption
-          h1.user__name= @user.name
+          h1.user__name
+            = @user.name
+            span.user__lvl= image_tag 'levels/lvl-producer.svg'
 
       - if @user.location
         b.user-info__place
