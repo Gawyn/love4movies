@@ -28,8 +28,6 @@ section.main-navigation
     - if current_user
       .session-action
         .user-avatar= link_to image_tag(current_user.avatar("medium")), current_user
-        = link_to destroy_user_session_path, :method => :delete do
-          i.ion-log-out
 
 - content_for :custom_js do
   javascript:
