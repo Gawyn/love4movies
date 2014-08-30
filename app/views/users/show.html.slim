@@ -32,7 +32,7 @@ section.user-nav-wrapper
       .follow-button
         #follow_link
           - if @follow
-            = link_to "Unfollow", follow_path(@follow), method: :delete, remote: true, class: "btn--unfollow"
+            = link_to "Following", follow_path(@follow), method: :delete, remote: true, class: "btn--unfollow"
           - else
             = link_to "Follow", user_follows_path(@user), method: :post, remote: true, class: "btn--follow"
 
