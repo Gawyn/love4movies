@@ -28,10 +28,6 @@ section.main-navigation
     - if current_user
       .session-action
         .user-avatar= link_to image_tag(current_user.avatar("medium")), current_user
-        / .lvl
-        /   span.lvl__bar--wrapper
-        /     .lvl__bar style="width:#{current_user.decorate.percentage_of_experience_achieved}%"
-
         = link_to destroy_user_session_path, :method => :delete do
           i.ion-log-out
 

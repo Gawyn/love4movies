@@ -72,19 +72,6 @@
   }
 
 }
-.lvl {
-  .lvl__bar{
-    height: 100%;
-    width: auto;
-    background-color: $brand-color;
-  }
-  .lvl__bar--wrapper{
-    height: $base-font-size/3;
-    display: block;
-    background-color: #333;
-  }
-  @extend %show-medium-up;
-}
 
 .session-action{
   position: absolute;

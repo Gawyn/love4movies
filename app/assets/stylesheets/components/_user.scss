@@ -28,7 +28,9 @@
     font-variant: small-caps;
     text-transform: lowercase;
     margin-bottom: .2em;
+    display: inline-block;
   }
+
 }
 
 .best-rate-wrapper{
@@ -41,6 +43,7 @@
   float: left;
   width: 30%;
   position: relative;
+  z-index: 1000;
 }
 
 .best-rate-gr{
@@ -103,20 +106,91 @@
 }
 
 .user__lvl{
-  background-color: #23BDCA;
+  background-color: #25B4CF;
   border-radius: 50%;
   text-align: center;
   display: inline-block;
   width: $base-font-size*2;
   height: $base-font-size*2;
-  line-height: 20px;
-  margin-left: .25em;
-  vertical-align: middle;
+  line-height: 32px;
+  margin-left: .5em;
   img {
     width: 16px;
     height: 16px;
     line-height: 16px;
   }
+}
+
+.lvl-popup{
+  background-color: $text-color;
+  color: $white;
+  width: $base-font-size*12;
+  display: inline-block;
+  text-transform: none;
+  font-variant: initial;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.5;
+  opacity: 0;
+  position: absolute;
+  bottom: 150%;
+  z-index: 1000;
+  right: -($base-font-size*12/2 - $base-font-size - 2px);
+
+  &:after{
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -3px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid $text-color;
+  }
+
+  header{
+    background-color: #25B4CF;
+    padding-top: 1em;
+    img{
+      width: $base-font-size*2.5;
+      height: $base-font-size*2.5;
+    }
+  }
+
+  .lvl-popup__title{
+    font-weight: 900;
+    text-transform: uppercase;
+    padding-bottom: 1em;
+    line-height: 2;
+  }
+
+  .lvl-popup__body{
+    color: rgba($white, .5);
+    padding: 1em;
+    line-height: 1.5;
+  }
+
+  .lvl__bar{
+    @include leader(.5);
+    height: 100%;
+    width: auto;
+    background-color: $brand-color;
+  }
+
+  .lvl__bar--wrapper{
+    height: $base-font-size/3;
+    display: block;
+    background-color: #333;
+  }
+
+}
+
+.user-lvl-wrapper{
+  position: relative;
+  display: inline-block;
+  &:hover { .lvl-popup {opacity: 1;}}
 }
 
 // Users INDEX

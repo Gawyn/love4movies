@@ -15,7 +15,23 @@
         figcaption
           h1.user__name
             = @user.name
-            span.user__lvl= image_tag 'levels/lvl-producer.svg'
+            - level_def = @user.decorate.level_def
+          span.user-lvl-wrapper
+            span.user__lvl= image_tag("levels/lvl-#{level_def}.svg")
+            span.lvl-popup
+              header
+                = image_tag("levels/lvl-#{level_def}.svg")
+                .lvl-popup__title= level_def
+              .lvl-popup__body
+                .lvl-popup__level
+                  ' Nivel
+                  = @user.level
+                .lvl-popup__points
+                  =' @user.experience
+                  ' puntos totales
+
+                .lvl__bar--wrapper
+                  .lvl__bar style="width:#{@user.decorate.percentage_of_experience_achieved}%"
 
       - if @user.location
         b.user-info__place
@@ -26,7 +42,7 @@
   .best-rate-wrapper
     - @highest_ratings.to_a.first(2).each_with_index do |rating, i|
       = link_to rating.movie do
-        .best-rate-gr class="best-rate-grlf-#{i+1}" class="best-rate-gr-#{i+1}" style="#{"background-image: url(#{rating.movie.backdrops.any? ? rating.movie.backdrops.first.url("w1280") : asset_path('default-backdrop.jpg')})"}"
+        .best-rate-gr class="best-rate-grlf-#{i+1}" style="#{"background-image: url(#{rating.movie.backdrops.any? ? rating.movie.backdrops.first.url("w1280") : asset_path('default-backdrop.jpg')})"}"
 
 section.user-nav-wrapper
   - if current_user
