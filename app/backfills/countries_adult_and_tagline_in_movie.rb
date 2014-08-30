@@ -1,6 +1,6 @@
 class CountriesAdultAndTaglineInMovie
   def execute!
-    Movie.find_each do |movie|
+    Movie.where("tagline is null").find_each do |movie|
       movie_data = TMDBClient.get_movie(movie.tmdb_id)
       movie.tagline = movie_data["tagline"]
       movie.adult = movie_data["adult"]
