@@ -17,8 +17,8 @@ section.login-banner style="background-image: url(#{backdrop}) "
       | The movie lovers community.
 
     .login-banner__list
-      span= link_to "Facebook", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--login"
-      span= link_to "Twitter", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--login"
+      span= link_to "Facebook", user_omniauth_authorize_path("facebook"), class: "btn--facebook btn--login"
+      span= link_to "Twitter", user_omniauth_authorize_path("twitter"), class: "btn--twitter btn--login"
 
   - if @last_activity
     .login__footer
