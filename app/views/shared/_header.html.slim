@@ -1,53 +1,46 @@
 section.main-navigation
   nav.display-nav
-
-    / User profile
-    - if current_user
-      .user-profile= link_to image_tag(current_user.avatar("medium")), current_user
-      .lvl
-        span.lvl__bar--wrapper
-          .lvl__bar style="width:#{current_user.decorate.percentage_of_experience_achieved}%"
+    .main-logo-icon= link_to image_tag('love4movies-logo-2.svg'), root_path
 
     ul.display-nav__list
-      - if current_user
-        li.display-nav__elem = link_to timeline_path, class: "display-nav__link #{cp(timeline_path)}" do
-          i.fa.fa-clock-o.fa-lg
-          span.display-nav__title Timeline
-
       li.display-nav__elem = link_to "#", class: "display-nav__link js-search" do
-        i.fa.fa-search.fa-lg
-        span.display-nav__title Search
+        i.ion-search.display-nav__icon
+        / span.display-nav__title Search
 
       li.display-nav__elem = link_to ranking_path, class: "display-nav__link #{cp(ranking_path)}" do
-        i.fa.fa-film.fa-lg
-        span.display-nav__title Movies
+        i.ion-ios7-film.display-nav__icon
+        / span.display-nav__title Movies
 
       li.display-nav__elem = link_to users_path, class: "display-nav__link #{cp(users_path)}" do
-        i.fa.fa-group.fa-lg
-        span.display-nav__title Users
+        i.ion-person-stalker.display-nav__icon
+        / span.display-nav__title Users
 
       - if current_user
         li.display-nav__elem = link_to notifications_path, class: "display-nav__link #{cp(notifications_path)}"do
 
-          i.fa.fa-bell-o.fa-lg
-          span.display-nav__title News
+          i.ion-ios7-bell.display-nav__icon
+          / span.display-nav__title News
 
           - if @pending_notifications.any?
             span.display-nav__notification= @pending_notifications.count
 
+    / User profile
     - if current_user
-      = link_to destroy_user_session_path, :method => :delete, class: "session-action" do
-        i.fa.fa-sign-out.fa-lg
+      .session-action
+        .user-avatar= link_to image_tag(current_user.avatar("medium")), current_user
+        / .lvl
+        /   span.lvl__bar--wrapper
+        /     .lvl__bar style="width:#{current_user.decorate.percentage_of_experience_achieved}%"
 
-    - else
-      = link_to root_path, class: "session-action" do
-        i.fa.fa-sign-out.fa-lg
+        = link_to destroy_user_session_path, :method => :delete do
+          i.ion-log-out
 
 - content_for :custom_js do
   javascript:
     $(document).ready(function() {
 
       $('.js-search').click(function (e) {
+        $(this).toggleClass('current');
         $(".search-form-wrapper").toggleClass('active');
         $(".search-form__input").focus();
         e.preventDefault();
