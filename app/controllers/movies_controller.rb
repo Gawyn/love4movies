@@ -60,6 +60,6 @@ class MoviesController < ApplicationController
 
   def get_movie
     @movie = Movie.includes(:reviews).find_by_slug(params[:id])
-    redirect_to root_path unless @movie
+    redirect_to root_path if @movie.nil? || @movie.hidden
   end
 end
