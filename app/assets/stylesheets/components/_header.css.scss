@@ -1,20 +1,20 @@
-.logo{
-  width: $sidebar-width;
-  padding: 1em 6px 3px;
-  position: relative;
-}
-
-.user-profile{
+.main-logo-icon{
   display: inline-block;
   vertical-align: middle;
+  @media #{$medium-up}    { display: block; }
 
-  img     {
-    width: $base-font-size*3;
-    display: block;
-    @media #{$medium-up}    { display: block; width: 100%; }
+  a{
+    display: inline-block;
+    background-color: $brand-color;
+    @media #{$medium-up}    { display: block; }
   }
-
+  img{
+    max-width: $base-font-size*2.25;
+    padding: 7px 5px;
+    @media #{$medium-up}    { padding: 20px 0 10px; margin-right: -4px; max-width: $base-font-size*1.75;}
+  }
 }
+
 
 .display-nav{
   @media #{$medium-up}      { text-align: center; }
@@ -31,7 +31,13 @@
     color: rgba($white, .5);
     position: relative;
 
-    .fa                     { color: inherit; @include transition; padding: .75em; @media #{$medium-up}{ padding: 0} }
+    .display-nav__icon                     {
+      color: inherit;
+      @include transition;
+      padding: .75em;
+      font-size: 1.5em;
+      @media #{$medium-up}      { padding: 0}
+    }
 
     @media #{$medium-up}    {
       display: block;
@@ -40,7 +46,7 @@
     }
 
     &:hover,
-    &.current               { color: $white; .fa{ color: $second-color; }}
+    &.current               { color: $brand-color-lght; }
   }
 
   .display-nav__title{
@@ -66,25 +72,11 @@
   }
 
 }
-.lvl {
-  .lvl__bar{
-    height: 100%;
-    width: auto;
-    background-color: $brand-color;
-  }
-  .lvl__bar--wrapper{
-    height: $base-font-size/3;
-    display: block;
-    background-color: #333;
-  }
-  @extend %show-medium-up;
-}
 
 .session-action{
-  color: #5d5d5d;
   position: absolute;
-  bottom: 2em;
-  left: 50%;
-  margin-left: -$base-font-size/2;
+  bottom: 1em;
+  left: 0;
+  margin: 0 .75em;
   @extend %show-medium-up;
 }

@@ -6,7 +6,7 @@ class UserDecorator < Draper::Decorator
   end
 
   def achieved_experience_for_next_level
-    Experience::EACH_LEVEL_EXPERIENCE[level - 1] - missing_experience_for_next_level 
+    Experience::EACH_LEVEL_EXPERIENCE[level - 1] - missing_experience_for_next_level
   end
 
   def missing_experience_for_next_level
@@ -20,5 +20,17 @@ class UserDecorator < Draper::Decorator
 
   def next_level_experience
     Experience::SUM_LEVEL_EXPERIENCE[level - 1]
+  end
+
+  def level_def
+    level_definition = case object.level
+      when 0..4   then "rookie"
+      when 5..19  then "smarty"
+      when 20..34 then "popcorn"
+      when 35..49 then "enthusiast"
+      when 50..64 then "producer"
+      when 65..79 then "director"
+      else "legend"
+    end
   end
 end

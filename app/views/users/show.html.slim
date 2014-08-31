@@ -1,36 +1,78 @@
-sidebar.person-sidebar
-  .user-bg
-    .backdrops
-      - @highest_ratings.each do |rating|
-        .backdrop style="#{"background-image: url(#{rating.movie.posters.any? ? rating.movie.posters.first.url("w92") : "no-movie.jpg"})"}"
-    .overlay
-  .user
-    figure.user__img
-      = image_tag @user.medium_avatar
-      figcaption
-        h1.user__name= @user.name
+.user-info-wrapper
+  .best-rate-wrapper
+    - @highest_ratings.to_a.shift(3).each_with_index do |rating, i|
+      = link_to rating.movie do
+        .best-rate-gr class="best-rate-gr-#{i+1}" style="#{"background-image: url(#{rating.movie.backdrops.any? ? rating.movie.backdrops.first.url("w1280") : asset_path('default-backdrop.jpg')})"}"
 
-    .person-info
-      b.person-info__place = @user.location
-      p.person-info__experience
-        =' @user.experience
-        | points
+  .user-wrapper
+    - @highest_ratings.to_a.shift(1).each do |rating|
+      = link_to rating.movie do
+        .best-rate-gr class="best-rate-gruser" style="#{"background-image: url(#{rating.movie.backdrops.any? ? rating.movie.backdrops.first.url("w1280") : asset_path('default-backdrop.jpg')})"}"
 
+    .user-info
+      figure
+        = image_tag @user.medium_avatar, class: "user__img"
+        figcaption
+          h1.user__name
+            = @user.name
+            - level_def = @user.decorate.level_def
+          span.user-lvl-wrapper
+            span.user__lvl= image_tag("levels/lvl-#{level_def}.svg")
+            span.lvl-popup
+              header
+                = image_tag("levels/lvl-#{level_def}.svg")
+                .lvl-popup__title= level_def
+              .lvl-popup__body
+                .lvl-popup__level
+                  ' Level
+                  = @user.level
+                .lvl-popup__points
+                  =' @user.experience
+                  ' total points
 
-        - if current_user
-          - if (current_user != @user)
-            #follow_link
-              - if @follow
-                = link_to "Unfollow", follow_path(@follow), method: :delete, remote: true, class: "user-follow"
-              - else
-                = link_to "Follow", user_follows_path(@user), method: :post, remote: true, class: "user-follow"
+                - if current_user == @user
+                  .lvl__bar--wrapper
+                    .lvl__bar style="width:#{@user.decorate.percentage_of_experience_achieved}%"
 
-section.person-works
-  header.search-keys
-    span.search-keys__results
-      b=' @user.ratings_count
-      | ratings
+      - if @user.location
+        b.user-info__place
+          i.ion-location
+          '
+          =' @user.location
 
+      - if current_user == @user
+        .log-out= link_to destroy_user_session_path, :method => :delete, class: "user-info__place" do
+          i.ion-log-out
+          '
+          | Log out
+
+  .best-rate-wrapper
+    - @highest_ratings.to_a.first(2).each_with_index do |rating, i|
+      = link_to rating.movie do
+        .best-rate-gr class="best-rate-grlf-#{i+1}" style="#{"background-image: url(#{rating.movie.backdrops.any? ? rating.movie.backdrops.first.url("w1280") : asset_path('default-backdrop.jpg')})"}"
+
+section.user-nav-wrapper
+  - if current_user
+    - if (current_user != @user)
+      .follow-button
+        #follow_link
+          - if @follow
+            = link_to "Following", follow_path(@follow), method: :delete, remote: true, class: "btn--unfollow"
+          - else
+            = link_to "Follow", user_follows_path(@user), method: :post, remote: true, class: "btn--follow"
+
+  ul.user-nav
+    li
+      span.user-nav__title Ratings
+      strong.user-nav__numb= @user.ratings_count
+    li
+      span.user-nav__title Followers
+      strong.user-nav__numb 314
+    li
+      span.user-nav__title Following
+      strong.user-nav__numb 1.2K
+
+section
   section.activities
     - @ratings.each do |rating|
       = render "ratings/with_movie", content: rating, user: @user

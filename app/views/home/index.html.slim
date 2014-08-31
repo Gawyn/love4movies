@@ -1,5 +1,5 @@
 - first_movie_backdrop = @last_activity.present? ? @last_activity.content.movie.backdrops.first : false
-- backdrop = first_movie_backdrop ? first_movie_backdrop.url("w1280") : "nav-test.jpg"
+- backdrop = first_movie_backdrop ? first_movie_backdrop.url("w1280") : asset_path('default-backdrop.jpg')
 section.login-banner style="background-image: url(#{backdrop}) "
 
   .login__overlay
@@ -17,8 +17,8 @@ section.login-banner style="background-image: url(#{backdrop}) "
       | The movie lovers community.
 
     .login-banner__list
-      span= link_to "Facebook", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--login"
-      span= link_to "Twitter", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--login"
+      span= link_to "Facebook", user_omniauth_authorize_path("facebook"), class: "btn--facebook btn--login"
+      span= link_to "Twitter", user_omniauth_authorize_path("twitter"), class: "btn--twitter btn--login"
 
   - if @last_activity
     .login__footer
