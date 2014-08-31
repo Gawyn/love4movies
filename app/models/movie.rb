@@ -39,6 +39,7 @@ class Movie < ActiveRecord::Base
 
   before_create :set_total_ratings
   before_create :set_slug
+  before_save :hide_adult!
 
   searchable do
     integer :id
@@ -106,5 +107,9 @@ class Movie < ActiveRecord::Base
 
   def set_total_ratings
     self.total_ratings = tmdb_vote_count
+  end
+
+  def hide_adult!
+    self.hidden = true if adult
   end
 end
