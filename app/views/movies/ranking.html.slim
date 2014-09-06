@@ -1,8 +1,8 @@
 header
   nav
     ul.tab-list.tab-list-2
-      li= link_to "Ranking", ranking_path, class: "tab-list__link #{cp(ranking_path)}"
-      li= link_to "Recommended", recommended_movies_path, class: "tab-list__link #{cp(recommended_movies_path)}"
+      li= link_to t('navigation.ranking'), ranking_path, class: "tab-list__link #{cp(ranking_path)}"
+      li= link_to t('navigation.recommended'), recommended_movies_path, class: "tab-list__link #{cp(recommended_movies_path)}"
 
 section.ranking-movies
   = render "movies/index", movies: @movies

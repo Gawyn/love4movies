@@ -1,5 +1,55 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  landing:
+    title: 'The movie lovers community'
+    user-review: 'commented the movie'
+  units:
+    ratings: 'Ratings'
+    points: 'Points'
+    total-points: 'Total points'
+    movies: 'Movies'
+    people: 'People'
+    users: 'Users'
+  navigation:
+    reviews: 'Reviews'
+    actors: 'Actors'
+    search: 'Search'
+    movies: 'Movies'
+    users: 'Users'
+    news: 'News'
+    timeline: 'Timeline'
+    trending: 'Trending'
+    ranking: 'Ranking'
+    recommended: 'Recommended'
+    notifications: 'Notifications'
+    notifications_subtitle: 'Last notifications of people you follow'
+    users: 'Users'
+    users_subtitle: 'Ordered by experience'
+  actions:
+    following: 'Following'
+    follow: 'Follow'
+    facebook: 'Facebook'
+    twitter: 'Twitter'
+    publish: 'Publish'
+    back: 'Back'
+    write-a-review: 'Write a review'
+  movie:
+    show:
+      limit-rating: 'No more than 140 chars'
+      actual-rate: 'Actual rate'
+  search:
+    form-label: 'Search by movies, actors, actresses or directors'
+    title: 'Search results for'
+  level:
+    level: 'Level'
+    rookie: 'Rookie'
+    smarty: 'Smarty'
+    popcorn: 'Popcorn'
+    enthusiast: 'Enthusiast'
+    producer: 'Producer'
+    director: 'Director'
+    legend: 'Legend'
+  users:
+    navigation:
+      ratings: 'Ratings'
+      followers: 'Followers'
+      following: 'Following'

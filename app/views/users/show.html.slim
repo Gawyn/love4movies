@@ -21,14 +21,14 @@
             span.lvl-popup
               header
                 = image_tag("levels/lvl-#{level_def}.svg")
-                .lvl-popup__title= level_def
+                .lvl-popup__title= t("level.#{level_def}")
               .lvl-popup__body
                 .lvl-popup__level
-                  ' Level
+                  =' t('level.level')
                   = @user.level
                 .lvl-popup__points
                   =' @user.experience
-                  ' total points
+                  =' t('units.total-points').downcase
 
                 - if current_user == @user
                   .lvl__bar--wrapper
@@ -57,19 +57,19 @@ section.user-nav-wrapper
       .follow-button
         #follow_link
           - if @follow
-            = link_to "Following", follow_path(@follow), method: :delete, remote: true, class: "btn--unfollow"
+            = link_to t('actions.following'), follow_path(@follow), method: :delete, remote: true, class: "btn--unfollow"
           - else
-            = link_to "Follow", user_follows_path(@user), method: :post, remote: true, class: "btn--follow"
+            = link_to t('actions.follow'), user_follows_path(@user), method: :post, remote: true, class: "btn--follow"
 
   ul.user-nav
     li
-      span.user-nav__title Ratings
+      span.user-nav__title=' t('users.navigation.ratings')
       strong.user-nav__numb= @user.ratings_count
     li
-      span.user-nav__title Followers
+      span.user-nav__title=' t('users.navigation.followers')
       strong.user-nav__numb 314
     li
-      span.user-nav__title Following
+      span.user-nav__title=' t('users.navigation.following')
       strong.user-nav__numb 1.2K
 
 section

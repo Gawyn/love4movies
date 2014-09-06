@@ -1,0 +1,54 @@
+es:
+  landing:
+    title: 'La comunidad de los amantes del cine'
+    user-review: 'ha comentado la película'
+  units:
+    ratings: 'Ratings'
+    points: 'Puntos'
+    total-points: 'puntos totales'
+    movies: 'Películas'
+    people: 'Gente'
+    users: 'Usuarios'
+  navigation:
+    reviews: 'Críticas'
+    actors: 'Actores'
+    search: 'Buscar'
+    movies: 'Películas'
+    users: 'Usuarios'
+    news: 'Novedades'
+    timeline: 'Últimas'
+    trending: 'Popular'
+    ranking: 'Ránquing'
+    recommended: 'Recomendados'
+    notifications: 'Notificaciones'
+    notifications_subtitle: 'Últimas notificaciones de tus amigos'
+    users_subtitle: 'Ordenados por experiencia'
+  actions:
+    following: 'Siguiendo'
+    follow: 'Seguir'
+    facebook: 'Facebook'
+    twitter: 'Twitter'
+    publish: 'Publicar'
+    back: 'Volver al listado de críticas'
+    write-a-review: 'Escribe una crítica'
+  movie:
+    show:
+      limit-rating: 'Tienes un límite de 140 caracteres'
+      actual-rate: 'Tu puntuación es'
+  search:
+    form-label: 'Buscar por películas, actores, actrizes o directores'
+    title: 'Resultados de la búsqueda'
+  level:
+    level: 'Nivel'
+    rookie: 'Novato'
+    smarty: 'Enteradillo'
+    popcorn: 'Palomitero'
+    enthusiast: 'Entusiasta'
+    producer: 'Productor'
+    director: 'Director'
+    legend: 'Leyenda'
+  users:
+    navigation:
+      ratings: 'Críticas'
+      followers: 'Seguidores'
+      following: 'Siguiendo'
