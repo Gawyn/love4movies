@@ -1,7 +1,7 @@
 section.users
   header
-    h2.header--title Users
-    .subheader Users ordered by experience
+    h2.header--title= t('navigation.users')
+    .subheader= t('navigation.users_subtitle')
 
   table.users_list
     - @users.each do |user|
@@ -12,4 +12,4 @@ section.users
         td = user.level
         td
           =' user.experience
-          | points
+          = t('units.points')

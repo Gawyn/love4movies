@@ -1,7 +1,7 @@
 section.notifiactions-wrapper
   header
-    h2.header--title Notifications
-    .subheader Last notifications of people you follow
+    h2.header--title = t('navigation.notifications')
+    .subheader = t('navigation.notifications_subtitle')
 
 .notifications
   - @notifications.each do |notification|

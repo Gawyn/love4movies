@@ -5,21 +5,17 @@ section.main-navigation
     ul.display-nav__list
       li.display-nav__elem = link_to "#", class: "display-nav__link js-search" do
         i.ion-search.display-nav__icon
-        / span.display-nav__title Search
 
       li.display-nav__elem = link_to ranking_path, class: "display-nav__link #{cp(ranking_path)}" do
         i.ion-ios7-film.display-nav__icon
-        / span.display-nav__title Movies
 
       li.display-nav__elem = link_to users_path, class: "display-nav__link #{cp(users_path)}" do
         i.ion-person-stalker.display-nav__icon
-        / span.display-nav__title Users
 
       - if current_user
         li.display-nav__elem = link_to notifications_path, class: "display-nav__link #{cp(notifications_path)}"do
 
           i.ion-ios7-bell.display-nav__icon
-          / span.display-nav__title News
 
           - if @pending_notifications.any?
             span.display-nav__notification= @pending_notifications.count
