@@ -44,7 +44,7 @@
         .log-out= link_to destroy_user_session_path, :method => :delete, class: "user-info__place" do
           i.ion-log-out
           '
-          | Log out
+          = t('actions.log-out')
 
   .best-rate-wrapper
     - @highest_ratings.to_a.first(2).each_with_index do |rating, i|

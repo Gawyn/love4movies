@@ -35,6 +35,7 @@ en:
     leave-a-comment: 'Leave a comment'
     more-info: 'More info'
     close: 'Close'
+    log-out: 'Log out'
   movies:
     show:
       limit-rating: 'No more than 140 chars'

@@ -34,6 +34,7 @@ es:
     leave-a-comment: 'Deja un comentario'
     more-info: 'Más info'
     close: 'Cerrar'
+    log-out: 'Cerrar Sesión'
   movies:
     show:
       limit-rating: 'Tienes un límite de 140 caracteres'
