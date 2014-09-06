@@ -9,9 +9,9 @@
     .movie-section-wrapper
 
       - if current_user && @my_rating.nil?
-        h3.review__title Write a review
+        h3.review__title= t('actions.write-a-review')
         .do-rating-form
-          em.do-rating__subtitle No more than 140 character
+          em.do-rating__subtitle= t('.limit-rating')
 
           = form_tag movie_ratings_path(movie_id: @movie.id), method: :post do
             = text_area_tag "short_review", "", class: "do-rating__input", maxlength: "140"
@@ -22,25 +22,18 @@
                   span.do-rating-action.js-star-hover data-number="#{i}"
                     i.fa.fa-star-o.fa-lg
               em.do-rating__subtitle
-                ' Actual rate:
+                =' t('.actual-rate')
                 span.js-actual-rate 0
 
             = submit_tag "Publish", class: "btn btn--sml do-rating__btn"
 
       - elsif !current_user
         p.subheader Join the community of cinema lovers
-        = link_to "Facebook login", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--full"
-
-        = link_to "Twitter login", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--full"
+        = link_to = link_to t('actions.facebook'), user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--full"
+        = link_to = link_to t('actions.twitter'), user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--full"
 
       - if @ratings && @ratings.any?
-        h3.review__title Reviews
+        h3.review__title=' t('navigation.reviews')
         .ratings
           - @ratings.each do |rating|
             = render "ratings/short", rating: rating, review: true
-
-- content_for :custom_js do
-  javascript:
-    $(document).ready(function() {
-
-    });

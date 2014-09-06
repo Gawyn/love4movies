@@ -6,6 +6,6 @@
   - if current_user
     .form-comment-wrapper
       = form_tag eval("#{commentable.class.to_s.underscore}_comments_path(#{commentable.id})"), remote: true do |f|
-        p.movie__sub-heading Leave a comment
+        p.movie__sub-heading = t('actions.leave-a-comment')
         = text_area_tag :content, nil
-        = submit_tag "Publish"
+        = submit_tag t('actions.publish')

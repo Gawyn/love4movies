@@ -1,15 +1,14 @@
 .info-movie-sidebar
 
   / Toggle movie info
-  .btn.toggle-movie-info.js-toggle-info
-    | Close
+  .btn.toggle-movie-info.js-toggle-info =' t('actions.close')
 
   .movie-section-wrapper
     section.movie--show#sinopsis
       figure.movie__img
         = image_tag (@movie.posters.any? ? @movie.posters.first.url("w500") : "no-movie.jpg")
       .movie__summary
-        h2.movie__heading Synopsis
+        h2.movie__heading= @movie.title
         p.movie__sinopsis= @movie.overview
         date.movie__runtime
           =' @movie.runtime
@@ -18,8 +17,7 @@
           span = @movie.decorate.full_genres
 
   section.movie--actors#actors
-    h2.movie__heading Actors
-    p.movie__sub-heading Main cast
+    h2.movie__heading= t('navigation.actors')
     .movie--actors-list
       - @movie.performances.order("tmdb_order asc").includes(:person).limit(20).map do |performance|
         - if performance.person.profiles.any?

@@ -4,7 +4,7 @@
 
 article.notification
   .media
-    .media__img= link_to image_tag(user.avatar("small")), user
+    .media__img = link_to image_tag(user.avatar("small")), user
 
     - if type == "Love"
       .media__img
@@ -12,14 +12,18 @@ article.notification
 
       .media__body
         p = link_to notification.triggered_on do
-            = "#{user.name} loves your rating on #{movie.title}"
+            =' user.name
+            =' t('notifications.love-rating')
+            = movie.title
 
     - elsif notification.triggered_on_type == "Rating"
       .media__img
         i.fa.fa-star-o.fa-lg
       .media__body
         p = link_to notification.triggered_on do
-          = "#{user.name} commented your rating on #{movie.title}"
+          =' user.name
+          =' t('notifications.comment-rating')
+          = movie.title
 
     - elsif notification.triggered_on_type == "Review"
       .media__img
@@ -27,7 +31,7 @@ article.notification
       .media__body
         p
           =' link_to user.name, user
-          ' commented your review on
+          =' t('notifications.comment-review')
           = link_to movie.title, notification.triggered_on
 
     - elsif notification.triggered_on_type == "Comment"
@@ -36,5 +40,5 @@ article.notification
       .media__body
         p
           =' link_to user.name, user
-          ' answer your comment on
+          =' t('notifications.answer-comment')
           = link_to movie.title, notification.triggered_on.commentable

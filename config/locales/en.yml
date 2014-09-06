@@ -30,9 +30,12 @@ en:
     facebook: 'Facebook'
     twitter: 'Twitter'
     publish: 'Publish'
-    back: 'Back'
+    back: 'Back to the reviews'
     write-a-review: 'Write a review'
-  movie:
+    leave-a-comment: 'Leave a comment'
+    more-info: 'More info'
+    close: 'Close'
+  movies:
     show:
       limit-rating: 'No more than 140 chars'
       actual-rate: 'Actual rate'
@@ -53,3 +56,8 @@ en:
       ratings: 'Ratings'
       followers: 'Followers'
       following: 'Following'
+  notifications:
+    love-rating: 'loves your rating on'
+    comment-rating: 'commented your rating on'
+    comment-review: 'commented your review on'
+    answer-comment: 'answer your comment on'

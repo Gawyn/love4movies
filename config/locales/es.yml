@@ -31,7 +31,10 @@ es:
     publish: 'Publicar'
     back: 'Volver al listado de críticas'
     write-a-review: 'Escribe una crítica'
-  movie:
+    leave-a-comment: 'Deja un comentario'
+    more-info: 'Más info'
+    close: 'Cerrar'
+  movies:
     show:
       limit-rating: 'Tienes un límite de 140 caracteres'
       actual-rate: 'Tu puntuación es'
@@ -52,3 +55,8 @@ es:
       ratings: 'Críticas'
       followers: 'Seguidores'
       following: 'Siguiendo'
+  notifications:
+    love-rating: 'le gusta tu crítica en'
+    comment-rating: 'ha comentado tu puntuación en'
+    comment-review: 'ha comentado tu crítica en'
+    answer-comment: 'ha respondido a tu comentario en'
