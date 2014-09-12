@@ -9,7 +9,7 @@ section.recommended-form
     .dropdown.button
       = select_tag :genre, ("<option></option>" + options_from_collection_for_select(Genre.all, "id", "name", @genre)).html_safe
     .dropdown.button
-      = select_tag :order, options_for_select(["l4m_rating_average", "rating_average"], @order)
+      = select_tag :country, ("<option></option>" + options_from_collection_for_select(Country.all, "id", "name", @country)).html_safe
 
     = submit_tag "Search", class: "btn"
 
