@@ -27,6 +27,7 @@ class MoviesController < ApplicationController
   def recommended
     @order = params[:order] || "l4m_rating_average"
     @genre = params[:genre].blank? ? nil : params[:genre]
+    @country = params[:country].blank? ? nil : params[:country]
     @page = params[:page] || 1
 
     @searched_movies = get_recommended_movies
@@ -49,6 +50,7 @@ class MoviesController < ApplicationController
   def get_recommended_movies
     @movies = current_user ? Movie.where("movies.id not in (?)", current_user.ratings.pluck(:movie_id)) : Movie
     @movies = @movies.joins(:genres).where("genres.id = ?", @genre) if @genre
+    @movies = @movies.joins(:countries).where("countries.id = ?", @country) if @country
     @movies = @movies.more_total_ratings_than(15) if @order != "l4m_rating_average"
 
     if @order == "rating_average"
