@@ -12,6 +12,5 @@ class HomeController < ApplicationController
     redirect_to root_path unless current_user
 
     @followeds_activities = Activity.where(user_id: current_user.followed_users_and_me_ids).includes(:user).includes(:content).order("created_at desc").limit(12)
-    @users = User.more_experience_first.first(10)
   end
 end

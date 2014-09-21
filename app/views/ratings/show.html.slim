@@ -8,10 +8,7 @@
     article.movie-section-wrapper.rating.rating-show data-id=@rating.id
 
       - if !current_user
-        p.subheader Join the community of cinema lovers
-        = link_to t('actions.facebook'), user_omniauth_authorize_path("facebook"), class: "btn btn--facebook btn--full"
-
-        = link_to t('actions.twitter'), user_omniauth_authorize_path("twitter"), class: "btn btn--twitter btn--full"
+        = render "shared/social_login"
 
       = link_to @movie, class: "btn btn--full trailer btn--sml" do
         i.fa.fa-long-arrow-left

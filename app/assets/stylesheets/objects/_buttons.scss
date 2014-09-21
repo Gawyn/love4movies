@@ -52,7 +52,7 @@
   color: $white;
   background-color: $brand-color;
   display: inline-block;
-  padding: 1.25em 1.5em 1.25em 6em;
+  padding: 1em 1.5em 1em 6em;
   margin-right: 2.5em;
   font-size: 12px;
   @include transition;
@@ -60,12 +60,12 @@
   vertical-align: middle;
   position: relative;
   letter-spacing: 0.05em;
-  @extend .ion-plus;
 
   &:before{
+    @extend .ion-plus;
     height: 100%;
     width: 4em;
-    line-height: 3.5em;
+    line-height: 4em;
     position: absolute;
     left: 0;
     top: 0;
@@ -80,7 +80,7 @@
   color: $white;
   background-color: #3CC28C;
   display: inline-block;
-  padding: 1.25em 1.5em 1.25em 6em;
+  padding: 1em 1.5em 1em 6em;
   margin-right: 2.5em;
   font-size: 12px;
   @include transition;
@@ -88,12 +88,12 @@
   vertical-align: middle;
   letter-spacing: 0.05em;
   position: relative;
-  @extend .ion-checkmark;
 
   &:before{
+    @extend .ion-checkmark;
     height: 100%;
     width: 4em;
-    line-height: 3.5em;
+    line-height: 4em;
     position: absolute;
     left: 0;
     top: 0;
@@ -113,7 +113,6 @@
   letter-spacing: 1px;
   padding: 1.5em 3em 1.5em 7em;
   position: relative;
-  @extend .ion-social-facebook;
 
   &:hover,
   &:focus{
@@ -122,6 +121,7 @@
   }
 
   &:before{
+    @extend .ion-social-facebook;
     height: 100%;
     width: 5em;
     line-height: 2;
@@ -142,7 +142,6 @@
   letter-spacing: 1px;
   padding: 1.5em 3em 1.5em 7em;
   position: relative;
-  @extend .ion-social-twitter;
 
   &:hover,
   &:focus{
@@ -151,6 +150,7 @@
   }
 
   &:before{
+    @extend .ion-social-twitter;
     height: 100%;
     width: 5em;
     line-height: 2;

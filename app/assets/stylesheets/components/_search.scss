@@ -51,7 +51,7 @@
 
 .search-keys{
   @extend %text--center;
-  @extend %leader;
+  @extend %cf;
   @extend %trailer;
   &> h1                           { @extend %caps; @extend %headline; @extend %text--black; }
   .search-keys__for               { @extend %text--regular; @include adjust-font-size-to($h4-size); }

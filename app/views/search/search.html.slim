@@ -1,15 +1,14 @@
 header.search-keys
-  span.search-keys__for Search results for
+  span.search-keys__for= t('movies.search.search-results')
   h1= params[:query]
   - if @movies.total > 0
     span.search-keys__results.js-toggle-search.active data-type="movies"
       b=' @movies.total
-      | movies
+      = t('units.movies')
   - if @people.total > 0
     span.search-keys__results.js-toggle-search data-type="people"
       b=' @people.total
-      | people
-
+      = t('units.people')
 
 - if @movies.total > 0
   .search-container.movies-container.active

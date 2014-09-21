@@ -1,55 +1,97 @@
+- level_def = @user.decorate.level_def
+
 .user-info-wrapper
-  .best-rate-wrapper
-    - @highest_ratings.to_a.shift(3).each_with_index do |rating, i|
-      = link_to rating.movie do
-        .best-rate-gr class="best-rate-gr-#{i+1}" style="#{"background-image: url(#{rating.movie.backdrops.any? ? rating.movie.backdrops.first.url("w1280") : asset_path('default-backdrop.jpg')})"}"
 
-  .user-wrapper
-    - @highest_ratings.to_a.shift(1).each do |rating|
-      = link_to rating.movie do
-        .best-rate-gr class="best-rate-gruser" style="#{"background-image: url(#{rating.movie.backdrops.any? ? rating.movie.backdrops.first.url("w1280") : asset_path('default-backdrop.jpg')})"}"
+  - if @highest_ratings && @highest_ratings.any? && @highest_ratings.count > 4
 
-    .user-info
-      figure
+    .best-rate-wrapper
+      - @highest_ratings.to_a.shift(3).each_with_index do |rating, i|
+        = link_to rating.movie do
+          .best-rate-gr class="best-rate-gr-#{i+1}" style="#{"background-image: url(#{rating.movie.backdrops.any? ? rating.movie.backdrops.first.url("w1280") : asset_path('default-backdrop.jpg')})"}"
+
+    .user-wrapper
+      - @highest_ratings.to_a.shift(1).each do |rating|
+        = link_to rating.movie do
+          .best-rate-gr class="best-rate-gruser" style="#{"background-image: url(#{rating.movie.backdrops.any? ? rating.movie.backdrops.first.url("w1280") : asset_path('default-backdrop.jpg')})"}"
+
+      .user-info
+        figure
+          = image_tag @user.medium_avatar, class: "user__img"
+          figcaption
+            h1.user__name
+              = @user.name
+            span.user-lvl-wrapper
+              span.user__lvl= image_tag("levels/lvl-#{level_def}.svg")
+              span.lvl-popup
+                header
+                  = image_tag("levels/lvl-#{level_def}.svg")
+                  .lvl-popup__title= t("level.#{level_def}")
+                .lvl-popup__body
+                  .lvl-popup__level
+                    =' t('level.level')
+                    = @user.level
+                  .lvl-popup__points
+                    =' @user.experience
+                    =' t('units.total-points').downcase
+
+                  - if current_user == @user
+                    .lvl__bar--wrapper
+                      .lvl__bar style="width:#{@user.decorate.percentage_of_experience_achieved}%"
+
+        - if @user.location
+          b.user-info__place
+            i.ion-location
+            '
+            =' @user.location
+
+        - if current_user == @user
+          .log-out= link_to destroy_user_session_path, :method => :delete, class: "user-info__place" do
+            i.ion-log-out
+            '
+            = t('actions.log-out')
+
+    .best-rate-wrapper
+      - @highest_ratings.to_a.first(2).each_with_index do |rating, i|
+        = link_to rating.movie do
+          .best-rate-gr class="best-rate-grlf-#{i+1}" style="#{"background-image: url(#{rating.movie.backdrops.any? ? rating.movie.backdrops.first.url("w1280") : asset_path('default-backdrop.jpg')})"}"
+
+  - else
+    - if current_user == @user
+      header.jump-header
+        figure
         = image_tag @user.medium_avatar, class: "user__img"
-        figcaption
-          h1.user__name
-            = @user.name
-            - level_def = @user.decorate.level_def
-          span.user-lvl-wrapper
-            span.user__lvl= image_tag("levels/lvl-#{level_def}.svg")
-            span.lvl-popup
-              header
-                = image_tag("levels/lvl-#{level_def}.svg")
-                .lvl-popup__title= t("level.#{level_def}")
-              .lvl-popup__body
-                .lvl-popup__level
-                  =' t('level.level')
-                  = @user.level
-                .lvl-popup__points
-                  =' @user.experience
-                  =' t('units.total-points').downcase
 
-                - if current_user == @user
-                  .lvl__bar--wrapper
-                    .lvl__bar style="width:#{@user.decorate.percentage_of_experience_achieved}%"
+        h2.flush
+          | &#8220;
+          | Dar cera, pulir cera
+          | &#8221;
+        p.movie-quote
+           ' Sr. Kesuke Miyagi
+           = link_to "The Karate Kid" , "http://love4movies.com/movies/the-karate-kid"
 
-      - if @user.location
-        b.user-info__place
-          i.ion-location
-          '
-          =' @user.location
 
-      - if current_user == @user
-        .log-out= link_to destroy_user_session_path, :method => :delete, class: "user-info__place" do
+        p.subheader
+          ' Valora tus primeras 5 películas para subir de nivel y mejorar tu perfil.
+          br
+          ' Puedes empezar por las películas más populares del momento o con nuestro ránquing
+        =' link_to 'Populares', trending_path, class: 'btn'
+        ' &nbsp
+        =' link_to 'Ránquing', ranking_path, class: 'btn'
+
+        .leader.log-out= link_to destroy_user_session_path, :method => :delete, class: "user-info__place" do
           i.ion-log-out
           '
           = t('actions.log-out')
 
-  .best-rate-wrapper
-    - @highest_ratings.to_a.first(2).each_with_index do |rating, i|
-      = link_to rating.movie do
-        .best-rate-gr class="best-rate-grlf-#{i+1}" style="#{"background-image: url(#{rating.movie.backdrops.any? ? rating.movie.backdrops.first.url("w1280") : asset_path('default-backdrop.jpg')})"}"
+    - else
+      header.jump-header
+        = image_tag @user.medium_avatar, class: "user__img"
+        .user__info
+          h1.user__name
+            = @user.name
+          p.subheader
+            =' t("level.level")
+            = t("level.#{level_def}")
 
 section.user-nav-wrapper
   - if current_user
