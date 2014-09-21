@@ -18,9 +18,8 @@
     background-color: transparentize($text-color, .85);
   }
   .login-banner__logo{
-    width: $base-font-size*18;
-    height: 60px;
-    margin: 0 auto;
+    max-width: $base-font-size*5;
+    margin: 0 auto 0 auto;
   }
 
   .login-banner__list{
@@ -45,8 +44,9 @@
     text-shadow: 1px 1px transparentize($text-color, .85);
     margin-bottom: 5px;
     @extend %readable;
-    @include adjust-font-size-to($h5-size);
+    @include adjust-font-size-to($h4-size);
     font-weight: bold;
+    @include trailer;
   }
 
   .login__footer__avatar{

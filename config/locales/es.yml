@@ -10,7 +10,7 @@ es:
     people: 'Gente'
     users: 'Usuarios'
   navigation:
-    reviews: 'Críticas'
+    reviews: 'Valoraciones'
     actors: 'Actores'
     search: 'Buscar'
     movies: 'Películas'
@@ -22,20 +22,23 @@ es:
     recommended: 'Recomendados'
     notifications: 'Notificaciones'
     notifications_subtitle: 'Últimas notificaciones de tus amigos'
-    users_subtitle: 'Ordenados por experiencia'
+    users_subtitle: 'Ordenados por nivel de experiencia'
   actions:
     following: 'Siguiendo'
     follow: 'Seguir'
     facebook: 'Facebook'
     twitter: 'Twitter'
     publish: 'Publicar'
-    back: 'Volver al listado de críticas'
-    write-a-review: 'Escribe una crítica'
+    back: 'Volver a las valoraciones'
+    write-a-review: 'Escribe una valoración'
     leave-a-comment: 'Deja un comentario'
     more-info: 'Más info'
     close: 'Cerrar'
     log-out: 'Cerrar Sesión'
+    enter-and-comment: '¿Quieres comentar esta película? Entra ahora'
   movies:
+    search:
+      search-results: 'Resultados de búsqueda'
     show:
       limit-rating: 'Tienes un límite de 140 caracteres'
       actual-rate: 'Tu puntuación es'
@@ -53,11 +56,11 @@ es:
     legend: 'Leyenda'
   users:
     navigation:
-      ratings: 'Críticas'
+      ratings: 'Valoraciones'
       followers: 'Seguidores'
       following: 'Siguiendo'
   notifications:
-    love-rating: 'le gusta tu crítica en'
+    love-rating: 'le gusta tu valoración en'
     comment-rating: 'ha comentado tu puntuación en'
-    comment-review: 'ha comentado tu crítica en'
+    comment-review: 'ha comentado tu valoración en'
     answer-comment: 'ha respondido a tu comentario en'

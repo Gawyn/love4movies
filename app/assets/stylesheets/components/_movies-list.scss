@@ -1,18 +1,14 @@
+.jump-header{
+  text-align: center;
+  @include leader(4);
+  > h2 {text-transform: uppercase;}
+  > img {max-width: 80px; @include trailer;}
+}
+
 .header--title{
   @extend %headline;
   @extend %text--center;
   @include padding-leader(.5);
-  position: relative;
-  &:after{
-    content: '';
-    width: $base-font-size*10;
-    height: $base-font-size/4;
-    background-color: $second-color;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    margin-left: -$base-font-size*5;
-  }
 }
 
 .subheader{

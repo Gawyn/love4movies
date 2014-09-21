@@ -36,7 +36,10 @@ en:
     more-info: 'More info'
     close: 'Close'
     log-out: 'Log out'
+    enter-and-comment: 'Do you want to rate this movie? Sign up now'
   movies:
+    search:
+      search-results: 'Search results for'
     show:
       limit-rating: 'No more than 140 chars'
       actual-rate: 'Actual rate'

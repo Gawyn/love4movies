@@ -9,9 +9,10 @@
     @media #{$medium-up}    { display: block; }
   }
   img{
-    max-width: $base-font-size*2.25;
+    width: $base-font-size*2.25;
     padding: 7px 5px;
-    @media #{$medium-up}    { padding: 20px 0 10px; margin-right: -4px; max-width: $base-font-size*1.75;}
+    height: 52px;
+    @media #{$medium-up}    { padding: 20px 0 10px; margin-right: -4px; max-width: $base-font-size*2; height: auto;}
   }
 }
 
@@ -46,7 +47,7 @@
     }
 
     &:hover,
-    &.current               { color: $brand-color-lght; }
+    &.current               { color: $white; }
   }
 
   .display-nav__title{

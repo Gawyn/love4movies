@@ -3,13 +3,37 @@ section.users
     h2.header--title= t('navigation.users')
     .subheader= t('navigation.users_subtitle')
 
-  table.users_list
+  ul.user-list
     - @users.each do |user|
-      tr
-        td = link_to image_tag(user.small_avatar), user
-        td
-          h4= link_to user.name, user
-        td = user.level
-        td
-          =' user.experience
-          = t('units.points')
+      li
+        .user-elem
+          .user-elem__img= link_to image_tag(user.medium_avatar), user
+          .user-elem__name= link_to user.name, user
+          .user-elem__info
+            span.user-elem__lvl
+              =' image_tag("levels/lvl-black-#{user.decorate.level_def}.svg")
+              =' user.decorate.level_def.capitalize
+            | &nbsp;
+            - if user.location
+              span.user-elem__location
+                i.ion-location
+                '
+                = user.location
+
+          ul.user-nav.user-elem__nav
+            li
+              span.user-nav__title=' t('users.navigation.ratings')
+              strong.user-nav__numb= user.ratings_count
+            li
+              span.user-nav__title=' t('users.navigation.followers')
+              strong.user-nav__numb 314
+            li
+              span.user-nav__title=' t('users.navigation.following')
+              strong.user-nav__numb 1.2K
+
+          - if current_user
+            .user-elem__action
+              - if (current_user != user)
+                = link_to t('actions.follow'), user, class: "btn--follow"
+              - else
+                = link_to 'Ver tu perfil', user, class: "btn"

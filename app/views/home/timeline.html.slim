@@ -38,20 +38,18 @@ header
 
 // When current user and no activity show first 10 ranking users
 - else
-  section.activities
-  header
-    h2.header--title Activity
-    .subheader It seems you have no activity yet
-    p.subheader Start following some of the most influence users on our community
-
-  table.users_list
-    - @users.each do |user|
-      tr
-        td = link_to image_tag(user.avatar("small")), user
-        td
-          h4= link_to user.name, user
-        td
-          i.fa.fa-star-o
-          '
-          =' user.ratings_count
-          | ratings
+  header.jump-header
+    = image_tag "chair-black.svg"
+    h2
+      | &#8220;
+      | Mantén a tus amigos cerca, pero a tus enemigos más
+      | &#8221;
+      / | "Siempre he dependido de la amabilidad de los extraños." Un tranvía llamado Deseo
+      / | "Esperen, esperen. ¡No han escuchado nada aún!" The Jazz Singer
+      / | "Houston, tenemos un problema."  Apolo 13
+      / | "Necesitarás un bote más grande." Tiburón
+    p.movie-quote
+      ' Michael Corleone
+      = link_to "El Padrino II", "http://love4movies.com/movies/the-godfather-part-ii"
+    p.subheader Para tener actividad en tu muro busca usuarios interesantes, síguelos y mantente al día con ellos
+    = link_to 'Usuarios', users_path, class: 'btn'

@@ -50,8 +50,12 @@
 %show-medium-up { @extend %hide; @media #{$medium-up}       { display: block; }}
 
 // Leading
-%leader         { @include margin-leader(1); }
-%trailer        { @include margin-trailer(1); }
+%leader,
+.leader         { @include margin-leader(1); }
+
+%trailer,
+.trailer        { @include margin-trailer(1); }
+
 %leader--lg     { @include margin-leader(2); }
 %trailer--lg    { @include margin-trailer(2); }
 
@@ -64,3 +68,11 @@
 .heart-active     { color: $second-color; }
 .comment-active   { color: $good-green; }
 .star-active      { color: $brand-color; }
+
+.movie-quote      {
+  color: #918F92;
+  font-size: 85%;
+  @include trailer;
+  display: inline-block;
+  font-weight: normal;
+}

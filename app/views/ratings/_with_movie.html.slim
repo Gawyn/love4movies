@@ -1,6 +1,5 @@
 article.activity data-ratio="1.5"
-  = link_to content.movie do
-
+  = link_to movie_rating_path(content.movie, content)
     figure
       = image_tag content.movie.posters.any? ? content.movie.posters.first.url("w342") : "no-movie.jpg", class: "figure__img"
 
