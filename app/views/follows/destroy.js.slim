@@ -1,1 +1,1 @@
-| $("#follow_link").html('#{link_to "Follow", user_follows_path(@followed_id), method: :post, remote: true, class: "btn--follow"}');
+| $("#follow_link *[data-id='#{@follow.id}']").replaceWith('#{link_to "Follow", user_follows_path(@followed_id), method: :post, remote: true, class: "btn--follow", 'data-user_id' => @followed_id}');
