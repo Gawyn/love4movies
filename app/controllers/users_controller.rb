@@ -34,5 +34,6 @@ class UsersController < ApplicationController
 
   def index
     @users = User.more_experience_first
+    @active_follows = current_user.active_follows if current_user
   end
 end

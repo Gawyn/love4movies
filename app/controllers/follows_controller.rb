@@ -4,8 +4,8 @@ class FollowsController < ApplicationController
   end
 
   def destroy
-    follow = Follow.find(params[:id])
-    @followed_id = follow.followed_id
-    follow.destroy
+    @follow = Follow.find(params[:id])
+    @followed_id = @follow.followed_id
+    @follow.destroy
   end
 end

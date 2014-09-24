@@ -99,9 +99,9 @@ section.user-nav-wrapper
       .follow-button
         #follow_link
           - if @follow
-            = link_to t('actions.following'), follow_path(@follow), method: :delete, remote: true, class: "btn--unfollow"
+            = link_to t('actions.following'), follow_path(@follow), method: :delete, remote: true, class: "btn--unfollow", "data-id" => @follow.id
           - else
-            = link_to t('actions.follow'), user_follows_path(@user), method: :post, remote: true, class: "btn--follow"
+            = link_to t('actions.follow'), user_follows_path(@user), method: :post, remote: true, class: "btn--follow", "data-user_id" => @user.id
 
   ul.user-nav
     li
