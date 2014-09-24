@@ -26,10 +26,10 @@ section.users
               strong.user-nav__numb= user.ratings_count
             li
               span.user-nav__title=' t('users.navigation.followers')
-              strong.user-nav__numb 314
+              strong.user-nav__numb= user.passive_follows.count
             li
               span.user-nav__title=' t('users.navigation.following')
-              strong.user-nav__numb 1.2K
+              strong.user-nav__numb= user.active_follows.count
 
           - if current_user
             .user-elem__action
