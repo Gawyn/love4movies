@@ -1,9 +1,23 @@
-article.movie data-ratio="1.5"= link_to movie do
-  figure class=("visible" if !movie.posters.any?)
-    = image_tag (movie.posters.any? ? movie.posters.first.url("w342") : "no-movie.jpg"), class: "figure__img"
-    figcaption
-      .movie__description
-        .movie__year= movie.decorate.movie_year
-        .movie__title= movie.title
-        .movie__director
-          = movie.decorate.directors_list.map(&:name).join(", ")
+- header ||= false
+
+.rank class='rank--s#{(index%12)+1}' style="background-image: url(#{movie.decorate.get_backdrop})"
+
+  - if header
+    .rank-header
+      h1.rank-header__title Top Movies
+      h2.rank-header__subtitle Las películas mejor valoradas
+
+  .rank-meta
+    = link_to '', movie, class: 'rank-cover'
+    .rank-titles class="#{'text--center' if header}"
+      h2= link_to movie.title, movie
+      span.rank-director= movie.decorate.directors
+      p
+        small
+          i.ion-star.rating
+          ' &nbsp;
+          =' movie.l4m_rating_average.round(2)
+          ' &nbsp;
+          i.ion-ios7-chatbubble.rating
+          ' &nbsp;
+          =' movie.ratings.count

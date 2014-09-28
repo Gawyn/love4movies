@@ -18,7 +18,6 @@ article.activity data-ratio="1.5"
         - if content.is_a? Rating
           - 1.upto(10) do |star_number|
             = content.value >= star_number ? fa_icon("star") : fa_icon("star-o")
-          / = content.value
 
         - elsif content.is_a? Review
           i.fa.fa-comment-o

@@ -1,2 +1,2 @@
-- @movies.each do |movie|
-  | $('.movies-list').append("#{escape_javascript(render('movies/show', movie: movie))}");
+- @movies.each_with_index do |movie, i|
+  | $('.rank-list').append("#{escape_javascript(render('movies/show', movie: movie, index: i))}");
