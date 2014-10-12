@@ -1,0 +1,37 @@
+- header ||= false
+
+.rank.rank__recommended class="#{'rank--s1b' if header}" style="background-image: url(#{movie.decorate.get_backdrop})"
+
+  - if header
+
+    .rank-recommended
+      = link_to "Nuestro top movies", ranking_path
+
+    .rank-header
+      h1.rank-header__title ¿Te ayudamos?
+      h2.rank-header__subtitle Elige el género y el país, nosotros te hacemos una selección
+
+      article.recommend-form
+        = form_tag recommended_movies_path, method: :get do |f|
+          .dropdown
+            = select_tag :genre, ("<option>Género</option>" + options_from_collection_for_select(Genre.all, "id", "name", @genre)).html_safe
+          .dropdown
+            = select_tag :country, ("<option>País</option>" + options_from_collection_for_select(Country.all, "id", "name", @country)).html_safe
+
+          = submit_tag t('navigation.search'), class: "btn btn--light"
+
+
+  .rank-meta
+    = link_to '', movie, class: 'rank-cover'
+    .rank-titles class="#{'text--center' if header}"
+      h2= link_to movie.title, movie
+      span.rank-director= movie.decorate.directors
+      p
+        small
+          i.ion-star.rating
+          ' &nbsp;
+          =' movie.decorate.get_rating
+          ' &nbsp;
+          i.ion-ios7-chatbubble.rating
+          ' &nbsp;
+          =' movie.ratings.count

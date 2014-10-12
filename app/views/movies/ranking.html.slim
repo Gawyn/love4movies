@@ -1,8 +1,6 @@
-- movies = @movies.shuffle
-
 section.rank-list
 
-  - movies.each_with_index do |movie, i|
+  - @movies.each_with_index do |movie, i|
     = render "movies/show", movie: movie, index: i, header: i.zero?
 
 section.clear.text--center

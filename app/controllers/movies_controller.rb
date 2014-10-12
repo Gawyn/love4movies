@@ -21,7 +21,7 @@ class MoviesController < ApplicationController
 
   def ranking
     @total_pages = (Movie.not_hidden.more_ratings_than(2).count / Movie::MOVIES_PER_PAGE).ceil
-    @movies = Movie.order("l4m_rating_average desc, id").not_hidden.more_ratings_than(0).page(params[:page]).per(Movie::MOVIES_PER_PAGE)
+    @movies = Movie.order("l4m_rating_average desc, id").not_hidden.more_ratings_than(0).page(params[:page]).per(Movie::MOVIES_PER_PAGE).shuffle
   end
 
   def recommended
