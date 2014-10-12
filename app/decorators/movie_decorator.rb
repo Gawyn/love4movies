@@ -6,6 +6,15 @@ class MovieDecorator < Draper::Decorator
     h.image_tag posters.first.url(Poster::SIZES.first)
   end
 
+  def get_backdrop
+    backdrops.first ? backdrops.first.url("w1280") : ActionController::Base.helpers.asset_path("default-backdrop.jpg")
+  end
+
+  def get_rating
+    l4m_rating_average ? l4m_rating_average.round(2) : "-"
+  end
+
+
   def directors
     technical_participations.where(:job => "Director").map do |participation|
       h.link_to participation.person.name, participation.person

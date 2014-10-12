@@ -9,10 +9,10 @@
     @media #{$medium-up}    { display: block; }
   }
   img{
-    width: $base-font-size*2.25;
+    width: $base-font-size*1.5;
     padding: 7px 5px;
     height: 52px;
-    @media #{$medium-up}    { padding: 20px 0 10px; margin-right: -4px; max-width: $base-font-size*2; height: auto;}
+    @media #{$medium-up}    { padding: 20px 0 15px; margin-right: -4px; max-width: $base-font-size*2; height: auto;}
   }
 }
 
@@ -36,7 +36,7 @@
       color: inherit;
       @include transition;
       padding: .75em;
-      font-size: 1.5em;
+      font-size: 1.25em;
       @media #{$medium-up}      { padding: 0}
     }
 

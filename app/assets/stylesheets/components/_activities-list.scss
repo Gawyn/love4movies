@@ -56,21 +56,3 @@
 
   }
 }
-
-.recommended-form{
-  @extend %cf;
-  .btn{
-    float: left;
-    width: 20%;
-    padding: 0;
-    min-height: 3.8em;
-    line-height: 3em;
-    background-color: $brand-color;
-    color: $white;
-    border: none;
-  }
-  .dropdown{
-    float: left;
-    width: 40%;
-  }
-}

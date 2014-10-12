@@ -53,9 +53,6 @@ $responsive-pull:   false!default;
 /**
  * Brand stuff
  */
-// Add Bebas Neue font
-@include font-face("BebasNeue", font-files("BebasNeue-webfont.eot", "BebasNeue-webfont.woff", "BebasNeue-webfont.ttf", "BebasNeue-webfont.svg"), $weight: normal, $style: normal);
-
 $text-color:        #1B181F!default;
 $white:             #FFF!default;
 $brand-color:       #6a50a7!default;
@@ -67,7 +64,7 @@ $good-green:        #4ece8e!default;
 $cubic-1:           cubic-bezier(.65,0,1,.95);
 $cubic-2:           cubic-bezier(.33, 0, .2, 1);
 $brand-face:        'Lato','Helvetica', Helvetica Neue, Arial!default;
-$headline-face:     'BebasNeue','Helvetica', Helvetica Neue, Arial!default;
+$headline-face:     'Oswald','Helvetica', Helvetica Neue, Arial!default;
 $body-face:         'Merriweather', serif!default;
 
 /**
@@ -80,7 +77,7 @@ $half-spacing-unit: $base-spacing-unit / 2!default;
 $line-height-ratio: $base-line-height / $base-font-size;
 
 // Layout
-$sidebar-width:         $base-font-size*4.5!default;
+$sidebar-width:         $base-font-size*3!default;
 $person-sidebar-width:  $base-font-size*19!default;
 $backdrop-movie:        66.666%!default;
 

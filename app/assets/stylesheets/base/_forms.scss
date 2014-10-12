@@ -186,8 +186,12 @@ label,
 
 /* This is the native select, we're making everything the text invisible so we can see the button styles in the wrapper */
 .dropdown {
-  @extend .fa-caret-down;
-  @extend .fa;
+
+  border: 1px solid rgba($white, .75);
+  font-family: inherit;
+  font-weight: lighter;
+  color: $white;
+
   select {
     width: 100%;
     margin: 0;
@@ -197,7 +201,8 @@ label,
     /* Magic font size number to prevent iOS text zoom */
     font-size: 16px;
     font-family: inherit;
-    color: $text-color;
+    font-weight: lighter;
+    color: $white;
     line-height: 2em;
     padding: .6em 1.9em .5em .8em;
     /* Remove select styling */
@@ -208,20 +213,22 @@ label,
     &::focus {
       outline: none;
       background-color: transparent;
-      border: 1px solid $brand-color;
+      border: 1px solid $white;
     }
 
   }
 
   /* Hover style */
-  &:hover       { border: 1px  solid $brand-color; }
+  &:hover       { border: 1px  solid $white; }
 
   /* Custom arrow sits on top of the select - could be an image, SVG, icon font, etc. or the arrow could just baked into the bg image on the select */
   &::before{
+    content:'\f151';
+    @extend .ion-ios7-arrow-down;
     @include rposition($type: absolute, $right: 1em, $top: 50%);
     margin-top:-.5em;
     z-index: 2;
-    color: $brand-color;
+    color: $white;
     /* These hacks make the select behind the arrow clickable in some browsers */
     pointer-events:none;
   }

@@ -261,7 +261,8 @@ $dark-trans: transparentize($text-color, 0.3);
   @include rposition($type: absolute, $top: 1em, $right: 2em);
   z-index: $comment-index;
   @extend .btn--sml;
-  border-width: 2px;
+  border-width: 1px;
+  border-color: rgba($white, .75);
   font-weight: 800;
 }
 

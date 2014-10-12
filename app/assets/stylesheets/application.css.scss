@@ -2,6 +2,16 @@
 // Framework
 @import "compass";
 
+//---––––––––––––
+// GOOGLE FONTS
+//---––––––––––––
+$family-1: unquote("Lato:300,400,700,900");
+$family-2: unquote("Merriweather:900,300,400,700,300italic");
+$family-3: unquote("Oswald:400,700,300");
+@import url(https://fonts.googleapis.com/css?family=#{$family-1});
+@import url(https://fonts.googleapis.com/css?family=#{$family-2});
+@import url(https://fonts.googleapis.com/css?family=#{$family-3});
+
 // ------------------------------------------------------------------
 // Application
 @import "font-awesome";
@@ -51,6 +61,7 @@
 @import  "components/general",
          "components/header",
          "components/movie",
+         "components/ranking",
          "components/footer",
          "components/login",
          "components/movies-list",

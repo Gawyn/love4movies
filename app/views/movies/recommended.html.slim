@@ -1,21 +1,33 @@
-header
-  nav
-    ul.tab-list.tab-list-2
-      li= link_to "Ranking", ranking_path, class: "tab-list__link #{cp(ranking_path)}"
-      li= link_to "Recommended", recommended_movies_path, class: "tab-list__link #{cp(recommended_movies_path)}"
+section.rank-list
 
-section.recommended-form
-  = form_tag recommended_movies_path, method: :get do |f|
-    .dropdown.button
-      = select_tag :genre, ("<option></option>" + options_from_collection_for_select(Genre.all, "id", "name", @genre)).html_safe
-    .dropdown.button
-      = select_tag :country, ("<option></option>" + options_from_collection_for_select(Country.all, "id", "name", @country)).html_safe
+  - if @movies && @movies.any?
 
-    = submit_tag "Search", class: "btn"
+    - @movies.each_with_index do |movie, i|
+      = render "movies/show_recommended", movie: movie, header: i.zero?
 
-= render "index", movies: @movies
+  - else
+    - last_activity = Activity.last
+    - movie = last_activity.content.movie
 
-#more-recommended-movies
+    = render "movies/show_recommended", movie: movie, header: true
+
+    article.clear.text--center
+      p NO ENCONTRAMOS NINGUNA RECOMENDACIÓN
+      .subheader Recuerda que puedes buscar por género y país
+
+- if @movies && @movies.any?
+
+  section.clear.text--center
+
+    .btn.btn--lrg.js-rank-load Cargar más películas
+
+    .js-rank-loading.hide
+      i.ion-loading-c
+      ' &nbsp;
+      | Cargando
+
+    .js-rank-end.hide
+      | THE END
 
 - content_for :custom_js do
   javascript:
@@ -24,21 +36,30 @@ section.recommended-form
     nextPage = 2;
 
     $(document).ready(function() {
-      $(window).on("scroll", function(){
-        if($('#loading').size() == 0 && $('#more-recommended-movies').size() != 0 && $('#end-of-scrolling').size() == 0 && nextPage <= total_pages){
 
-          if($(window).scrollTop() > ($(document).height() - ($(window).height() + 50))){
-            $("#more-recommended-movies").html("<div id='loading' class='bottom-msg'>Loading...</div>");
+      $('.js-rank-load').on("click", function(){
 
-            $.ajax({ url: getRecommendationUrl(), dataType: "script" }).done(function(d){
-              $('#loading').remove();
-              //New ratios for new posters
-              posterRatios();
-              nextPage = nextPage + 1;
-            });
+        $(this).hide();
+        $('.js-rank-loading').toggleClass('hide');
+
+        $.ajax({ url: getRecommendationUrl(), dataType: "script" }).done(function(d){
+
+          nextPage = nextPage + 1;
+
+          if(nextPage > total_pages){
+            $('.js-rank-loading').toggleClass('hide');
+            $('.js-rank-end').toggleClass('hide');
           }
-        }
+
+          else{
+            $(this).show();
+            $('.js-rank-loading').toggleClass('hide');
+          }
+
+        });
+
       })
+
     });
 
     function getRecommendationUrl(){

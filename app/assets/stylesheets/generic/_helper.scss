@@ -15,8 +15,10 @@
 
 // Text
 %text--left     { text-align:left  !important; }
-%text--center   { text-align:center!important; }
 %text--right    { text-align:right !important; }
+
+.text--center,
+%text--center   { text-align:center!important; }
 
 %text--light    { font-weight: 100; }
 %text--regular  { font-weight: 300; }
@@ -68,6 +70,7 @@
 .heart-active     { color: $second-color; }
 .comment-active   { color: $good-green; }
 .star-active      { color: $brand-color; }
+.rating           { color: $brand-color-lght; }
 
 .movie-quote      {
   color: #918F92;

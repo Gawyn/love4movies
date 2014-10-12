@@ -36,7 +36,7 @@
  */
 .btn--sml   { font-size: .75em; }
 .btn--lrg   { font-size:1.50em; }
-.btn--light { border-color: $white; color: $white; font-weight: 400; &:hover { border-color: $text-color; }}
+.btn--light { border-color: $white; color: $white; }
 .btn--rate  { background-color: $brand-color; border-color: $brand-color; color: $white;}
 
 .btn--full{
