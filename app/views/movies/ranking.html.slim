@@ -1,7 +1,7 @@
 section.rank-list
 
   - @movies.each_with_index do |movie, i|
-    = render "movies/show", movie: movie, index: i, header: i.zero?
+    = render "movies/show_ranking", movie: movie, index: i, header: i.zero?
 
 section.clear.text--center
   .btn.btn--lrg.js-rank-load Cargar más películas

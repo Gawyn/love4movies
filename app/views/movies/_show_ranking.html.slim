@@ -1,0 +1,27 @@
+- header ||= false
+
+.rank class='rank--s#{(index%12)+1}' style="background-image: url(#{movie.decorate.get_backdrop})"
+
+  - if header
+
+    .rank-recommended
+      = link_to "¿Buscas una recomendación?", recommended_movies_path
+
+    .rank-header
+      h1.rank-header__title Top Movies
+      h2.rank-header__subtitle Las películas mejor valoradas
+
+  .rank-meta
+    = link_to '', movie, class: 'rank-cover'
+    .rank-titles class="#{'text--center' if header}"
+      h2= link_to movie.title, movie
+      span.rank-director= movie.decorate.directors
+      p
+        small
+          i.ion-star.rating
+          ' &nbsp;
+          =' movie.decorate.get_rating
+          ' &nbsp;
+          i.ion-ios7-chatbubble.rating
+          ' &nbsp;
+          =' movie.ratings.count
