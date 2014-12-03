@@ -1,4 +1,5 @@
 require 'capistrano-unicorn'
+require 'bundler/capistrano'
 
 # RVM
 set :rvm_ruby_version, "2.0.0"
@@ -21,7 +22,7 @@ set :use_sudo, false
 _cset :user, "deployer"
 
 # Misc
-set :config_files, ['config/database.yml', 'config/app.yml', 'config/sidekiq.yml', 'config/newrelic.yml']
+set :config_files, ['config/database.yml', 'config/app.yml', 'config/sidekiq.yml', 'config/newrelic.yml', '.ruby-version', '.ruby-gemset']
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
