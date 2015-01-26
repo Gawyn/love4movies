@@ -8,6 +8,8 @@ Love4movies::Application.routes.draw do
 
   devise_for :users
 
+  get "in" => "users#in"
+
   namespace :admin do
     resources :movies, only: :none do
       get :hidden, on: :collection
@@ -17,6 +19,7 @@ Love4movies::Application.routes.draw do
 
   resources :users, :only => [:show, :index] do
     get :ranking
+    get :login, on: :collection
     resources :lists, :only => [:show, :index]
     resources :follows, only: :create
   end
