@@ -87,6 +87,10 @@ class User < ActiveRecord::Base
     completed_patterns.any? ? ListPattern.where(ListPattern.arel_table[:id].not_in(completed_patterns)) : ListPattern.all
   end
 
+  def to_param
+    nickname
+  end
+
   private
 
   def graph
