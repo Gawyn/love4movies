@@ -12,7 +12,7 @@ class Rating < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => :movie_id
 
   scope :newest_first, -> { order(arel_table[:updated_at].desc) }
-  scope :highest_first, -> { order(arel_table[:value].desc) }
+  scope :by_value, -> { order(arel_table[:value].desc, arel_table[:id].desc) }
   scope :with_short_review, -> { where(with_short_review: true) }
   scope :without_short_review, -> { where(with_short_review: false) }
   scope :most_loved_first, -> { order(arel_table[:loves_count].desc) }
@@ -27,8 +27,6 @@ class Rating < ActiveRecord::Base
 
   after_commit :check_badges!
   after_commit :create_activity!, on: :create
-
-  scope :by_value, -> { order(arel_table[:value].desc) }
 
   private
 
