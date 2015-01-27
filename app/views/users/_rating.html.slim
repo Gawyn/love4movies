@@ -1,0 +1,21 @@
+- header ||= false
+- movie = rating.movie
+
+.rank class='rank--s#{(index%12)+1}' style="background-image: url(#{movie.decorate.get_backdrop})"
+
+  - if header && title
+
+    .rank-header
+      h2.rank-header__subtitle = title
+
+  .rank-meta
+    = link_to '', movie, class: 'rank-cover'
+    .rank-titles class="#{'text--center' if header}"
+      h2= link_to movie.title, movie
+      span.rank-director= movie.decorate.directors
+      p
+        small
+          i.ion-star.rating
+          ' &nbsp;
+          =' rating.value
+          ' &nbsp;
