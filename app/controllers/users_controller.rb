@@ -19,7 +19,8 @@ class UsersController < ApplicationController
 
   def ranking
     @user = User.find_by_nickname params[:user_id]
-    @ratings = @user.ratings.by_value.includes(:movie)
+    @total_pages = (@user.ratings.count.to_f / Movie::MOVIES_PER_PAGE).ceil
+    @ratings = @user.ratings.by_value.includes(:movie).page(params[:page]).per(Movie::MOVIES_PER_PAGE)
   end
 
   def show
