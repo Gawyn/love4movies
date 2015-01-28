@@ -17,7 +17,7 @@ Love4movies::Application.routes.draw do
     root to: "home#index"
   end
 
-  resources :users, :only => [:show, :index] do
+  resources :users, :only => [:show, :index], :constraints => { :id => /[^\/]*/ } do
     get :ranking
     get :login, on: :collection
     resources :lists, :only => [:show, :index]
