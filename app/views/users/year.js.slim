@@ -1,0 +1,2 @@
+- @ratings.each_with_index do |rating, i|
+  | $('.rank-list').append("#{escape_javascript(render('users/rating', rating: rating, index: i))}");

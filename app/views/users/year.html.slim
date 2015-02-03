@@ -1,0 +1,53 @@
+section.rank-list
+
+  - @ratings.each_with_index do |rating, i|
+    = render "users/rating", rating: rating, index: i, header: i.zero?, title: @title || "#{@user.name}'s favourite movies"
+
+section.clear.text--center
+  .btn.btn--lrg.js-rank-load Load more movies
+
+  .js-rank-loading.hide
+    i.ion-loading-c
+    ' &nbsp;
+    | Loading
+
+  .js-rank-end.hide
+    | THE END
+
+- content_for :custom_js do
+  javascript:
+
+    total_pages = #{@total_pages}
+    nextPage = 2;
+
+    if(nextPage > total_pages){
+      $('.js-rank-load').hide();
+      $('.js-rank-end').toggleClass('hide');
+    }
+
+    $(document).ready(function() {
+
+      $('.js-rank-load').on("click", function(){
+
+        $(this).hide();
+        $('.js-rank-loading').toggleClass('hide');
+
+        $.ajax({ url: "/users/#{@user.nickname}/#{params[:year]}?page=" + nextPage, dataType: "script" }).done(function(d){
+
+          nextPage = nextPage + 1;
+
+          if(nextPage > total_pages){
+            $('.js-rank-loading').toggleClass('hide');
+            $('.js-rank-end').toggleClass('hide');
+          }
+
+          else{
+            $('.js-rank-load').show();
+            $('.js-rank-loading').toggleClass('hide');
+          }
+
+        });
+
+      })
+
+    });
