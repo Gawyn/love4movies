@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def year
+    @year = params[:year]
     @user = User.find_by_nickname params[:user_id]
     @total_pages = (@user.ratings.count.to_f / Movie::MOVIES_PER_PAGE).ceil
     @ratings = @user.ratings.by_value.joins(:movie).where("extract(year from release_date) = ?", params[:year]).page(params[:page]).per(Movie::MOVIES_PER_PAGE)

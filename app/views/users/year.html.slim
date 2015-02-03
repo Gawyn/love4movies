@@ -1,7 +1,7 @@
 section.rank-list
 
   - @ratings.each_with_index do |rating, i|
-    = render "users/rating", rating: rating, index: i, header: i.zero?, title: @title || "#{@user.name}'s favourite movies"
+    = render "users/rating", rating: rating, index: i, header: i.zero?, title: @title || "#{@user.name}'s #{@year} movies"
 
 section.clear.text--center
   .btn.btn--lrg.js-rank-load Load more movies
@@ -32,7 +32,7 @@ section.clear.text--center
         $(this).hide();
         $('.js-rank-loading').toggleClass('hide');
 
-        $.ajax({ url: "/users/#{@user.nickname}/#{params[:year]}?page=" + nextPage, dataType: "script" }).done(function(d){
+        $.ajax({ url: "/users/#{@user.nickname}/#{@year}?page=" + nextPage, dataType: "script" }).done(function(d){
 
           nextPage = nextPage + 1;
 
@@ -51,3 +51,6 @@ section.clear.text--center
       })
 
     });
+
+- content_for :title do
+  = "#{@user.name}'s #{@year} movies"
