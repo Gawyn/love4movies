@@ -18,6 +18,7 @@ Love4movies::Application.routes.draw do
   end
 
   resources :users, :only => [:show, :index], :constraints => { :id => /[^\/]*/ } do
+    get ":year", constraints: { year: /\d{4}/ }, to: "users#year"
     get :ranking
     get :login, on: :collection
     resources :lists, :only => [:show, :index]

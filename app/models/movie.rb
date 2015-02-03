@@ -83,7 +83,7 @@ class Movie < ActiveRecord::Base
     self.slug = self.original_title.to_ascii.parameterize
 
     if Movie.find_by_slug(slug)
-      self.slug = slug + "-#{release_date.to_date.year}" unless release_date.blank?
+      self.slug = slug + "-#{release_date.year}" unless release_date.blank?
 
       if Movie.find_by_slug(slug)
         i = 2

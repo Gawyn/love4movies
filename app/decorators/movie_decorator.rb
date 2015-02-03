@@ -42,8 +42,7 @@ class MovieDecorator < Draper::Decorator
 
   def movie_year
     begin
-      date = DateTime.parse(release_date)
-      date.strftime('%Y')
+      release_date.year
     rescue
     end
   end
