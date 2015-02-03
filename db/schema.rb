@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150129144000) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "activities", force: true do |t|
     t.integer  "user_id"
     t.string   "content_type"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20150129144000) do
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["user_id"], name: "index_activities_on_user_id"
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "badges", force: true do |t|
     t.string   "name_es"
@@ -44,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150129144000) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -67,7 +70,7 @@ ActiveRecord::Schema.define(version: 20150129144000) do
     t.datetime "updated_at"
   end
 
-  add_index "follows", ["follower_id"], name: "index_follows_on_follower_id"
+  add_index "follows", ["follower_id"], name: "index_follows_on_follower_id", using: :btree
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
@@ -88,8 +91,8 @@ ActiveRecord::Schema.define(version: 20150129144000) do
     t.integer "movie_id"
   end
 
-  add_index "genres_movies", ["genre_id"], name: "index_genres_movies_on_genre_id"
-  add_index "genres_movies", ["movie_id"], name: "index_genres_movies_on_movie_id"
+  add_index "genres_movies", ["genre_id"], name: "index_genres_movies_on_genre_id", using: :btree
+  add_index "genres_movies", ["movie_id"], name: "index_genres_movies_on_movie_id", using: :btree
 
   create_table "images", force: true do |t|
     t.integer  "owner_id"
@@ -103,7 +106,7 @@ ActiveRecord::Schema.define(version: 20150129144000) do
     t.string   "owner_type"
   end
 
-  add_index "images", ["type", "owner_id", "owner_type"], name: "index_images_on_type_and_owner_id_and_owner_type"
+  add_index "images", ["type", "owner_id", "owner_type"], name: "index_images_on_type_and_owner_id_and_owner_type", using: :btree
 
   create_table "list_belongings", force: true do |t|
     t.integer  "movie_id"
@@ -134,8 +137,8 @@ ActiveRecord::Schema.define(version: 20150129144000) do
     t.datetime "updated_at"
   end
 
-  add_index "loves", ["lovable_type", "lovable_id"], name: "index_loves_on_lovable_type_and_lovable_id"
-  add_index "loves", ["user_id", "lovable_type", "lovable_id"], name: "index_loves_on_user_id_and_lovable_type_and_lovable_id"
+  add_index "loves", ["lovable_type", "lovable_id"], name: "index_loves_on_lovable_type_and_lovable_id", using: :btree
+  add_index "loves", ["user_id", "lovable_type", "lovable_id"], name: "index_loves_on_user_id_and_lovable_type_and_lovable_id", using: :btree
 
   create_table "movie_in_badges", force: true do |t|
     t.integer  "movie_id"
@@ -159,17 +162,17 @@ ActiveRecord::Schema.define(version: 20150129144000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "rating_average"
-    t.boolean  "hidden",                         default: true
-    t.integer  "total_ratings",                  default: 0
+    t.boolean  "hidden",                       default: true
+    t.integer  "total_ratings",                default: 0
     t.string   "title_en"
     t.text     "overview_en"
     t.string   "title_es"
     t.text     "overview_es"
-    t.integer  "ratings_count",                  default: 0
+    t.integer  "ratings_count",                default: 0
     t.float    "l4m_rating_average"
     t.string   "slug"
-    t.boolean  "adult",                          default: false
-    t.text     "tagline",            limit: 255
+    t.boolean  "adult",                        default: false
+    t.text     "tagline"
   end
 
   create_table "notifications", force: true do |t|
@@ -183,8 +186,8 @@ ActiveRecord::Schema.define(version: 20150129144000) do
     t.integer  "triggered_on_id"
   end
 
-  add_index "notifications", ["user_id", "pending"], name: "index_notifications_on_user_id_and_pending"
-  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id"
+  add_index "notifications", ["user_id", "pending"], name: "index_notifications_on_user_id_and_pending", using: :btree
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "participations", force: true do |t|
     t.integer  "movie_id"
@@ -198,7 +201,7 @@ ActiveRecord::Schema.define(version: 20150129144000) do
     t.string   "job"
   end
 
-  add_index "participations", ["type", "movie_id", "job"], name: "index_participations_on_type_and_movie_id_and_job"
+  add_index "participations", ["type", "movie_id", "job"], name: "index_participations_on_type_and_movie_id_and_job", using: :btree
 
   create_table "people", force: true do |t|
     t.string   "name"
@@ -223,12 +226,12 @@ ActiveRecord::Schema.define(version: 20150129144000) do
     t.boolean  "with_short_review", default: false
   end
 
-  add_index "ratings", ["movie_id", "loves_count"], name: "index_ratings_on_movie_id_and_loves_count"
-  add_index "ratings", ["movie_id", "user_id", "loves_count"], name: "index_ratings_on_movie_id_and_user_id_and_loves_count"
-  add_index "ratings", ["movie_id"], name: "index_ratings_on_movie_id"
-  add_index "ratings", ["user_id", "loves_count"], name: "index_ratings_on_user_id_and_loves_count"
-  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
-  add_index "ratings", ["with_short_review"], name: "index_ratings_on_with_short_review"
+  add_index "ratings", ["movie_id", "loves_count"], name: "index_ratings_on_movie_id_and_loves_count", using: :btree
+  add_index "ratings", ["movie_id", "user_id", "loves_count"], name: "index_ratings_on_movie_id_and_user_id_and_loves_count", using: :btree
+  add_index "ratings", ["movie_id"], name: "index_ratings_on_movie_id", using: :btree
+  add_index "ratings", ["user_id", "loves_count"], name: "index_ratings_on_user_id_and_loves_count", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
+  add_index "ratings", ["with_short_review"], name: "index_ratings_on_with_short_review", using: :btree
 
   create_table "reviews", force: true do |t|
     t.integer  "user_id"
@@ -238,8 +241,8 @@ ActiveRecord::Schema.define(version: 20150129144000) do
     t.datetime "updated_at"
   end
 
-  add_index "reviews", ["movie_id"], name: "index_reviews_on_movie_id"
-  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
+  add_index "reviews", ["movie_id"], name: "index_reviews_on_movie_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",               default: ""
@@ -269,8 +272,8 @@ ActiveRecord::Schema.define(version: 20150129144000) do
     t.integer  "level",               default: 1
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["experience"], name: "index_users_on_experience"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["experience"], name: "index_users_on_experience", using: :btree
 
   create_table "won_badges", force: true do |t|
     t.integer  "winner_id"
@@ -279,7 +282,7 @@ ActiveRecord::Schema.define(version: 20150129144000) do
     t.datetime "updated_at"
   end
 
-  add_index "won_badges", ["badge_id", "winner_id"], name: "index_won_badges_on_badge_id_and_winner_id"
-  add_index "won_badges", ["winner_id"], name: "index_won_badges_on_winner_id"
+  add_index "won_badges", ["badge_id", "winner_id"], name: "index_won_badges_on_badge_id_and_winner_id", using: :btree
+  add_index "won_badges", ["winner_id"], name: "index_won_badges_on_winner_id", using: :btree
 
 end
