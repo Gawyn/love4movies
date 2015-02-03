@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(version: 20150129144000) do
     t.integer  "tmdb_id"
     t.string   "imdb_id"
     t.string   "original_title"
-    t.date     "release_date",       limit: 255
+    t.date     "release_date"
     t.integer  "budget",             limit: 8
     t.float    "tmdb_vote_average"
     t.integer  "tmdb_vote_count"
