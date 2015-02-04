@@ -10,6 +10,8 @@ Love4movies::Application.routes.draw do
 
   get "in" => "users#in"
 
+  get ":year", constraints: { year: /\d{4}/ }, to: "movies#year"
+
   namespace :admin do
     resources :movies, only: :none do
       get :hidden, on: :collection

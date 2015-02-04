@@ -19,6 +19,14 @@ class MoviesController < ApplicationController
     @movies = Movie.standard_search(params[:search]).results
   end
 
+  def year
+    @year = params[:year]
+
+    year_movies = Movie.where("extract(year from release_date) = ?", @year).not_hidden.more_ratings_than(1)
+    @total_pages = (year_movies.count / Movie::MOVIES_PER_PAGE).ceil
+    @movies = year_movies.order("l4m_rating_average desc, id").page(params[:page]).per(Movie::MOVIES_PER_PAGE)
+  end
+
   def ranking
     @total_pages = (Movie.not_hidden.more_ratings_than(2).count / Movie::MOVIES_PER_PAGE).ceil
     @movies = Movie.order("l4m_rating_average desc, id").not_hidden.more_ratings_than(2).page(params[:page]).per(Movie::MOVIES_PER_PAGE)

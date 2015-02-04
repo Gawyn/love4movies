@@ -1,0 +1,2 @@
+- @movies.each_with_index do |movie, i|
+  | $('.rank-list').append("#{escape_javascript(render('movies/show_ranking', movie: movie, index: i))}");
