@@ -1,7 +1,9 @@
+time_content = @year || @decade
+
 section.rank-list
 
   - @ratings.each_with_index do |rating, i|
-    = render "users/rating", rating: rating, index: i, header: i.zero?, title: @title || "#{@user.name}'s #{@year} movies"
+    = render "users/rating", rating: rating, index: i, header: i.zero?, title: @title || "#{@user.name}'s #{time_content} movies"
 
 section.clear.text--center
   .btn.btn--lrg.js-rank-load Load more movies
@@ -32,7 +34,7 @@ section.clear.text--center
         $(this).hide();
         $('.js-rank-loading').toggleClass('hide');
 
-        $.ajax({ url: "/users/#{@user.nickname}/#{@year}?page=" + nextPage, dataType: "script" }).done(function(d){
+        $.ajax({ url: "#{@js_url}?page=" + nextPage, dataType: "script" }).done(function(d){
 
           nextPage = nextPage + 1;
 
