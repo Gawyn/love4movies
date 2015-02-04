@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @user = User.find_by_nickname params[:user_id]
     ratings = @user.ratings.by_value.joins(:movie).where("extract(year from release_date) >= ? and extract(year from release_date) <= ?", start_year, end_year)
 
-    @total_pages = (ratings / Movie::MOVIES_PER_PAGE).ceil
+    @total_pages = (ratings.count.to_f / Movie::MOVIES_PER_PAGE).ceil
     @ratings = ratings.page(params[:page]).per(Movie::MOVIES_PER_PAGE)
 
     @js_url = "/users/#{@user.nickname}/#{@decade}"
