@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
     @year = params[:year]
 
     year_movies = Movie.where("extract(year from release_date) = ?", @year).not_hidden.more_ratings_than(1)
-    @total_pages = (year_movies.count / Movie::MOVIES_PER_PAGE).ceil
+    @total_pages = (year_movies.count.to_f / Movie::MOVIES_PER_PAGE).ceil
     @movies = year_movies.order("l4m_rating_average desc, id").page(params[:page]).per(Movie::MOVIES_PER_PAGE)
   end
 
