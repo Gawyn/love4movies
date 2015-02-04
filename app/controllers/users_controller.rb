@@ -17,11 +17,30 @@ class UsersController < ApplicationController
     render layout: "landing"
   end
 
+  def decade
+    @decade = params[:decade]
+    start_year = params[:decade][0..3].to_i
+    end_year = start_year + 9
+
+
+    @user = User.find_by_nickname params[:user_id]
+    ratings = @user.ratings.by_value.joins(:movie).where("extract(year from release_date) >= ? and extract(year from release_date) <= ?", start_year, end_year)
+
+    @total_pages = (ratings.count.to_f / Movie::MOVIES_PER_PAGE).ceil
+    @ratings = ratings.page(params[:page]).per(Movie::MOVIES_PER_PAGE)
+
+    @js_url = "/users/#{@user.nickname}/#{@decade}"
+
+    render "year"
+  end
+
   def year
     @year = params[:year]
     @user = User.find_by_nickname params[:user_id]
     @total_pages = (@user.ratings.by_value.joins(:movie).where("extract(year from release_date) = ?", params[:year]).count.to_f / Movie::MOVIES_PER_PAGE).ceil
     @ratings = @user.ratings.by_value.joins(:movie).where("extract(year from release_date) = ?", params[:year]).page(params[:page]).per(Movie::MOVIES_PER_PAGE)
+
+    @js_url = "/users/#{@user.nickname}/#{@year}"
   end
 
   def ranking
