@@ -10,6 +10,7 @@ Love4movies::Application.routes.draw do
 
   get "in" => "users#in"
 
+  get ":decade", constraints: { decade: /\d{3}0s/ }, to: "movies#decade"
   get ":year", constraints: { year: /\d{4}/ }, to: "movies#year"
 
   namespace :admin do
