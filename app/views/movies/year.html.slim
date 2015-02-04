@@ -1,0 +1,48 @@
+section.rank-list
+
+  - @movies.each_with_index do |movie, i|
+    = render "movies/show_ranking", movie: movie, index: i
+
+section.clear.text--center
+  .btn.btn--lrg.js-rank-load Load more movies
+
+  .js-rank-loading.hide
+    i.ion-loading-c
+    ' &nbsp;
+    | Loading
+
+  .js-rank-end.hide
+    | THE END
+
+- content_for :custom_js do
+  javascript:
+
+    total_pages = #{@total_pages}
+    nextPage = 2;
+
+    $(document).ready(function() {
+
+      $('.js-rank-load').on("click", function(){
+
+        $(this).hide();
+        $('.js-rank-loading').toggleClass('hide');
+
+        $.ajax({ url: "/#{@year}?page=" + nextPage, dataType: "script" }).done(function(d){
+
+          nextPage = nextPage + 1;
+
+          if(nextPage > total_pages){
+            $('.js-rank-loading').toggleClass('hide');
+            $('.js-rank-end').toggleClass('hide');
+          }
+
+          else{
+            $(this).show();
+            $('.js-rank-loading').toggleClass('hide');
+          }
+
+        });
+
+      })
+
+    });
