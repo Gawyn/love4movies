@@ -27,7 +27,7 @@ section.clear.text--center
         $(this).hide();
         $('.js-rank-loading').toggleClass('hide');
 
-        $.ajax({ url: "/#{@year}?page=" + nextPage, dataType: "script" }).done(function(d){
+        $.ajax({ url: "#{@js_url}?page=" + nextPage, dataType: "script" }).done(function(d){
 
           nextPage = nextPage + 1;
 

@@ -19,12 +19,28 @@ class MoviesController < ApplicationController
     @movies = Movie.standard_search(params[:search]).results
   end
 
+  def decade
+    @decade = params[:decade]
+    start_year = params[:decade][0..3].to_i
+    end_year = start_year + 9
+
+    movies = Movie.where("extract(year from release_date) >= ? and extract(year from release_date) <= ?", start_year, end_year).not_hidden.more_ratings_than(1)
+    @total_pages = (movies.count / Movie::MOVIES_PER_PAGE).ceil
+    @movies = movies.order("l4m_rating_average desc, id").page(params[:page]).per(Movie::MOVIES_PER_PAGE)
+
+    @js_url = "/#{@decade}"
+
+    render "year"
+  end
+
   def year
     @year = params[:year]
 
     year_movies = Movie.where("extract(year from release_date) = ?", @year).not_hidden.more_ratings_than(1)
     @total_pages = (year_movies.count.to_f / Movie::MOVIES_PER_PAGE).ceil
     @movies = year_movies.order("l4m_rating_average desc, id").page(params[:page]).per(Movie::MOVIES_PER_PAGE)
+
+    @js_url = "/#{@year}"
   end
 
   def ranking
