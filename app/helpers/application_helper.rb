@@ -16,7 +16,7 @@ module ApplicationHelper
 
   def show_movie(movie)
     Rails.cache.fetch("movie-show-#{movie.id}-#{movie.updated_at.to_s}") do
-      render "movies#show", movie: movie
+      render "movies/show", movie: movie
     end
   end
 
