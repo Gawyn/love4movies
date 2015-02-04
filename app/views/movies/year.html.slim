@@ -46,3 +46,7 @@ section.clear.text--center
       })
 
     });
+
+- content_for :custom_meta do
+  - if @movies.any?
+    meta property="og:image" content="#{@movies.first.decorate.get_background_image}"

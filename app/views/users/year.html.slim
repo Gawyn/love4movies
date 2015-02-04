@@ -56,3 +56,7 @@ section.clear.text--center
 
 - content_for :title do
   = "#{@user.name}'s #{@year} movies"
+
+- content_for :custom_meta do
+  - if @ratings.any?
+    meta property="og:image" content="#{@ratings.first.movie.decorate.get_background_image}"
