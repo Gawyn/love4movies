@@ -1,6 +1,7 @@
 class FollowsController < ApplicationController
   def create
-    @follow = Follow.create(follower_id: current_user.id, followed_id: params[:user_id]) if current_user
+    followed_user = User.find_by_nickname params[:user_id]
+    @follow = Follow.create(follower_id: current_user.id, followed_id: followed_user.id) if current_user
   end
 
   def destroy
