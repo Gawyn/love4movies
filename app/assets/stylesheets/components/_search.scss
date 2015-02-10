@@ -17,7 +17,7 @@
 
   &.active                  { @include translateY(0); }
 
-  @media #{$medium-up}      { left: $sidebar-width; width: calc(100% - #{$sidebar-width}); }
+  @media #{$medium-up}      { width: 100%; }
 
 }
 

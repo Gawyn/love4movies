@@ -10,7 +10,7 @@ es:
     people: 'Gente'
     users: 'Usuarios'
   navigation:
-    reviews: 'Valoraciones'
+    reviews: 'Opiniones'
     actors: 'Actores'
     search: 'Buscar'
     movies: 'Películas'

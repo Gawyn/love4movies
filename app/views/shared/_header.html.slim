@@ -1,39 +1,71 @@
-section.main-navigation
-  nav.display-nav
-    .main-logo-icon= link_to image_tag('beta-logo.svg'), root_path
+nav.main--nav class="#{'is-trans' if @movie}"
 
-    ul.display-nav__list
-      li.display-nav__elem = link_to "#", class: "display-nav__link js-search" do
-        i.ion-search.display-nav__icon
+  .main--logo = link_to image_tag('beta-logo.svg'), root_path
 
-      li.display-nav__elem = link_to ranking_path, class: "display-nav__link #{cp(ranking_path)}" do
-        i.ion-ios7-film.display-nav__icon
+  ul.main--nav-list
 
-      li.display-nav__elem = link_to users_path, class: "display-nav__link #{cp(users_path)}" do
-        i.ion-person-stalker.display-nav__icon
+    li = link_to timeline_path, class: "#{cp(timeline_path)}" do
+      | Inicio
 
-      - if current_user
-        li.display-nav__elem = link_to notifications_path, class: "display-nav__link #{cp(notifications_path)}"do
+    li = link_to trending_path, class: "#{cp(trending_path)}" do
+      | Populares
 
-          i.ion-ios7-bell.display-nav__icon
+    li = link_to ranking_path, class: "#{cp(ranking_path)}" do
+      | Top
 
-          - if @pending_notifications.any?
-            span.display-nav__notification= @pending_notifications.count
+    li = link_to users_path, class: "#{cp(users_path)}" do
+      | Gente
 
-    / User profile
+    li = link_to recommended_movies_path, class: "#{cp(recommended_movies_path)}" do
+      | Recomendaciones
+
+
+  ul.main--user-nav
+
+    li = link_to "#", class: "js-search" do
+
+      i.ion-search
+
     - if current_user
-      .session-action
-        .user-avatar= link_to image_tag(current_user.avatar("medium")), current_user
 
-- content_for :custom_js do
-  javascript:
-    $(document).ready(function() {
+      li = link_to notifications_path do
 
-      $('.js-search').click(function (e) {
-        $(this).toggleClass('current');
-        $(".search-form-wrapper").toggleClass('active');
-        $(".search-form__input").focus();
-        e.preventDefault();
+        i.ion-ios7-bell
+
+        - if @pending_notifications.any?
+          span.icon--not = @pending_notifications.count
+
+      li
+        = link_to '', class: 'main--avatar js-toggle' do
+
+          = image_tag(current_user.avatar("medium"))
+          i.ion-chevron-down
+
+        article.dropdown-menu.js-content
+          ul
+
+            li = link_to current_user do
+
+                strong = current_user.name
+                = t('user.your_profile')
+
+            li = link_to t('actions.log-out'), destroy_user_session_path, :method => :delete
+
+
+  - content_for :custom_js do
+    javascript:
+      $(document).ready(function() {
+
+        $('.js-search').click(function (e) {
+          $(this).toggleClass('current');
+          $(".search-form-wrapper").toggleClass('active');
+          $(".search-form__input").focus();
+          e.preventDefault();
+        });
+
+        $('.js-toggle').click(function (e) {
+          $('.js-content').toggleClass('is-active');
+          e.preventDefault();
+        });
+
       });
-
-    });

@@ -1,7 +1,1 @@
-header
-  nav
-    ul.tab-list.tab-list-2
-      li= link_to t('navigation.timeline'), timeline_path, class: "tab-list__link #{cp(timeline_path)}"
-      li= link_to t('navigation.trending'), trending_path, class: "tab-list__link #{cp(trending_path)}"
-
 = render "movies/index", movies: @popular_movies

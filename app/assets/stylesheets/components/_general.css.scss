@@ -1,25 +1,8 @@
 // ------------------
-// MAIN GRID
-// ------------------
-.main-wrapper {
-  @media #{$medium-up}      { margin-left: $sidebar-width; }
-}
-
-// ------------------
 // PERSON GRID
 // ------------------
-.sidebar{
-  position: relative;
-  z-index: index($index-elements, menu);
-  width: 100%;
-  background-color: $text-color;
-  color: $white;
-
-  @media #{$medium-up}    { position: fixed; width: $sidebar-width; min-height: 100%; @include background-image(linear-gradient(lighten($text-color, 10%), $text-color)); }
-}
-
 .person-sidebar {
-  @media #{$medium-up}    { @include rposition($type: fixed, $top: 0, $bottom: 0, $left: $sidebar-width); width: $person-sidebar-width; }
+  @media #{$medium-up}    { @include rposition($type: fixed, $top: 0, $bottom: 0, $left: 0); width: $person-sidebar-width; }
 }
 
 .person-works {
@@ -33,7 +16,7 @@
 // ------------------
 // Main movie container
 .movie-wrapper {
-  @media #{$medium-up}      { @include rposition($type: absolute, $top: 0, $right: 0, $bottom: 0, $left: $sidebar-width); }
+  @media #{$medium-up}      { @include rposition($type: absolute, $top: 0, $right: 0, $bottom: 0, $left: 0); }
 }
 
 // Backdrop sidebar

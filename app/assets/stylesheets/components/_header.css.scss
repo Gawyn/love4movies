@@ -1,83 +1,131 @@
-.main-logo-icon{
+.main--nav {
+
+  position: relative;
+  width: 100%;
+  @include padding-leader;
+  @include padding-trailer;
+  z-index: index($index-elements, menu);
+  background-color: $text-color;
+
+  &.is-trans { background-color: transparent; @include background-image(linear-gradient($text-color, transparent)); }
+
+}
+
+.main--logo {
+
   display: inline-block;
   vertical-align: middle;
-  @media #{$medium-up}    { display: block; }
+  position: relative;
+  left: 10%;
 
-  a{
-    display: inline-block;
-    background-color: $brand-color;
-    @media #{$medium-up}    { display: block; }
+  img {
+
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+    opacity: .8;
+
   }
-  img{
-    width: $base-font-size*1.5;
-    padding: 7px 5px;
-    height: 52px;
-    @media #{$medium-up}    { padding: 20px 0 15px; margin-right: -4px; max-width: $base-font-size*2; height: auto;}
-  }
+
 }
+.main--nav-list {
 
+  @include inline-block-list(0);
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  overflow: visible;
+  margin-left: 12%;
 
-.display-nav{
-  @media #{$medium-up}      { text-align: center; }
+  a {
 
-  .display-nav__elem {
-    display: inline-block;
-    @media #{$medium-up}    { display: block; }
-  }
-
-  .display-nav__list        { list-style: none; display: inline-block; vertical-align: middle; }
-
-  .display-nav__link {
-    display: inline-block;
-    color: rgba($white, .5);
-    position: relative;
-
-    .display-nav__icon                     {
-      color: inherit;
-      @include transition;
-      padding: .75em;
-      font-size: 1.25em;
-      @media #{$medium-up}      { padding: 0}
-    }
-
-    @media #{$medium-up}    {
-      display: block;
-      @include padding-leader(.75);
-      @include padding-trailer(.75);
-    }
+    @include transition;
+    color: rgba($white, 0.8);
+    text-transform: uppercase;
+    padding: 1em 1.5em 1em;
 
     &:hover,
-    &.current               { color: $white; }
-  }
+    &.current { color: $white; }
 
-  .display-nav__title{
-    position: relative;
-    z-index: 999;
-    @extend %headline;
-    @include adjust-font-size-to($h5-size);
-    @extend %show-medium-up;
-  }
-
-  .display-nav__notification{
-    @include rposition($type: absolute, $right: 18px, $top: 14px);
-    @extend %text--center;
-    width: 18px;
-    height: 18px;
-    line-height: 18px;
-    border-radius: 50%;
-    font-size: .75em;
-    font-weight: bold;
-    background-color: $brand-color;
-    color: $white;
-    display: inline-block;
   }
 
 }
 
-.session-action{
+.main--user-nav {
+
+  @include inline-block-list(1em);
   position: absolute;
-  bottom: 1em;
-  left: 0;
-  margin: 0 .75em;
-  @extend %show-medium-up;
+  overflow: visible;
+  right: 10%;
+  top: 1.5em;
+
+  a   { color: $white; }
+  li  { position: relative; }
+  i {
+
+    font-size: 1.25em;
+    vertical-align: middle;
+    opacity: 0.85;
+
+  }
+
+}
+
+.main--avatar {
+
+  img {
+
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 5px;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2)
+  }
+
+}
+
+.icon--not{
+
+  @include rposition($type: absolute, $right: 5px, $top: -5px);
+  text-align: center;
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  font-size: 70%;
+  border-radius: 50%;
+  font-weight: bold;
+  background-color: $brand-color;
+  color: $white;
+
+}
+
+.dropdown-menu {
+
+  display: none;
+  position: absolute;
+  top: 140%;
+  right: 0;
+  background-color: $white;
+  border: 1px solid #E1E8ED;
+  border: 0 solid rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+
+  li { display: block; padding: 0; border-bottom: 1px solid #eee; }
+  li:last-of-type {border: none;}
+  strong { display: block; }
+
+  a {
+
+    color: rgba($text-color, 0.7);
+    padding: 10px 30px 10px 20px;
+    display: block;
+    font-size: 12px;
+
+    &:hover { background-color: $brand-color; color: $white; }
+
+  }
+
+  &.is-active { display: block; }
+
 }

@@ -44,12 +44,6 @@
             '
             =' @user.location
 
-        - if current_user == @user
-          .log-out= link_to destroy_user_session_path, :method => :delete, class: "user-info__place" do
-            i.ion-log-out
-            '
-            = t('actions.log-out')
-
     .best-rate-wrapper
       - @highest_ratings.to_a.first(2).each_with_index do |rating, i|
         = link_to rating.movie do
@@ -77,11 +71,6 @@
         =' link_to 'Populares', trending_path, class: 'btn'
         ' &nbsp
         =' link_to 'Ránquing', ranking_path, class: 'btn'
-
-        .leader.log-out= link_to destroy_user_session_path, :method => :delete, class: "user-info__place" do
-          i.ion-log-out
-          '
-          = t('actions.log-out')
 
     - else
       header.jump-header

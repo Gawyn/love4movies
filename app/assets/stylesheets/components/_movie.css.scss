@@ -19,7 +19,7 @@ $dark-trans: transparentize($text-color, 0.3);
   .movie__stats     {
     @include adjust-font-size-to($h5-size);
     @include trailer;
-    .fa             { color: $brand-color; }
+    .fa             { color: $brand-color; margin-left: 1em; }
   }
 
   .movie__title   {
