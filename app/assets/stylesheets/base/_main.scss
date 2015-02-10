@@ -5,5 +5,5 @@
 
 html        { overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 body        { color: $text-color; font-family: $brand-face; }
-p           { font-weight: 300; @include adjust-font-size-to($base-font-size*1.125); }
+p           { @include adjust-font-size-to($base-font-size*1.125); }
 a           { @include unstyled-link; @include link-colors($brand-color); }
