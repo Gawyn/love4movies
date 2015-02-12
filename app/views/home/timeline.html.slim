@@ -1,7 +1,7 @@
 - if @followeds_activities && @followeds_activities.any?
   section.activities
     - @followeds_activities.each do |activity|
-      = render "activities/show", user: activity.user, content: activity.content
+      = show_activity(activity)
 
   #more-activities
 
