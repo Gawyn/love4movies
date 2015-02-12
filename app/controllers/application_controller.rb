@@ -1,13 +1,17 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :check_pending_notifications, :set_locale
+  before_filter :check_pending_notifications, :set_locale, :set_actual_url
 
   def set_locale
     I18n.locale = process_language
   end
 
   private
+
+  def set_actual_url
+    @actual_url = "#{request.protocol}#{request.host_with_port}#{request.fullpath}"
+  end
 
   def process_language
     if valid_locale?(params[:set_locale])
