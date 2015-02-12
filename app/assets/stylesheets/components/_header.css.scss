@@ -2,8 +2,8 @@
 
   position: relative;
   width: 100%;
-  @include padding-leader;
-  @include padding-trailer;
+  @include padding-leader(2/3);
+  @include padding-trailer(2/3);
   z-index: index($index-elements, menu);
   background-color: $text-color;
 
@@ -20,10 +20,10 @@
 
   img {
 
-    height: 30px;
-    width: 30px;
+    height: 28px;
+    width: 28px;
     vertical-align: middle;
-    opacity: .8;
+    opacity: 0.5;
 
   }
 
@@ -42,10 +42,11 @@
     @include transition;
     color: rgba($white, 0.8);
     text-transform: uppercase;
-    padding: 1em 1.5em 1em;
+    font-size: 12px;
+    padding: 0.5em 1.5em 0.5em;
 
     &:hover,
-    &.current { color: $white; }
+    &.current { color: $brand-color; }
 
   }
 
@@ -57,10 +58,10 @@
   position: absolute;
   overflow: visible;
   right: 10%;
-  top: 1.5em;
+  top: 1em;
 
-  a   { color: $white; }
-  li  { position: relative; }
+  a   { color: $white; vertical-align: middle;}
+  & > li  { position: relative; height: 28px; vertical-align: middle; }
   i {
 
     font-size: 1.25em;
@@ -75,14 +76,14 @@
 
   img {
 
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     vertical-align: middle;
-    margin-right: 5px;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2)
+
   }
 
+  i { font-size: 10px; opacity: 0.5; margin-left: 10px; }
 }
 
 .icon--not{

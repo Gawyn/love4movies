@@ -41,8 +41,8 @@ en:
     search:
       search-results: 'Search results for'
     show:
-      limit-rating: 'No more than 140 chars'
-      actual-rate: 'Actual rate'
+      limit-rating: 'Write your review in 140 charachters'
+      actual-rate: 'of 10'
   search:
     form-label: 'Search by movies, actors, actresses or directors'
     title: 'Search results for'

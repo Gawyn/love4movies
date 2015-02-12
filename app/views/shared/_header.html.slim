@@ -5,7 +5,7 @@ nav.main--nav class="#{'is-trans' if @movie}"
   ul.main--nav-list
 
     li = link_to timeline_path, class: "#{cp(timeline_path)}" do
-      | Inicio
+      | Actividad
 
     li = link_to trending_path, class: "#{cp(trending_path)}" do
       | Populares
@@ -47,7 +47,9 @@ nav.main--nav class="#{'is-trans' if @movie}"
             li = link_to current_user do
 
                 strong = current_user.name
-                = t('user.your_profile')
+                = t('navigation.profile')
+
+            li = link_to t('navigation.badges'), badges_path
 
             li = link_to t('actions.log-out'), destroy_user_session_path, :method => :delete
 

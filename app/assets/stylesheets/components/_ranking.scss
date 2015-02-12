@@ -70,12 +70,14 @@
   padding: 20px 10%;
   z-index: 999999;
   color: $white;
+
   a   {color:inherit;}
+
   h2  {
     @extend %headline;
     font-weight: lighter;
-    letter-spacing: 1px;
   }
+
   .rank-director {
     font-weight: lighter;
     text-transform: uppercase;
@@ -91,7 +93,7 @@
   padding: 2%;
 
   &__title    {
-    // @extend %headline;
+
     position: relative;
     z-index: 33;
     text-transform: uppercase;
@@ -114,6 +116,7 @@
 
   &__subtitle {
     @extend %readable;
+    font-weight: normal;
     font-style: italic;
     position: relative;
     z-index: 33;
@@ -127,15 +130,6 @@
   @extend %cf;
   width: 100%;
   float: left;
-}
-
-.rank-recommended{
-  position: absolute;
-  top: 2em;
-  right: 3em;
-  @extend %show-medium-up;
-  z-index: 99999;
-  a { text-transform: uppercase; color: $white; font-size: 10px; padding-bottom: 2%; }
 }
 
 .recommend-form{

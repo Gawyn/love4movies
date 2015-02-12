@@ -1,32 +1,28 @@
 - my_loves = @loves[rating.id]
 
-article.rating data-id=rating.id
-  .media
-    .media__img= link_to image_tag(rating.user.avatar("small")), rating.user
-    .media__body
-      = link_to movie_rating_path(@movie, rating), class: "media__body--date" do
-        = rating.created_at.to_s :short
-      .media__body--author = link_to rating.user.name, rating.user
+.r--wrapper data-id=rating.id
 
-    p.media__body--content
-      = link_to movie_rating_path(@movie, rating), class: "rating__review--link trailer" do
-        - if rating.short_review
-          span.media__body--content__short
-            = rating.short_review
+  = link_to movie_rating_path(@movie, rating), class: "r--date" do
+    = rating.created_at.to_s :short
 
-        .rating__stars
-          - 1.upto(10) do |star_number|
-            = rating.value >= star_number ? fa_icon("star", class: "rating__star--full") : fa_icon("star-o", class: "rating__star--empty")
-          '
-          = rating.value
+  = link_to movie_rating_path(@movie, rating), class: "r--comment" do
 
-        .rating__stats
-          span
-            i.fa.fa-heart-o.heart-active
-            '
-            = my_loves.present? ? my_loves.count : '0'
+    - if rating.short_review
+      p
+        | &#8220;
+        = rating.short_review
+        | &#8221;
 
-          span
-            i.fa.fa-comment-o.star-active
-            '
-            = rating.comments.count
+  span.r--user
+    = link_to image_tag(rating.user.medium_avatar, class: 'r--user-img'), rating.user
+    = link_to rating.user.name, rating.user, class: 'r--user-name caps'
+    span.r--stats
+
+      i.ion-android-star.clr-4
+      = rating.value
+
+      i.ion-heart.clr-2
+      = my_loves.present? ? my_loves.count : '0'
+
+      i.ion-chatbubble.clr-3
+      = rating.comments.count

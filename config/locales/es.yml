@@ -16,6 +16,8 @@ es:
     movies: 'Películas'
     users: 'Usuarios'
     news: 'Novedades'
+    profile: 'Perfil'
+    badges: 'Medallas'
     timeline: 'Últimas'
     trending: 'Popular'
     ranking: 'Ránquing'
@@ -40,8 +42,8 @@ es:
     search:
       search-results: 'Resultados de búsqueda'
     show:
-      limit-rating: 'Tienes un límite de 140 caracteres'
-      actual-rate: 'Tu puntuación es'
+      limit-rating: 'Escribe tu valoración en 140 caracteres'
+      actual-rate: 'de 10'
   search:
     form-label: 'Buscar por películas, actores, actrizes o directores'
     title: 'Resultados de la búsqueda'
