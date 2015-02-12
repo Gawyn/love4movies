@@ -1,6 +1,8 @@
 - content_for :title do
   = @movie.title
 
+= render "info"
+
 header.m--hero
   .js-headerAnim.m--header-image style="#{"background-image: url(#{@movie.decorate.get_background_image})"}"
 
@@ -27,19 +29,21 @@ header.m--hero
           bold=' @movie.ratings.count
 
       - if @ratings && @ratings.any?
-        - @ratings.first(1).each do |rating|
+        - @ratings.to_a.shift(1).each do |rating|
           = render "ratings/featured", rating: rating, review: true
 
       - if current_user && @my_rating.nil?
         .btn--list
-          =' link_to '', class: 'btn btn--light btn--rate js-modal-trigger' do
+          =' link_to '', class: 'btn btn--rate js-modal-trigger' do
 
             i.ion-compose
             ' &nbsp
             | Valoración
 
           ' &nbsp
-          =' link_to 'Ver valoraciones', '#totalRatings', class: 'btn btn--light'
+
+          .btn.btn--light.js-toggle-info
+            =' t('actions.more-info')
 
     article#totalRatings
 
