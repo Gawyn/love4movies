@@ -103,8 +103,8 @@ javascript:
 
   $("a.js-share-rating").on("click", function (){
     name = '#{@rating.movie.title} - '
-    name += Array(#{@rating.value}).join('&#9733;')
-    name += Array(#{10 - @rating.value}).join('&#9734;')
+    name += Array(#{@rating.value} + 1).join('&#9733;')
+    name += Array(#{10 - @rating.value} + 1).join('&#9734;')
 
     description = '#{@rating.short_review}' || '#{@rating.movie.overview}'
 
