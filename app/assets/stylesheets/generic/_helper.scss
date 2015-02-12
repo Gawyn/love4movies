@@ -55,14 +55,14 @@
 %show-medium-up { @extend %hide; @media #{$medium-up}       { display: block; }}
 
 // Leading
-%leader,
-.leader         { @include margin-leader(1); }
+.leader--s      { @include margin-leader(1/2); }
+.trailer--s     { @include margin-trailer(1/2); }
 
-%trailer,
-.trailer        { @include margin-trailer(1); }
+.leader         { @include margin-leader; }
+.trailer        { @include margin-trailer; }
 
-%leader--lg     { @include margin-leader(2); }
-%trailer--lg    { @include margin-trailer(2); }
+.leader--big    { @include margin-leader(2); }
+.trailer--big   { @include margin-trailer(2); }
 
 // Mute an object by reducing its opacity.
 %muted          { opacity:0.5;}

@@ -45,6 +45,10 @@ header.m--hero
           .btn.btn--light.js-toggle-info
             =' t('actions.more-info')
 
+      - elsif !current_user
+        = render "shared/social_login"
+
+
     article#totalRatings
 
       - if @ratings && @ratings.any?
@@ -85,48 +89,10 @@ header.m--hero
 
         = button_tag t("actions.publish"), class: "btn btn--light btn--full btn--rate do-rating__btn leader js-rating-button"
 
-
-
-/ .movie-wrapper
-/   = render "sidebar"
-/   = render "info"
-
-/   section.movie--ratings#ratings.movie-section
-/     .movie-section-wrapper
-
-/       - if current_user && @my_rating.nil?
-/         h3.review__title= t('actions.write-a-review')
-/         .do-rating-form
-/           em.do-rating__subtitle= t('.limit-rating')
-
-/           = form_tag movie_ratings_path(movie_id: @movie.id), method: :post do
-/             = text_area_tag "short_review", "", class: "do-rating__input", maxlength: "140"
-/             = number_field_tag "value", "Rating", in: 1...11, class: "do-rating__number js-rating-number"
-/             .do-rating-with-stars
-/               span.star-list
-/                 - 1.upto(10).each do |i|
-/                   span.do-rating-action.js-star-hover data-number="#{i}"
-/                     i.fa.fa-star-o.fa-lg
-/               em.do-rating__subtitle
-/                 =' t('.actual-rate')
-/                 span.js-actual-rate 0
-
-/             = submit_tag "Publish", class: "btn btn--sml do-rating__btn"
-
-/       - elsif !current_user
-/         = render "shared/social_login"
-
-/       - if @ratings && @ratings.any?
-/         h3.review__title=' t('navigation.reviews')
-/         .ratings
-/           - @ratings.each do |rating|
-/             = render "ratings/short", rating: rating, review: true
-
-
 javascript:
 
-  var fadeStart=0 // 0 scroll or less will equiv to 1 opacity
-      ,fadeUntil=300 // 300px scroll or more will equiv to 0 opacity
+  var fadeStart=0     // 0 scroll or less will equiv to 1 opacity
+      ,fadeUntil=400  // 400px scroll or more will equiv to 0 opacity
       ,fading = $('.js-headerAnim')
 
   function scrollHandler() {
@@ -153,13 +119,15 @@ javascript:
 
   });
 
-  $( document ).ready(function() {
+  // Form modal
+  $(document).ready(function() {
     $('.js-modal-trigger').click(function() {
        $('.modal-wrapper').toggleClass('open');
        return false;
     });
   });
 
+  // Disabled input
   $(document).ready(function(){
       $('.js-rating-button').prop('disabled',true);
       $('.js-rating-input').keyup(function(){
@@ -167,6 +135,7 @@ javascript:
       })
   });
 
+  // Rating stars
   $(document).ready(function() {
 
       var selected = true;
