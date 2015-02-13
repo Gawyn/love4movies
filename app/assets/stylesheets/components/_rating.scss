@@ -1,85 +1,26 @@
-.rating                 { @include trailer; }
-.rating__review         { @extend %readable; @include trailer(.25); }
-.rating__review--link   { color: $text-color; @include transition(color ease-in .15s); &:hover{ color: $brand-color; } }
-
-
-.rating--backdrop {
-  height: 100%;
-  width: 100%;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  position: absolute;
-  &:before{
-    content: "";
-    @include rposition($type: absolute, $bottom: 0, $left: 0, $right: 0, $top: 0 );
-    @include background-image(linear-gradient(transparent 35%, transparentize($text-color, .25)));
-    z-index: $slider-index + 2;
-  }
-}
-
-.movie--reviews{
-  @extend %grid-papa;
-  @extend %relative;
-  @extend %cf;
-  @include trailer(2);
-  max-width: 50em;
-}
-
-.ratings{
-  @include trailer(2);
-}
-
-
-.rating__stars{
-  @include trailer(.25);
-  font-size: 14px;
-}
-
-.comment-action{
-  cursor: pointer;
-  color: $good-green;
-  margin-right: .5em;
-  margin-left: 1em;
-}
-
-.rating__stats{
-  @include trailer;
-  @include leader(.25);
-  span { margin-right: .5em; }
-}
-
-.media__love a{
-  color: $second-color;
-  font-size: 2em;
-  vertical-align: super;
-  margin-right: .25em;
-}
-
-
-.rating-show{
-  .media__body--content   { @include adjust-font-size-to($h4-size, 1.5); @include trailer; @include leader(.5); }
-}
-
 .media__lovers{
+
   display: inline-block;
+
   a     { display: inline-block; margin-right: 5px; }
-  img   { width: 30px; }
+  img   { width: 28px; height: 28px; vertical-align: middle; }
+
 }
 
-.media__body--content__short {display: block;}
+.r--actions{
 
-.media__best {
-  max-width: 40em;
-  margin-right: auto;
-  margin-left: auto;
-  @include trailer;
-  .content    { @extend %readable; text-align: left; color: transparentize($white, .4); @include transition; &:hover {color: $white;} }
-  .media__img { width: 30px; height: 30px; margin-left: 10px; }
-}
+  display: block;
+  @include trailer(2);
+  @include leader(2);
 
-.review__title{
-  @extend %caps;
-  font-size: 1.125em;
-  font-weight: 300;
+  i {
+
+    font-size: 1.5em;
+    opacity: 0.8;
+    margin: 0 10px;
+    vertical-align: middle;
+    color: $white;
+
+  }
+
 }

@@ -52,6 +52,8 @@
   border-color: $brand-color;
   color: $white;
 
+  &:hover{ border-color: $text-color; }
+
 }
 
 .btn--list{

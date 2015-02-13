@@ -163,23 +163,6 @@ $dark-trans: transparentize($text-color, 0.3);
 
   .do-rating__number      { display: none; }
 
-  textarea {
-
-    border: 1px solid #ddd;
-    resize: none;
-    height: 5em;
-    width: 100%;
-    border-radius: 2px;
-    @extend %readable;
-    font-size: 16px;
-    padding: 10px;
-    @include trailer(2/3);
-    @include transition;
-
-    &:focus{ outline: 0; border-color: $text-color; }
-
-  }
-
 }
 
 .do-rating-with-stars{
@@ -453,9 +436,6 @@ $dark-trans: transparentize($text-color, 0.3);
   padding-left: 15em;
   padding-right: 10em;
   position: relative;
-  @include transition;
-
-  &:hover { background-color: $white; }
 
 }
 

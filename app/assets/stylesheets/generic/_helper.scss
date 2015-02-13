@@ -73,12 +73,11 @@
 .heart-active     { color: $second-color; }
 .comment-active   { color: $good-green; }
 .star-active      { color: $brand-color; }
-.rating           { color: $brand-color-lght; }
 
-.clr          { color: $brand-color; }
-.clr-2        { color: #D25169; }
-.clr-3        { color: #2AA6E7; }
-.clr-4        { color: $star; }
+.clr          { color: $brand-color!important; }
+.clr-2        { color: #D25169!important; }
+.clr-3        { color: #2AA6E7!important; }
+.clr-4        { color: $star!important; }
 
 .readable     { font-family: $body-face; }
 
