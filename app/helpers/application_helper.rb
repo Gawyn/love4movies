@@ -20,6 +20,10 @@ module ApplicationHelper
     end
   end
 
+  def share_twitter_url(description)
+    "https://twitter.com/intent/tweet?text=#{description}"
+  end
+
   def show_rating(rating, index, title)
     Rails.cache.fetch("#{rating.id}-#{rating.updated_at.to_s}-#{index}") do
       render "users/rating", rating: rating, index: index, header: index.zero?, title: title

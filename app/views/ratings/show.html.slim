@@ -61,9 +61,8 @@ header.m--hero
           = link_to "#", class: "js-share-rating" do
             i.ion-social-facebook
 
-          = link_to "#" do
-            i.ion-social-twitter
-
+          = link_to share_twitter_url(t('social.twitter_rating', rating: @rating.short_review, user: @rating.user.name, url: @actual_url)) do
+            i.fa.fa-twitter
 
       - else
         = render "shared/social_login"

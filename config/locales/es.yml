@@ -66,3 +66,5 @@ es:
     comment-rating: 'ha comentado tu puntuación en'
     comment-review: 'ha comentado tu valoración en'
     answer-comment: 'ha respondido a tu comentario en'
+  social:
+    twitter_rating: "%{rating} por %{user} %{url}"
