@@ -433,8 +433,8 @@ $dark-trans: transparentize($text-color, 0.3);
   @include padding-leader(2);
   background-color: $white;
   border-bottom: 1px solid #eee;
-  padding-left: 15em;
-  padding-right: 10em;
+  padding-left: 10.5em;
+  padding-right: 8em;
   position: relative;
 
 }
@@ -529,5 +529,12 @@ $dark-trans: transparentize($text-color, 0.3);
   position: absolute;
   bottom: 100%;
   right: 0;
+
+}
+
+.ratings-list {
+
+  width: 80%;
+  margin: 0 auto;
 
 }

@@ -49,7 +49,7 @@ header.m--hero
         = render "shared/social_login"
 
 
-    article#totalRatings
+    .ratings-list
 
       - if @ratings && @ratings.any?
         - @ratings.each do |rating|

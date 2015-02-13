@@ -1,6 +1,6 @@
 - my_loves = @loves[rating.id]
 
-.r--wrapper data-id=rating.id
+article.r--wrapper data-id=rating.id
 
   = link_to movie_rating_path(@movie, rating), class: "r--date" do
     = rating.created_at.to_s :short
