@@ -88,11 +88,11 @@
 
 .icon--not{
 
-  @include rposition($type: absolute, $right: 5px, $top: -5px);
+  @include rposition($type: absolute, $right: 5px, $top: 0);
   text-align: center;
-  width: 15px;
-  height: 15px;
-  line-height: 15px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
   font-size: 70%;
   border-radius: 50%;
   font-weight: bold;

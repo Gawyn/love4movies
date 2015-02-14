@@ -74,10 +74,10 @@
 .comment-active   { color: $good-green; }
 .star-active      { color: $brand-color; }
 
-.clr          { color: $brand-color!important; }
-.clr-2        { color: #D25169!important; }
-.clr-3        { color: #2AA6E7!important; }
-.clr-4        { color: $star!important; }
+.clr              { color: $brand-color!important; }
+.clr-2, .c-love   { color: #D25169!important; }
+.clr-3, .c-reply  { color: #2AA6E7!important; }
+.clr-4, .c-rate   { color: $star!important; }
 
 .readable     { font-family: $body-face; }
 

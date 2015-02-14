@@ -19,7 +19,6 @@ $dark-trans: transparentize($text-color, 0.3);
   .movie__stats     {
     @include adjust-font-size-to($h5-size);
     @include trailer;
-    .fa             { color: $brand-color; margin-left: 1em; }
   }
 
   .movie__title   {
@@ -175,6 +174,7 @@ $dark-trans: transparentize($text-color, 0.3);
     cursor: pointer;
     margin-right: 2px;
     color: $star;
+    font-size: 1.5em;
 
   }
 
@@ -267,7 +267,6 @@ $dark-trans: transparentize($text-color, 0.3);
 .back-link{
   @include trailer(.5);
   display: block;
-  .fa { margin-right: 1em; }
 }
 
 .m--hero{

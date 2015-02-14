@@ -20,8 +20,6 @@
   color: $white;
   @include transition(transform .5s ease-out, background-image .5s ease-in-out);
 
-  .fa         { color: $brand-color; }
-
   .media__body{
     @include adjust-font-size-to($base-font-size*1.25, 1);
     @include transition(color ease-in .25s);

@@ -30,7 +30,7 @@ nav.main--nav class="#{'is-trans' if @movie}"
 
       li = link_to notifications_path do
 
-        i.ion-ios7-bell
+        i.ion-ios-bell
 
         - if @pending_notifications.any?
           span.icon--not = @pending_notifications.count

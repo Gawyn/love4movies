@@ -18,11 +18,11 @@ article.r--wrapper data-id=rating.id
     = link_to rating.user.name, rating.user, class: 'r--user-name caps'
     span.r--stats
 
-      i.ion-android-star.clr-4
+      i.ion-android-star.c-rate
       = rating.value
 
-      i.ion-heart.clr-2
+      i.ion-heart.c-love
       = my_loves.present? ? my_loves.count : '0'
 
-      i.ion-reply.clr-3
+      i.ion-reply.c-reply
       = rating.comments.count

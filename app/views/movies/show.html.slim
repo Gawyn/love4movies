@@ -77,9 +77,9 @@ header.m--hero
             - 1.upto(10).each do |i|
               span.do-rating-action.js-star-hover data-number="#{i}"
                 - if i <= 5
-                  i.fa.fa-star.fa-lg
+                  i.ion-android-star
                 - else
-                  i.fa.fa-star-o.fa-lg
+                  i.ion-android-star-outline
 
           span
             ' &nbsp;
@@ -139,20 +139,23 @@ javascript:
   $(document).ready(function() {
 
       var selected = true;
+      var classSelected = 'ion-android-star';
+      var classUnselected = 'ion-android-star-outline';
+
 
       $('.js-star-hover').on({
         // Handles the mouseover
         mouseover: function(){
-            if(!selected) {$(this).prevAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');}
+            if(!selected) {$(this).prevAll().andSelf().children().addClass(classSelected).removeClass(classUnselected);}
         },
         mouseleave: function(){
-            if(!selected) {$(this).prevAll().andSelf().children().removeClass('fa-star').addClass('fa-star-o');}
+            if(!selected) {$(this).prevAll().andSelf().children().removeClass(classSelected).addClass(classUnselected);}
         },
         click: function(){
           if(!selected) { $('.js-star-hover').off('mouseleave mouseover'); selected = true; }
           else {
-            $(this).prevAll().andSelf().children().addClass('fa-star').removeClass('fa-star-o');
-            $(this).nextAll().children().removeClass('fa-star').addClass('fa-star-o');
+            $(this).prevAll().andSelf().children().addClass(classSelected).removeClass(classUnselected);
+            $(this).nextAll().children().removeClass(classSelected).addClass(classUnselected);
           }
           var value = $(this).data("number");
           $(".js-rating-number").val(value);
