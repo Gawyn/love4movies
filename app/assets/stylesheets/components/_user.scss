@@ -42,7 +42,7 @@
   float: left;
   width: 30%;
   position: relative;
-  z-index: 1000;
+  z-index: index($index-elements, menu);
 }
 
 .best-rate-gr{
