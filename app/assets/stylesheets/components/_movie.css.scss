@@ -69,7 +69,6 @@ $dark-trans: transparentize($text-color, 0.3);
   .movie__sinopsis{
     @include trailer;
     @extend %readable;
-    @include adjust-font-size-to($base-font-size);
   }
 }
 
