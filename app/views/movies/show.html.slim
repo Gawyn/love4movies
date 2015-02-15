@@ -20,12 +20,12 @@ header.m--hero
 
       p.movie__stats
         span
-          i.ion-android-star.clr-4
+          i.ion-android-star.c-rate
           bold#rating_average.movie-ratio
             =' @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
 
         span
-          i.ion-chatbubble.clr-3
+          i.ion-chatbubble.c-reply
           bold=' @movie.ratings.count
 
       - if @ratings && @ratings.any?
