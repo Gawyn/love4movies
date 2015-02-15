@@ -23,7 +23,7 @@
     height: 28px;
     width: 28px;
     vertical-align: middle;
-    opacity: 0.5;
+    opacity: 0.75;
 
   }
 
@@ -112,9 +112,9 @@
   border: 0 solid rgba(0, 0, 0, 0.25);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 
-  li { display: block; padding: 0; border-bottom: 1px solid #eee; }
-  li:last-of-type {border: none;}
-  strong { display: block; }
+  li                { display: block; padding: 0; border-bottom: 1px solid #eee; }
+  li:last-of-type   {border: none;}
+  strong            { display: block; }
 
   a {
 
