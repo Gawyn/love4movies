@@ -1,24 +1,22 @@
-article.activity data-ratio="1.5"
-  = link_to movie_rating_path(content.movie, content) do
+article
+  = link_to movie_rating_path(content.movie, content), class: 'act--elem', style: "background-image: url(#{content.movie.decorate.get_poster_image})"  do
 
-    figure class=("visible" if !content.movie.posters.any?)
-      = image_tag (content.movie.posters.any? ? content.movie.posters.first.url("w342") : "no-movie.jpg"), class: "figure__img"
-      figcaption
-        .movie__description
-          .movie__year= content.movie.decorate.movie_year
-          .movie__title= content.movie.title
-          .movie__director
-            = content.movie.decorate.directors_list.map(&:name).join(", ")
+    .act--titles
+      span.act--movie
+        em.readable=' t('semantics.about')
+        span= content.movie.title
 
-      .movie__activity
-        .activity-user
-          = image_tag user.avatar, class: "avatar"
-          = user.name
+      - if content.is_a? Rating
 
-        - if content.is_a? Rating
+        h3.readable
+          | &#8220;
+          = truncate(content.short_review, length: 70)
+          | &#8221;
+
+      span.act--user
+        small.act--rating
           i.ion-android-star.c-rate
           = content.value
 
-        - elsif content.is_a? Review
-          i.ion-android-star.c-rate
-          = content.value
+        = image_tag user.medium_avatar, class: 'circle circle--small'
+        small.caps = user.name

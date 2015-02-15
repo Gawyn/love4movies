@@ -40,8 +40,8 @@
 }
 
 %grid{
-  @extend %float--left;
-  @extend %relative;
+  float: left;
+  position: relative;
 }
 
 %center-col{

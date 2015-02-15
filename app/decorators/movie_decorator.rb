@@ -16,6 +16,16 @@ class MovieDecorator < Draper::Decorator
     end
   end
 
+  def get_poster_image
+    if poster = posters.first
+      poster.url("original")
+    elsif backdrop = backdrops.first
+      backdrop.url("w1280")
+    else
+      ActionController::Base.helpers.asset_path("default-backdrop.jpg")
+    end
+  end
+
   def get_backdrop
     backdrops.first ? backdrops.first.url("w1280") : ActionController::Base.helpers.asset_path("default-backdrop.jpg")
   end

@@ -7,8 +7,8 @@
 %readable       { font-family: $body-face; }
 
 // Floating
-%float--right   { float:right; }
-%float--left    { float:left; }
+.right   { float:right; }
+.left    { float:left; }
 
 // Position
 %relative       { position: relative; }
@@ -87,4 +87,21 @@
   @include trailer;
   display: inline-block;
   font-weight: normal;
+}
+
+.circle {
+
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  border-radius: 50px;
+  margin-right: 1em;
+
+  &--small {
+
+    width: $base-font-size*2;
+    height: $base-font-size*2;
+
+  }
+
 }

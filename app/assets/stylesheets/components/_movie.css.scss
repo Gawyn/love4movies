@@ -400,16 +400,6 @@ $dark-trans: transparentize($text-color, 0.3);
   &:hover {opacity: 1;}
 }
 
-.rf--user-img {
-
-  vertical-align: middle;
-  width: 32px;
-  height: 32px;
-  border-radius: 50px;
-  margin-right: 1em;
-
-}
-
 .r--comment {
 
   p { @extend %readable; }
@@ -453,16 +443,6 @@ $dark-trans: transparentize($text-color, 0.3);
 
   color: $text-color;
   margin-right: 0.5em;
-
-}
-
-.r--user-img {
-
-  vertical-align: middle;
-  width: 32px;
-  height: 32px;
-  border-radius: 50px;
-  margin-right: 1em;
 
 }
 

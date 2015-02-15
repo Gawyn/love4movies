@@ -14,7 +14,7 @@ article.r--wrapper data-id=rating.id
         | &#8221;
 
   span.r--user
-    = link_to image_tag(rating.user.medium_avatar, class: 'r--user-img'), rating.user
+    = link_to image_tag(rating.user.medium_avatar, class: 'circle'), rating.user
     = link_to rating.user.name, rating.user, class: 'r--user-name caps'
     span.r--stats
 
