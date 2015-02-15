@@ -4,7 +4,7 @@ section.rank-list
 
   - @ratings.each_with_index do |rating, i|
     = Rails.cache.fetch("#{rating.id}-#{rating.updated_at.to_s}-#{i}") do
-      - render "users/rating", rating: rating, index: i, header: i.zero?, title: @title || "#{@user.name}'s #{time_content} movies"
+      - render "users/rating", rating: rating, index: i, header: i.zero?, time: time_content
 
 section.clear.text--center
   .btn.js-rank-load Load more movies
