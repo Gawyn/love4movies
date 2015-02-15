@@ -32,7 +32,7 @@ header.m--hero
 
         span.r--actions
 
-          = link_to "#replyForm", class: "js-reply-rating" do
+          = link_to "#replyForm" do
             i.ion-reply
 
           span.js-love
@@ -82,6 +82,24 @@ header.m--hero
       = render "comments/index", commentable: @rating
 
 javascript:
+
+  $(function () {
+      $('a[href*=#]:not([href=#])').click(function () {
+          if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+
+              var target = $(this.hash);
+              target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+              if (target.length) {
+                  $('html,body').animate({
+                      scrollTop: target.offset().top
+                  }, 300, function(){ // function to focus here
+                      $('.js-comment-wrapper').find("textarea").focus();
+                  });
+                  return false;
+              }
+          }
+      });
+  });
 
   $("a.js-share-rating").on("click", function (){
     name = '#{@rating.movie.title} - '
