@@ -7,8 +7,6 @@ $dark-trans: transparentize($text-color, 0.3);
 .movie__heading         { @extend %headline; @include adjust-font-size-to($h1-size); @include trailer(.25); }
 .movie__sub-heading     { @extend %readable; @include adjust-font-size-to($h6-size); font-style: italic; @include trailer; color: transparentize($text-color, .5); }
 
-.movie-section-wrapper  { padding: 2em 10% 1em 10%; }
-
 // ------------------
 // HERO
 // ------------------
@@ -251,12 +249,11 @@ $dark-trans: transparentize($text-color, 0.3);
 }
 
 .toggle-movie-info {
-  @include rposition($type: absolute, $top: 1em, $right: 2em);
+  @include rposition($type: absolute, $top: 4em, $right: 2em);
   z-index: $comment-index;
-  @extend .btn--sml;
-  border-width: 1px;
-  border-color: rgba($white, .75);
-  font-weight: 800;
+  font-size: 1.5em;
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 .list-of-ratings{

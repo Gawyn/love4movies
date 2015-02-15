@@ -32,20 +32,21 @@ header.m--hero
         - @ratings.to_a.shift(1).each do |rating|
           = render "ratings/featured", rating: rating, review: true
 
-      - if current_user && @my_rating.nil?
+      - if current_user
+
         .btn--list
-          =' link_to '', class: 'btn btn--rate js-modal-trigger' do
 
-            i.ion-compose
-            ' &nbsp
-            | Valoración
+          - if @my_rating.nil?
 
-          ' &nbsp
+            =' link_to '', class: 'btn btn--rate js-modal-trigger' do
 
-          .btn.btn--light.js-toggle-info
-            =' t('actions.more-info')
+              i.ion-compose
+              ' &nbsp
+              | Valoración
 
-      - elsif !current_user
+          .btn.btn--light.js-toggle-info = t('actions.more-info')
+
+      - else
         = render "shared/social_login"
 
 

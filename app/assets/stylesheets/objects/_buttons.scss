@@ -60,6 +60,8 @@
   @include trailer(3/2);
   @include leader;
 
+  .btn { margin: 0 10px; }
+
 }
 
 .btn--full{

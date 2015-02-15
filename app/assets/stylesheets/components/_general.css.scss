@@ -29,10 +29,15 @@
 
 // Info movie
 .info-movie-sidebar{
-  @extend .movie-sidebar;
-  position: absolute;
-  top: 42px;
-  background-color: $white;
+
+  position: fixed;
+  width: $backdrop-movie;
+  height: 100%;
+  bottom: 0;
+  top: 0;
+  background-color: rgba($text-color, 0.9);
+  color: $white;
+  padding: 7em 10% 3em;
   z-index: index($index-elements, sidebar);
   overflow: auto;
   @include translateX(-100%);
@@ -41,7 +46,7 @@
 
   &::-webkit-scrollbar      { display: none; }
   &.active                  { @include translateX(0); }
-  @media #{$medium-up}      { top: 0; }
+
 }
 
 // Comments-Reviews section
