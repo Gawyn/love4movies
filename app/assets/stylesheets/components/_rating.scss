@@ -1,17 +1,38 @@
-.media__lovers{
+.lovers-count {
 
   display: inline-block;
+  vertical-align: middle;
+  line-height: 1.25;
+  text-align: left;
+  margin-right: 1.5em;
 
-  a     { display: inline-block; margin-right: 5px; }
-  img   { width: 28px; height: 28px; vertical-align: middle; }
+  span    { display: block; opacity: 0.75;}
+  strong  { font-weight: 900; }
+
+}
+
+.list-of-lovers {
+
+  @include trailer(3/2);
+
+  img   { width: 32px; height: 32px; vertical-align: middle; }
+
+  ul {
+
+    @include inline-block-list(0.1em);
+    display: inline-block;
+    vertical-align: middle;
+
+  }
+
 
 }
 
 .r--actions{
 
   display: block;
-  @include trailer(2);
-  @include leader(2);
+  @include trailer(3/2);
+  @include leader;
 
   a {
 
