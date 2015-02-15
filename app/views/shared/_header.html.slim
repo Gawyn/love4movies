@@ -40,7 +40,19 @@ nav.main--nav class="#{'is-trans' if @movie}"
 
             li = link_to current_user do
 
+                - level_def = current_user.decorate.level_def
+
                 strong = current_user.name
+
+                .lvl-def
+                  .right
+                    = t("level.#{level_def}")
+                  =' t('level.level')
+                  = current_user.level
+
+                  .lvl__bar--wrapper
+                    .lvl__bar style="width:#{current_user.decorate.percentage_of_experience_achieved}%"
+
                 = t('navigation.profile')
 
             li = link_to t('navigation.badges'), badges_path
