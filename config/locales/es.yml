@@ -2,6 +2,8 @@ es:
   landing:
     title: 'La comunidad de los amantes del cine'
     user-review: 'ha comentado la película'
+  semantics:
+    about: 'En'
   units:
     ratings: 'Ratings'
     points: 'Puntos'
@@ -10,6 +12,9 @@ es:
     people: 'Gente'
     users: 'Usuarios'
   navigation:
+    activity: 'Actividad'
+    popular: 'Popular'
+    people: 'Usuarios'
     reviews: 'Opiniones'
     actors: 'Actores'
     search: 'Buscar'

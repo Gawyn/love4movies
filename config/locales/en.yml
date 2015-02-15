@@ -2,6 +2,8 @@ en:
   landing:
     title: 'The movie lovers community'
     user-review: 'commented the movie'
+  semantics:
+    about: 'On'
   units:
     ratings: 'Ratings'
     points: 'Points'
@@ -10,8 +12,11 @@ en:
     people: 'People'
     users: 'Users'
   navigation:
+    activity: 'Activity'
+    popular: 'Popular'
     reviews: 'Reviews'
     actors: 'Actors'
+    people: 'People'
     search: 'Search'
     movies: 'Movies'
     users: 'Users'

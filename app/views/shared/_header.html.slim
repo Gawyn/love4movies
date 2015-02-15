@@ -4,21 +4,15 @@ nav.main--nav class="#{'is-trans' if @movie}"
 
   ul.main--nav-list
 
-    li = link_to timeline_path, class: "#{cp(timeline_path)}" do
-      | Actividad
+    li = link_to t("navigation.activity"), timeline_path, class: "#{cp(timeline_path)}"
 
-    li = link_to trending_path, class: "#{cp(trending_path)}" do
-      | Populares
+    li = link_to t("navigation.popular"), trending_path, class: "#{cp(trending_path)}"
 
-    li = link_to ranking_path, class: "#{cp(ranking_path)}" do
-      | Top
+    li = link_to t("navigation.ranking"), ranking_path, class: "#{cp(ranking_path)}"
 
-    li = link_to users_path, class: "#{cp(users_path)}" do
-      | Gente
+    li = link_to t("navigation.people"), users_path, class: "#{cp(users_path)}"
 
-    li = link_to recommended_movies_path, class: "#{cp(recommended_movies_path)}" do
-      | Recomendaciones
-
+    li = link_to t("navigation.recommended"), recommended_movies_path, class: "#recommended_movies_path)}"
 
   ul.main--user-nav
 
