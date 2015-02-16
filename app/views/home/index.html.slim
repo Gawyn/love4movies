@@ -1,28 +1,43 @@
-- first_movie_backdrop = @last_activity.present? ? @last_activity.content.movie.backdrops.first : false
-- backdrop = first_movie_backdrop ? first_movie_backdrop.url("w1280") : asset_path('default-backdrop.jpg')
-section.login-banner style="background-image: url(#{backdrop}) "
+- content = @last_activity.content
 
-  .login__overlay
-  .login__search
-    = form_tag search_path, :method => "get" do |f|
-      = text_field_tag :query,  nil, class: 'search-form__input', placeholder: t('navigation.search')
-      = submit_tag t('navigation.search'), :hidden => true
-      i.ion-search
+section.home--wrapper style="background-image: url(#{content.movie.decorate.get_background_image}) "
+
+  .home--overlay
+
+  article.home--login-wrapper
+
+    .home--logo = image_tag("beta-logo.svg")
+
+    h1.m--title = t('landing.title')
+
+    .btn--list
+      = link_to "Facebook", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook"
+      = link_to "Twitter", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter"
 
 
-  .login-banner__wrapper
-    .login-banner__logo= image_tag("beta-logo.svg")
+  article.rf--wrapper
 
-    h1.login-banner__title
-      = t('landing.title')
+    p.movie__subheader
 
-    .login-banner__list
-      span= link_to "Facebook", user_omniauth_authorize_path("facebook"), class: "btn--facebook btn--login"
-      span= link_to "Twitter", user_omniauth_authorize_path("twitter"), class: "btn--twitter btn--login"
+      em.readable=' t('semantics.about')
+      span= link_to content.movie.title, content.movie
 
-  - if @last_activity
-    .login__footer
-      =' link_to (image_tag @last_activity.user.small_avatar), @last_activity.user, class: "login__footer__avatar"
-      =' link_to  @last_activity.user.name, @last_activity.user
-      =' t('landing.user-review')
-      =' link_to  @last_activity.content.movie.title, @last_activity.content.movie
+    = link_to movie_rating_path(content.movie, content), class: "rf--comment" do
+
+      - if content.short_review
+        p
+          | &#8220;
+          = content.short_review
+          | &#8221;
+
+
+    span.rf--user
+      = link_to image_tag(content.user.medium_avatar, class: 'circle'), content.user
+      = link_to content.user.name, content.user, class: 'rf--user-name caps text--inverse'
+      span.rf--stats
+
+        i.ion-android-star.clr-4
+        = content.value
+
+        i.ion-reply.clr-3
+        = content.comments.count
