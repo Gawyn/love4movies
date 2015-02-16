@@ -4,7 +4,8 @@ nav.main--nav class="#{'is-trans' if @movie}"
 
   ul.main--nav-list
 
-    li = link_to t("navigation.activity"), timeline_path, class: "#{cp(timeline_path)}"
+    - if current_user
+      li = link_to t("navigation.activity"), timeline_path, class: "#{cp(timeline_path)}"
 
     li = link_to t("navigation.popular"), trending_path, class: "#{cp(trending_path)}"
 
