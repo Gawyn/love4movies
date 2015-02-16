@@ -4,9 +4,6 @@
 
   - if header
 
-    .rank-recommended
-      = link_to "¿Buscas una recomendación?", recommended_movies_path
-
     .rank-header
       h1.rank-header__title Top Movies
       h2.rank-header__subtitle Las películas mejor valoradas
@@ -18,10 +15,10 @@
       span.rank-director= movie.decorate.directors
       p
         small
-          i.ion-star.rating
+          i.ion-star.c-rate
           ' &nbsp;
           =' movie.decorate.get_rating
           ' &nbsp;
-          i.ion-ios7-chatbubble.rating
+          i.ion-chatbubble.c-reply
           ' &nbsp;
           =' movie.ratings.count

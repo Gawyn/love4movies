@@ -1,7 +1,4 @@
 - if @comment
-  | myFormWrapper = $(".#{@comment.commentable_type.underscore}[data-id=#{@comment.commentable_id}] .comments .form-comment-wrapper");
+  | myFormWrapper = $(".#{@comment.commentable_type.underscore}[data-id=#{@comment.commentable_id}] .js-comment-wrapper");
   | myFormWrapper.before('#{escape_javascript(render(:partial => 'comments/show', locals: {comment: @comment}))}');
-  | myFormWrapper.find("textarea").val("");
-  | myFormWrapper.find("input").blur();
-  | myFormWrapper.parents(".rating").children(".js-toggle-comment").show();
-  | myFormWrapper.toggleClass("active");
+  | myFormWrapper.find("textarea").focus().val("");

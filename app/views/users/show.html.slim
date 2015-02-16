@@ -34,21 +34,11 @@
                     =' @user.experience
                     =' t('units.total-points').downcase
 
-                  - if current_user == @user
-                    .lvl__bar--wrapper
-                      .lvl__bar style="width:#{@user.decorate.percentage_of_experience_achieved}%"
-
         - if @user.location
           b.user-info__place
             i.ion-location
             '
             =' @user.location
-
-        - if current_user == @user
-          .log-out= link_to destroy_user_session_path, :method => :delete, class: "user-info__place" do
-            i.ion-log-out
-            '
-            = t('actions.log-out')
 
     .best-rate-wrapper
       - @highest_ratings.to_a.first(2).each_with_index do |rating, i|
@@ -78,11 +68,6 @@
         ' &nbsp
         =' link_to 'Ránquing', ranking_path, class: 'btn'
 
-        .leader.log-out= link_to destroy_user_session_path, :method => :delete, class: "user-info__place" do
-          i.ion-log-out
-          '
-          = t('actions.log-out')
-
     - else
       header.jump-header
         = image_tag @user.medium_avatar, class: "user__img"
@@ -109,13 +94,13 @@ section.user-nav-wrapper
       strong.user-nav__numb= @user.ratings_count
     li
       span.user-nav__title=' t('users.navigation.followers')
-      strong.user-nav__numb 314
+      strong.user-nav__numb= @user.passive_follows.count
     li
       span.user-nav__title=' t('users.navigation.following')
-      strong.user-nav__numb 1.2K
+      strong.user-nav__numb= @user.active_follows.count
 
 section
   section.activities
     - @ratings.each do |rating|
-      = render "ratings/with_movie", content: rating, user: @user
+      = render "activities/show", content: rating, user: @user
     .pagination= paginate @ratings

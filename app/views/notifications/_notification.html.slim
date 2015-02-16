@@ -8,37 +8,37 @@ article.notification
 
     - if type == "Love"
       .media__img
-        i.fa.fa-heart-o.fa-lg
+        i.ion-heart.c-love
 
       .media__body
         p = link_to notification.triggered_on do
-            =' user.name
+            strong =' user.name
             =' t('notifications.love-rating')
-            = movie.title
+            strong = movie.title
 
     - elsif notification.triggered_on_type == "Rating"
       .media__img
-        i.fa.fa-star-o.fa-lg
+        i.ion-android-star.c-rate
       .media__body
         p = link_to notification.triggered_on do
-          =' user.name
+          strong =' user.name
           =' t('notifications.comment-rating')
-          = movie.title
+          strong = movie.title
 
     - elsif notification.triggered_on_type == "Review"
       .media__img
-        i.fa.fa-comment-o.fa-lg
+        i.ion-reply.c-reply
       .media__body
         p
-          =' link_to user.name, user
+          strong =' link_to user.name, user
           =' t('notifications.comment-review')
-          = link_to movie.title, notification.triggered_on
+          strong = link_to movie.title, notification.triggered_on
 
     - elsif notification.triggered_on_type == "Comment"
       .media__img
-        i.fa.fa-comment-o.fa-lg
+        i.ion-reply.c-reply
       .media__body
         p
-          =' link_to user.name, user
+          strong =' link_to user.name, user
           =' t('notifications.answer-comment')
-          = link_to movie.title, notification.triggered_on.commentable
+          strong = link_to movie.title, notification.triggered_on.commentable

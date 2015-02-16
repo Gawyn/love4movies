@@ -1,14 +1,23 @@
 .notifications{
+
   @extend %grid-papa;
   @extend %relative;
   @extend %cf;
   @include trailer(2);
   @include leader(2);
   max-width: 40em;
+
 }
 
 .notification{
+
   @include trailer;
+
   img       { width: $base-font-size*2.5; height: $base-font-size*2.5; }
-  p         { font-weight: 400; }
+  i         { font-size: 1.25em; vertical-align: middle; }
+  a {
+    color: rgba($text-color, 0.75);
+    &:hover { color: $brand-color; }
+  }
+
 }

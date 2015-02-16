@@ -3,12 +3,12 @@
 \*------------------------------------*/
 
 // Fonts Family
-%headline       { font-family: $headline-face; font-weight: normal; }
-%readable       { font-family: $body-face; font-weight: 300; }
+%headline       { font-family: $headline-face; }
+%readable       { font-family: $body-face; }
 
 // Floating
-%float--right   { float:right; }
-%float--left    { float:left; }
+.right   { float:right; }
+.left    { float:left; }
 
 // Position
 %relative       { position: relative; }
@@ -26,8 +26,11 @@
 %text--bold     { font-weight: 700; }
 %text--black    { font-weight: 900; }
 
-%text--inverse  { color: $white; }
-%caps           { text-transform:uppercase; }
+%text--inverse,
+.text--inverse  { color: $white; }
+
+%caps,
+.caps           { text-transform:uppercase; }
 
 // Flush
 %flush, .flush  { margin:       0!important; }
@@ -52,14 +55,14 @@
 %show-medium-up { @extend %hide; @media #{$medium-up}       { display: block; }}
 
 // Leading
-%leader,
-.leader         { @include margin-leader(1); }
+.leader--s      { @include margin-leader(1/2); }
+.trailer--s     { @include margin-trailer(1/2); }
 
-%trailer,
-.trailer        { @include margin-trailer(1); }
+.leader         { @include margin-leader; }
+.trailer        { @include margin-trailer; }
 
-%leader--lg     { @include margin-leader(2); }
-%trailer--lg    { @include margin-trailer(2); }
+.leader--big    { @include margin-leader(2); }
+.trailer--big   { @include margin-trailer(2); }
 
 // Mute an object by reducing its opacity.
 %muted          { opacity:0.5;}
@@ -70,7 +73,13 @@
 .heart-active     { color: $second-color; }
 .comment-active   { color: $good-green; }
 .star-active      { color: $brand-color; }
-.rating           { color: $brand-color-lght; }
+
+.clr              { color: $brand-color!important; }
+.clr-2, .c-love   { color: #D25169!important; }
+.clr-3, .c-reply  { color: #2AA6E7!important; }
+.clr-4, .c-rate   { color: $star!important; }
+
+.readable     { font-family: $body-face; }
 
 .movie-quote      {
   color: #918F92;
@@ -78,4 +87,21 @@
   @include trailer;
   display: inline-block;
   font-weight: normal;
+}
+
+.circle {
+
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  border-radius: 50px;
+  margin-right: 1em;
+
+  &--small {
+
+    width: $base-font-size*2;
+    height: $base-font-size*2;
+
+  }
+
 }

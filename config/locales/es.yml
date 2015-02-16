@@ -2,6 +2,8 @@ es:
   landing:
     title: 'La comunidad de los amantes del cine'
     user-review: 'ha comentado la película'
+  semantics:
+    about: 'En'
   units:
     ratings: 'Ratings'
     points: 'Puntos'
@@ -10,12 +12,17 @@ es:
     people: 'Gente'
     users: 'Usuarios'
   navigation:
-    reviews: 'Valoraciones'
+    activity: 'Actividad'
+    popular: 'Popular'
+    people: 'Usuarios'
+    reviews: 'Opiniones'
     actors: 'Actores'
     search: 'Buscar'
     movies: 'Películas'
     users: 'Usuarios'
     news: 'Novedades'
+    profile: 'Ver Perfil'
+    badges: 'Medallas'
     timeline: 'Últimas'
     trending: 'Popular'
     ranking: 'Ránquing'
@@ -40,8 +47,8 @@ es:
     search:
       search-results: 'Resultados de búsqueda'
     show:
-      limit-rating: 'Tienes un límite de 140 caracteres'
-      actual-rate: 'Tu puntuación es'
+      limit-rating: 'Escribe tu valoración en 140 caracteres'
+      actual-rate: 'de 10'
   search:
     form-label: 'Buscar por películas, actores, actrizes o directores'
     title: 'Resultados de la búsqueda'
@@ -64,3 +71,5 @@ es:
     comment-rating: 'ha comentado tu puntuación en'
     comment-review: 'ha comentado tu valoración en'
     answer-comment: 'ha respondido a tu comentario en'
+  social:
+    twitter_rating: "%{rating} por %{user} %{url}"

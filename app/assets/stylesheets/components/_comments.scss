@@ -1,32 +1,54 @@
-.comments {
-  @include leader;
-  .comment    { @include trailer(.75); }
-  img         { width: $base-font-size*2.5; height: $base-font-size*2.5; }
+.comments-list {
+
+  width: 70%;
+  margin: 0 auto;
+
 }
 
-.form-comment-wrapper{
-  @include trailer(2);
-  @include leader(2);
-  textarea{
-    border: 1px solid #eee;
-    resize: none;
-    width: 100%;
-    height: 5em;
-    @include trailer;
-    border-radius: 2px;
-    &:focus{ outline: 0; border-color: #bbb; }
+.c--wrapper{
+
+  @include padding-trailer;
+  @include padding-leader;
+  background-color: $white;
+  border-bottom: 1px solid #eee;
+  padding-left: 6em;
+  padding-right: 8em;
+  position: relative;
+
+}
+
+.media__body--author {
+
+  line-height: 1;
+  margin-bottom: 5px;
+  font-size: 10px;
+  text-transform: uppercase;
+
+  a  {
+
+    color: rgba($text-color, 0.5);
+
   }
-  input{
-    color: $white;
-    background-color: $brand-color;
-    display: block;
-    width: 100%;
-    border: 2px solid $brand-color;
-    padding: 1em 1em;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-weight: 300;
-    @include transition(border, ease-in, .35s);
-    &:hover, &:focus{ outline: 0; border-color: darken($brand-color, 10%); }
-  }
+
+}
+
+.media__body--date {
+
+  font-size: 12px;
+  color: transparentize($text-color, .65);
+  float: right;
+
+}
+
+.media__content {
+  @extend %readable;
+
+}
+
+.media__img             {
+
+  margin-right: 10px;
+
+  img { width: $base-font-size*2.5; }
+
 }

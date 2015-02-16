@@ -20,8 +20,6 @@
   color: $white;
   @include transition(transform .5s ease-out, background-image .5s ease-in-out);
 
-  .fa         { color: $brand-color; }
-
   .media__body{
     @include adjust-font-size-to($base-font-size*1.25, 1);
     @include transition(color ease-in .25s);
@@ -31,28 +29,5 @@
     height: $base-font-size*2;
     margin-right: .5em;
     vertical-align: middle;
-  }
-}
-
-.tab-list{
-  @extend %cf;
-  list-style: none;
-  li          { float: left; width: 100%; }
-  &-2         { li { width: 50%;} }
-  &-3         { li { width: 33.3333%;} }
-  &__link     {
-    color: $white;
-    background-color: $text-color;
-    padding: .5em;
-    display: block;
-    @extend %text--center;
-    @extend %headline;
-    @include adjust-font-size-to($kilo-size);
-    font-size: calc(#{$base-font-size} + .25vw + 2vh);
-    @include transition(all ease .25s);
-
-    &.current { color: $text-color; background-color: $white; pointer-events: none; }
-    &:hover   { color: $text-color; background-color: $white; }
-
   }
 }

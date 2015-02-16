@@ -55,17 +55,18 @@ $responsive-pull:   false!default;
  */
 $text-color:        #1B181F!default;
 $white:             #FFF!default;
-$brand-color:       #6a50a7!default;
+$brand-color:       #825DC3!default;
 $brand-color-lght:  #8067b8!default;
 $second-color:      #8067b8!default;
 $facebook:          #3b5998!default;
 $twitter:           #019AD2!default;
 $good-green:        #4ece8e!default;
+$star:              #E7A62F;
 $cubic-1:           cubic-bezier(.65,0,1,.95);
 $cubic-2:           cubic-bezier(.33, 0, .2, 1);
-$brand-face:        'Lato','Helvetica', Helvetica Neue, Arial!default;
-$headline-face:     'Oswald','Helvetica', Helvetica Neue, Arial!default;
-$body-face:         'Merriweather', serif!default;
+$brand-face:        "Lato",'Helvetica', Helvetica Neue, Arial!default;
+$headline-face:     "jaf-bernino-sans-comp",'Helvetica', Helvetica Neue, Arial!default;
+$body-face:         "ff-meta-serif-web-pro",serif!default;
 
 /**
  * inuit.css will work these next ones out for you.
@@ -77,7 +78,6 @@ $half-spacing-unit: $base-spacing-unit / 2!default;
 $line-height-ratio: $base-line-height / $base-font-size;
 
 // Layout
-$sidebar-width:         $base-font-size*3!default;
 $person-sidebar-width:  $base-font-size*19!default;
 $backdrop-movie:        66.666%!default;
 

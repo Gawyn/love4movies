@@ -1,11 +1,22 @@
 /*------------------------------------*\
     $FORMS
 \*------------------------------------*/
-/**
- *
- * Demo: jsfiddle.net/inuitcss/MhHHU
- *
- */
+textarea {
+
+  border: 1px solid #ddd;
+  resize: none;
+  height: 5em;
+  width: 100%;
+  border-radius: 2px;
+  font-size: 16px;
+  padding: 10px;
+  @include trailer(2/3);
+  @extend %readable;
+
+  &:focus{ outline: 0; border-color: $text-color; }
+
+}
+
 fieldset{
     padding:$base-spacing-unit;
 }
@@ -222,15 +233,16 @@ label,
   &:hover       { border: 1px  solid $white; }
 
   /* Custom arrow sits on top of the select - could be an image, SVG, icon font, etc. or the arrow could just baked into the bg image on the select */
-  &::before{
-    content:'\f151';
-    @extend .ion-ios7-arrow-down;
+  &:before{
+
+    @extend .ion-chevron-down;
     @include rposition($type: absolute, $right: 1em, $top: 50%);
     margin-top:-.5em;
     z-index: 2;
     color: $white;
     /* These hacks make the select behind the arrow clickable in some browsers */
     pointer-events:none;
+
   }
 
 }

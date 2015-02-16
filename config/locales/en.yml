@@ -2,6 +2,8 @@ en:
   landing:
     title: 'The movie lovers community'
     user-review: 'commented the movie'
+  semantics:
+    about: 'On'
   units:
     ratings: 'Ratings'
     points: 'Points'
@@ -10,8 +12,11 @@ en:
     people: 'People'
     users: 'Users'
   navigation:
+    activity: 'Activity'
+    popular: 'Popular'
     reviews: 'Reviews'
     actors: 'Actors'
+    people: 'People'
     search: 'Search'
     movies: 'Movies'
     users: 'Users'
@@ -41,8 +46,8 @@ en:
     search:
       search-results: 'Search results for'
     show:
-      limit-rating: 'No more than 140 chars'
-      actual-rate: 'Actual rate'
+      limit-rating: 'Write your review in 140 charachters'
+      actual-rate: 'of 10'
   search:
     form-label: 'Search by movies, actors, actresses or directors'
     title: 'Search results for'
@@ -65,3 +70,5 @@ en:
     comment-rating: 'commented your rating on'
     comment-review: 'commented your review on'
     answer-comment: 'answer your comment on'
+  social:
+    twitter_rating: "%{rating} by %{user} %{url}"

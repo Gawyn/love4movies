@@ -21,6 +21,7 @@
   border: 1px solid $text-color;
   border-radius: 1px;
   @include transition(all, ease, 0.3s);
+
   &:hover,
   &:focus{
     background-color: $text-color;
@@ -28,7 +29,13 @@
     color: $white;
     outline: none;
   }
-  .fa             { margin-right: 1em; }
+
+  &:disabled{
+    background-color: #eee;
+    color: #aaa;
+    border-color: transparent;
+  }
+
 }
 
 /**
@@ -37,7 +44,25 @@
 .btn--sml   { font-size: .75em; }
 .btn--lrg   { font-size:1.50em; }
 .btn--light { border-color: $white; color: $white; }
-.btn--rate  { background-color: $brand-color; border-color: $brand-color; color: $white;}
+.btn--rate  {
+
+  background-color: $brand-color;
+  border-color: $brand-color;
+  color: $white;
+
+  &:hover{ border-color: $text-color; }
+
+}
+
+.btn--list{
+
+  text-align: center;
+  @include trailer(3/2);
+  @include leader;
+
+  .btn { margin: 0 10px; }
+
+}
 
 .btn--full{
   display:block;

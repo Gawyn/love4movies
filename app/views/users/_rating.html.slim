@@ -1,21 +1,45 @@
 - header ||= false
 - movie = rating.movie
 
-.rank class='rank--s#{(index%12)+1}' style="background-image: url(#{movie.decorate.get_background_image})"
+article
 
-  - if header && title
+  = link_to movie_rating_path(movie, rating), class: "rank rank--s#{(index%12)+1}", style: "background-image: url(#{movie.decorate.get_background_image})" do
 
-    .rank-header
-      h2.rank-header__subtitle = title
+    - if header
 
-  .rank-meta
-    = link_to '', movie, class: 'rank-cover'
-    .rank-titles class="#{'text--center' if header}"
-      h2= link_to movie.title, movie
-      span.rank-director= movie.decorate.directors
-      p
-        small
-          i.ion-star.rating
-          ' &nbsp;
+      .rank-header
+        h1.rank-header__title
+          = time
+          | in Review
+        h2.rank-header__subtitle
+          ' The best
+          =' time
+          ' Movies
+
+        small.text-inverse
+          = image_tag rating.user.medium_avatar, class: 'circle circle--small'
+          em.readable=' "By"
+          span.caps= @user.name
+
+    .rank-meta
+      .rank-titles class="#{'text--center' if header}"
+
+        span.act--movie
+          em.readable=' t('semantics.about')
+          span= movie.title
+
+        h3.readable
+          | &#8220;
+          = truncate(rating.short_review, length: 70)
+          | &#8221;
+
+        span.r--stats
+          i.ion-star.c-rate
           =' rating.value
-          ' &nbsp;
+
+          i.ion-heart.c-love
+          = '0'
+
+          i.ion-reply.c-reply
+          = rating.comments.count
+

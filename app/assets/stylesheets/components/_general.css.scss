@@ -1,25 +1,8 @@
 // ------------------
-// MAIN GRID
-// ------------------
-.main-wrapper {
-  @media #{$medium-up}      { margin-left: $sidebar-width; }
-}
-
-// ------------------
 // PERSON GRID
 // ------------------
-.sidebar{
-  position: relative;
-  z-index: index($index-elements, menu);
-  width: 100%;
-  background-color: $text-color;
-  color: $white;
-
-  @media #{$medium-up}    { position: fixed; width: $sidebar-width; min-height: 100%; @include background-image(linear-gradient(lighten($text-color, 10%), $text-color)); }
-}
-
 .person-sidebar {
-  @media #{$medium-up}    { @include rposition($type: fixed, $top: 0, $bottom: 0, $left: $sidebar-width); width: $person-sidebar-width; }
+  @media #{$medium-up}    { @include rposition($type: fixed, $top: 0, $bottom: 0, $left: 0); width: $person-sidebar-width; }
 }
 
 .person-works {
@@ -33,7 +16,7 @@
 // ------------------
 // Main movie container
 .movie-wrapper {
-  @media #{$medium-up}      { @include rposition($type: absolute, $top: 0, $right: 0, $bottom: 0, $left: $sidebar-width); }
+  @media #{$medium-up}      { @include rposition($type: absolute, $top: 0, $right: 0, $bottom: 0, $left: 0); }
 }
 
 // Backdrop sidebar
@@ -46,10 +29,15 @@
 
 // Info movie
 .info-movie-sidebar{
-  @extend .movie-sidebar;
-  position: absolute;
-  top: 42px;
-  background-color: $white;
+
+  position: fixed;
+  width: $backdrop-movie;
+  height: 100%;
+  bottom: 0;
+  top: 0;
+  background-color: rgba($text-color, 0.9);
+  color: $white;
+  padding: 7em 10% 3em;
   z-index: index($index-elements, sidebar);
   overflow: auto;
   @include translateX(-100%);
@@ -58,7 +46,7 @@
 
   &::-webkit-scrollbar      { display: none; }
   &.active                  { @include translateX(0); }
-  @media #{$medium-up}      { top: 0; }
+
 }
 
 // Comments-Reviews section

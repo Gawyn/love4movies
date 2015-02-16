@@ -1,0 +1,26 @@
+- my_loves = @loves[rating.id]
+
+.rf--wrapper data-id=rating.id
+
+  = link_to movie_rating_path(@movie, rating), class: "rf--comment" do
+
+    - if rating.short_review
+      p
+        | &#8220;
+        = rating.short_review
+        | &#8221;
+
+
+  span.rf--user
+    = link_to image_tag(rating.user.medium_avatar, class: 'circle'), rating.user
+    = link_to rating.user.name, rating.user, class: 'rf--user-name caps text--inverse'
+    span.rf--stats
+
+      i.ion-android-star.clr-4
+      = rating.value
+
+      i.ion-heart.clr-2
+      = my_loves.present? ? my_loves.count : '0'
+
+      i.ion-reply.clr-3
+      = rating.comments.count

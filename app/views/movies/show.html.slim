@@ -1,37 +1,167 @@
 - content_for :title do
   = @movie.title
 
-.movie-wrapper
-  = render "sidebar"
-  = render "info"
+= render "info"
 
-  section.movie--ratings#ratings.movie-section
-    .movie-section-wrapper
+header.m--hero
+  .js-headerAnim.m--header-image style="#{"background-image: url(#{@movie.decorate.get_background_image})"}"
 
-      - if current_user && @my_rating.nil?
-        h3.review__title= t('actions.write-a-review')
-        .do-rating-form
-          em.do-rating__subtitle= t('.limit-rating')
+.m--body
+  section.m--wrapper
 
-          = form_tag movie_ratings_path(movie_id: @movie.id), method: :post do
-            = text_area_tag "short_review", "", class: "do-rating__input", maxlength: "140"
-            = number_field_tag "value", "Rating", in: 1...11, class: "do-rating__number js-rating-number"
-            .do-rating-with-stars
-              span.star-list
-                - 1.upto(10).each do |i|
-                  span.do-rating-action.js-star-hover data-number="#{i}"
-                    i.fa.fa-star-o.fa-lg
-              em.do-rating__subtitle
-                =' t('.actual-rate')
-                span.js-actual-rate 0
+    header.m--header
+      p.movie__subheader
 
-            = submit_tag "Publish", class: "btn btn--sml do-rating__btn"
+        span= @movie.decorate.movie_year
+        em.readable=' "by"
+        span=' @movie.decorate.directors
 
-      - elsif !current_user
-        = render "shared/social_login"
+      h1.m--title = @movie.title
+
+      p.movie__stats
+        span
+          i.ion-android-star.c-rate
+          bold#rating_average.movie-ratio
+            =' @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
+
+        span
+          i.ion-chatbubble.c-reply
+          bold=' @movie.ratings.count
 
       - if @ratings && @ratings.any?
-        h3.review__title=' t('navigation.reviews')
-        .ratings
-          - @ratings.each do |rating|
-            = render "ratings/short", rating: rating, review: true
+        - @ratings.to_a.shift(1).each do |rating|
+          = render "ratings/featured", rating: rating, review: true
+
+      - if current_user
+
+        .btn--list
+
+          - if @my_rating.nil?
+
+            =' link_to '', class: 'btn btn--rate js-modal-trigger' do
+
+              i.ion-compose
+              ' &nbsp
+              | Valoración
+
+          .btn.btn--light.js-toggle-info = t('actions.more-info')
+
+      - else
+        = render "shared/social_login"
+
+
+    .ratings-list
+
+      - if @ratings && @ratings.any?
+        - @ratings.each do |rating|
+          = render "ratings/short", rating: rating, review: true
+
+      - else
+        p.text--center.text--inverse
+          em.readable No hay más opiniones de esta película
+
+
+.modal-wrapper
+  .modal
+    .do-rating-form
+
+      = link_to "#", class: "btn-close js-modal-trigger" do
+        i.ion-android-close
+
+
+      = form_tag movie_ratings_path(movie_id: @movie.id), method: :post do
+        = text_area_tag "short_review", "", placeholder: t('.limit-rating'), class: "do-rating__input js-rating-input", maxlength: "140"
+        = number_field_tag "value", "Rating", in: 1...11, value: 5, class: "do-rating__number js-rating-number"
+
+        .do-rating-with-stars
+          span.star-list
+            - 1.upto(10).each do |i|
+              span.do-rating-action.js-star-hover data-number="#{i}"
+                - if i <= 5
+                  i.ion-android-star
+                - else
+                  i.ion-android-star-outline
+
+          span
+            ' &nbsp;
+            span.js-actual-rate 5
+            '
+            = t('.actual-rate')
+
+        = button_tag t("actions.publish"), class: "btn btn--full btn--rate leader js-rating-button"
+
+javascript:
+
+  var fadeStart=0     // 0 scroll or less will equiv to 1 opacity
+      ,fadeUntil=400  // 400px scroll or more will equiv to 0 opacity
+      ,fading = $('.js-headerAnim')
+
+  function scrollHandler() {
+
+    var offset = $(document).scrollTop()
+        ,opacity=0
+    ;
+    if( offset<=fadeStart ){
+        opacity=1;
+    }else if( offset<=fadeUntil ){
+        opacity=1-(offset/fadeUntil).toFixed(2);
+    }
+
+    fading.css({ 'transform': 'translate3d(0px, ' +   offset/2 + 'px, 0)',
+    'opacity' : opacity
+    });
+
+  };
+
+
+  $(window).on('scroll', function() {
+
+    window.requestAnimationFrame(scrollHandler);
+
+  });
+
+  // Form modal
+  $(document).ready(function() {
+    $('.js-modal-trigger').click(function() {
+       $('.modal-wrapper').toggleClass('open');
+       return false;
+    });
+  });
+
+  // Disabled input
+  $(document).ready(function(){
+      $('.js-rating-button').prop('disabled',true);
+      $('.js-rating-input').keyup(function(){
+          $('.js-rating-button').prop('disabled', this.value == "" ? true : false);
+      })
+  });
+
+  // Rating stars
+  $(document).ready(function() {
+
+      var selected = true;
+      var classSelected = 'ion-android-star';
+      var classUnselected = 'ion-android-star-outline';
+
+
+      $('.js-star-hover').on({
+        // Handles the mouseover
+        mouseover: function(){
+            if(!selected) {$(this).prevAll().andSelf().children().addClass(classSelected).removeClass(classUnselected);}
+        },
+        mouseleave: function(){
+            if(!selected) {$(this).prevAll().andSelf().children().removeClass(classSelected).addClass(classUnselected);}
+        },
+        click: function(){
+          if(!selected) { $('.js-star-hover').off('mouseleave mouseover'); selected = true; }
+          else {
+            $(this).prevAll().andSelf().children().addClass(classSelected).removeClass(classUnselected);
+            $(this).nextAll().children().removeClass(classSelected).addClass(classUnselected);
+          }
+          var value = $(this).data("number");
+          $(".js-rating-number").val(value);
+          $(".js-actual-rate").text(value);
+        }
+      });
+
+    });

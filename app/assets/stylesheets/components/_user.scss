@@ -42,7 +42,7 @@
   float: left;
   width: 30%;
   position: relative;
-  z-index: 1000;
+  z-index: index($index-elements, menu);
 }
 
 .best-rate-gr{
@@ -106,8 +106,7 @@
 }
 
 .user__lvl{
-  background-color: #25B4CF;
-  border-radius: 50%;
+  background-color: $brand-color;
   text-align: center;
   display: inline-block;
   width: $base-font-size*2;
@@ -151,7 +150,7 @@
   }
 
   header{
-    background-color: #25B4CF;
+    background-color: $brand-color;
     padding-top: 1em;
     img{
       width: $base-font-size*2.5;
@@ -170,19 +169,6 @@
     color: rgba($white, .5);
     padding: 1em;
     line-height: 1.5;
-  }
-
-  .lvl__bar{
-    @include leader(.5);
-    height: 100%;
-    width: auto;
-    background-color: $brand-color;
-  }
-
-  .lvl__bar--wrapper{
-    height: $base-font-size/3;
-    display: block;
-    background-color: #333;
   }
 
 }

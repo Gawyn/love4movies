@@ -42,17 +42,6 @@ section.backdrop-slider.movie--header.movie-sidebar class=(backdrop_is_present ?
             =' @movie.ratings.count
             ' ratings
 
-        / / Rating movie
-        / .movie--rating
-        /   #my_rating
-        /   - if current_user
-        /     - my_rating = @my_rating ? @my_rating.value : 0
-        /     #rating_form
-        /       = render "ratings/form", :movie => @movie, :my_rating => my_rating
-        /     .js-rate-button.do-rating__subtitle
-        /       ' Actual Rate
-        /       span.js-my-rating= my_rating
-
 - content_for :custom_js do
   javascript:
     $(document).ready(function() {
