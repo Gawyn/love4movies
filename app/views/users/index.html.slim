@@ -37,8 +37,8 @@ section.users
                 #follow_link
                   - follow = @active_follows.detect { |f| f.followed_id == user.id }
                   - if follow
-                    = link_to t('actions.unfollow'), follow_path(follow), class: "btn--follow", method: :delete, remote: true, "data-id" => follow.id
+                    = link_to t('actions.unfollow'), follow_path(follow), class: "btn btn--follow", method: :delete, remote: true, "data-id" => follow.id
                   - else
-                    = link_to t('actions.follow'), user_follows_path(user), class: "btn--follow", method: :post, remote: true, "data-user_id" => user.id
+                    = link_to t('actions.follow'), user_follows_path(user), class: "btn btn--follow", method: :post, remote: true, "data-user_id" => user.id
               - else
                 = link_to 'Ver tu perfil', user, class: "btn"

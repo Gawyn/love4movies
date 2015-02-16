@@ -1,4 +1,4 @@
 - if @follow
-  | $("#follow_link *[data-user_id='#{@follow.followed_id}']").replaceWith('#{link_to "Following", follow_path(@follow), method: :delete, remote: true, class: "btn--unfollow", 'data-id' => @follow.id}');
+  | $("#follow_link *[data-user_id='#{@follow.followed_id}']").replaceWith('#{link_to "Following", follow_path(@follow), method: :delete, remote: true, class: "btn btn--unfollow", 'data-id' => @follow.id}');
 - else
   | $("#follow_link *[data-user_id='#{@follow.followed_id}']").html("Error");

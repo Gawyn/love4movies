@@ -65,124 +65,106 @@
 }
 
 .btn--full{
+
   display:block;
   text-align:center;
   padding-right:0;
   padding-left: 0;
   width: 100%;
   @include trailer(.5);
+
+}
+
+//--------------
+// SOCIAL BUTTONS
+//--------------
+.btn--icon{
+
+  border: none;
+  color: $white;
+  padding: 1.5em 3em 1.5em 7em;
+  position: relative;
+
+  &:before{
+
+    height: 100%;
+    width: 5em;
+    line-height: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 1em 1.5em;
+    text-align: center;
+    @include transition;
+
+  }
+
 }
 
 .btn--follow{
-  color: $white;
-  background-color: $brand-color;
-  display: inline-block;
-  padding: 1em 1.5em 1em 6em;
-  margin-right: 2.5em;
-  font-size: 12px;
-  @include transition;
-  text-transform: uppercase;
-  vertical-align: middle;
-  position: relative;
-  letter-spacing: 0.05em;
 
-  &:before{
-    @extend .ion-plus;
-    height: 100%;
-    width: 4em;
-    line-height: 4em;
-    position: absolute;
-    left: 0;
-    top: 0;
-    text-align: center;
-    background-color: darken($brand-color, 10%);
+  @extend .btn--icon;
+  background-color: $brand-color;
+
+  &:hover,
+  &:focus{
+
+    background-color: $brand-color;
+    &:before { background-color: $brand-color; }
+
   }
 
-  &:hover, &:focus{ outline: 0; background-color: darken($brand-color, 10%); color: $white; }
+  &:before{ @extend .ion-plus; background-color: darken($brand-color, 10%); }
+
 }
 
 .btn--unfollow{
-  color: $white;
-  background-color: #3CC28C;
-  display: inline-block;
-  padding: 1em 1.5em 1em 6em;
-  margin-right: 2.5em;
-  font-size: 12px;
-  @include transition;
-  text-transform: uppercase;
-  vertical-align: middle;
-  letter-spacing: 0.05em;
-  position: relative;
 
-  &:before{
-    @extend .ion-checkmark;
-    height: 100%;
-    width: 4em;
-    line-height: 4em;
-    position: absolute;
-    left: 0;
-    top: 0;
-    text-align: center;
-    background-color: darken(#3CC28C, 10%);
+  @extend .btn--icon;
+  background-color: #3CC28C;
+
+  &:hover,
+  &:focus{
+
+    background-color: #3CC28C;
+    &:before { background-color: #3CC28C; }
+
   }
 
-  &:hover, &:focus{ outline: 0; background-color: darken(#3CC28C, 10%); color: $white; }
+  &:before{ @extend .ion-checkmark; background-color: darken(#3CC28C, 10%); }
+
 }
 
 .btn--facebook{
+
+  @extend .btn--icon;
   background-color: $facebook;
-  text-transform: uppercase;
-  border: none;
-  color: $white;
-  font-weight: 400;
-  letter-spacing: 1px;
-  padding: 1.5em 3em 1.5em 7em;
-  position: relative;
 
   &:hover,
   &:focus{
-    background-color: darken($facebook, 10%);
-    color: $white;
+
+    background-color: $facebook;
+    &:before { background-color: $facebook; }
+
   }
 
-  &:before{
-    @extend .ion-social-facebook;
-    height: 100%;
-    width: 5em;
-    line-height: 2;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: darken($facebook, 10%);
-    padding: 1em 1.5em;
-  }
+  &:before { @extend .ion-social-facebook; background-color: darken($facebook, 10%); }
+
 }
 
 .btn--twitter{
+
+  @extend .btn--icon;
   background-color: $twitter;
-  text-transform: uppercase;
-  border: none;
-  color: $white;
-  font-weight: 400;
-  letter-spacing: 1px;
-  padding: 1.5em 3em 1.5em 7em;
-  position: relative;
 
   &:hover,
   &:focus{
-    background-color: darken($twitter, 10%);
-    color: $white;
+
+    background-color: $twitter;
+    &:before { background-color: $twitter; }
+
   }
 
-  &:before{
-    @extend .ion-social-twitter;
-    height: 100%;
-    width: 5em;
-    line-height: 2;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: darken($twitter, 10%);
-    padding: 1em 1.5em;
-  }
+  &:before  { @extend .ion-social-twitter; background-color: darken($twitter, 10%); }
+
 }
