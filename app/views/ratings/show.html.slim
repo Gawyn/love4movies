@@ -112,6 +112,7 @@ javascript:
       method: 'feed',
       link: '#{@actual_url}',
       name: name,
+      picture: '#{@movie.decorate.get_poster_image}',
       description: description
     }, function(response){});
   });
