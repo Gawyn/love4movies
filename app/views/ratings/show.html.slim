@@ -1,3 +1,6 @@
+- content_for :title do
+  = @title
+
 - my_loves = @loves[@rating.id]
 
 header.m--hero
@@ -102,17 +105,16 @@ javascript:
   });
 
   $("a.js-share-rating").on("click", function (){
-    name = '#{@rating.movie.title} - '
-    name += Array(#{@rating.value} + 1).join('&#9733;')
-    name += Array(#{10 - @rating.value} + 1).join('&#9734;')
-
-    description = '#{@rating.short_review}' || '#{@rating.movie.overview}'
-
     FB.ui({
       method: 'feed',
       link: '#{@actual_url}',
-      name: name,
+      name: '#{@fb_title}',
       picture: '#{@movie.decorate.get_poster_image}',
-      description: description
+      description: '#{@description}'
     }, function(response){});
   });
+
+- content_for :custom_meta do
+  meta property="og:title" content=@fb_title
+  meta property="og:image" content=@movie.decorate.get_poster_image
+  meta property="og:description" content=@description

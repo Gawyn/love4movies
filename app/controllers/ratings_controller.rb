@@ -4,6 +4,11 @@ class RatingsController < ApplicationController
     @movie = @rating.movie
     @loves = Love.where(lovable_type: "Rating", lovable_id: @rating)
       .includes(:user).group_by(&:lovable_id)
+
+    @description = @rating.short_review || @movie.overview
+
+    @title = "#{@rating.user.name} on #{@movie.title}"
+    @fb_title = "#{@movie.title} - #{'&#9733;' * (@rating.value + 1)}#{'&#9734;' * (11 - @rating.value)}"
   end
 
   def create
