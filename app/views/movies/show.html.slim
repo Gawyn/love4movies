@@ -165,3 +165,9 @@ javascript:
       });
 
     });
+
+- content_for :custom_meta do
+  meta property="og:title" content=@movie.title
+  meta property="og:locale" content=I18n.locale
+  meta property="og:image" content=@movie.decorate.get_poster_image
+  meta property="og:description" content=@movie.overview
