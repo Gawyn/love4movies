@@ -49,6 +49,9 @@ gem 'newrelic_rpm'
 # Decoder
 gem 'unidecoder'
 
+# Mailgun
+gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
+
 # Assets
 gem 'sass-rails', github: "rails/sass-rails"
 gem 'sass', '~> 3.4.5'
