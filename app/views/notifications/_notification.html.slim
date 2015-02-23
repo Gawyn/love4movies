@@ -6,39 +6,15 @@ article.notification
   .media
     .media__img = link_to image_tag(user.avatar("small")), user
 
-    - if type == "Love"
-      .media__img
+    .media__img
+      - if type == "Love"
         i.ion-heart.c-love
 
-      .media__body
-        p = link_to notification.triggered_on do
-            strong =' user.name
-            =' t('notifications.love-rating')
-            strong = movie.title
+      - elsif notification.triggered_on_type == "Rating"
+          i.ion-android-star.c-rate
 
-    - elsif notification.triggered_on_type == "Rating"
-      .media__img
-        i.ion-android-star.c-rate
-      .media__body
-        p = link_to notification.triggered_on do
-          strong =' user.name
-          =' t('notifications.comment-rating')
-          strong = movie.title
+      - elsif notification.triggered_on_type == "Review" || notification.triggered_on_type == "Comment"
+          i.ion-reply.c-reply
 
-    - elsif notification.triggered_on_type == "Review"
-      .media__img
-        i.ion-reply.c-reply
-      .media__body
-        p
-          strong =' link_to user.name, user
-          =' t('notifications.comment-review')
-          strong = link_to movie.title, notification.triggered_on
-
-    - elsif notification.triggered_on_type == "Comment"
-      .media__img
-        i.ion-reply.c-reply
-      .media__body
-        p
-          strong =' link_to user.name, user
-          =' t('notifications.answer-comment')
-          strong = link_to movie.title, notification.triggered_on.commentable
+    .media__body
+      p = notification.decorate.title
