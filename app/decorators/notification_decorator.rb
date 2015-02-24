@@ -8,7 +8,7 @@ class NotificationDecorator < Draper::Decorator
       end
     else
 
-      case triggered_on
+      case triggered_on_type
 
       when "Rating"
         h.link_to notification.triggered_on do
@@ -23,6 +23,11 @@ class NotificationDecorator < Draper::Decorator
 
       end
     end
+  end
+
+  def body
+
+
   end
 
   def sanitized_title
