@@ -1,4 +1,5 @@
 class NotificationDecorator < Draper::Decorator
+  include Rails.application.routes.url_helpers
   delegate_all
 
   def title
@@ -11,7 +12,7 @@ class NotificationDecorator < Draper::Decorator
       case triggered_on_type
 
       when "Rating"
-        h.link_to notification.triggered_on do
+        h.link_to triggered_on do
           "<strong>#{user.name}</strong> #{I18n.t('notifications.comment-rating')} <strong>#{movie.title}</strong>".html_safe
         end
 
@@ -25,9 +26,16 @@ class NotificationDecorator < Draper::Decorator
     end
   end
 
-  def body
+  def answer_url
+    case triggered_on_type
 
-
+    when "Rating" 
+      rating_url(triggered_on)
+    when "Review" 
+      review_url(triggered_on)
+    when "Comment" 
+      triggered_on.commentable_type == "Rating" ? rating_url(triggered_on) : review_url(triggered_on)
+    end
   end
 
   def sanitized_title
