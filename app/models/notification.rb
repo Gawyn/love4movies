@@ -8,9 +8,15 @@ class Notification < ActiveRecord::Base
 
   validate :not_to_myself
 
+  after_commit :notify_by_mail, on: :create
+
   private
 
   def not_to_myself
     errors.add(:not_to_myself, "A user should not be notified by his own action") if user == notificable.user
+  end
+
+  def notify_by_mail
+    NotificationMailer.perform_async id
   end
 end
