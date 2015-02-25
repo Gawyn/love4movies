@@ -69,7 +69,7 @@ en:
     love-rating: 'loves your rating on'
     comment-rating: 'commented your rating on'
     comment-review: 'commented your review on'
-    answer-comment: 'answer your comment on'
+    answer-comment: 'answered your comment on'
     answer-back: 'Answer back!'
   social:
     twitter_rating: "%{rating} by %{user} %{url}"
