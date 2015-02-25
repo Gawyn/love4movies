@@ -26,6 +26,24 @@ class NotificationDecorator < Draper::Decorator
     end
   end
 
+  def sanitized_title
+    if notificable_type == "love"
+        "#{user.name} #{I18n.t('notifications.love-rating')} #{movie.title}"
+    else
+      case triggered_on_type
+
+      when "Rating"
+        "#{user.name} #{I18n.t('notifications.comment-rating')} #{movie.title}"
+
+      when "Review"
+        "#{user.name} #{I18n.t('notifications.comment-review')} #{movie.title}"
+
+      when "Comment"
+        "#{user.name} #{I18n.t('notifications.answer-comment')} #{movie.title}"
+      end
+    end
+  end
+
   def answer_url
     case triggered_on_type
 
@@ -36,10 +54,6 @@ class NotificationDecorator < Draper::Decorator
     when "Comment" 
       triggered_on.commentable_type == "Rating" ? rating_url(triggered_on) : review_url(triggered_on)
     end
-  end
-
-  def sanitized_title
-    ActionView::Base.full_sanitizer.sanitize title
   end
 
   private
