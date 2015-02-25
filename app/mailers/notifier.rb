@@ -5,6 +5,6 @@ class Notifier < ActionMailer::Base
   def notification(notification)
     @notification = notification.decorate
 
-    mail(to: notification.triggered_on.user.email, subject: @notification.sanitized_title)
+    mail(to: notification.triggered_on.user.email, subject: @notification.sanitized_title) if notification.triggered_on.user.email
   end
 end
