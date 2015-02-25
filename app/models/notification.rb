@@ -17,6 +17,6 @@ class Notification < ActiveRecord::Base
   end
 
   def notify_by_mail
-    NotificationMailer.perform_async id
+    NotificationMailer.perform_async(id)
   end
 end
