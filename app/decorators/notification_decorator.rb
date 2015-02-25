@@ -52,7 +52,7 @@ class NotificationDecorator < Draper::Decorator
     when "Review" 
       review_url(triggered_on)
     when "Comment" 
-      triggered_on.commentable_type == "Rating" ? rating_url(triggered_on) : review_url(triggered_on)
+      triggered_on.commentable_type == "Rating" ? rating_url(triggered_on.commentable_id) : review_url(triggered_on.commentable_id)
     end
   end
 
