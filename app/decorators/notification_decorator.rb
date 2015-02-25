@@ -17,10 +17,10 @@ class NotificationDecorator < Draper::Decorator
         end
 
       when "Review"
-        "<strong>#{h.link_to(user.name, user)}</strong> #{t('notifications.comment-review')} <strong>#{h.link_to(movie.title, triggered_on)}</strong>".html_safe
+        "<strong>#{h.link_to(user.name, user)}</strong> #{I18n.t('notifications.comment-review')} <strong>#{h.link_to(movie.title, triggered_on)}</strong>".html_safe
 
       when "Comment"
-        "<strong>#{h.link_to(user.name, user)}</strong> #{t('notifications.answer-comment')} <strong>#{h.link_to(movie.title, triggered_on.commentable)}</strong>".html_safe
+        "<strong>#{h.link_to(user.name, user)}</strong> #{I18n.t('notifications.answer-comment')} <strong>#{h.link_to(movie.title, triggered_on.commentable)}</strong>".html_safe
 
       end
     end
