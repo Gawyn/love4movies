@@ -31,6 +31,9 @@ gem 'turbolinks'
 # Sidekiq
 gem 'sidekiq', '2.15.1'
 
+# Sidekiq Failures
+gem 'sidekiq-failures'
+
 # Pagination
 gem 'kaminari'
 
