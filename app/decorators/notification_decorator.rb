@@ -27,8 +27,8 @@ class NotificationDecorator < Draper::Decorator
   end
 
   def sanitized_title
-    if notificable_type == "love"
-        "#{user.name} #{I18n.t('notifications.love-rating')} #{movie.title}"
+    if notificable_type == "Love"
+      "#{user.name} #{I18n.t('notifications.love-rating')} #{movie.title}"
     else
       case triggered_on_type
 
