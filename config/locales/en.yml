@@ -30,6 +30,7 @@ en:
     users: 'Users'
     users_subtitle: 'Ordered by experience'
   actions:
+    reply: 'Reply'
     following: 'Following'
     follow: 'Follow'
     facebook: 'Facebook'

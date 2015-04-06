@@ -46,6 +46,18 @@
 .btn--light { border-color: $white; color: $white; }
 .btn--void  { border-color: transparent; }
 
+.btn--reply{
+
+  border-color: $reply;
+  background-color: $reply;
+
+  &:hover {
+    border-color: $reply;
+    background-color: $reply;
+  }
+
+}
+
 .btn--love  {
 
   @include transition(0.15s);
@@ -63,17 +75,17 @@
   &:hover{
 
     background-color: transparent;
-    border-color: #D25169;
+    border-color: $love;
 
-    a {color: #D25169; @include scale(1.2);}
+    a {color: $love; @include scale(1.2);}
 
   }
 
 
   &.is-active {
 
-    background-color: #D25169!important;
-    border-color: #D25169!important;
+    background-color: $love!important;
+    border-color: $love!important;
 
     a { color: $white!important; @include scale(1.2); }
 

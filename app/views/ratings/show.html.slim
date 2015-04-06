@@ -44,10 +44,10 @@ header.m--hero
         span.r--actions
 
 
-          = link_to "#replyForm", class: 'btn btn--light btn--sml' do
+          = link_to "#replyForm", class: 'btn btn--light btn--sml btn--reply' do
             i.ion-reply
             ' &nbsp;
-            ' Responder
+            = t 'actions.reply'
 
           - loveBool = @loves && @loves[@rating.id] && active_love = @loves[@rating.id].detect { |love| love.user_id == current_user.id }
 
