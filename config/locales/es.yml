@@ -31,6 +31,8 @@ es:
     notifications_subtitle: 'Últimas notificaciones de tus amigos'
     users_subtitle: 'Ordenados por nivel de experiencia'
   actions:
+    post_delete_confirm: "Se eliminarán todos los Loves y Respuestas ¿Estás seguro?"
+    delete: "Eliminar"
     following: 'Siguiendo'
     follow: 'Seguir'
     facebook: 'Facebook'

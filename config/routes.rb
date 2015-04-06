@@ -34,7 +34,7 @@ Love4movies::Application.routes.draw do
   resources :activities, only: :index
 
   resources :movies, :only => [:show, :index] do
-    resources :ratings, :only => [:create, :show]
+    resources :ratings, :only => [:create, :show, :destroy]
     get :ranking, :on => :collection
     get :recommended, :on => :collection
     get :trending, :on => :collection
