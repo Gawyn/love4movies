@@ -1,3 +1,3 @@
-| $(".#{@love.lovable_type.underscore}[data-id=#{@love.lovable_id}] .js-love").html('#{link_to '<i class="ion-heart clr-2"></i>'.html_safe, lofe_path(@love), method: :delete, remote: true}');
+| $(".#{@love.lovable_type.underscore}[data-id=#{@love.lovable_id}] .js-love").addClass("is-active").html('#{link_to '<i class="ion-heart"></i>'.html_safe, lofe_path(@love), method: :delete, remote: true}');
 
 | $(".#{@love.lovable_type.underscore}[data-id=#{@love.lovable_id}] .js-media__lovers").prepend('#{link_to(image_tag(@love.user.avatar("small")),@love.user, class: "love-user-#{@love.user.id}" )}');
