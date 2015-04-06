@@ -1,7 +1,9 @@
 .comments-list {
 
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
+
+  @media #{$large-up} { width: 70%; }
 
 }
 
@@ -11,9 +13,11 @@
   @include padding-leader;
   background-color: $white;
   border-bottom: 1px solid #eee;
-  padding-left: 6em;
-  padding-right: 8em;
+  padding-left: 2em;
+  padding-right: 2em;
   position: relative;
+
+  @media #{$large-up} { padding-left: 8em; padding-right: 8em; }
 
 }
 

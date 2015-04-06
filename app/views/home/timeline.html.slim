@@ -1,5 +1,9 @@
 - if @followeds_activities && @followeds_activities.any?
   section.activities
+
+    - @followeds_activities.to_a.shift(2).each do |activity|
+      = show_head_activity(activity)
+
     - @followeds_activities.each do |activity|
       = show_activity(activity)
 

@@ -17,6 +17,9 @@ article
         small.act--rating
           i.ion-android-star.c-rate
           = content.value
+          ' &nbsp;
+          i.ion-reply.c-reply
+          = content.comments.count
 
         = image_tag user.medium_avatar, class: 'circle circle--small'
         small.caps = user.name

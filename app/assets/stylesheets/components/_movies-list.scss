@@ -31,11 +31,14 @@
 }
 
 .activities, .movies-list, .people-list{
+
+
   @extend %block-grid;
-  @extend %small-block-grid-2;
+  @extend %small-block-grid-1;
   @extend %medium-block-grid-3;
   @extend %large-block-grid-4;
   @extend %xlarge-block-grid-5;
+
   figcaption                      { @include transition(opacity, ease, 0.4s); @extend %invisible; }
   article                         { @include rposition($type: relative); }
   figure{
@@ -89,9 +92,11 @@
   width: 100%;
   position: relative;
   display: block;
+  padding-bottom: 75%;
 
   // Aspect Ratio 1.5
-  padding-top: (100% * (3/2));
+  @media #{$medium-up} { padding-bottom: (100% * (3/2)); }
+
 
   -webkit-filter: brightness(0.9);
   @include translateZ(0);
@@ -110,6 +115,20 @@
 
 }
 
+.activity-head {
+
+  float: left;
+  width: 100%;
+
+  @media #{$large-up} { width: 50%; }
+
+  .act--elem      { padding-bottom: 80%; }
+
+  .act--titles    { max-width: 80%; left: 10%; bottom: 2em; padding-left: 0; }
+
+  .act--titles h3 { font-size: 2em; }
+}
+
 .act--titles{
 
   position: absolute;
@@ -125,7 +144,7 @@
 
     line-height: 1.2;
     font-size: 1.5em;
-    @include trailer(2/3);
+    @include trailer(1/3);
 
   }
 
