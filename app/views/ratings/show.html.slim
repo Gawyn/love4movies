@@ -93,11 +93,7 @@ header.m--hero
 
                 li = link_to(image_tag(love.user.avatar("small")),love.user, class: "love-user-#{love.user.id}")
 
-
-      - else
-        = render "shared/social_login"
-
-    article
+    article.leader
       = render "comments/index", commentable: @rating
 
 javascript:

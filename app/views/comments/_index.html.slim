@@ -8,3 +8,6 @@
       = form_tag eval("#{commentable.class.to_s.underscore}_comments_path(#{commentable.id})"), remote: true do |f|
         = text_area_tag :content, nil, placeholder: t('actions.leave-a-comment')
         = button_tag t("actions.publish"), class: "btn btn--light btn--full btn--rate"
+
+  - else
+    = render "shared/social_login"

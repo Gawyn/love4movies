@@ -1,10 +1,10 @@
-section.trailer
+section.trailer.leader.text--center
 
-  p.trailer--s
-    small.readable.text--inverse = t('actions.enter-and-comment')
+  p.trailer.readable.text--inverse = t('actions.enter-and-comment')
 
   = link_to t('actions.facebook'), user_omniauth_authorize_path("facebook"), class: "btn btn--facebook"
 
+  ' &nbsp;
   ' &nbsp;
 
   = link_to t('actions.twitter'), user_omniauth_authorize_path("twitter"), class: "btn btn--twitter"
