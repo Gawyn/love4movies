@@ -1,4 +1,4 @@
-nav.main--nav class="#{'is-trans' if @movie}"
+nav.main--nav.nav-collapse class="#{'is-trans' if @movie}"
 
   .main--logo = link_to image_tag('beta-logo.svg'), root_path
 
@@ -64,6 +64,10 @@ nav.main--nav class="#{'is-trans' if @movie}"
   - content_for :custom_js do
     javascript:
       $(document).ready(function() {
+
+        var nav = responsiveNav(".nav-collapse", {
+          insert: "after"
+        });
 
         $('.js-search').click(function (e) {
           $(this).toggleClass('current');

@@ -30,9 +30,16 @@ module ApplicationHelper
     end
   end
 
+  # def show_activity(activity)
+  #   Rails.cache.fetch("#{activity.id}-#{activity.updated_at}-#{activity.content.updated_at}") do
+  #     render "activities/show", user: activity.user, content: activity.content
+  #   end
+  # end
   def show_activity(activity)
-    Rails.cache.fetch("#{activity.id}-#{activity.updated_at}-#{activity.content.updated_at}") do
-      render "activities/show", user: activity.user, content: activity.content
-    end
+    render "activities/show", user: activity.user, content: activity.content
+  end
+
+  def show_head_activity(activity)
+    render "activities/show_head", user: activity.user, content: activity.content
   end
 end

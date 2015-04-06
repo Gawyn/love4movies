@@ -268,7 +268,8 @@ $dark-trans: transparentize($text-color, 0.3);
 .m--hero{
 
   background-color: $text-color;
-  margin-top: -80px;
+
+  @media #{$large-up} {  margin-top: -80px; }
 
 }
 
@@ -305,13 +306,17 @@ $dark-trans: transparentize($text-color, 0.3);
 
 .m--wrapper{
 
-  max-width: 65%;
-  margin: -35em auto 0;
+  max-width: 98%;
+  margin: -10em auto 0;
   @include translate3d(0,0,0);
 
-  article{
+  @media #{$large-up} {
+
+    max-width: 65%;
+    margin: -35em auto 0;
 
   }
+
 
 }
 

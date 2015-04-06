@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require modernizr.min
+//= require responsive-nav
 //= require jquery.transit
 
 //Calc poster ratios

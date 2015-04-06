@@ -7,16 +7,22 @@
   z-index: index($index-elements, menu);
   background-color: $text-color;
 
-  &.is-trans { background-color: transparent; @include background-image(linear-gradient($text-color, transparent)); }
+  &.is-trans {
+
+    @media #{$large-up} { background-color: transparent; @include background-image(linear-gradient($text-color, transparent)); }
+
+  }
 
 }
 
 .main--logo {
 
-  display: inline-block;
+  display: none;
   vertical-align: middle;
   position: relative;
   left: 10%;
+
+  @media #{$large-up} { display: inline-block; }
 
   img {
 
@@ -30,12 +36,18 @@
 }
 .main--nav-list {
 
-  @include inline-block-list(0);
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-  overflow: visible;
-  margin-left: 12%;
+
+  @media #{$large-up} {
+
+    @include inline-block-list(0);
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    overflow: visible;
+    margin-left: 12%;
+
+  }
+
 
   a {
 
