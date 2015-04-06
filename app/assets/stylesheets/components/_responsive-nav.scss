@@ -52,6 +52,7 @@
 @media #{$large-up} {
   .js .nav-collapse {
     position: relative;
+    overflow: visible;
   }
   .js .nav-collapse.closed {
     max-height: none;
