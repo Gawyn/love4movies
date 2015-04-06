@@ -27,43 +27,50 @@ header.m--hero
         = link_to @rating.user.name, @rating.user, class: 'rf--user-name caps text--inverse'
 
         span.rf--stats
+        span.rf--stats
 
           i.ion-android-star.clr-4
           = @rating.value
+
+          i.ion-heart.clr-2
+          = my_loves.present? ? my_loves.count : '0'
+
+          i.ion-reply.clr-3
+          = @rating.comments.count
+
 
       - if current_user
 
         span.r--actions
 
-          = link_to "#replyForm" do
+
+          = link_to "#replyForm", class: 'btn btn--light btn--sml' do
             i.ion-reply
+            ' &nbsp;
+            ' Responder
 
-          span.js-love
+          - loveBool = @loves && @loves[@rating.id] && active_love = @loves[@rating.id].detect { |love| love.user_id == current_user.id }
+
+          span.js-love.btn.btn--light.btn--love class="#{"is-active" if loveBool}"
 
 
-            - if @loves && @loves[@rating.id] && active_love = @loves[@rating.id].detect { |love| love.user_id == current_user.id }
+            - if loveBool
 
               = link_to lofe_path(active_love), method: :delete, remote: true do
-
-                i.ion-heart.clr-2
+                i.ion-heart
 
             - else
               = link_to loves_path(lovable_type: "Rating", lovable_id: @rating.id), method: :post, remote: true do
-
                 i.ion-heart
 
-
-
-          = link_to "#", class: "js-share-rating" do
+          = link_to "#", class: "js-share-rating right btn btn--square btn--light btn--void" do
             i.ion-social-facebook
 
-          = link_to share_twitter_url(t('social.twitter_rating', rating: @rating.short_review, user: @rating.user.name, url: @actual_url)) do
+          = link_to share_twitter_url(t('social.twitter_rating', rating: @rating.short_review, user: @rating.user.name, url: @actual_url)), class: "right btn btn--square btn--light btn--void" do
             i.ion-social-twitter
 
 
         article.list-of-lovers
-
-          - my_loves = @loves[@rating.id]
 
           - if my_loves
 

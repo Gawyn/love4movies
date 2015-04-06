@@ -44,6 +44,54 @@
 .btn--sml   { font-size: .75em; }
 .btn--lrg   { font-size:1.50em; }
 .btn--light { border-color: $white; color: $white; }
+.btn--void  { border-color: transparent; }
+
+.btn--love  {
+
+  @include transition(0.15s);
+  padding: 0;
+
+  a {
+
+    @include transition(0.25s);
+    @extend .btn--square;
+    color: $white;
+    display: inline-block;
+
+  }
+
+  &:hover{
+
+    background-color: transparent;
+    border-color: #D25169;
+
+    a {color: #D25169; @include scale(1.2);}
+
+  }
+
+
+  &.is-active {
+
+    background-color: #D25169!important;
+    border-color: #D25169!important;
+
+    a { color: $white!important; @include scale(1.2); }
+
+  }
+
+}
+
+.btn--square{
+
+  padding: 0px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  vertical-align: middle;
+  text-align: center;
+
+}
+
 .btn--rate  {
 
   background-color: $brand-color;

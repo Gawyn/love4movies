@@ -34,16 +34,9 @@
   @include trailer(3/2);
   @include leader;
 
-  a {
+  & > a {
 
-    font-size: 1.5em;
-    opacity: 0.8;
-    margin: 0 10px;
-    vertical-align: middle;
-    color: $white;
-    @include transition(.25s);
-
-    &:hover { opacity: 1; }
+    margin-right: 0.5em;
 
   }
 
