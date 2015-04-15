@@ -49,6 +49,13 @@ header.m--hero
             ' &nbsp;
             = t 'actions.reply'
 
+          - if current_user && current_user.id == @rating.user_id
+            = link_to movie_rating_path(@movie, @rating), :method => :delete, :data => { :confirm => t("actions.post_delete_confirm") }, class: 'btn btn--sml btn--light' do
+
+              i.ion-trash-a
+              ' &nbsp;
+              = t 'actions.delete'
+
           - loveBool = @loves && @loves[@rating.id] && active_love = @loves[@rating.id].detect { |love| love.user_id == current_user.id }
 
           span.js-love.btn.btn--light.btn--love class="#{"is-active" if loveBool}"
@@ -62,6 +69,8 @@ header.m--hero
             - else
               = link_to loves_path(lovable_type: "Rating", lovable_id: @rating.id), method: :post, remote: true do
                 i.ion-heart
+
+
 
           = link_to "#", class: "js-share-rating right btn btn--square btn--light btn--void" do
             i.ion-social-facebook
@@ -84,11 +93,7 @@ header.m--hero
 
                 li = link_to(image_tag(love.user.avatar("small")),love.user, class: "love-user-#{love.user.id}")
 
-
-      - else
-        = render "shared/social_login"
-
-    article
+    article.leader
       = render "comments/index", commentable: @rating
 
 javascript:

@@ -30,6 +30,8 @@ en:
     users: 'Users'
     users_subtitle: 'Ordered by experience'
   actions:
+    post_delete_confirm: "Are you sure?"
+    delete: "Delete"
     reply: 'Reply'
     following: 'Following'
     follow: 'Follow'

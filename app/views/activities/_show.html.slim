@@ -1,25 +1,26 @@
-article
-  = link_to movie_rating_path(content.movie, content), class: 'act--elem', style: "background-image: url(#{content.movie.decorate.get_poster_image})"  do
+- if content
+  article
+    = link_to movie_rating_path(content.movie, content), class: 'act--elem', style: "background-image: url(#{content.movie.decorate.get_poster_image})"  do
 
-    .act--titles
-      span.act--movie
-        em.readable=' t('semantics.about')
-        span= content.movie.title
+      .act--titles
+        span.act--movie
+          em.readable=' t('semantics.about')
+          span= content.movie.title
 
-      - if content.is_a? Rating
+        - if content.is_a? Rating
 
-        h3.readable
-          | &#8220;
-          = truncate(content.short_review, length: 70)
-          | &#8221;
+          h3.readable
+            | &#8220;
+            = truncate(content.short_review, length: 70)
+            | &#8221;
 
-      span.act--user
-        small.act--rating
-          i.ion-android-star.c-rate
-          = content.value
-          ' &nbsp;
-          i.ion-reply.c-reply
-          = content.comments.count
+        span.act--user
+          small.act--rating
+            i.ion-android-star.c-rate
+            = content.value
+            ' &nbsp;
+            i.ion-reply.c-reply
+            = content.comments.count
 
-        = image_tag user.medium_avatar, class: 'circle circle--small'
-        small.caps = user.name
+          = image_tag user.medium_avatar, class: 'circle circle--small'
+          small.caps = user.name
