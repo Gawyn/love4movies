@@ -3,8 +3,14 @@ class Api::V1::SearchController < ApplicationController
     @movies = Movie.standard_search params[:query]
     BackgroundSystem.enqueue(MovieSearcher, params[:query]) if params[:query]
 
-    titles = @movies.results.map { |m| { title: m.title } }
+    @movies = @movies.results.map do |movie| 
+      { 
+        title: movie.title, 
+        year: movie.decorate.movie_year, 
+        director: movie.decorate.directors_names
+      }
+    end
 
-    render json: titles
+    render json: @movies
   end
 end
