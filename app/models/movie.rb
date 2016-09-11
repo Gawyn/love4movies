@@ -75,6 +75,7 @@ class Movie < ActiveRecord::Base
       fulltext query do
         fields(:original_title, ("title_" + I18n.locale.to_s).to_sym)
       end
+      order_by(:popularity, :desc)
       with :hidden, false
     end
   end
