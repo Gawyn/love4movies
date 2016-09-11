@@ -20,6 +20,12 @@ Love4movies::Application.routes.draw do
     root to: "home#index"
   end
 
+  namespace :api do
+    namespace :v1 do
+      get "search" => "search#search"
+    end
+  end
+
   resources :users, :only => [:show, :index], :constraints => { :id => /[^\/]*/ } do
     get ":decade", constraints: { decade: /\d{3}0s/ }, to: "users#decade"
     get ":year", constraints: { year: /\d{4}/ }, to: "users#year"
