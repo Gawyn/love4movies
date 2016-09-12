@@ -111,8 +111,8 @@ class MovieFeeder
 
     def generate_cast_and_crew(movie)
       cast_and_crew = TMDBClient.get_cast(movie.tmdb_id) || Hash.new([])
-      cast = cast_and_crew["cast"]
-      crew = cast_and_crew["crew"]
+      cast = cast_and_crew["cast"] || []
+      crew = cast_and_crew["crew"] || []
 
       cast.each do |person_data|
         person = generate_person_with_data(person_data)

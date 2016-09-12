@@ -20,10 +20,12 @@ module TheMovieDB
       parsed_response = response.parsed_response
       total_pages = parsed_response["total_pages"]
 
-      (2..total_pages).inject(parsed_response["results"]) do |res, page|
-        options[:page] = page
-        page_results = self.class.get(url + options.to_query).parsed_response["results"]
-        res + page_results
+      if total_pages && total_pages.is_a?(Integer)
+        (2..total_pages).inject(parsed_response["results"]) do |res, page|
+          options[:page] = page
+          page_results = self.class.get(url + options.to_query).parsed_response["results"] || []
+          res + page_results
+        end
       end
     end
 
