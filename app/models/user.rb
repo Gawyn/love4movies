@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :notifications
   has_many :won_badges, foreign_key: :winner_id
   has_many :badges, through: :won_badges
+  has_many :imports
 
   scope :more_experience_first, -> { order(arel_table[:experience].desc) }
 
