@@ -1,4 +1,4 @@
-class FilmAffinity
+class Filmaffinity
   class << self
     require 'json'
     require 'nokogiri'
