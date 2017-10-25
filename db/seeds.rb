@@ -5,3 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+user = User.create(
+  email: 'foonian@foo.com',
+  password: 'barfoo',
+  name: 'Foonian',
+  nickname: 'foonian'
+)
+
+MovieSearcher.new.perform('Chungking Express')
+
+Rating.create(
+  user: user,
+  movie: Movie.first,
+  value: 9
+)
