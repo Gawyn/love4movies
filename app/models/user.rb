@@ -101,7 +101,6 @@ class User < ActiveRecord::Base
   end
 
   def set_avatar!(omniauth)
-    byebug
     if omniauth["provider"] == "facebook"
       self.small_avatar = graph.get_picture("me")
       self.big_avatar = graph.get_picture("me", { :width => 200,
