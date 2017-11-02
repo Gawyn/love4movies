@@ -22,7 +22,6 @@ class UsersController < ApplicationController
     start_year = params[:decade][0..3].to_i
     end_year = start_year + 9
 
-
     @user = User.find_by_nickname params[:user_id]
     ratings = @user.ratings.by_value.joins(:movie).where("extract(year from release_date) >= ? and extract(year from release_date) <= ?", start_year, end_year)
 

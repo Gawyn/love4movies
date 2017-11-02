@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
     user = User.new
     user.email = omniauth["info"]["email"]
     user.name = omniauth["info"]["name"]
-    user.nickname = user.name.parameterize
+    user.nickname = get_usable_nickame(user.name.parameterize)
     user.fb_uid = omniauth["uid"]
     user.provider = omniauth["provider"]
     user.password = Devise.friendly_token[0,20]
@@ -91,6 +91,19 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def get_usable_nickname(base_nickname)
+    return base_nickname if User.where(nickname: base_nickname).empty?
+
+    i = 1
+    nickname = base_nickname + '-' + i.to_s
+    while !User.where(nickname: nickname).empty?
+      i += 1
+      nickname = base_nickname + '-' + i.to_s
+    end
+
+    nickname
+  end
 
   def graph
     @graph ||= Koala::Facebook::API.new(token)
