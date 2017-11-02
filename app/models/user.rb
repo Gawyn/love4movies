@@ -57,14 +57,12 @@ class User < ActiveRecord::Base
   def self.generate_from_omniauth(omniauth)
     user = User.new
     user.email = omniauth["info"]["email"]
-    user.nickname = omniauth["info"]["nickname"]
     user.name = omniauth["info"]["name"]
-    user.first_name = omniauth["info"]["first_name"]
-    user.last_name = omniauth["info"]["last_name"]
-    user.location = omniauth["info"]["location"]
+    user.nickname = user.name.parameterize
     user.fb_uid = omniauth["uid"]
     user.provider = omniauth["provider"]
     user.password = Devise.friendly_token[0,20]
+
     user.update_data!(omniauth)
     user
   end
@@ -103,6 +101,7 @@ class User < ActiveRecord::Base
   end
 
   def set_avatar!(omniauth)
+    byebug
     if omniauth["provider"] == "facebook"
       self.small_avatar = graph.get_picture("me")
       self.big_avatar = graph.get_picture("me", { :width => 200,
