@@ -39,7 +39,7 @@ nav.main--nav.nav-collapse class="#{'is-trans' if @movie}"
         article.dropdown-menu.js-content
           ul
 
-            li = link_to current_user do
+            li = link_to user_path(current_user.nickname) do
 
                 - level_def = current_user.decorate.level_def
 
