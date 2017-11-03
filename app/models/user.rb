@@ -67,6 +67,19 @@ class User < ActiveRecord::Base
     user
   end
 
+  def self.get_usable_nickname(base_nickname)
+    return base_nickname if User.where(nickname: base_nickname).empty?
+
+    i = 1
+    nickname = base_nickname + '-' + i.to_s
+    while !User.where(nickname: nickname).empty?
+      i += 1
+      nickname = base_nickname + '-' + i.to_s
+    end
+
+    nickname
+  end
+
   def create_friendships!
     return unless token && provider == "facebook"
     friends_fb_uid = graph.get_connections("me", "friends").map { |friend| friend["id"] }
@@ -91,19 +104,6 @@ class User < ActiveRecord::Base
   end
 
   private
-
-  def get_usable_nickname(base_nickname)
-    return base_nickname if User.where(nickname: base_nickname).empty?
-
-    i = 1
-    nickname = base_nickname + '-' + i.to_s
-    while !User.where(nickname: nickname).empty?
-      i += 1
-      nickname = base_nickname + '-' + i.to_s
-    end
-
-    nickname
-  end
 
   def graph
     @graph ||= Koala::Facebook::API.new(token)
