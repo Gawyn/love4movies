@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
     user = User.new
     user.email = omniauth["info"]["email"]
     user.name = omniauth["info"]["name"]
-    user.nickname = get_usable_nickame(user.name.parameterize)
+    user.nickname = User.get_usable_nickame(user.name.parameterize)
     user.fb_uid = omniauth["uid"]
     user.provider = omniauth["provider"]
     user.password = Devise.friendly_token[0,20]
