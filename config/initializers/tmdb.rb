@@ -1,1 +1,1 @@
-TMDBClient = TheMovieDB::Client.new(APP_CONFIG["tmdb"]["key"])
+TMDBClient = SimpleTheMovieDB::Client.new(APP_CONFIG["tmdb"]["key"])

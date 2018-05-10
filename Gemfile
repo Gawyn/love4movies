@@ -49,6 +49,9 @@ gem 'sinatra', require: false
 # New Relic
 gem 'newrelic_rpm'
 
+# Simple TheMovieDB
+gem 'simple_themoviedb'
+
 # Decoder
 gem 'unidecoder'
 
