@@ -224,6 +224,8 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    simple_themoviedb (0.2.0)
+      httparty
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -318,6 +320,7 @@ DEPENDENCIES
   sidekiq (= 2.15.1)
   sidekiq-failures
   simple_form
+  simple_themoviedb
   sinatra
   slim-rails
   sqlite3
