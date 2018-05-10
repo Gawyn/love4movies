@@ -109,8 +109,7 @@ GEM
     highline (1.6.21)
     hike (1.2.3)
     hitimes (1.2.2)
-    httparty (0.13.3)
-      json (~> 1.8)
+    httparty (0.16.2)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
     ionicons-rails (2.0.0)
@@ -224,8 +223,8 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-    simple_themoviedb (0.2.0)
-      httparty
+    simple_themoviedb (0.2.1)
+      httparty (~> 0.16.2)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -302,7 +301,6 @@ DEPENDENCIES
   compass-rails (~> 2.0.0)
   devise
   draper
-  httparty
   ionicons-rails
   jquery-rails
   kaminari
@@ -320,7 +318,7 @@ DEPENDENCIES
   sidekiq (= 2.15.1)
   sidekiq-failures
   simple_form
-  simple_themoviedb
+  simple_themoviedb (= 0.2.1)
   sinatra
   slim-rails
   sqlite3

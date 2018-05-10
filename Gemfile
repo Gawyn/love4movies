@@ -3,9 +3,6 @@ source 'https://rubygems.org'
 # Rails
 gem 'rails', '4.1.1'
 
-# HTTParty
-gem 'httparty'
-
 # Devise
 gem 'devise'
 
