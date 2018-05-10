@@ -73,6 +73,7 @@ class MovieFeeder
       end
 
       movie.rating_average = movie.tmdb_vote_average
+      movie.l4m_rating_average = 0
 
       movie_data["genres"].each do |genre_data|
         genre = Genre.find_or_create(:tmdb_id => genre_data["id"],
