@@ -50,7 +50,7 @@ gem 'sinatra', require: false
 gem 'newrelic_rpm'
 
 # Simple TheMovieDB
-gem 'simple_themoviedb'
+gem 'simple_themoviedb', '0.2.1'
 
 # Decoder
 gem 'unidecoder'
