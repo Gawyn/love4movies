@@ -11,8 +11,8 @@ section.home--wrapper style="background-image: url(#{content.movie.decorate.get_
     h1.m--title = t('landing.title')
 
     .btn--list
-      = link_to "Facebook", user_omniauth_authorize_path("facebook"), class: "btn btn--facebook"
-      = link_to "Twitter", user_omniauth_authorize_path("twitter"), class: "btn btn--twitter"
+      = link_to "Facebook", user_facebook_omniauth_authorize_path, class: "btn btn--facebook"
+      = link_to "Twitter", user_twitter_omniauth_authorize_path, class: "btn btn--twitter"
 
 
   article.rf--wrapper
