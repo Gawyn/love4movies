@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Rails
-gem 'rails', '4.1.1'
+gem 'rails', '4.2.10'
 
 # Devise
 gem 'devise'
@@ -53,9 +53,9 @@ gem 'simple_themoviedb', '0.2.1'
 gem 'unidecoder'
 
 # Assets
-gem 'sass-rails', github: "rails/sass-rails"
+gem 'sass-rails', '~> 5.0'
 gem 'sass', '~> 3.4.5'
-gem 'compass-rails', '~> 2.0.0'
+gem 'compass-rails', '~> 3.1.0'
 gem 'compass', '~> 1.0.1'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -67,10 +67,10 @@ gem 'ionicons-rails'
 group :development do
   gem 'quiet_assets'
   gem 'thin'
+  gem 'rvm-capistrano'
   gem 'capistrano', "2.15.5"
   gem 'capistrano-ext'
   gem 'capistrano-unicorn', require: false
-  gem 'rvm-capistrano'
   gem 'capistrano_colors', :require => false
   gem 'byebug'
 end
@@ -88,5 +88,5 @@ end
 # Development & Production
 group :development, :production do
   gem 'sunspot_solr'
-  gem 'pg'
+  gem 'pg', '~> 0.21'
 end
