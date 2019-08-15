@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Rails
-gem 'rails', '4.1.1'
+gem 'rails', '4.2.11.1'
 
 # Devise
 gem 'devise'
@@ -52,6 +52,9 @@ gem 'simple_themoviedb', '0.2.1'
 # Decoder
 gem 'unidecoder'
 
+# Json
+gem 'json', '1.8.5'
+
 # Assets
 gem 'sass-rails', github: "rails/sass-rails"
 gem 'sass', '~> 3.4.5'
@@ -65,13 +68,14 @@ gem 'ionicons-rails'
 
 # Development
 group :development do
+  gem 'rb-readline'
   gem 'quiet_assets'
   gem 'thin'
-  gem 'capistrano', "2.15.5"
-  gem 'capistrano-ext'
+  gem 'capistrano', "2.15.5", require: false
+  gem 'capistrano-ext', require: false
   gem 'capistrano-unicorn', require: false
-  gem 'rvm-capistrano'
-  gem 'capistrano_colors', :require => false
+  gem 'rvm-capistrano', require: false
+  gem 'capistrano_colors', require: false
   gem 'byebug'
 end
 
