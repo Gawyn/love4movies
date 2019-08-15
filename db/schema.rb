@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20161016025451) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "activities", force: true do |t|
+  create_table "activities", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "content_type"
     t.integer  "content_id"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20161016025451) do
 
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
-  create_table "badges", force: true do |t|
+  create_table "badges", force: :cascade do |t|
     t.string   "name_es"
     t.string   "name_en"
     t.text     "description_es"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20161016025451) do
     t.integer  "person_id"
   end
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
     t.string   "commentable_type"
@@ -49,21 +49,21 @@ ActiveRecord::Schema.define(version: 20161016025451) do
 
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
 
-  create_table "countries", force: true do |t|
+  create_table "countries", force: :cascade do |t|
     t.string   "name"
     t.string   "iso_3166_1"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "country_movies", force: true do |t|
+  create_table "country_movies", force: :cascade do |t|
     t.integer  "country_id"
     t.integer  "movie_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "follows", force: true do |t|
+  create_table "follows", force: :cascade do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
     t.datetime "created_at"
@@ -72,21 +72,21 @@ ActiveRecord::Schema.define(version: 20161016025451) do
 
   add_index "follows", ["follower_id"], name: "index_follows_on_follower_id", using: :btree
 
-  create_table "friendships", force: true do |t|
+  create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "genres", force: true do |t|
+  create_table "genres", force: :cascade do |t|
     t.integer  "tmdb_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "genres_movies", force: true do |t|
+  create_table "genres_movies", force: :cascade do |t|
     t.integer "genre_id"
     t.integer "movie_id"
   end
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20161016025451) do
   add_index "genres_movies", ["genre_id"], name: "index_genres_movies_on_genre_id", using: :btree
   add_index "genres_movies", ["movie_id"], name: "index_genres_movies_on_movie_id", using: :btree
 
-  create_table "images", force: true do |t|
+  create_table "images", force: :cascade do |t|
     t.integer  "owner_id"
     t.integer  "width"
     t.integer  "height"
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 20161016025451) do
 
   add_index "images", ["type", "owner_id", "owner_type"], name: "index_images_on_type_and_owner_id_and_owner_type", using: :btree
 
-  create_table "imports", force: true do |t|
+  create_table "imports", force: :cascade do |t|
     t.integer  "user_id"
     t.boolean  "completed"
     t.integer  "rating_id"
@@ -122,20 +122,20 @@ ActiveRecord::Schema.define(version: 20161016025451) do
     t.datetime "updated_at"
   end
 
-  create_table "list_belongings", force: true do |t|
+  create_table "list_belongings", force: :cascade do |t|
     t.integer  "movie_id"
     t.integer  "list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "list_patterns", force: true do |t|
+  create_table "list_patterns", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "lists", force: true do |t|
+  create_table "lists", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
     t.datetime "created_at"
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20161016025451) do
     t.integer  "list_pattern_id"
   end
 
-  create_table "loves", force: true do |t|
+  create_table "loves", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "lovable_type"
     t.integer  "lovable_id"
@@ -154,14 +154,14 @@ ActiveRecord::Schema.define(version: 20161016025451) do
   add_index "loves", ["lovable_type", "lovable_id"], name: "index_loves_on_lovable_type_and_lovable_id", using: :btree
   add_index "loves", ["user_id", "lovable_type", "lovable_id"], name: "index_loves_on_user_id_and_lovable_type_and_lovable_id", using: :btree
 
-  create_table "movie_in_badges", force: true do |t|
+  create_table "movie_in_badges", force: :cascade do |t|
     t.integer  "movie_id"
     t.integer  "badge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "movies", force: true do |t|
+  create_table "movies", force: :cascade do |t|
     t.integer  "tmdb_id"
     t.string   "imdb_id"
     t.string   "original_title"
@@ -189,7 +189,7 @@ ActiveRecord::Schema.define(version: 20161016025451) do
     t.text     "tagline"
   end
 
-  create_table "notifications", force: true do |t|
+  create_table "notifications", force: :cascade do |t|
     t.integer  "notificable_id"
     t.string   "notificable_type"
     t.integer  "user_id"
@@ -203,7 +203,7 @@ ActiveRecord::Schema.define(version: 20161016025451) do
   add_index "notifications", ["user_id", "pending"], name: "index_notifications_on_user_id_and_pending", using: :btree
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
-  create_table "participations", force: true do |t|
+  create_table "participations", force: :cascade do |t|
     t.integer  "movie_id"
     t.integer  "person_id"
     t.datetime "created_at"
@@ -217,7 +217,7 @@ ActiveRecord::Schema.define(version: 20161016025451) do
 
   add_index "participations", ["type", "movie_id", "job"], name: "index_participations_on_type_and_movie_id_and_job", using: :btree
 
-  create_table "people", force: true do |t|
+  create_table "people", force: :cascade do |t|
     t.string   "name"
     t.string   "tmdb_profile_path"
     t.integer  "tmdb_id"
@@ -229,7 +229,7 @@ ActiveRecord::Schema.define(version: 20161016025451) do
     t.date     "deathday"
   end
 
-  create_table "ratings", force: true do |t|
+  create_table "ratings", force: :cascade do |t|
     t.integer  "movie_id"
     t.integer  "user_id"
     t.integer  "value"
@@ -247,7 +247,7 @@ ActiveRecord::Schema.define(version: 20161016025451) do
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
   add_index "ratings", ["with_short_review"], name: "index_ratings_on_with_short_review", using: :btree
 
-  create_table "reviews", force: true do |t|
+  create_table "reviews", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "movie_id"
     t.text     "content"
@@ -258,7 +258,7 @@ ActiveRecord::Schema.define(version: 20161016025451) do
   add_index "reviews", ["movie_id"], name: "index_reviews_on_movie_id", using: :btree
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",               default: ""
     t.string   "encrypted_password",  default: "", null: false
     t.datetime "remember_created_at"
@@ -281,15 +281,14 @@ ActiveRecord::Schema.define(version: 20161016025451) do
     t.string   "medium_avatar"
     t.integer  "ratings_count",       default: 0
     t.string   "role"
-    t.integer  "experience",          default: 0
     t.string   "provider"
+    t.integer  "experience"
     t.integer  "level",               default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["experience"], name: "index_users_on_experience", using: :btree
 
-  create_table "won_badges", force: true do |t|
+  create_table "won_badges", force: :cascade do |t|
     t.integer  "winner_id"
     t.integer  "badge_id"
     t.datetime "created_at"
