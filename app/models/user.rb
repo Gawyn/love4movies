@@ -90,8 +90,14 @@ class User < ActiveRecord::Base
   end
 
   def avatar(size = "medium")
-    return unless AVATAR_SIZES.include? size
-    send("#{size}_avatar")
+    gravatar_id = Digest::MD5.hexdigest(email.downcase)
+    pixels = case size
+      when 'big' then 200
+      when 'small' then 50
+      else 100
+    end
+
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{pixels}"
   end
 
   def available_patterns

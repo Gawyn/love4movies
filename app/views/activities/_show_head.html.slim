@@ -16,7 +16,7 @@ header.activity-head
       span.act--user
 
 
-        = image_tag user.medium_avatar, class: 'circle circle--small'
+        = image_tag user.avatar('medium'), class: 'circle circle--small'
         small.caps = user.name
         ' &nbsp;
         span.r--stats

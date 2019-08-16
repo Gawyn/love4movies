@@ -32,7 +32,7 @@ section.home--wrapper style="background-image: url(#{content.movie.decorate.get_
 
 
     span.rf--user
-      = link_to image_tag(content.user.medium_avatar, class: 'circle'), user_path(content.user.id)
+      = link_to image_tag(content.user.avatar('medium'), class: 'circle'), user_path(content.user.id)
       = link_to content.user.name, user_path(content.user.id), class: 'rf--user-name caps text--inverse'
       span.rf--stats
 
