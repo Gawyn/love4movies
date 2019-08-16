@@ -22,7 +22,7 @@ article
             | The best Movies
 
         small.text-inverse
-          = image_tag rating.user.medium_avatar, class: 'circle circle--small'
+          = image_tag rating.user.avatar('medium'), class: 'circle circle--small'
           em.readable=' "By"
           span.caps= @user.name
 
