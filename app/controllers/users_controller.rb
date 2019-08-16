@@ -64,6 +64,7 @@ class UsersController < ApplicationController
 
   def omniauth_login
     omniauth = request.env["omniauth.auth"]
+    return unless omniauth['uid']
     user = User.find_by_fb_uid(omniauth["uid"])
 
     if user
@@ -76,6 +77,7 @@ class UsersController < ApplicationController
   end
 
   def password_login
+    return unless params[:email]
     user = User.find_by_email(params[:email])
 
     sign_in(user) if user && user.valid_password?(params[:password])
