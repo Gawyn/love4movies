@@ -1,12 +1,8 @@
 require 'sidekiq/web'
 Love4movies::Application.routes.draw do
-  devise_scope :user do
-    get "/users/auth/:provider/callback" => "users#login"
-  end
-
   mount Sidekiq::Web => '/sidekiq'
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   get "in" => "users#in"
 
