@@ -7,7 +7,7 @@
           em.readable=' t('semantics.about')
           span= content.movie.title
 
-        - if content.is_a? Rating
+        - if content.is_a?(Rating) && content.short_review
 
           h3.readable
             | &#8220;
