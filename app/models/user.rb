@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   ROLES = %w{ user admin }
 
   devise :database_authenticatable, :omniauthable,
-         :rememberable, :trackable, :validatable
+         :rememberable, :trackable, :validatable,
+         :registerable
 
   has_many :ratings, :dependent => :destroy
   has_many :friendships, :dependent => :destroy
