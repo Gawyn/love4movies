@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
       else 100
     end
 
-    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{pixels}"
+    "https://gravatar.com/avatar/#{gravatar_id}.png?s=#{pixels}"
   end
 
   def available_patterns

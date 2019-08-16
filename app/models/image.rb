@@ -1,5 +1,5 @@
 class Image < ActiveRecord::Base
-  IMAGE_BASE_URL = "http://image.tmdb.org/t/p/"
+  IMAGE_BASE_URL = "https://image.tmdb.org/t/p/"
 
   belongs_to :owner, polymorphic: true
 
