@@ -10,7 +10,7 @@ GIT
       tilt (~> 1.1)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     actionmailer (4.2.11.1)
       actionpack (= 4.2.11.1)

@@ -2,7 +2,7 @@ require 'capistrano-unicorn'
 require 'bundler/capistrano'
 
 # RVM
-set :rvm_ruby_version, "2.0.0"
+set :rvm_ruby_version, "2.4.2"
 set :rvm_type, :system
 set :rvm_install_with_sudo, true
 set :rvm_custom_path, '/usr/local/rvm/bin'
