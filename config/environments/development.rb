@@ -1,5 +1,3 @@
-require 'syslog/logger'
-
 Love4movies::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -14,7 +12,6 @@ Love4movies::Application.configure do
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
-  config.logger = Syslog::Logger.new
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
