@@ -90,7 +90,8 @@ class User < ActiveRecord::Base
   end
 
   def avatar(size = "medium")
-    gravatar_id = Digest::MD5.hexdigest(email.downcase)
+    key = email ? email.downcase : 'notworking@love4movies.com'
+    gravatar_id = Digest::MD5.hexdigest(key)
     pixels = case size
       when 'big' then 200
       when 'small' then 50
