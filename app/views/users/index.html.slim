@@ -11,8 +11,8 @@ section.users
           .user-elem__name= link_to user.name, user_path(user.nickname)
           .user-elem__info
             span.user-elem__lvl
-              =' image_tag("levels/lvl-black-#{user.decorate.level_def}.svg")
-              =' user.decorate.level_def.capitalize
+              => image_tag("levels/lvl-black-#{user.decorate.level_def}.svg")
+              => user.decorate.level_def.capitalize
             | &nbsp;
             - if user.location
               span.user-elem__location
@@ -22,13 +22,13 @@ section.users
 
           ul.user-nav.user-elem__nav
             li
-              span.user-nav__title=' t('users.navigation.ratings')
+              span.user-nav__title=> t('users.navigation.ratings')
               strong.user-nav__numb= user.ratings_count
             li
-              span.user-nav__title=' t('users.navigation.followers')
+              span.user-nav__title=> t('users.navigation.followers')
               strong.user-nav__numb= user.passive_follows.count
             li
-              span.user-nav__title=' t('users.navigation.following')
+              span.user-nav__title=> t('users.navigation.following')
               strong.user-nav__numb= user.active_follows.count
 
           - if current_user

@@ -12,7 +12,7 @@
         h2.movie__heading= @movie.title
         p.movie__sinopsis= @movie.overview
         date.movie__runtime
-          =' @movie.runtime
+          => @movie.runtime
           | min
         .movie__tags
           span = @movie.decorate.full_genres
