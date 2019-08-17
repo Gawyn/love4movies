@@ -56,7 +56,6 @@ class MovieFeeder
     def generate_basic_movie(tmdb_id)
       locale = LOCALES.first
       movie_data = TMDBClient.get_movie(tmdb_id, locale)
-      movie_data.default = []
       movie = Movie.new
 
       [ "original_title", "release_date",
@@ -77,13 +76,13 @@ class MovieFeeder
       movie.rating_average = movie.tmdb_vote_average
       movie.l4m_rating_average = 0
 
-      movie_data["genres"].each do |genre_data|
+      (movie_data["genres"] || []).each do |genre_data|
         genre = Genre.find_or_create(:tmdb_id => genre_data["id"],
           :name => genre_data["name"])
         movie.genres << genre
       end
 
-      movie_data["production_countries"].each do |country_data|
+      (movie_data["production_countries"] || []).each do |country_data|
         iso = country_data["iso_3166_1"]
         name = country_data["name"]
         country = Country.find_by_iso_3166_1_and_name(iso, name)
