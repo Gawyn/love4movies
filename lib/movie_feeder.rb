@@ -56,7 +56,9 @@ class MovieFeeder
     def generate_basic_movie(tmdb_id)
       locale = LOCALES.first
       movie_data = TMDBClient.get_movie(tmdb_id, locale)
+      movie_data.default = []
       movie = Movie.new
+
       [ "original_title", "release_date",
         "popularity", "revenue", "runtime", "budget",
         "imdb_id", "adult", "tagline" ].each do |attribute|
@@ -94,9 +96,9 @@ class MovieFeeder
       end
 
       (LOCALES - [LOCALES.first]).each do |locale|
-        movie_data = TMDBClient.get_movie(tmdb_id, locale)
+        localized_movie_data = TMDBClient.get_movie(tmdb_id, locale)
         ["title", "overview"].each do |attribute|
-          movie.send("#{attribute}_#{locale}=", movie_data["#{attribute}"])
+          movie.send("#{attribute}_#{locale}=", localized_movie_data["#{attribute}"])
         end
       end
 
