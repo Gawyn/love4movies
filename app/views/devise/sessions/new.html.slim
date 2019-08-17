@@ -6,6 +6,7 @@ header.m--hero
   section.m--wrapper
     article.leader
       article.c--wrapper
+        h1 Log in
         = form_for(resource, as: resource_name, url: session_path(resource_name), class: 'signup-form') do |f|
           = devise_error_messages!
 
