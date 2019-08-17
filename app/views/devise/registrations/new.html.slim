@@ -1,29 +1,37 @@
-h2 Sign up
+header.m--hero
+  - background = ActionController::Base.helpers.asset_path("default-backdrop.jpg")
+  .js-headerAnim.m--header-image style="#{"background-image: url(#{background})"}"
 
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  
-  div
-    = f.label :email
-    br
-    = f.email_field :email
+.m--body
+  section.m--wrapper
+    article.leader
+      article.c--wrapper
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'signup-form') do |f|
+          = devise_error_messages!
 
-  div
-    = f.label :nickname
-    br
-    = f.text_field :nickname
+          .signup-form
 
-  div
-    = f.label :password
-    br
-    = f.password_field :password
+            div
+              = f.label :email, class: 'label'
+              br
+              = f.email_field :email, class: 'form-input'
 
-  div
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation
+            div
+              = f.label :nickname, class: 'label'
+              br
+              = f.text_field :nickname, class: 'form-input'
 
-  div
-    = f.submit 'Sign up'
+            div
+              = f.label :password
+              br
+              = f.password_field :password, class: 'form-input'
 
-= render 'devise/shared/links'
+            div
+              = f.label :password_confirmation
+              br
+              = f.password_field :password_confirmation, class: 'form-input'
+
+            div
+              = f.submit 'Sign up', class: 'btn btn--light btn--full btn--rate'
+
+        = render 'devise/shared/links'
