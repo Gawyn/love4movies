@@ -4,7 +4,6 @@ class HomeController < ApplicationController
       redirect_to timeline_path
     else
       @last_activity = Activity.last
-      render layout: "landing"
     end
   end
 
