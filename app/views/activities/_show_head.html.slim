@@ -3,7 +3,7 @@ header.activity-head
 
     .act--titles
       span.act--movie
-        em.readable=' t('semantics.about')
+        em.readable=> t('semantics.about')
         span= content.movie.title
 
       - if content.is_a?(Rating) && content.short_review

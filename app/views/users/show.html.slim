@@ -28,17 +28,17 @@
                   .lvl-popup__title= t("level.#{level_def}")
                 .lvl-popup__body
                   .lvl-popup__level
-                    =' t('level.level')
+                    => t('level.level')
                     = @user.level
                   .lvl-popup__points
-                    =' @user.experience
-                    =' t('units.total-points').downcase
+                    => @user.experience
+                    => t('units.total-points').downcase
 
         - if @user.location
           b.user-info__place
             i.ion-location
             '
-            =' @user.location
+            => @user.location
 
     .best-rate-wrapper
       - @highest_ratings.to_a.first(2).each_with_index do |rating, i|
@@ -64,9 +64,9 @@
           ' Valora tus primeras 5 películas para subir de nivel y mejorar tu perfil.
           br
           ' Puedes empezar por las películas más populares del momento o con nuestro ránquing
-        =' link_to 'Populares', trending_path, class: 'btn'
+        => link_to 'Populares', trending_path, class: 'btn'
         ' &nbsp
-        =' link_to 'Ránquing', ranking_path, class: 'btn'
+        => link_to 'Ránquing', ranking_path, class: 'btn'
 
     - else
       header.jump-header
@@ -75,7 +75,7 @@
           h1.user__name
             = @user.name
           p.subheader
-            =' t("level.level")
+            => t("level.level")
             = t("level.#{level_def}")
 
 section.user-nav-wrapper
@@ -90,13 +90,13 @@ section.user-nav-wrapper
 
   ul.user-nav
     li
-      span.user-nav__title=' t('users.navigation.ratings')
+      span.user-nav__title=> t('users.navigation.ratings')
       strong.user-nav__numb= @user.ratings_count
     li
-      span.user-nav__title=' t('users.navigation.followers')
+      span.user-nav__title=> t('users.navigation.followers')
       strong.user-nav__numb= @user.passive_follows.count
     li
-      span.user-nav__title=' t('users.navigation.following')
+      span.user-nav__title=> t('users.navigation.following')
       strong.user-nav__numb= @user.active_follows.count
 
 section

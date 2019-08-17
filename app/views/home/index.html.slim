@@ -19,7 +19,7 @@ section.home--wrapper style="background-image: url(#{content.movie.decorate.get_
 
     p.movie__subheader
 
-      em.readable=' t('semantics.about')
+      em.readable=> t('semantics.about')
       span= link_to content.movie.title, content.movie
 
     = link_to movie_rating_path(content.movie, content), class: "rf--comment" do

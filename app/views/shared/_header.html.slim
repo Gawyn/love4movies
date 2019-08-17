@@ -48,7 +48,7 @@ nav.main--nav.nav-collapse class="#{'is-trans' if @movie}"
                 .lvl-def
                   .right
                     = t("level.#{level_def}")
-                  =' t('level.level')
+                  => t('level.level')
                   = current_user.level
 
                   .lvl__bar--wrapper

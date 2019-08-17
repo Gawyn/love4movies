@@ -20,14 +20,14 @@ section.backdrop-slider.movie--header.movie-sidebar class=(backdrop_is_present ?
 
   / Toggle movie info
   .btn.btn--light.toggle-movie-info.js-toggle-info
-    =' t('actions.more-info')
+    => t('actions.more-info')
 
   / Slider Credits
   .movie__info-wrapper
     .movie__info
       header
         p.movie__subheader
-          =' @movie.decorate.directors
+          => @movie.decorate.directors
           span.movie__year
             ' ·
             = @movie.decorate.movie_year
@@ -36,10 +36,10 @@ section.backdrop-slider.movie--header.movie-sidebar class=(backdrop_is_present ?
         p.movie__stats
           i.fa.fa-star
           '
-          b#rating_average.movie-ratio =' @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
+          b#rating_average.movie-ratio => @movie.l4m_rating_average ? @movie.l4m_rating_average.round(2) : "-"
           ' ·
           b
-            =' @movie.ratings.count
+            => @movie.ratings.count
             ' ratings
 
 - content_for :custom_js do

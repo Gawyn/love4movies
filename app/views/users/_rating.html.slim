@@ -15,7 +15,7 @@ article
             | in Review
           h2.rank-header__subtitle
             ' The best
-            =' time
+            => time
             ' Movies
         - else
           h1.rank-header__title
@@ -23,24 +23,68 @@ article
 
         small.text-inverse
           = image_tag rating.user.avatar('medium'), class: 'circle circle--small'
-          em.readable=' "By"
+          em.readable=> "By"
           span.caps= @user.name
 
     .rank-meta
       .rank-titles class="#{'text--center' if header}"
 
         span.act--movie
-          em.readable=' t('semantics.about')
+          em.readable=> t('semantics.about')
           span= movie.title
 
         h3.readable
           | &#8220;
           = truncate(rating.short_review, length: 70)
           | &#8221;
+section.users
+  header
+    h2.header--title= t('navigation.users')
+    .subheader= t('navigation.users_subtitle')
+
+  ul.user-list
+    - @users.each do |user|
+      li
+        .user-elem
+          .user-elem__img= link_to image_tag(user.avatar('medium')), user_path(user.nickname)
+          .user-elem__name= link_to user.name, user_path(user.nickname)
+          .user-elem__info
+            span.user-elem__lvl
+              => image_tag("levels/lvl-black-#{user.decorate.level_def}.svg")
+              => user.decorate.level_def.capitalize
+            | &nbsp;
+            - if user.location
+              span.user-elem__location
+                i.ion-location
+                '
+                = user.location
+
+          ul.user-nav.user-elem__nav
+            li
+              span.user-nav__title=> t('users.navigation.ratings')
+              strong.user-nav__numb= user.ratings_count
+            li
+              span.user-nav__title=> t('users.navigation.followers')
+              strong.user-nav__numb= user.passive_follows.count
+            li
+              span.user-nav__title=> t('users.navigation.following')
+              strong.user-nav__numb= user.active_follows.count
+
+          - if current_user
+            .user-elem__action
+              - if (current_user != user)
+                #follow_link
+                  - follow = @active_follows.detect { |f| f.followed_id == user.id }
+                  - if follow
+                    = link_to t('actions.unfollow'), follow_path(follow), class: "btn--follow", method: :delete, remote: true, "data-id" => follow.id
+                  - else
+                    = link_to t('actions.follow'), user_follows_path(user), class: "btn--follow", method: :post, remote: true, "data-user_id" => user.id
+              - else
+                = link_to 'Ver tu perfil', user, class: "btn"
 
         span.r--stats
           i.ion-star.c-rate
-          =' rating.value
+          => rating.value
 
           i.ion-heart.c-love
           = '0'

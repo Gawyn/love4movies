@@ -12,7 +12,7 @@ header.m--hero
     header.m--header
       p.movie__subheader
 
-        em.readable=' t('semantics.about')
+        em.readable=> t('semantics.about')
         span= link_to @movie.title, @movie
 
       - if @rating.short_review

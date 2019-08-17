@@ -3,11 +3,11 @@ header.search-keys
   h1= params[:query]
   - if @movies.total > 0
     span.search-keys__results.js-toggle-search.active data-type="movies"
-      b=' @movies.total
+      b=> @movies.total
       = t('units.movies')
   - if @people.total > 0
     span.search-keys__results.js-toggle-search data-type="people"
-      b=' @people.total
+      b=> @people.total
       = t('units.people')
 
 - if @movies.total > 0
