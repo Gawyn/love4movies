@@ -9,6 +9,7 @@ gem 'devise'
 # Omniauth
 gem 'omniauth-facebook', '4.0.0'
 gem 'omniauth-twitter'
+gem 'omniauth-rails_csrf_protection'
 
 # Facebook
 gem 'koala'
