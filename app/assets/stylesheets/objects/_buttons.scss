@@ -246,3 +246,60 @@
     padding: 1em 1.5em;
   }
 }
+
+.btn--login{
+  background-color: $twitter;
+  text-transform: uppercase;
+  border: none;
+  color: $white;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 1.5em 3em 1.5em 7em;
+  position: relative;
+
+  &:hover,
+  &:focus{
+    background-color: darken($twitter, 10%);
+    color: $white;
+  }
+
+  &:before{
+    @extend .ion-log-in;
+    height: 100%;
+    font-size: large;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: darken($twitter, 10%);
+    padding: 1em 1.5em;
+  }
+}
+
+.btn--register{
+  background-color: $brand-color;
+  text-transform: uppercase;
+  border: none;
+  color: $white;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 1.5em 3em 1.5em 7em;
+  position: relative;
+
+  &:hover,
+  &:focus{
+    background-color: darken($brand-color, 10%);
+    color: $white;
+  }
+
+  &:before{
+    @extend .ion-plus;
+    height: 100%;
+    width: 5em;
+    line-height: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: darken($brand-color, 10%);
+    padding: 1em 1.5em;
+  }
+}
