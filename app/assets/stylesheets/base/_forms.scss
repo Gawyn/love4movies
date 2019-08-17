@@ -37,6 +37,19 @@ fieldset{
     padding: 1em;
 }
 
+.signup-form input {
+  border: 1px solid #ddd;
+  resize: none;
+  width: 100%;
+  border-radius: 2px;
+  font-size: 18px;
+  padding: 10px;
+  @include trailer(2/3);
+  @extend %readable;
+
+  &:focus{ outline: 0; border-color: $text-color; }
+}
+
 
 /**
  * Group sets of form fields in a list, e.g.:
