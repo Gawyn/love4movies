@@ -1,6 +1,6 @@
 class Notifier < ActionMailer::Base
   default from: "love4movies@love4movies.com"
-  default_url_options[:host] = "http://love4movies.com"
+  default_url_options[:host] = "https://love4movies.com"
 
   def notification(notification)
     @notification = notification.decorate
