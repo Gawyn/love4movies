@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016025451) do
+ActiveRecord::Schema.define(version: 20190817221643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "activities", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "content_type"
+    t.string   "content_type", limit: 255
     t.integer  "content_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -27,21 +27,21 @@ ActiveRecord::Schema.define(version: 20161016025451) do
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "badges", force: :cascade do |t|
-    t.string   "name_es"
-    t.string   "name_en"
+    t.string   "name_es",        limit: 255
+    t.string   "name_en",        limit: 255
     t.text     "description_es"
     t.text     "description_en"
     t.integer  "movie_quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
+    t.string   "type",           limit: 255
     t.integer  "person_id"
   end
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
-    t.string   "commentable_type"
+    t.string   "commentable_type", limit: 255
     t.integer  "commentable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 20161016025451) do
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
 
   create_table "countries", force: :cascade do |t|
-    t.string   "name"
-    t.string   "iso_3166_1"
+    t.string   "name",       limit: 255
+    t.string   "iso_3166_1", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20161016025451) do
 
   create_table "genres", force: :cascade do |t|
     t.integer  "tmdb_id"
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -99,11 +99,11 @@ ActiveRecord::Schema.define(version: 20161016025451) do
     t.integer  "width"
     t.integer  "height"
     t.float    "aspect_ratio"
-    t.string   "file_path"
+    t.string   "file_path",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
-    t.string   "owner_type"
+    t.string   "type",         limit: 255
+    t.string   "owner_type",   limit: 255
   end
 
   add_index "images", ["type", "owner_id", "owner_type"], name: "index_images_on_type_and_owner_id_and_owner_type", using: :btree
@@ -112,12 +112,12 @@ ActiveRecord::Schema.define(version: 20161016025451) do
     t.integer  "user_id"
     t.boolean  "completed"
     t.integer  "rating_id"
-    t.string   "status"
-    t.string   "rated_title"
+    t.string   "status",         limit: 255
+    t.string   "rated_title",    limit: 255
     t.integer  "rated_value"
     t.integer  "rated_year"
-    t.string   "rated_director"
-    t.string   "rated_source"
+    t.string   "rated_director", limit: 255
+    t.string   "rated_source",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -130,14 +130,14 @@ ActiveRecord::Schema.define(version: 20161016025451) do
   end
 
   create_table "list_patterns", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "lists", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "title"
+    t.string   "title",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "list_pattern_id"
@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 20161016025451) do
 
   create_table "loves", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "lovable_type"
+    t.string   "lovable_type", limit: 255
     t.integer  "lovable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -163,8 +163,8 @@ ActiveRecord::Schema.define(version: 20161016025451) do
 
   create_table "movies", force: :cascade do |t|
     t.integer  "tmdb_id"
-    t.string   "imdb_id"
-    t.string   "original_title"
+    t.string   "imdb_id",            limit: 255
+    t.string   "original_title",     limit: 255
     t.date     "release_date"
     t.integer  "budget",             limit: 8
     t.float    "tmdb_vote_average"
@@ -172,31 +172,31 @@ ActiveRecord::Schema.define(version: 20161016025451) do
     t.integer  "runtime"
     t.integer  "revenue",            limit: 8
     t.float    "popularity"
-    t.string   "tmdb_poster_path"
+    t.string   "tmdb_poster_path",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "rating_average"
-    t.boolean  "hidden",                       default: true
-    t.integer  "total_ratings",                default: 0
-    t.string   "title_en"
+    t.boolean  "hidden",                         default: true
+    t.integer  "total_ratings",                  default: 0
+    t.string   "title_en",           limit: 255
     t.text     "overview_en"
-    t.string   "title_es"
+    t.string   "title_es",           limit: 255
     t.text     "overview_es"
-    t.integer  "ratings_count",                default: 0
+    t.integer  "ratings_count",                  default: 0
     t.float    "l4m_rating_average"
-    t.string   "slug"
-    t.boolean  "adult",                        default: false
+    t.string   "slug",               limit: 255
+    t.boolean  "adult",                          default: false
     t.text     "tagline"
   end
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "notificable_id"
-    t.string   "notificable_type"
+    t.string   "notificable_type",  limit: 255
     t.integer  "user_id"
-    t.boolean  "pending",           default: true
+    t.boolean  "pending",                       default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "triggered_on_type"
+    t.string   "triggered_on_type", limit: 255
     t.integer  "triggered_on_id"
   end
 
@@ -208,23 +208,23 @@ ActiveRecord::Schema.define(version: 20161016025451) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
-    t.string   "character"
+    t.string   "type",       limit: 255
+    t.string   "character",  limit: 255
     t.integer  "tmdb_order"
-    t.string   "department"
-    t.string   "job"
+    t.string   "department", limit: 255
+    t.string   "job",        limit: 255
   end
 
   add_index "participations", ["type", "movie_id", "job"], name: "index_participations_on_type_and_movie_id_and_job", using: :btree
 
   create_table "people", force: :cascade do |t|
-    t.string   "name"
-    t.string   "tmdb_profile_path"
+    t.string   "name",              limit: 255
+    t.string   "tmdb_profile_path", limit: 255
     t.integer  "tmdb_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "biography"
-    t.string   "place_of_birth"
+    t.string   "place_of_birth",    limit: 255
     t.date     "birthday"
     t.date     "deathday"
   end
@@ -259,31 +259,33 @@ ActiveRecord::Schema.define(version: 20161016025451) do
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",               default: ""
-    t.string   "encrypted_password",  default: "", null: false
+    t.string   "email",                  limit: 255, default: ""
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",       default: 0
+    t.integer  "sign_in_count",                      default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "fb_uid"
-    t.string   "token"
-    t.string   "small_avatar"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "nickname"
-    t.string   "name"
-    t.string   "location"
-    t.string   "big_avatar"
-    t.string   "medium_avatar"
-    t.integer  "ratings_count",       default: 0
-    t.string   "role"
-    t.string   "provider"
-    t.integer  "experience"
-    t.integer  "level",               default: 1
+    t.string   "fb_uid",                 limit: 255
+    t.string   "token",                  limit: 255
+    t.string   "small_avatar",           limit: 255
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
+    t.string   "nickname",               limit: 255
+    t.string   "name",                   limit: 255
+    t.string   "location",               limit: 255
+    t.string   "big_avatar",             limit: 255
+    t.string   "medium_avatar",          limit: 255
+    t.integer  "ratings_count",                      default: 0
+    t.string   "role",                   limit: 255
+    t.string   "provider",               limit: 255
+    t.integer  "experience",                         default: 0
+    t.integer  "level",                              default: 1
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
