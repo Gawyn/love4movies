@@ -8,7 +8,7 @@ section.users
       li
         .user-elem
           .user-elem__img= link_to image_tag(user.avatar('medium')), user_path(user.nickname)
-          .user-elem__name= link_to user.name, user_path(user.nickname)
+          .user-elem__name= link_to user.nickname, user_path(user.nickname)
           .user-elem__info
             span.user-elem__lvl
               => image_tag("levels/lvl-black-#{user.decorate.level_def}.svg")
