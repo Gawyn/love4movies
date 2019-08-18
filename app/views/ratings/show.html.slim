@@ -15,7 +15,7 @@ header.m--hero
         em.readable=> t('semantics.about')
         span= link_to @movie.title, @movie
 
-      - if @rating.short_review
+      - if @rating.short_review.present?
         h1.readable
           | &#8220;
           = @rating.short_review
