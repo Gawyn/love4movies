@@ -1,0 +1,23 @@
+header.m--hero
+  - background = ActionController::Base.helpers.asset_path("default-backdrop.jpg")
+  .js-headerAnim.m--header-image style="#{"background-image: url(#{background})"}"
+
+.m--body
+  section.m--wrapper
+    article.leader
+      article.c--wrapper
+        h1 Forgot your password?
+        = form_for(resource, as: resource_name, url: password_path(resource_name), class: 'signup-form') do |f|
+          = devise_error_messages!
+
+          .signup-form
+
+            div
+              = f.label :email, class: 'label'
+              br
+              = f.email_field :email, class: 'form-input'
+
+            div
+              = f.submit 'Send me reset password instructions', class: 'btn btn--light btn--full btn--rate'
+
+        = render 'devise/shared/links'
