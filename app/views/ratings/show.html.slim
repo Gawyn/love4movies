@@ -24,7 +24,7 @@ header.m--hero
       span.rf--user
 
         = link_to image_tag(@rating.user.avatar('medium'), class: 'circle'), @rating.user
-        = link_to @rating.user.name, @rating.user, class: 'rf--user-name caps text--inverse'
+        = link_to @rating.user.nickname, @rating.user, class: 'rf--user-name caps text--inverse'
 
         span.rf--stats
         span.rf--stats
@@ -75,7 +75,7 @@ header.m--hero
           = link_to "#", class: "js-share-rating right btn btn--square btn--light btn--void" do
             i.ion-social-facebook
 
-          = link_to share_twitter_url(t('social.twitter_rating', rating: @rating.short_review, user: @rating.user.name, url: @actual_url)), class: "right btn btn--square btn--light btn--void" do
+          = link_to share_twitter_url(t('social.twitter_rating', rating: @rating.short_review, user: @rating.user.nickname, url: @actual_url)), class: "right btn btn--square btn--light btn--void" do
             i.ion-social-twitter
 
 

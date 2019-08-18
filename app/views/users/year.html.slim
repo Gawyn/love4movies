@@ -56,7 +56,7 @@ section.clear.text--center
     });
 
 - content_for :title do
-  = "#{@user.name}'s #{@year} movies"
+  = "#{@user.nickname}'s #{@year} movies"
 
 - content_for :custom_meta do
   - if @ratings.any?

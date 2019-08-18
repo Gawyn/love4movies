@@ -5,7 +5,7 @@ class NotificationDecorator < Draper::Decorator
   def title
     if notificable_type == "Love"
       h.link_to triggered_on do
-        "<strong>#{user.name}</strong> #{I18n.t('notifications.love-rating')} <strong>#{movie.title}</strong>".html_safe
+        "<strong>#{user.nickname}</strong> #{I18n.t('notifications.love-rating')} <strong>#{movie.title}</strong>".html_safe
       end
     else
 
@@ -13,14 +13,14 @@ class NotificationDecorator < Draper::Decorator
 
       when "Rating"
         h.link_to triggered_on do
-          "<strong>#{user.name}</strong> #{I18n.t('notifications.comment-rating')} <strong>#{movie.title}</strong>".html_safe
+          "<strong>#{user.nickname}</strong> #{I18n.t('notifications.comment-rating')} <strong>#{movie.title}</strong>".html_safe
         end
 
       when "Review"
-        "<strong>#{h.link_to(user.name, user)}</strong> #{I18n.t('notifications.comment-review')} <strong>#{h.link_to(movie.title, triggered_on)}</strong>".html_safe
+        "<strong>#{h.link_to(user.nickname, user)}</strong> #{I18n.t('notifications.comment-review')} <strong>#{h.link_to(movie.title, triggered_on)}</strong>".html_safe
 
       when "Comment"
-        "<strong>#{h.link_to(user.name, user)}</strong> #{I18n.t('notifications.answer-comment')} <strong>#{h.link_to(movie.title, triggered_on.commentable)}</strong>".html_safe
+        "<strong>#{h.link_to(user.nickname, user)}</strong> #{I18n.t('notifications.answer-comment')} <strong>#{h.link_to(movie.title, triggered_on.commentable)}</strong>".html_safe
 
       end
     end
@@ -28,18 +28,18 @@ class NotificationDecorator < Draper::Decorator
 
   def sanitized_title
     if notificable_type == "Love"
-      "#{user.name} #{I18n.t('notifications.love-rating')} #{movie.title}"
+      "#{user.nickname} #{I18n.t('notifications.love-rating')} #{movie.title}"
     else
       case triggered_on_type
 
       when "Rating"
-        "#{user.name} #{I18n.t('notifications.comment-rating')} #{movie.title}"
+        "#{user.nickname} #{I18n.t('notifications.comment-rating')} #{movie.title}"
 
       when "Review"
-        "#{user.name} #{I18n.t('notifications.comment-review')} #{movie.title}"
+        "#{user.nickname} #{I18n.t('notifications.comment-review')} #{movie.title}"
 
       when "Comment"
-        "#{user.name} #{I18n.t('notifications.answer-comment')} #{movie.title}"
+        "#{user.nickname} #{I18n.t('notifications.answer-comment')} #{movie.title}"
       end
     end
   end

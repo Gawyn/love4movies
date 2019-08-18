@@ -1,7 +1,7 @@
 section.rank-list
 
   - @ratings.each_with_index do |rating, i|
-    = render "users/rating", rating: rating, index: i, header: i.zero?, title: @title || "#{@user.name}'s favourite movies"
+    = render "users/rating", rating: rating, index: i, header: i.zero?, title: @title || "#{@user.nickname}'s favourite movies"
 
 section.clear.text--center
   .btn.btn--lrg.js-rank-load Cargar más películas

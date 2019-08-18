@@ -19,7 +19,7 @@
           = image_tag @user.avatar('medium'), class: "user__img"
           figcaption
             h1.user__name
-              = @user.name
+              = @user.nickname
             span.user-lvl-wrapper
               span.user__lvl= image_tag("levels/lvl-#{level_def}.svg")
               span.lvl-popup
@@ -73,7 +73,7 @@
         = image_tag @user.avatar('medium'), class: "user__img"
         .user__info
           h1.user__name
-            = @user.name
+            = @user.nickname
           p.subheader
             => t("level.level")
             = t("level.#{level_def}")
