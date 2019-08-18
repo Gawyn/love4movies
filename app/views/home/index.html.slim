@@ -24,7 +24,7 @@ section.home--wrapper style="background-image: url(#{content.movie.decorate.get_
 
     = link_to movie_rating_path(content.movie, content), class: "rf--comment" do
 
-      - if content.short_review
+      - if content.short_review.present?
         p
           | &#8220;
           = content.short_review

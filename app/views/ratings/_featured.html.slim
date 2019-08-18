@@ -4,7 +4,7 @@
 
   = link_to movie_rating_path(@movie, rating), class: "rf--comment" do
 
-    - if rating.short_review
+    - if rating.short_review.present?
       p
         | &#8220;
         = rating.short_review

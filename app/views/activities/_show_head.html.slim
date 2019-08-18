@@ -6,7 +6,7 @@ header.activity-head
         em.readable=> t('semantics.about')
         span= content.movie.title
 
-      - if content.is_a?(Rating) && content.short_review
+      - if content.is_a?(Rating) && content.short_review.present?
 
         h3.readable
           | &#8220;

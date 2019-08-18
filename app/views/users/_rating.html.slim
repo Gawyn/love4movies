@@ -33,10 +33,11 @@ article
           em.readable=> t('semantics.about')
           span= movie.title
 
-        h3.readable
-          | &#8220;
-          = truncate(rating.short_review, length: 70)
-          | &#8221;
+        - if rating.short_review.present?
+          h3.readable
+            | &#8220;
+            = truncate(rating.short_review, length: 70)
+            | &#8221;
 section.users
   header
     h2.header--title= t('navigation.users')
