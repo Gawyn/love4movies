@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :omniauthable,
          :rememberable, :trackable, :validatable,
-         :registerable
+         :registerable, :recoverable
 
   has_many :ratings, :dependent => :destroy
   has_many :friendships, :dependent => :destroy

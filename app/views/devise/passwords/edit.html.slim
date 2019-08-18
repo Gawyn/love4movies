@@ -1,0 +1,32 @@
+header.m--hero
+  - background = ActionController::Base.helpers.asset_path("default-backdrop.jpg")
+  .js-headerAnim.m--header-image style="#{"background-image: url(#{background})"}"
+
+.m--body
+  section.m--wrapper
+    article.leader
+      article.c--wrapper
+        h1 Change your password
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, class: 'signup-form') do |f|
+          = devise_error_messages!
+          = f.hidden_field :reset_password_token
+
+          .signup-form
+
+            div
+              = f.label :password, 'New password', class: 'label'
+              - if @minimum_password_length
+                em
+                  = "(#{@minimum_password_length} characters minimum)"
+              br
+              = f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'form-input'
+
+            div
+              = f.label :password_confirmation, "Confirm new password"
+              br
+              = f.password_field :password_confirmation, autocomplete: "new-password"
+
+            div
+              = f.submit 'Change my password', class: 'btn btn--light btn--full btn--rate'
+
+        = render 'devise/shared/links'
