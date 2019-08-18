@@ -13,7 +13,7 @@
 
   span.rf--user
     = link_to image_tag(rating.user.avatar('medium'), class: 'circle'), rating.user
-    = link_to rating.user.name, rating.user, class: 'rf--user-name caps text--inverse'
+    = link_to rating.user.nickname, rating.user, class: 'rf--user-name caps text--inverse'
     span.rf--stats
 
       i.ion-android-star.clr-4

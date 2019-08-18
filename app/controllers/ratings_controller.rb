@@ -7,7 +7,7 @@ class RatingsController < ApplicationController
 
     @description = @rating.short_review || @movie.overview
 
-    @title = "#{@rating.user.name} on #{@movie.title}"
+    @title = "#{@rating.user.nickname} on #{@movie.title}"
     @fb_title = "#{@movie.title} - #{'&#9733;' * @rating.value}#{'&#9734;' * (10 - @rating.value)}".html_safe
   end
 
