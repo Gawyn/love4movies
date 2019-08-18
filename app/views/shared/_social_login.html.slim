@@ -2,9 +2,9 @@ section.trailer.leader.text--center
 
   p.trailer.readable.text--inverse = t('actions.enter-and-comment')
 
-  = link_to t('actions.facebook'), user_facebook_omniauth_authorize_path, class: "btn btn--facebook", method: :post
+  = link_to "Log In", new_user_session_path, class: "btn btn--login"
 
   ' &nbsp;
   ' &nbsp;
 
-  = link_to t('actions.twitter'), user_twitter_omniauth_authorize_path, class: "btn btn--twitter", method: :post
+  = link_to "Sign Up", new_user_registration_path, class: "btn btn--register"
