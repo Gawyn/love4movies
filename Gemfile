@@ -54,7 +54,7 @@ gem 'simple_themoviedb', '0.2.1'
 gem 'unidecoder'
 
 # Json
-gem 'json', '1.8.5'
+gem 'json', '2.3.1'
 
 # Assets
 gem 'sass-rails', github: "rails/sass-rails"
