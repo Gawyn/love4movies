@@ -27,7 +27,7 @@ gem 'traco'
 gem 'turbolinks'
 
 # Sidekiq
-gem 'sidekiq', '2.15.1'
+gem 'sidekiq', '5.2.8'
 
 # Sidekiq Failures
 gem 'sidekiq-failures'
